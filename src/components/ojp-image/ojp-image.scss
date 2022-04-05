@@ -1,0 +1,14 @@
+// Encapsulate component style here as children of :host
+:host {
+  display: block;
+
+  /*
+  This may not always be the case, but in this component
+  we want to inherit all of the :host's properties
+  so that a consumer of the library can style the
+  component by using ojp-image {} on their stylesheet.
+   */
+  & > img {
+    all: inherit;
+  }
+}
