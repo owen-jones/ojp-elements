@@ -1,5 +1,48 @@
+$ojp-listbox-transition-time: 0.2s;
+
 :host {
   --list-height: 0px;
 
-  display: block;
+  display: inline-block;
+  position: relative;
+
+  .ojp-listbox-button {
+    align-items: center;
+    border-radius: 10px;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  ::slotted(ul) {
+    height: 0;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    overflow: hidden scroll;
+    padding: 0;
+    position: absolute;
+    top: calc(100% + 11px);
+    transition: height ease-in-out $ojp-listbox-transition-time, visibility linear 0s $ojp-listbox-transition-time;
+    visibility: hidden;
+    width: 100%;
+    z-index: 999;
+  }
+
+  ::slotted(ul > li) {
+    cursor: pointer;
+    list-style: none;
+    padding: 0;
+
+    &[aria-selected="true"] {
+      outline: 2px solid blue;
+    }
+  }
+
+  ::slotted(ul.expanded) {
+    height: var(--list-height);
+    transition: height ease-in-out $ojp-listbox-transition-time;
+    visibility: visible;
+  }
+
 }

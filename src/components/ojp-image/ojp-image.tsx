@@ -13,7 +13,7 @@ export class OjpImage {
 
   intersectionObserver: IntersectionObserver
 
-  connectedCallback() {
+  componentDidLoad() {
     this.intersectionObserver = new IntersectionObserver(((entries, observer) => {
       this.handleIntersection(entries, observer);
     }));

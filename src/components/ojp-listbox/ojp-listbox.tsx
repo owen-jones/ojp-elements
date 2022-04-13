@@ -47,7 +47,7 @@ export class OjpListbox {
     const mainButtonId = `ojp-listbox-button-${randId}`;
     this.mainListId = `ojp-listbox-list-${randId}`;
 
-    this.el.setAttribute('aria-haspopup', 'listbox');
+    this.mainButton.setAttribute('aria-haspopup', 'listbox');
 
     this.mainButton.setAttribute('id', mainButtonId);
     this.mainButton.setAttribute('aria-controls', this.mainListId);
@@ -130,11 +130,11 @@ export class OjpListbox {
     }
 
     const li = this.mainList.children[index] as HTMLElement;
-    const label = li.innerText;
+    const label = li.innerHTML;
     const value = li.dataset.value ?? '';
 
     this.activeSelectionIndex = index;
-    this.mainButton.innerText = label;
+    this.mainButton.innerHTML = label;
     this.mainButton.setAttribute('aria-label', label);
     this.mainList.setAttribute('aria-label', label);
     this.setCheckedClass(li);
@@ -198,7 +198,7 @@ export class OjpListbox {
   render() {
     return (
       <Host>
-        <button id="main-button"></button>
+        <button id="main-button" class="ojp-listbox-button"></button>
         <slot></slot>
       </Host>
     );
