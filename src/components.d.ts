@@ -9,6 +9,8 @@ export namespace Components {
     interface OjpImage {
         "src": string;
     }
+    interface OjpListbox {
+    }
 }
 declare global {
     interface HTMLOjpImageElement extends Components.OjpImage, HTMLStencilElement {
@@ -17,16 +19,26 @@ declare global {
         prototype: HTMLOjpImageElement;
         new (): HTMLOjpImageElement;
     };
+    interface HTMLOjpListboxElement extends Components.OjpListbox, HTMLStencilElement {
+    }
+    var HTMLOjpListboxElement: {
+        prototype: HTMLOjpListboxElement;
+        new (): HTMLOjpListboxElement;
+    };
     interface HTMLElementTagNameMap {
         "ojp-image": HTMLOjpImageElement;
+        "ojp-listbox": HTMLOjpListboxElement;
     }
 }
 declare namespace LocalJSX {
     interface OjpImage {
         "src"?: string;
     }
+    interface OjpListbox {
+    }
     interface IntrinsicElements {
         "ojp-image": OjpImage;
+        "ojp-listbox": OjpListbox;
     }
 }
 export { LocalJSX as JSX };
@@ -34,6 +46,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
+            "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
         }
     }
 }
