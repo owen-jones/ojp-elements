@@ -4,14 +4,17 @@ $ojp-listbox-transition-time: 0.2s;
   --list-height: 0px;
 
   display: inline-block;
+  cursor: pointer;
   position: relative;
 
   .ojp-listbox-button {
-    align-items: center;
-    border-radius: 10px;
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
+    // forwarding all the properties to the button here
+    // because the button is the main visible element of the listbox.
+    // We can avoid the need to create CSS variables if we
+    // let the user just style the component as they want.
+    all: inherit;
+    border: none;
+    cursor: pointer;
   }
 
   ::slotted(ul) {

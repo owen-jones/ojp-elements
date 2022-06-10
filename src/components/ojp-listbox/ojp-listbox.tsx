@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, State } from '@stencil/core';
+import { Component, Host, h, Element, State, Prop } from '@stencil/core';
 import { randomId } from '../../utils/utils';
 
 @Component({
@@ -14,9 +14,22 @@ export class OjpListbox {
   mainList: HTMLElement;
   mainListId: string;
 
-  @State() open: boolean = false; // open/close state of the listbox
+  @Prop({
+    reflect: true,
+    mutable: true,
+  })
+  open: boolean = false; // open/close state of the listbox
+
+  @Prop({
+    reflect: true,
+    mutable: false
+  })
+  activeSelectionIndex: number = 0;
+
+  @Prop() onItemSelected: Function;
+
   @State() activeDescendantIndex: number = 0; // used for aria-activedescendant
-  @State() activeSelectionIndex: number = 0;
+
 
   componentDidLoad() {
     // since this method is called once before the component is rendered, we need to set the initial state
@@ -24,6 +37,13 @@ export class OjpListbox {
     // just to keep the code a bit cleaner
 
     this.mainButton = this.el.shadowRoot.querySelector('#main-button');
+
+    if(this.onItemSelected) {
+      console.log("has listener", this.onItemSelected);
+      this.el.addEventListener('itemselected', (e) => {
+        this.onItemSelected(e);
+      });
+    }
 
     const slot = this.el.shadowRoot.querySelector('slot');
     if(slot) { // before the first render, the list will be empty, so we need to wait for the slot to be populated
@@ -168,8 +188,12 @@ export class OjpListbox {
     });
   }
 
+  // dispatch an event whenever the selection changes
   dispatchSelectEvent(label, value) {
-    const event = new CustomEvent('select', {
+    const event = new CustomEvent('itemselected', {
+      bubbles: true,
+      cancelable: true,
+      composed: true, // this is required to make the event break beyond the shadow DOM
       detail: {
         label,
         value
@@ -195,6 +219,8 @@ export class OjpListbox {
 
   }
 
+  // this is the HTML markup for the component
+  // in JSX syntax
   render() {
     return (
       <Host>

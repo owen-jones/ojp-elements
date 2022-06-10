@@ -6,6 +6,7 @@ export const config: Config = {
   plugins: [
     sass()
   ],
+  sourceMap: true,
   outputTargets: [
     {
       type: 'dist',
