@@ -7,6 +7,22 @@
 
   <script type="module" src="../../build/ojp-elements.esm.js"></script>
   <script nomodule src="../../build/ojp-elements.js"></script>
+
+  <style>
+    ojp-listbox {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0 4px;
+    }
+
+    ojp-listbox::after {
+      content: "^";
+    }
+
+    ojp-listbox[open]::after {
+      content: "v";
+    }
+  </style>
 </head>
 <body>
   <ojp-listbox>

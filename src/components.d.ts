@@ -10,6 +10,9 @@ export namespace Components {
         "src": string;
     }
     interface OjpListbox {
+        "activeSelectionIndex": number;
+        "onItemSelected": Function;
+        "open": boolean;
     }
 }
 declare global {
@@ -35,6 +38,9 @@ declare namespace LocalJSX {
         "src"?: string;
     }
     interface OjpListbox {
+        "activeSelectionIndex"?: number;
+        "onItemSelected"?: Function;
+        "open"?: boolean;
     }
     interface IntrinsicElements {
         "ojp-image": OjpImage;
