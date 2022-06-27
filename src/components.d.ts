@@ -14,6 +14,9 @@ export namespace Components {
         "onItemSelected": Function;
         "open": boolean;
     }
+    interface OjpRow {
+        "cols"?: string;
+    }
 }
 declare global {
     interface HTMLOjpImageElement extends Components.OjpImage, HTMLStencilElement {
@@ -28,9 +31,16 @@ declare global {
         prototype: HTMLOjpListboxElement;
         new (): HTMLOjpListboxElement;
     };
+    interface HTMLOjpRowElement extends Components.OjpRow, HTMLStencilElement {
+    }
+    var HTMLOjpRowElement: {
+        prototype: HTMLOjpRowElement;
+        new (): HTMLOjpRowElement;
+    };
     interface HTMLElementTagNameMap {
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
+        "ojp-row": HTMLOjpRowElement;
     }
 }
 declare namespace LocalJSX {
@@ -42,9 +52,13 @@ declare namespace LocalJSX {
         "onItemSelected"?: Function;
         "open"?: boolean;
     }
+    interface OjpRow {
+        "cols"?: string;
+    }
     interface IntrinsicElements {
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
+        "ojp-row": OjpRow;
     }
 }
 export { LocalJSX as JSX };
@@ -53,6 +67,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
+            "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
         }
     }
 }

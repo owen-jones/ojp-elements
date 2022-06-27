@@ -1,0 +1,30 @@
+@mixin columns($num) {
+  .row--#{$num} {
+    grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(#{$num}, minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
+  }
+}
+
+:host {
+  // --cols: 12;
+  display: grid;
+
+  height: 220px;
+  border: 2px solid red;
+
+  // grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(var(--cols), minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
+  // @include columns(8);
+
+  .col {
+    border: 1px dashed gray;
+  }
+
+  &.row--8{
+    @include columns(8);
+    grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(#{$num}, minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
+    
+  }
+}
+
+// .row--8:host {
+//   @include columns(8);
+// }
