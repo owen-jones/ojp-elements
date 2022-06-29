@@ -6,6 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface OjpCol {
+        "span": string;
+        "start": string;
+    }
     interface OjpImage {
         "src": string;
     }
@@ -15,10 +19,19 @@ export namespace Components {
         "open": boolean;
     }
     interface OjpRow {
-        "cols"?: string;
+        "align": string;
+        "center": boolean;
+        "cols": string;
+        "justify": string;
     }
 }
 declare global {
+    interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
+    }
+    var HTMLOjpColElement: {
+        prototype: HTMLOjpColElement;
+        new (): HTMLOjpColElement;
+    };
     interface HTMLOjpImageElement extends Components.OjpImage, HTMLStencilElement {
     }
     var HTMLOjpImageElement: {
@@ -38,12 +51,17 @@ declare global {
         new (): HTMLOjpRowElement;
     };
     interface HTMLElementTagNameMap {
+        "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-row": HTMLOjpRowElement;
     }
 }
 declare namespace LocalJSX {
+    interface OjpCol {
+        "span"?: string;
+        "start"?: string;
+    }
     interface OjpImage {
         "src"?: string;
     }
@@ -53,9 +71,13 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface OjpRow {
+        "align"?: string;
+        "center"?: boolean;
         "cols"?: string;
+        "justify"?: string;
     }
     interface IntrinsicElements {
+        "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
         "ojp-row": OjpRow;
@@ -65,6 +87,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;

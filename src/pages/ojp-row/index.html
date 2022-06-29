@@ -9,18 +9,159 @@
   <script nomodule src="../../build/ojp-elements.js"></script>
 
   <style>
-    /* ojp-row {
-      border: 2px solid pink;
-    } */
+    body {
+      margin: 0;
+    }
+    h1, h3 {
+      text-align: center;
+    }
+    ojp-row {
+      /* variables can be overridden here */
+      /* --ojp-row--col-gap: 50px; */
+    }
+    @media only screen and (max-width: 900px){
+      ojp-row {
+        --ojp-row--cols: 12;
+      }
+    }
+
+    ojp-col, .ojp-col {
+      border: 2px dashed gray;
+      text-align: center;
+    }
+
+    /* // Background grid, for illustration */      
+    .grid--bg {
+      --demo--col-gap: 10px;
+      --demo--max-wrapper-width: 1200px;
+      --demo--max-wrapper-width-minus-gaps: calc(var(--demo--max-wrapper-width) - ((var(--demo--cols) - 1) * var(--demo--col-gap)));
+      --demo--gutter: 20px;
+      --demo--cols: 12;
+      --demo--max-col-width: calc(var(--demo--max-wrapper-width-minus-gaps) / var(--demo--cols));
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      
+      display: grid;
+      column-gap: var( --demo--col-gap);
+      grid-template-columns: [start] minmax(var(--demo--gutter), 1fr) [wrapper-start] repeat(var(--demo--cols), minmax(0, var(--demo--max-col-width))) [wrapper-end] minmax(var(--demo--gutter), 1fr) [end];
+    }
+    
+    @media (min-width: 900px) {
+      .grid--bg {
+        --demo--gutter: 100px;
+      }
+    }
+      
+    .grid--bg div {
+        background-color: #e4f2f7 ;
+        color: #8eb0bc;
+        text-transform: uppercase;
+        text-align: center;
+        border: 1px dashed lightblue;
+        /* height: 100px; */
+    }
+
+    .container {
+      position: relative;
+      padding-top: 40px;
+      height: 100%;
+    }
+
   </style>
 </head>
 <body>
-  <br><br>
-  <ojp-row cols="8">
-      <div class="col">col 1</div>
-      <div class="col">col 2</div>
-      <div class="col">col 3</div>
-      <div class="col">col 4</div>
-  </ojp-row>
+  <div class="container">
+
+    <!-- <h1>Grid guidelines</h1> -->
+    <div class="grid--bg">
+      <div>L Gutter</div>
+      <div>Col 1</div>
+      <div>Col 2</div>
+      <div>Col 3</div>
+      <div>Col 4</div>
+      <div>Col 5</div>
+      <div>Col 6</div>
+      <div>Col 7</div>
+      <div>Col 8</div>
+      <div>Col 9</div>
+      <div>Col 10</div>
+      <div>Col 11</div>
+      <div>Col 12</div>
+      <div>R Gutter</div>
+    </div>
+
+    <!-- <h1>12 col row</h1> -->
+    <h3><pre>&lt;ojp-row"&gt;</pre></h3>
+    <ojp-row cols="12">
+        <ojp-col span="1">col 1</ojp-col>
+        <ojp-col span="1">col 2</ojp-col>
+        <ojp-col span="1">col 3</ojp-col>
+        <ojp-col span="1">col 4</ojp-col>
+        <ojp-col span="1">col 5</ojp-col>
+        <ojp-col span="1">col 6</ojp-col>
+        <ojp-col span="1">col 7</ojp-col>
+        <ojp-col span="1">col 8</ojp-col>
+        <ojp-col span="1">col 9</ojp-col>
+        <ojp-col span="1">col 10</ojp-col>
+        <ojp-col span="1">col 11</ojp-col>
+        <ojp-col span="1">col 12</ojp-col>
+    </ojp-row>
+<br><br>
+
+  <h3>
+    <pre>
+      &lt;ojp-row align="center" justify="center"&gt;<br>
+      &lt;ojp-col span="4" start="4"&gt;&lt;/ojp-col&gt;
+      &lt;ojp-col span="4"&gt;&lt;/ojp-col&gt;
+      <br>
+      &lt;/ojp-row&gt;
+    </pre>
+</h3>
+
+    <ojp-row align="center" justify="center">
+      <ojp-col span="4" start="4"><img src="https://source.unsplash.com/random/100×200" style="object-fit: cover;width:100%;display:block;"></ojp-col>
+      <ojp-col span="4"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+    </ojp-row>
+<br><br>
+
+  <h3>
+    <pre>
+      &lt;ojp-row align="center" justify="center"&gt;<br>
+      &lt;ojp-col span="6"&gt;&lt;/ojp-col&gt;
+      &lt;ojp-col span="6"&gt;&lt;/ojp-col&gt;
+      <br>
+      &lt;/ojp-row&gt;
+    </pre>
+</h3>
+
+<ojp-row>
+  <ojp-col span="6">
+    <img src="https://source.unsplash.com/random/200×200" style="object-fit: cover;width:100%;display:block;">
+  </ojp-col>
+  <ojp-col span="6">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p>
+  </ojp-col>
+</ojp-row>
+
+<br>
+
+    <ojp-row>
+      <ojp-col span="6">
+        <img src="https://source.unsplash.com/random/200×200" style="object-fit: cover;width:100%;display:block;">
+      </ojp-col>
+      <ojp-col span="6">
+        <ojp-row>
+          <ojp-col span="6"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+        </ojp-row>
+      </ojp-col>
+    </ojp-row>
+
+
+  </div>
 </body>
 </html>

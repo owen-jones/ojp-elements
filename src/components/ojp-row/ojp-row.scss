@@ -1,30 +1,43 @@
-@mixin columns($num) {
-  .row--#{$num} {
-    grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(#{$num}, minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
-  }
-}
 
 :host {
-  // --cols: 12;
+
+  // PROPS - can be overwritten with props b/c
+  // likely to be different per component
+
+  // Align Items 
+  --ojp-row--align-items: stretch;
+  // Justify Items
+  --ojp-row--justify-items: stretch;
+
+
+  // PERSISTENT VALUES (Should these be props instead?)
+  // likely to be persistent across a project?
+  // Number of columns
+  --ojp-row--cols: 12;
+  // Gap between columns
+  --ojp-row--col-gap: 10px;
+  // Gap between rows
+  --ojp-row--row-gap: 10px;
+  // Minimum gutter width
+  --ojp-row--gutter: 20px;
+  
+  // Max Wrapper Width (not including gutters)
+  --ojp-row--max-wrapper-width: 1200px;
+  // Max Wrapper Width (not including gutters, excluding column gaps)
+  --ojp-row--max-wrapper-width-minus-gaps: calc(var(--ojp-row--max-wrapper-width) - ((var(--ojp-row--cols) - 1) * var(--ojp-row--col-gap)));
+  // Max Width of each column 
+  --ojp-row--max-col-width: calc(var(--ojp-row--max-wrapper-width-minus-gaps) / var(--ojp-row--cols));
+
+  @media (min-width: 900px) {
+    --ojp-row--gutter: 100px;
+  }
+
+  align-items: var(--ojp-row--align-items);
+  justify-items: var(--ojp-row--justify-items);
+  column-gap: var(--ojp-row--col-gap);
   display: grid;
+  grid-template-columns: [start] minmax(var(--ojp-row--gutter), 1fr) [wrapper-start] repeat(var(--ojp-row--cols), minmax(0, var(--ojp-row--max-col-width))) [wrapper-end] minmax(var(--ojp-row--gutter), 1fr) [end];
 
-  height: 220px;
-  border: 2px solid red;
-
-  // grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(var(--cols), minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
-  // @include columns(8);
-
-  .col {
-    border: 1px dashed gray;
-  }
-
-  &.row--8{
-    @include columns(8);
-    grid-template-columns: [start] minmax(20px, 1fr) [wrapper-start] repeat(#{$num}, minmax(0, 100px)) [wrapper-end] minmax(20px, 1fr) [end];
-    
-  }
 }
 
-// .row--8:host {
-//   @include columns(8);
-// }
+

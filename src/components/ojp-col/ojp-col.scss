@@ -1,0 +1,11 @@
+:host {
+  --ojp-col--start: 'auto';
+  --ojp-col--span: 'auto';
+  grid-column:  var(--ojp-col--start) / span var(--ojp-col--span);
+
+
+  // On nested row, we don't want the gutters
+  ::slotted(ojp-row) {
+    grid-template-columns: repeat(var(--ojp-row--cols), 1fr);
+  }
+}
