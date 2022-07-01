@@ -13,11 +13,11 @@
   --ojp-col--span: var(--ojp-col--mspan);
 
   // Tablet 
-  @media (min-width: 700px) {
+  @supports (--breakpoint("tablet")) {
     --ojp-col--span: var(--ojp-col--tspan);
   }
   // Desktop
-  @media (min-width: 1100px) {
+  @supports (--breakpoint("desktop")) {
     --ojp-col--span: var(--ojp-col--dspan);
   }
 
@@ -31,11 +31,11 @@
   --ojp-col--start: var(--ojp-col--mstart);
 
   // Tablet 
-  @media (min-width: 700px) {
+  @supports (--breakpoint("tablet")) {
     --ojp-col--start: var(--ojp-col--tstart);
   }
   // Desktop
-  @media (min-width: 1100px) {
+  @supports (--breakpoint("desktop")) {
     --ojp-col--start: var(--ojp-col--dstart);
   }
 

@@ -14,11 +14,11 @@
   --ojp-row--cols: var(--ojp-row--mcols);
 
   // Tablet 
-  @media (min-width: 700px) {
+  @supports (--breakpoint("tablet")) {
     --ojp-row--cols: var(--ojp-row--tcols);
   }
   // Desktop
-  @media (min-width: 1100px) {
+  @supports (--breakpoint("desktop")) {
     --ojp-row--cols: var(--ojp-row--dcols);
   }
 
@@ -46,7 +46,11 @@
   // Max Width of each column 
   --ojp-row--max-col-width: calc(var(--ojp-row--max-wrapper-width-minus-gaps) / var(--ojp-row--cols));
 
-  @media (min-width: 900px) {
+  @supports (--breakpoint("tablet")) {
+    --ojp-row--gutter: 50px;
+  }
+
+  @supports (--breakpoint("desktop")) {
     --ojp-row--gutter: 100px;
   }
 
