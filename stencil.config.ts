@@ -4,12 +4,11 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'ojp-elements',
   globalStyle: 'src/global/global.scss',
+  globalScript: 'src/global/global.js',
   plugins: [
     sass()
   ],
   sourceMap: true,
-  globalScript: 'src/global/global.js',
-  globalStyle: 'src/global/global.scss',
   outputTargets: [
     {
       type: 'dist',
