@@ -15,15 +15,6 @@
     h1, h3 {
       text-align: center;
     }
-    ojp-row {
-      /* variables can be overridden here */
-      /* --ojp-row--col-gap: 50px; */
-    }
-    @media only screen and (max-width: 900px){
-      ojp-row {
-        --ojp-row--cols: 12;
-      }
-    }
 
     ojp-col, .ojp-col {
       border: 2px dashed gray;
@@ -95,7 +86,7 @@
       <div>R Gutter</div>
     </div>
 
-    <!-- <h1>12 col row</h1> -->
+    <h1>12 col row</h1>
     <h3><pre>&lt;ojp-row"&gt;</pre></h3>
     <ojp-row cols="12">
         <ojp-col span="1">col 1</ojp-col>
@@ -123,9 +114,9 @@
     </pre>
 </h3>
 
-    <ojp-row align="center" justify="center">
-      <ojp-col span="4" start="4"><img src="https://source.unsplash.com/random/100×200" style="object-fit: cover;width:100%;display:block;"></ojp-col>
-      <ojp-col span="4"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+    <ojp-row cols="12" align="center" justify="center">
+      <ojp-col span="6" mspan="12"><img src="https://source.unsplash.com/random/100×200" style="object-fit: cover;width:100%;display:block;"></ojp-col>
+      <ojp-col span="6" mspan="12" mstart="2"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
     </ojp-row>
 <br><br>
 
@@ -155,8 +146,9 @@
         <img src="https://source.unsplash.com/random/200×200" style="object-fit: cover;width:100%;display:block;">
       </ojp-col>
       <ojp-col span="6">
-        <ojp-row>
-          <ojp-col span="6"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+        <ojp-row cols="5" no-gutter>
+          <ojp-col span="3"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+          <ojp-col span="2"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
         </ojp-row>
       </ojp-col>
     </ojp-row>

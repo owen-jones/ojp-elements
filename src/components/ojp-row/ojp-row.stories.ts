@@ -3,22 +3,67 @@ export default {
   title: 'Components/OjpRow',
   // this defines the available parameters that can be tweaked in the story
   argTypes: {
-    // cols: {
-    //   control: 'number',
-    //   description: 'Number of Columns',
-    //   defaultValue: 12,
-    // },
+    cols: {
+      name: 'ojp-row | cols',
+      control: 'number',
+      description: 'Number of Columns in Grid',
+      defaultValue: 12,
+    },
+    mcols: {
+      name: 'ojp-row | mcols',
+      control: 'number',
+      description: 'Number of Columns in Grid - mobile',
+      defaultValue: 12,
+    },
+    tcols: {
+      name: 'ojp-row | tcols',
+      control: 'number',
+      description: 'Number of Columns in Grid - tablet',
+      defaultValue: 12,
+    },
+    dcols: {
+      name: 'ojp-row | tcols',
+      control: 'number',
+      description: 'Number of Columns in Grid - desktop',
+      defaultValue: 12,
+    },
     align: {
+      name: 'ojp-row | align',
       options: ['stretch', 'start', 'end', 'center', ],
       defaultValue: 'stretch',
       control: { type: 'radio' },
       description: 'Align Items property'
     },
     justify: {
+      name: 'ojp-row | justify',
       options: ['stretch', 'start', 'end', 'center', ],
       control: { type: 'radio' },
       defaultValue: 'stretch',
       description: 'Justify Items property'
+    },
+    start1: {
+      name: 'Column 1 | start',
+      control: 'text',
+      description: 'Start of Image Column',
+      defaultValue: 'auto',
+    },
+    span1: {
+      name: 'Column 1 | span',
+      control: 'text',
+      description: 'Span of Image Column',
+      defaultValue: 'auto',
+    },
+    start2: {
+      name: 'Column 2 | start',
+      control: 'text',
+      description: 'Start of Text Column',
+      defaultValue: 'auto',
+    },
+    span2: {
+      name: 'Column 2 | span',
+      control: 'text',
+      description: 'Span of Text Column',
+      defaultValue: 'auto',
     },
   }
 }
@@ -53,17 +98,28 @@ const Template = (args) => `
 
 <!-- Start component code -->
 <ojp-row
+  cols='${args.cols}'
+  mcols='${args.mcols}'
+  tcols='${args.tcols}'
+  dcols='${args.dcols}'
   align='${args.align}'
   justify='${args.justify}'
 >
-<ojp-col span="6"><img src="https://source.unsplash.com/random/100×200"></ojp-col>
-<ojp-col span="6"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+<ojp-col start="${args.start1}" span="${args.span1}"><img src="https://source.unsplash.com/random/500×400"></ojp-col>
+<ojp-col start="${args.start2}" span="${args.span2}"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
 </ojp-row>
 `;
 
 export const OjpRow = Template.bind({});
 OjpRow.args = {
-  // cols: 12,
+  cols: 10,
+  mcols: 12,
+  tcols: 12,
+  dcols: 12,
   align: 'stretch',
-  justify: 'stetch'
+  justify: 'stetch',
+  start1: '2',
+  span1: '6',
+  start2: '8',
+  span2: '6',
 }

@@ -1,11 +1,51 @@
 :host {
-  --ojp-col--start: 'auto';
-  --ojp-col--span: 'auto';
-  grid-column:  var(--ojp-col--start) / span var(--ojp-col--span);
+
+    // PROPS - can be overwritten with props b/c
+  // likely to be different per component
+
+  // Column Span - device specific
+  --ojp-col--mspan: auto;
+  --ojp-col--tspan: auto;
+  --ojp-col--dspan: auto;
+  
+  // --ojp-col--span set to mspan/tspan/dspan per device size
+  // Mobile
+  --ojp-col--span: var(--ojp-col--mspan);
+
+  // Tablet 
+  @media (min-width: 700px) {
+    --ojp-col--span: var(--ojp-col--tspan);
+  }
+  // Desktop
+  @media (min-width: 1100px) {
+    --ojp-col--span: var(--ojp-col--dspan);
+  }
+
+  // Column start - device specific
+  --ojp-col--mstart: auto;
+  --ojp-col--tstart: auto;
+  --ojp-col--dstart: auto;
+  
+  // --ojp-col--start set to mstart/tstart/dstart per device size
+  // Mobile
+  --ojp-col--start: var(--ojp-col--mstart);
+
+  // Tablet 
+  @media (min-width: 700px) {
+    --ojp-col--start: var(--ojp-col--tstart);
+  }
+  // Desktop
+  @media (min-width: 1100px) {
+    --ojp-col--start: var(--ojp-col--dstart);
+  }
+
+  grid-column-start: var(--ojp-col--start);
+  grid-column-end: span var(--ojp-col--span);
 
 
-  // On nested row, we don't want the gutters
+  // On nested rows, we don't want the gutters
   ::slotted(ojp-row) {
     grid-template-columns: repeat(var(--ojp-row--cols), 1fr);
   }
+
 }

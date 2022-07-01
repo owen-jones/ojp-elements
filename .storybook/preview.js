@@ -10,4 +10,5 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  expanded: true
 }

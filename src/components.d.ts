@@ -7,8 +7,14 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface OjpCol {
+        "dspan": any;
+        "dstart": any;
+        "mspan": any;
+        "mstart": any;
         "span": string;
         "start": string;
+        "tspan": any;
+        "tstart": any;
     }
     interface OjpImage {
         "src": string;
@@ -20,9 +26,12 @@ export namespace Components {
     }
     interface OjpRow {
         "align": string;
-        "center": boolean;
         "cols": string;
+        "dcols": any;
         "justify": string;
+        "mcols": any;
+        "noGutter": boolean;
+        "tcols": any;
     }
 }
 declare global {
@@ -59,8 +68,14 @@ declare global {
 }
 declare namespace LocalJSX {
     interface OjpCol {
+        "dspan"?: any;
+        "dstart"?: any;
+        "mspan"?: any;
+        "mstart"?: any;
         "span"?: string;
         "start"?: string;
+        "tspan"?: any;
+        "tstart"?: any;
     }
     interface OjpImage {
         "src"?: string;
@@ -72,9 +87,12 @@ declare namespace LocalJSX {
     }
     interface OjpRow {
         "align"?: string;
-        "center"?: boolean;
         "cols"?: string;
+        "dcols"?: any;
         "justify"?: string;
+        "mcols"?: any;
+        "noGutter"?: boolean;
+        "tcols"?: any;
     }
     interface IntrinsicElements {
         "ojp-col": OjpCol;

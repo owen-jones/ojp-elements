@@ -4,16 +4,34 @@
   // PROPS - can be overwritten with props b/c
   // likely to be different per component
 
+  // Number of columns - device specific
+  --ojp-row--mcols: 12;
+  --ojp-row--tcols: 12;
+  --ojp-row--dcols: 12;
+  
+  // --ojp-row--cols set to mcols/tcols/dcols per device size
+  // Mobile
+  --ojp-row--cols: var(--ojp-row--mcols);
+
+  // Tablet 
+  @media (min-width: 700px) {
+    --ojp-row--cols: var(--ojp-row--tcols);
+  }
+  // Desktop
+  @media (min-width: 1100px) {
+    --ojp-row--cols: var(--ojp-row--dcols);
+  }
+
   // Align Items 
   --ojp-row--align-items: stretch;
   // Justify Items
   --ojp-row--justify-items: stretch;
 
 
-  // PERSISTENT VALUES (Should these be props instead?)
-  // likely to be persistent across a project?
-  // Number of columns
-  --ojp-row--cols: 12;
+  // PERSISTENT VALUES (NOT PROPS)
+  // likely to be persistent across a project and/or
+  // easier to set as css vars so they can use Utopia
+
   // Gap between columns
   --ojp-row--col-gap: 10px;
   // Gap between rows
@@ -36,8 +54,7 @@
   justify-items: var(--ojp-row--justify-items);
   column-gap: var(--ojp-row--col-gap);
   display: grid;
+
   grid-template-columns: [start] minmax(var(--ojp-row--gutter), 1fr) [wrapper-start] repeat(var(--ojp-row--cols), minmax(0, var(--ojp-row--max-col-width))) [wrapper-end] minmax(var(--ojp-row--gutter), 1fr) [end];
 
 }
-
-
