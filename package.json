@@ -32,7 +32,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "^2.13.0",
+    "cssomtools": "^0.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",

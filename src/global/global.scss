@@ -1,0 +1,27 @@
+:root {
+  // Developers can override this to set globals
+  --breakpoints: {
+  "mobile": "(min-width: 320px)",
+  "tablet": "(min-width: 768px)",
+  "desktop": "(min-width: 1024px)"
+  }
+}
+
+@supports (--breakpoint("mobile")) {
+// declare your variables per breakpoint
+  html {
+    background: red;
+  }
+}
+
+@supports (--breakpoint("tablet")) {
+  html {
+    background: green;
+  }
+}
+
+@supports (--breakpoint("desktop")) {
+  html {
+    background: blue;
+  }
+}
