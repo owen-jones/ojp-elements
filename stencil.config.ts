@@ -8,6 +8,8 @@ export const config: Config = {
     sass()
   ],
   sourceMap: true,
+  globalScript: 'src/global/global.js',
+  globalStyle: 'src/global/global.scss',
   outputTargets: [
     {
       type: 'dist',

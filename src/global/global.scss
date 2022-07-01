@@ -1,79 +1,27 @@
+:root {
+  // Developers can override this to set globals
+  --breakpoints: {
+  "mobile": "(min-width: 320px)",
+  "tablet": "(min-width: 768px)",
+  "desktop": "(min-width: 1024px)"
+  }
+}
 
+@supports (--breakpoint("mobile")) {
+// declare your variables per breakpoint
+  html {
+    background: red;
+  }
+}
 
+@supports (--breakpoint("tablet")) {
+  html {
+    background: green;
+  }
+}
 
-// //Breakpoints
-// --ojp-global--screen-sm-min: 300px;
-// --ojp-global--screen-sm-max: 700px;
-// --ojp-global--screen-md-min: var(--ojp-global--screen-sm-max) + 1;
-// --ojp-global--screen-md-max: 1100px;
-// --ojp-global--screen-lg-min: var(--ojp-global--screen-md-max) + 1;
-// --ojp-global--screen-lg-max: 1600px;
-// --ojp-global--screen-xl-min: var(--ojp-global--screen-lg-max) + 1;
-
-
-// $ojp-global--screen-sm-min: 300px;
-// $ojp-global--screen-sm-max: 700px;
-// $ojp-global--screen-md-min: var($ojp-global--screen-sm-max) + 1;
-// $ojp-global--screen-md-max: 1100px;
-// $ojp-global--screen-lg-min: var($ojp-global--screen-md-max) + 1;
-// $ojp-global--screen-lg-max: 1600px;
-// $ojp-global--screen-xl-min: var($ojp-global--screen-lg-max) + 1;
-
-
-
-// @mixin media-query($point) {
-//   @if $point == xl-up {
-//     @media (min-width: $ojp-global--screen-xl-min) { @content; }
-//   }
-//   @else if $point == xl-only {
-//     @media (min-width: $ojp-global--screen-xl-min) and (max-width: $ojp-global--screen-xl-max) { @content; }
-//   }
-//   @else if $point == lg-up {
-//     @media (min-width: $ojp-global--screen-lg-min) { @content; }
-//   }
-//   @else if $point == lg-only {
-//     @media (min-width: $ojp-global--screen-lg-min) and (max-width: $ojp-global--screen-lg-max) { @content; }
-//   }
-//   @else if $point == md-up {
-//     @media (min-width: $ojp-global--screen-md-min) { @content; }
-//   }
-//   @else if $point == lg-down {
-//     @media (max-width: $ojp-global--screen-lg-max) { @content; }
-//   }
-//   @else if $point == md-only {
-//     @media (min-width: $ojp-global--screen-md-min) and (max-width: $ojp-global--screen-md-max) { @content; }
-//   }
-//   @else if $point == sm-up {
-//     @media (min-width: $ojp-global--screen-sm-min) { @content; }
-//   }
-//   @else if $point == md-down {
-//     @media (max-width: $ojp-global--screen-md-max) { @content; }
-//   }
-//   @else if $point == sm-down {
-//     @media (max-width: $ojp-global--screen-sm-max) { @content; }
-//   }
-//   @else if $point == sm-only {
-//     @media (min-width: $ojp-global--screen-sm-min) and (max-width: $ojp-global--screen-sm-max)  { @content; }
-//   }
-//   @else if $point == sm-landscape {
-//     @media (max-width: 830px) and (orientation: landscape) { @content; }
-//   }
-//   @else {
-//     @media ($point) { @content; }
-//   }
-// }
-
-// :root {
-
-//   //Page padding aka gutters
-//   --ojp-global--gutter: 20px;
-
-//   @include media-query("md-up"){
-//     --ojp-global--gutter: 40px;
-//   }
-
-//   @include media-query("lg-up"){
-//     --ojp-global--gutter: 100px;
-//   }
-// }
-
+@supports (--breakpoint("desktop")) {
+  html {
+    background: blue;
+  }
+}
