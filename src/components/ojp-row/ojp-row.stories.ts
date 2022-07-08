@@ -117,15 +117,15 @@ const Template = (args) => `
 
 export const OjpRow = Template.bind({});
 OjpRow.args = {
-  cols: 10,
+  cols: 12,
   mcols: 12,
   tcols: 12,
   dcols: 12,
   align: 'stretch',
   justify: 'stetch',
-  start1: '2',
+  start1: '1',
   span1: '6',
-  start2: '8',
+  start2: '7',
   span2: '6',
-  fullbleed: true
+  fullbleed: false
 }
