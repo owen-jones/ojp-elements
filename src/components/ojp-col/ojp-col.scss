@@ -25,7 +25,8 @@
 
   // On nested rows, we don't want the gutters
   ::slotted(ojp-row) {
-    grid-template-columns: repeat(var(--ojp-row--cols), 1fr);
+    padding-right: 0;
+    padding-left: 0;
   }
 
 }
