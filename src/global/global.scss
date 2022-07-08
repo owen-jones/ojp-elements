@@ -1,10 +1,8 @@
 :root {
   // Developers can override this to set globals
-  --breakpoints: {
-  "mobile": "(min-width: 320px)",
-  "tablet": "(min-width: 768px)",
-  "desktop": "(min-width: 1024px)"
-  }
+  --breakpoint--mobile: "(min-width: 320px)";
+  --breakpoint--tablet: "(min-width: 768px)";
+  --breakpoint--desktop: "(min-width: 1024px)";
 }
 
 // ojp-row vars
@@ -61,7 +59,6 @@ ojp-col {
   ojp-col {
     --ojp-col--span: var(--ojp-col--tspan);
     --ojp-col--start: var(--ojp-col--tstart);
-
   }
 }
 // Desktop
@@ -69,7 +66,6 @@ ojp-col {
   ojp-col {
     --ojp-col--span: var(--ojp-col--dspan);
     --ojp-col--start: var(--ojp-col--dstart);
-
   }
 }
 

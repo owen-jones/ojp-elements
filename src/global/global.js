@@ -1,6 +1,7 @@
 import {process, property, all, stringify} from 'cssomtools';
 
 export default function() {
+
   let found = {}
 
 // Compute all breakpoints
@@ -11,8 +12,12 @@ export default function() {
         rule.selectorText
         && rule.selectorText.trim() === ':root'
       ) {
-        let breakpoints = JSON.parse(rule.style.getPropertyValue('--breakpoints'))
-        Object.keys(breakpoints).forEach(key => found[key] = breakpoints[key])
+        let breakpoints = {
+          'mobile': JSON.parse(rule.style.getPropertyValue('--breakpoint--mobile')),
+          'tablet': JSON.parse(rule.style.getPropertyValue('--breakpoint--tablet')),
+          'desktop': JSON.parse(rule.style.getPropertyValue('--breakpoint--desktop'))
+        };
+        Object.keys(breakpoints).forEach(key => found[key] = breakpoints[key]);
       }
     }
   )

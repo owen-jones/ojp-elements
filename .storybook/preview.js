@@ -1,4 +1,5 @@
 import {defineCustomElements} from '../loader';
+import '../web/build/ojp-elements.css';
 
 defineCustomElements()
 
