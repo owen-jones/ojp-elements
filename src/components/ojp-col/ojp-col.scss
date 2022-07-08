@@ -1,44 +1,24 @@
 :host {
 
-    // PROPS - can be overwritten with props b/c
-  // likely to be different per component
+  // PUBLIC CSS VALUES - can be overwritten by end user
+  // n/a
 
-  // Column Span - device specific
-  --ojp-col--mspan: auto;
-  --ojp-col--tspan: auto;
-  --ojp-col--dspan: auto;
+  // // PROPS - can be overwritten with props b/c
+  // // likely to be different per component
+  // Defined in global.scss:
+  //// Column Span - device specific
+  //// --ojp-col--mspan
+  //// --ojp-col--tspan
+  //// --ojp-col--dspan
+  //// --ojp-col--span
+  //// Column start - device specific
+  //// --ojp-col--mstart
+  //// --ojp-col--tstart
+  //// --ojp-col--dstart
+  //// --ojp-col--start
+
+  // STYLES
   
-  // --ojp-col--span set to mspan/tspan/dspan per device size
-  // Mobile
-  --ojp-col--span: var(--ojp-col--mspan);
-
-  // Tablet 
-  @supports (--breakpoint("tablet")) {
-    --ojp-col--span: var(--ojp-col--tspan);
-  }
-  // Desktop
-  @supports (--breakpoint("desktop")) {
-    --ojp-col--span: var(--ojp-col--dspan);
-  }
-
-  // Column start - device specific
-  --ojp-col--mstart: auto;
-  --ojp-col--tstart: auto;
-  --ojp-col--dstart: auto;
-  
-  // --ojp-col--start set to mstart/tstart/dstart per device size
-  // Mobile
-  --ojp-col--start: var(--ojp-col--mstart);
-
-  // Tablet 
-  @supports (--breakpoint("tablet")) {
-    --ojp-col--start: var(--ojp-col--tstart);
-  }
-  // Desktop
-  @supports (--breakpoint("desktop")) {
-    --ojp-col--start: var(--ojp-col--dstart);
-  }
-
   grid-column-start: var(--ojp-col--start);
   grid-column-end: span var(--ojp-col--span);
 

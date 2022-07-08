@@ -10,8 +10,6 @@ import { Component, h, Element, Prop, Host } from '@stencil/core';
 export class OjpRow {
   @Element() el;
   
-  rootEl;
-
   // Grid will be divided up into {this.cols} columns 
   // Shorthand for desktop, tablet, and mobile cols
   // <ojp-col cols="12"> is equivalent to
@@ -64,9 +62,8 @@ export class OjpRow {
   // Default: false
   @Prop({
     reflect: true,
-    mutable: false,
-    attribute: 'no-gutter'
-  }) noGutter = false;
+    mutable: false
+  }) fullbleed = false;
   
   componentWillLoad() {
       // If mobile cols are not set by user, default to same as 'cols'
@@ -93,29 +90,24 @@ export class OjpRow {
       else {
         this.el.style.setProperty('--ojp-row--dcols', this.dcols);
       }
+
+      // If fullbleed property is set, set gutters to zero
+      if (this.fullbleed){
+        this.el.style.setProperty('--ojp-row--gutter', 0);
+      }
   }
 
   render() {
     this.el.style.setProperty('--ojp-row--align-items', this.align);
     this.el.style.setProperty('--ojp-row--justify-items', this.justify);
 
-    if (this.noGutter){
-      return (
-        <Host>
-            <slot></slot>
-        </Host>
-      )
-    }
-    else {
-      return (
-        <Host>
-            <div class="gutter"></div>
-            <slot></slot>
-            <div class="gutter"></div>
-        </Host>
-      );
-
-    }
+    return (
+      <Host>
+          <div class="ojp-row__container">
+          <slot></slot>
+          </div>
+      </Host>
+    )
 
   }
 

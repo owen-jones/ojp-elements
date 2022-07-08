@@ -28,9 +28,9 @@ export namespace Components {
         "align": string;
         "cols": string;
         "dcols": any;
+        "fullbleed": boolean;
         "justify": string;
         "mcols": any;
-        "noGutter": boolean;
         "tcols": any;
     }
 }
@@ -89,9 +89,9 @@ declare namespace LocalJSX {
         "align"?: string;
         "cols"?: string;
         "dcols"?: any;
+        "fullbleed"?: boolean;
         "justify"?: string;
         "mcols"?: any;
-        "noGutter"?: boolean;
         "tcols"?: any;
     }
     interface IntrinsicElements {

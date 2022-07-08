@@ -34,6 +34,10 @@ export default {
       control: { type: 'radio' },
       description: 'Align Items property'
     },
+    fullbleed: {
+      name: 'ojp-row | fullbleed',
+      control: 'boolean'
+    },
     justify: {
       name: 'ojp-row | justify',
       options: ['stretch', 'start', 'end', 'center', ],
@@ -104,6 +108,7 @@ const Template = (args) => `
   dcols='${args.dcols}'
   align='${args.align}'
   justify='${args.justify}'
+  fullbleed='${args.fullbleed}'
 >
 <ojp-col start="${args.start1}" span="${args.span1}"><img src="https://source.unsplash.com/random/500×400"></ojp-col>
 <ojp-col start="${args.start2}" span="${args.span2}"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
@@ -122,4 +127,5 @@ OjpRow.args = {
   span1: '6',
   start2: '8',
   span2: '6',
+  fullbleed: true
 }
