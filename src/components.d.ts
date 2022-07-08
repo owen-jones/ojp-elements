@@ -6,6 +6,16 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface OjpCol {
+        "dspan": any;
+        "dstart": any;
+        "mspan": any;
+        "mstart": any;
+        "span": string;
+        "start": string;
+        "tspan": any;
+        "tstart": any;
+    }
     interface OjpImage {
         "src": string;
     }
@@ -14,8 +24,23 @@ export namespace Components {
         "onItemSelected": Function;
         "open": boolean;
     }
+    interface OjpRow {
+        "align": string;
+        "cols": string;
+        "dcols": any;
+        "fullbleed": boolean;
+        "justify": string;
+        "mcols": any;
+        "tcols": any;
+    }
 }
 declare global {
+    interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
+    }
+    var HTMLOjpColElement: {
+        prototype: HTMLOjpColElement;
+        new (): HTMLOjpColElement;
+    };
     interface HTMLOjpImageElement extends Components.OjpImage, HTMLStencilElement {
     }
     var HTMLOjpImageElement: {
@@ -28,12 +53,30 @@ declare global {
         prototype: HTMLOjpListboxElement;
         new (): HTMLOjpListboxElement;
     };
+    interface HTMLOjpRowElement extends Components.OjpRow, HTMLStencilElement {
+    }
+    var HTMLOjpRowElement: {
+        prototype: HTMLOjpRowElement;
+        new (): HTMLOjpRowElement;
+    };
     interface HTMLElementTagNameMap {
+        "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
+        "ojp-row": HTMLOjpRowElement;
     }
 }
 declare namespace LocalJSX {
+    interface OjpCol {
+        "dspan"?: any;
+        "dstart"?: any;
+        "mspan"?: any;
+        "mstart"?: any;
+        "span"?: string;
+        "start"?: string;
+        "tspan"?: any;
+        "tstart"?: any;
+    }
     interface OjpImage {
         "src"?: string;
     }
@@ -42,17 +85,30 @@ declare namespace LocalJSX {
         "onItemSelected"?: Function;
         "open"?: boolean;
     }
+    interface OjpRow {
+        "align"?: string;
+        "cols"?: string;
+        "dcols"?: any;
+        "fullbleed"?: boolean;
+        "justify"?: string;
+        "mcols"?: any;
+        "tcols"?: any;
+    }
     interface IntrinsicElements {
+        "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
+        "ojp-row": OjpRow;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
+            "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
         }
     }
 }

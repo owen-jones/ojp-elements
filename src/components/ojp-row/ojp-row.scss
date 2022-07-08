@@ -1,0 +1,56 @@
+
+:host {
+
+  // PUBLIC CSS VALUES - can be overwritten by end user
+  // likely to be persistent across a project and/or
+  // easier to set as css vars so they can use Utopia
+  // 
+
+  // Gap between columns
+  --ojp-row--col-gap: 10px;
+  // Gap between rows
+  --ojp-row--row-gap: 10px;
+
+
+  // PROPS - can be overwritten with props b/c
+  // likely to be different per component
+  // Defined in global.scss:
+  //// Number of columns
+  //// --ojp-row--mcols
+  //// --ojp-row--tcols
+  //// --ojp-row--dcols
+  //// --ojp-row--cols
+  //// Minimum gutter width
+  //// --ojp-row--gutter
+
+  // Align Items 
+  --ojp-row--align-items: stretch;
+  // Justify Items
+  --ojp-row--justify-items: stretch;
+
+
+  // CALC/HELPER VARS
+  
+  // Max Wrapper Width (not including gutters)
+  --ojp-row--max-wrapper-width: 1600px;
+  // Max Wrapper Width (including gutters)
+  --ojp-row--max-wrapper-width-plus-gutters: calc(var(--ojp-row--max-wrapper-width) + (2 * var(--ojp-row--gutter)));
+
+  // STYLES
+  display: block;
+  padding-left: var(--ojp-row--gutter);
+  padding-right: var(--ojp-row--gutter);
+
+  .ojp-row__container {
+    align-items: var(--ojp-row--align-items);
+    column-gap: var(--ojp-row--col-gap);
+    display: grid;
+    grid-template-columns: repeat(var(--ojp-row--cols), 1fr);
+    height: 100%;
+    justify-items: var(--ojp-row--justify-items);
+    margin: 0 auto;
+    max-width: var(--ojp-row--max-wrapper-width-plus-gutters);
+    width: 100%;
+  }
+
+}

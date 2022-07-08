@@ -1,0 +1,32 @@
+:host {
+
+  // PUBLIC CSS VALUES - can be overwritten by end user
+  // n/a
+
+  // // PROPS - can be overwritten with props b/c
+  // // likely to be different per component
+  // Defined in global.scss:
+  //// Column Span - device specific
+  //// --ojp-col--mspan
+  //// --ojp-col--tspan
+  //// --ojp-col--dspan
+  //// --ojp-col--span
+  //// Column start - device specific
+  //// --ojp-col--mstart
+  //// --ojp-col--tstart
+  //// --ojp-col--dstart
+  //// --ojp-col--start
+
+  // STYLES
+  
+  grid-column-start: var(--ojp-col--start);
+  grid-column-end: span var(--ojp-col--span);
+
+
+  // On nested rows, we don't want the gutters
+  ::slotted(ojp-row) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+}

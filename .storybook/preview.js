@@ -1,4 +1,5 @@
 import {defineCustomElements} from '../loader';
+import '../web/build/ojp-elements.css';
 
 defineCustomElements()
 
@@ -10,4 +11,5 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  expanded: true
 }

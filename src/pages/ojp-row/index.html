@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Row test</title>
+
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <!--    Needs to import the global stylesheet-->
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    h1 {
+      text-decoration: underline;
+    }
+    h1, h3 {
+      text-align: center;
+    }
+
+    ojp-col, .ojp-col {
+      border: 2px dashed gray;
+      text-align: center;
+    }
+
+    /* // Background grid, for illustration */      
+    .grid--bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .grid--bg ojp-row {
+      height: 100%;
+    }
+
+    .grid--bg ojp-col {
+      background-color: #e4f2f7 ;
+      color: #8eb0bc;
+      text-transform: uppercase;
+      text-align: center;
+      border: 1px dashed lightblue;
+      height: 100%;
+    }
+
+    .container {
+      position: relative;
+      padding-top: 40px;
+      height: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Grid</h1>
+
+    <div class="grid--bg">
+      <ojp-row>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+        <ojp-col></ojp-col>
+      </ojp-row>
+    </div>
+
+    <h3>
+      12 col row
+<pre>
+&lt;ojp-row&gt;
+
+&lt;ojp-col&gt;1&lt;/ojp-col&gt;
+&lt;ojp-col&gt;2&lt;/ojp-col&gt;
+&lt;ojp-col&gt;3&lt;/ojp-col&gt;
+&lt;ojp-col&gt;4&lt;/ojp-col&gt;
+&lt;ojp-col&gt;5&lt;/ojp-col&gt;
+&lt;ojp-col&gt;6&lt;/ojp-col&gt;
+&lt;ojp-col&gt;7&lt;/ojp-col&gt;
+&lt;ojp-col&gt;8&lt;/ojp-col&gt;
+&lt;ojp-col&gt;9&lt;/ojp-col&gt;
+&lt;ojp-col&gt;10&lt;/ojp-col&gt;
+&lt;ojp-col&gt;11&lt;/ojp-col&gt;
+&lt;ojp-col&gt;12&lt;/ojp-col&gt;
+
+&lt;/ojp-row&gt;
+</pre>
+    </h3>
+    <ojp-row>
+        <ojp-col>1</ojp-col>
+        <ojp-col>2</ojp-col>
+        <ojp-col>3</ojp-col>
+        <ojp-col>4</ojp-col>
+        <ojp-col>5</ojp-col>
+        <ojp-col>6</ojp-col>
+        <ojp-col>7</ojp-col>
+        <ojp-col>8</ojp-col>
+        <ojp-col>9</ojp-col>
+        <ojp-col>10</ojp-col>
+        <ojp-col>11</ojp-col>
+        <ojp-col>12</ojp-col>
+    </ojp-row>
+<br><br>
+
+  <h3>
+<pre>
+&lt;ojp-row align="center" justify="center"&gt;
+&lt;ojp-col start="3" span="4" mspan="12"&gt;&lt;/ojp-col&gt;
+&lt;ojp-col span="4" mspan="12"&gt;&lt;/ojp-col&gt;
+&lt;/ojp-row&gt;
+</pre>
+</h3>
+
+    <ojp-row cols="12" align="center" justify="center">
+      <ojp-col start="3" span="4" mspan="12" mstart="auto"><img src="https://source.unsplash.com/random/100×200" style="object-fit: cover;width:100%;display:block;"></ojp-col>
+      <ojp-col span="4" mspan="12"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+    </ojp-row>
+<br><br>
+
+  <h3>
+    Fullbleed
+<pre>
+&lt;ojp-row fullbleed&gt;
+&lt;ojp-col span="6"&gt;&lt;/ojp-col&gt;
+&lt;ojp-col span="6"&gt;&lt;/ojp-col&gt;
+&lt;/ojp-row&gt;
+</pre>
+</h3>
+
+<ojp-row fullbleed>
+  <ojp-col span="6">
+    <img src="https://source.unsplash.com/random/200×200" style="object-fit: cover;width:100%;display:block;">
+  </ojp-col>
+  <ojp-col span="6">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p>
+  </ojp-col>
+</ojp-row>
+
+    <br><br>
+    <h3>
+      Nested
+<pre>
+&lt;ojp-row&gt;
+&lt;ojp-col span="6"&gt;
+&lt;ojp-col span="8"&gt;&lt;/ojp-col&gt;
+&lt;ojp-col span="4"&gt;&lt;/ojp-col&gt;
+&lt;/ojp-col&gt;
+&lt;ojp-col span="6"&gt;
+
+&lt;/ojp-col&gt;
+&lt;/ojp-row&gt;
+</pre>
+    </h3>
+    <ojp-row>
+      <ojp-col span="6">
+        <img src="https://source.unsplash.com/random/200×200" style="object-fit: cover;width:100%;display:block;">
+      </ojp-col>
+      <ojp-col span="6">
+        <ojp-row cols="12" no-gutter>
+          <ojp-col span="8" mspan="12"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+          <ojp-col span="4" mspan="12"><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?</p></ojp-col>
+        </ojp-row>
+      </ojp-col>
+    </ojp-row>
+
+<br><br>
+  </div>
+</body>
+</html>
