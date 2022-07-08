@@ -33,6 +33,7 @@
   
   // Max Wrapper Width (not including gutters)
   --ojp-row--max-wrapper-width: 1600px;
+  // Max Wrapper Width (including gutters)
   --ojp-row--max-wrapper-width-plus-gutters: calc(var(--ojp-row--max-wrapper-width) + (2 * var(--ojp-row--gutter)));
 
   // STYLES
