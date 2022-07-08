@@ -64,42 +64,48 @@ export class OjpRow {
     reflect: true,
     mutable: false
   }) fullbleed = false;
-  
-  componentWillLoad() {
-      // If mobile cols are not set by user, default to same as 'cols'
-      if (typeof(this.mcols) == 'undefined'){
-        this.el.style.setProperty('--ojp-row--mcols', this.cols);
-      }
-      // Set mobile cols to user setting
-      else {
-        this.el.style.setProperty('--ojp-row--mcols', this.mcols);
-      }
-      // If tablet cols are not set by user, default to same as 'cols'
-      if (typeof(this.tcols) == 'undefined'){
-        this.el.style.setProperty('--ojp-row--tcols', this.cols);
-      }
-      // Set tablet cols to user setting
-      else {
-        this.el.style.setProperty('--ojp-row--tcols', this.tcols);
-      }
-      // If desktop cols are not set by user, default to same as 'cols'
-      if (typeof(this.dcols) == 'undefined'){
-        this.el.style.setProperty('--ojp-row--dcols', this.cols);
-      }
-      // Set desktop cols to user setting
-      else {
-        this.el.style.setProperty('--ojp-row--dcols', this.dcols);
-      }
 
-      // If fullbleed property is set, set gutters to zero
-      if (this.fullbleed){
-        this.el.style.setProperty('--ojp-row--gutter', 0);
-      }
+  // Custom function to set all necessary css vars
+  setCssProperties(){
+    // If mobile cols are not set by user, default to same as 'cols'
+    if (typeof(this.mcols) == 'undefined'){
+      this.el.style.setProperty('--ojp-row--mcols', this.cols);
+    }
+    // Set mobile cols to user setting
+    else {
+      this.el.style.setProperty('--ojp-row--mcols', this.mcols);
+    }
+    // If tablet cols are not set by user, default to same as 'cols'
+    if (typeof(this.tcols) == 'undefined'){
+      this.el.style.setProperty('--ojp-row--tcols', this.cols);
+    }
+    // Set tablet cols to user setting
+    else {
+      this.el.style.setProperty('--ojp-row--tcols', this.tcols);
+    }
+    // If desktop cols are not set by user, default to same as 'cols'
+    if (typeof(this.dcols) == 'undefined'){
+      this.el.style.setProperty('--ojp-row--dcols', this.cols);
+    }
+    // Set desktop cols to user setting
+    else {
+      this.el.style.setProperty('--ojp-row--dcols', this.dcols);
+    }
+
+    // If fullbleed property is set, set gutters to zero
+    if (this.fullbleed){
+      this.el.style.setProperty('--ojp-row--gutter', 0);
+    }
+
+    // Set align and justify prorperties
+    this.el.style.setProperty('--ojp-row--align-items', this.align);
+    this.el.style.setProperty('--ojp-row--justify-items', this.justify);
+
   }
 
   render() {
-    this.el.style.setProperty('--ojp-row--align-items', this.align);
-    this.el.style.setProperty('--ojp-row--justify-items', this.justify);
+  
+    this.setCssProperties();
 
     return (
       <Host>

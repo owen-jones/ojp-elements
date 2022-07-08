@@ -77,7 +77,8 @@ export class OjpCol {
     mutable: false
   }) dspan;
 
-  componentWillLoad() {
+  // Custom function to set all necessary css vars
+  setCssProperties(){
     // If mobile span is not set by user, default to same as 'span'
     if (typeof(this.mspan) == 'undefined'){
       this.el.style.setProperty('--ojp-col--mspan', this.span);
@@ -102,7 +103,7 @@ export class OjpCol {
     else {
       this.el.style.setProperty('--ojp-col--dspan', this.dspan);
     }
-    
+
     // If mobile start is not set by user, default to same as 'start'
     if (typeof(this.mstart) == 'undefined'){
       this.el.style.setProperty('--ojp-col--mstart', this.start);
@@ -127,9 +128,12 @@ export class OjpCol {
     else {
       this.el.style.setProperty('--ojp-col--dstart', this.dstart);
     }
+
   }
 
   render() {    
+    this.setCssProperties();
+    
     return (
       <Host>
         <slot></slot>
