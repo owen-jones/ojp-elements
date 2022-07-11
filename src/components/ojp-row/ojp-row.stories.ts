@@ -9,7 +9,7 @@ export default {
 
 
 ### Description
-The <ojp-col> and <ojp-row> tags are used to implement a grid column inside the markup.
+The <ojp-col> and <ojp-row> tags are used to implement a 12-column grid inside the markup.
 Use the <ojp-col> element to define columns in the grid layout, the <ojp-row> element to define rows. By default, the <ojp-col> tag will implement one full-width column starting at the first grid position.
 
 ### Usage:
@@ -22,20 +22,51 @@ The <ojp-col> and <ojp-row> tags come with a few common options that developers 
 - span
 - start
 - align
-- fullbleed
 - justify
+- fullbleed
 
 
 >Beware this blockquote
 
-### Variants:
+## "span"
 
-The <ojp-row> element takes a variety of optional arguments that can be utilized to customize the implementation. The options available in each <ojp-row> element are as follows:
-- cols
-- mcols
-- tcols
-- dcols
+This text option specifies how many columns this element will span. This value defaults to 12.
 
+>  **Usage**:
+<ojp-col span="6"> will render an element spanning 6 columns.
+
+## "start"
+
+This text option specifies how many columns this element will span. This value defaults to 12.
+
+> **Usage**:
+<ojp-col start="6"> will render an element starting from column 6.
+
+## "align"
+
+This radio option specifies how many columns this element will span. This value defaults to 12.
+
+> **Usage**:
+<ojp-col align="end"> will render an element aligned to the end of its parent.
+
+#### Other values:
+- stretch
+- center
+- start
+
+## "justify"
+
+This option specifies how many columns this element will span. This value defaults to 12.
+
+> **Usage**:
+<ojp-col span="6"> will render an element spanning 6 columns.
+
+## "fullbleed"
+
+This boolean option specifies how many columns this element will span. This value defaults to 12.
+
+> **Usage**:
+<ojp-col span="6"> will render an element spanning 6 columns.
 `
             }
         }
@@ -259,8 +290,14 @@ The <ojp-row> element takes a variety of optional arguments that can be utilized
   OjpRow.parameters = {
     docs: {
         description: {
-            component: 'This is markdown desc',
-            story: 'This is Story 1 text'
+            story: `
+#### Variants:
+
+The <ojp-row> element takes a variety of optional arguments that can be utilized to customize the implementation. The options available in each <ojp-row> element are as follows:
+- cols
+- mcols
+- tcols
+- dcols`
         }
     }
   }
