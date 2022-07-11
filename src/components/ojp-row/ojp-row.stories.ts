@@ -44,7 +44,7 @@ This text option specifies how many columns this element will span. This value d
 
 ## "align"
 
-This radio option specifies how many columns this element will span. This value defaults to 12.
+This radio option specifies the alignment of the content.
 
 > **Usage**:
 <ojp-col align="end"> will render an element aligned to the end of its parent.
@@ -56,17 +56,22 @@ This radio option specifies how many columns this element will span. This value 
 
 ## "justify"
 
-This option specifies how many columns this element will span. This value defaults to 12.
+This option specifies the justification of the content.
 
 > **Usage**:
-<ojp-col span="6"> will render an element spanning 6 columns.
+<ojp-col align="end"> will render an element aligned to the end of its parent.
+
+#### Other values:
+- stretch
+- center
+- start
 
 ## "fullbleed"
 
-This boolean option specifies how many columns this element will span. This value defaults to 12.
+This boolean option specifies if the content “bleeds” to the very edges of the page, with no padding, margin, or border around full-bleed sections.
 
 > **Usage**:
-<ojp-col span="6"> will render an element spanning 6 columns.
+<ojp-col fullbleed="true"> will render an element that bleeds across the page width.
 `
             }
         }
@@ -211,16 +216,11 @@ This boolean option specifies how many columns this element will span. This valu
   </style>
   
   <!-- Start component code -->
-  <ojp-row>
-  <ojp-col span="12">
-  <ojp-row span="12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?
-
-  </ojp-row>
-  <ojp-row span="12">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?
-
-  </ojp-row>
+  <ojp-row align="center">
+  <ojp-col span="1">
+  <ojp-row span="6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima dolores minus dicta at aspernatur obcaecati? Quia adipisci aliquam placeat quos, incidunt sapiente quisquam, enim, omnis eius in sed consequatur repellendus?
   </ojp-col>
-  <ojp-col span="10" start="2">
+  <ojp-col span="6" start="2">
   <img src="https://source.unsplash.com/random/100×200" style="object-fit: cover;width:100%;display:block;">
   </ojp-col>
   </ojp-row>
