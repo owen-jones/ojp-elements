@@ -2,6 +2,9 @@ dist/
 www/
 loader/
 web/
+storybook-static/
+.htpasswd
+storybook-static/.htpasswd
 
 *~
 *.sw[mnpcod]
