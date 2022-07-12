@@ -6,6 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface OjpAccordion {
+    }
     interface OjpCol {
         "dspan": any;
         "dstart": any;
@@ -35,6 +37,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLOjpAccordionElement extends Components.OjpAccordion, HTMLStencilElement {
+    }
+    var HTMLOjpAccordionElement: {
+        prototype: HTMLOjpAccordionElement;
+        new (): HTMLOjpAccordionElement;
+    };
     interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
     }
     var HTMLOjpColElement: {
@@ -60,6 +68,7 @@ declare global {
         new (): HTMLOjpRowElement;
     };
     interface HTMLElementTagNameMap {
+        "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
@@ -67,6 +76,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface OjpAccordion {
+    }
     interface OjpCol {
         "dspan"?: any;
         "dstart"?: any;
@@ -95,6 +106,7 @@ declare namespace LocalJSX {
         "tcols"?: any;
     }
     interface IntrinsicElements {
+        "ojp-accordion": OjpAccordion;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
@@ -105,6 +117,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ojp-accordion": LocalJSX.OjpAccordion & JSXBase.HTMLAttributes<HTMLOjpAccordionElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
