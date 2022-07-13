@@ -1,8 +1,14 @@
 :root {
   // Developers can override this to set globals
+
+  // Breakpoints
   --breakpoint--mobile: "(min-width: 320px)";
   --breakpoint--tablet: "(min-width: 768px)";
   --breakpoint--desktop: "(min-width: 1024px)";
+
+  // Colors
+  --ojp-color--gray: #BABABA;
+  
 }
 
 // ojp-row vars
