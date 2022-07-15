@@ -12,15 +12,15 @@ export default {
 
 
 ### Description
-The \`<ojp-col>\` and \`<ojp-row>\` tags are used to implement a grid inside the markup.
+The \`<ojp-row>\` and \`<ojp-col>\` tags are used to implement a grid inside the markup.
 
-Use the \`<ojp-row>\` element to define a grid and use the \`<ojp-col>\` element to define columns in the grid layout, the \`<ojp-row>\` element to define rows.
+Use the \`<ojp-row>\` element to define a rows in the grid and use the \`<ojp-col>\` element to define columns in the grid layout.
 
 By default, the \`<ojp-row>\` will create a 12-column grid, and the \`<ojp-col>\` tag will implement one full-width column.
 
 >#### Note: Each \`<ojp-row>\` element should contain a child \`<ojp-col>\` element. Without this hierarchy, the pattern might appear broken.
 
-### Example:
+### Examples:
 
 `
             }
@@ -47,7 +47,7 @@ const TemplateGrid = () => `
 
     .rectangle1 {
         height: 300px;
-        background-color: blue;
+        background-color: #0D99FF;
     }
     </style>
 
@@ -63,12 +63,6 @@ const TemplateGrid = () => `
   
   <!-- Start component code for layout 2 -->
     <style>
-
-    .circleexample {
-        background-color: blue;
-        border-radius: 50%;
-    }
-
     .background-rectangle2 {
         background-color: green;
         --ojp-row--col-gap: 0px;
@@ -101,7 +95,7 @@ const TemplateGrid = () => `
 
     .red-rectangle2 {
         height: 50%;
-        background-color: red;
+        background-color: #F24822;
     }
 
     </style>
@@ -133,7 +127,7 @@ const TemplateGrid = () => `
     }
 
     .background-rectangle3 {
-        background-color: red;
+        background-color: #F24822;
         --ojp-row--col-gap: 0px;
         height: 300px;
         padding: 10px;
