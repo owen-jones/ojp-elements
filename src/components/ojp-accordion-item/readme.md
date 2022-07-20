@@ -7,17 +7,45 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type      | Default     |
-| ---------- | ----------- | ----------- | --------- | ----------- |
-| `anchorId` | `anchor-id` |             | `any`     | `undefined` |
-| `open`     | `open`      |             | `boolean` | `false`     |
+| Property   | Attribute   | Description                                        | Type      | Default     |
+| ---------- | ----------- | -------------------------------------------------- | --------- | ----------- |
+| `anchorId` | `anchor-id` |                                                    | `any`     | `undefined` |
+| `index`    | `index`     | index of accordion item from top to bottom         | `number`  | `-1`        |
+| `open`     | `open`      | accordion item is open or opening (css transition) | `boolean` | `false`     |
+
+
+## Events
+
+| Event       | Description                                 | Type               |
+| ----------- | ------------------------------------------- | ------------------ |
+| `openEvent` | triggered when the accordion item is opened | `CustomEvent<any>` |
 
 
 ## Methods
 
-### `toggle() => Promise<void>`
+### `closeItem() => Promise<void>`
+
+close the accordion item
+
+#### Returns
+
+Type: `Promise<void>`
 
 
+
+### `openItem() => Promise<void>`
+
+open the accordion item
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `toggleItem() => Promise<void>`
+
+toggle the accordion item
 
 #### Returns
 

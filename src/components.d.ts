@@ -7,11 +7,30 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface OjpAccordion {
+        "allowMultipleItemsOpen": boolean;
     }
     interface OjpAccordionItem {
         "anchorId": any;
+        /**
+          * close the accordion item
+         */
+        "closeItem": () => Promise<void>;
+        /**
+          * index of accordion item from top to bottom
+         */
+        "index": number;
+        /**
+          * accordion item is open or opening (css transition)
+         */
         "open": boolean;
-        "toggle": () => Promise<void>;
+        /**
+          * open the accordion item
+         */
+        "openItem": () => Promise<void>;
+        /**
+          * toggle the accordion item
+         */
+        "toggleItem": () => Promise<void>;
     }
     interface OjpCol {
         "dspan": any;
@@ -89,9 +108,21 @@ declare global {
 }
 declare namespace LocalJSX {
     interface OjpAccordion {
+        "allowMultipleItemsOpen"?: boolean;
     }
     interface OjpAccordionItem {
         "anchorId"?: any;
+        /**
+          * index of accordion item from top to bottom
+         */
+        "index"?: number;
+        /**
+          * triggered when the accordion item is opened
+         */
+        "onOpenEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * accordion item is open or opening (css transition)
+         */
         "open"?: boolean;
     }
     interface OjpCol {
