@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, State, Prop, Watch, Method } from '@stencil/core';
+import { Component, Host, h, Element, State, Prop, Watch, Method, Event, EventEmitter, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ojp-accordion-item',
@@ -10,12 +10,26 @@ export class OjpAccordionItem {
 
   @Element() el;
 
+  @State() transitioning = false;
+  
+  
+  calculatedHeight;
+  ;
+
   buttonEl;
   contentEl;
-  controlsId;
 
-  // Accordion item open state
-  // Type: Boolean
+  /**
+   * index of accordion item from top to bottom
+   */
+    @Prop({
+      mutable:true, 
+      reflect:true
+    }) index = -1;
+
+  /**
+  * accordion item is open or opening (css transition)
+  */
   // Default: false
   @Prop({
     reflect: true,
@@ -31,46 +45,100 @@ export class OjpAccordionItem {
     mutable: false
   }) anchorId;
 
+  /**
+   * toggle the accordion item
+   */
   @Method()
-  async toggle() {
-    // update the internal state
-    this.open = !this.open;
+  async toggleItem() {
+    if (this.open) {
+      this.closeItem();
+    } else {
+      this.openItem();
+    } 
   }
 
-  // @Watch('open')
-  // watchOpenHandler() {
-  //   console.log('open', this.open);
-  // }
+  /**
+   * close the accordion item
+   */
+  @Method()
+  async closeItem() {
+    this.open = false;
+  }
 
-  // @Listen('click', { capture: true })
-  handleClick = () => {
+  /**
+   * open the accordion item
+   */
+  @Method()
+  async openItem() {
+    this.open = true;
+    this.openEvent.emit({
+      index: this.index
+    });
+  }
+
+  @Watch('open')
+  stateChanged() {
+    this.transitioning = true;
+    this.calculateHeight();
+
+  }
+
+  /**
+   * triggered when the accordion item is opened
+   */
+  @Event() openEvent;
+
+  componentDidLoad() {
+    const items = this.el.parentElement.querySelectorAll('ojp-accordion-item');
+    // Set this item's index
+    for (let i = 0; i < items.length; i++) {
+      const child = items[i];
+      if (child == this.el) {
+        this.index = i;
+      }
+    } 
+
+    this.calculateHeight();
+
+  }
+
+  handleTransitionEnd() {
+    this.transitioning = false;
+  }
+
+  calculateHeight() {
+    console.log('contentel', this.contentEl);
+    const panelHeight = this.contentEl.scrollHeight;
+    this.calculatedHeight = panelHeight + 'px';
+  }
+
+  handleClick = (e) => {
     // whenever a click event occurs on
     // the component, update `open`,
     // triggering the rerender
-    this.toggle();
-  }
-
-  componentDidRender(){
-    // this.buttonEl = this.el.shadowRoot.querySelector('button[aria-controls]');
-
-    // this.controlsId = this.buttonEl.getAttribute('aria-controls');
-
-    // this.contentEl = this.el.shadowRoot.getElementById(this.controlsId);
+    e.preventDefault();
+    this.toggleItem();
   }
 
   render() {
 
+    let attributes = {
+      
+    };
+
+
     return (
       <Host>
-        <a role="header" id={this.anchorId} href={`#{this.anchorId}`}>
-          <button type="button"
-                  aria-expanded={this.open}
-                  class="ojp-accordion-item__trigger"
-                  aria-controls="section"
-                  id="section-control" 
-                  onClick={this.handleClick}
-                  ref={(button) => { this.buttonEl = button }}
-                  >   
+        <a
+          role= "header"
+          aria-expanded = {this.open}
+          class = {"ojp-accordion-item__trigger"}
+          aria-controls = "section"
+          id = "section-control" 
+          onClick = {this.handleClick}
+          ref = {(button) => { this.buttonEl = button }}
+          href = {this.anchorId ? '#' + this.anchorId : '#'}
+          >   
             <div class="ojp-accordion-item__header">
 
               {/* Header Slot */}
@@ -79,21 +147,26 @@ export class OjpAccordionItem {
               </slot>
 
               {/* Icon/Caret */}
-              <span class="ojp-accordion-item__header__icon"></span>
+              <div className="ojp-accordion-item__header__icon-wrapper">
+                <svg class="ojp-accordion-item__header__icon" width="31" height="17" viewBox="0 0 31 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
+                </svg>
+              </div>
             </div>
-          </button>
         </a>
         
         <div 
             id="section"
             role="region"
             aria-labelledby="section-control"
-            class="ojp-accordion-item__panel"
-            hidden={!this.open}
+            class={`ojp-accordion-item__panel ${this.transitioning ? 'transitioning': ''}`}
+            // hidden={!this.open}
             ref={(el) => { this.contentEl = el }}
+            onTransitionEnd={() => this.handleTransitionEnd()}
+            style={ this.open ? {height: this.calculatedHeight} : {height: 0}}
             >
             
-            {/* Content Slot */}
+            {/* Panel Slot */}
             <slot name="panel">
               Default Item content
             </slot>
