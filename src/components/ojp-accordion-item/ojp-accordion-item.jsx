@@ -10,12 +10,10 @@ export class OjpAccordionItem {
 
   @Element() el;
 
+  // Is transtioning to open to closed
   @State() transitioning = false;
   
-  
-  calculatedHeight;
-  ;
-
+  @State() calculatedHeight;
   buttonEl;
   contentEl;
 
@@ -80,13 +78,24 @@ export class OjpAccordionItem {
   stateChanged() {
     this.transitioning = true;
     this.calculateHeight();
+  }
 
+  @Watch('calculatedHeight')
+  watchHeightHandler(newVal, oldVal){
+    console.log('calculated height changed', oldVal, newVal);
   }
 
   /**
    * triggered when the accordion item is opened
    */
   @Event() openEvent;
+
+
+  @Listen('resize', {target: 'window'})
+  handleResize(ev) {
+    // console.log('window resized', ev);
+    this.calculateHeight();
+  }
 
   componentDidLoad() {
     const items = this.el.parentElement.querySelectorAll('ojp-accordion-item');
@@ -107,9 +116,9 @@ export class OjpAccordionItem {
   }
 
   calculateHeight() {
-    console.log('contentel', this.contentEl);
     const panelHeight = this.contentEl.scrollHeight;
     this.calculatedHeight = panelHeight + 'px';
+    console.log('calculate height', this.calculatedHeight);
   }
 
   handleClick = (e) => {
@@ -122,16 +131,11 @@ export class OjpAccordionItem {
 
   render() {
 
-    let attributes = {
-      
-    };
-
-
     return (
       <Host>
         <a
           role= "header"
-          aria-expanded = {this.open}
+          // aria-expanded = {this.open}
           class = {"ojp-accordion-item__trigger"}
           aria-controls = "section"
           id = "section-control" 
@@ -159,7 +163,7 @@ export class OjpAccordionItem {
             id="section"
             role="region"
             aria-labelledby="section-control"
-            class={`ojp-accordion-item__panel ${this.transitioning ? 'transitioning': ''}`}
+            class={`ojp-accordion-item__panel ${this.transitioning ? 'transitioning': ''} ${this.open ? 'ojp-accordion-item__panel--open' : ''}`}
             // hidden={!this.open}
             ref={(el) => { this.contentEl = el }}
             onTransitionEnd={() => this.handleTransitionEnd()}

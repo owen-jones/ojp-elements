@@ -17,20 +17,12 @@
   --ojp-accordion-item--hover-opacity: .5;
   // Animation speed of accordion item toggle
   // (panel height, opacity & icon rotate)
-  --ojp-accordion-item--animation-speed: .35s;
-
-  // TODO: Do we need this?
-  --ojp-accordion-item--max-content-width: 75%;
-
-  // Defined in global.scss:
-  //// Caret/icon scaling
-  // --ojp-accordion-item-icon-scale
+  --ojp-accordion-item--animation-speed: .75s;
 
   border-bottom: 1px solid var(--ojp-color--gray);
   display: block;
   padding-block: var(--ojp-accordion-item--header-padding-block);
   text-decoration: none;
-
 
 }
 
@@ -41,7 +33,7 @@
   position: relative;
   text-align: left;
   text-decoration: none;
-  // transition: opacity .2s ease;
+  transition: opacity .2s ease;
 
   padding-inline: var(--ojp-accordion-item--padding-inline);
   opacity: 1;
@@ -64,21 +56,27 @@
   padding-left: var(--ojp-accordion-item--padding-inline);
 }
 .ojp-accordion-item__header__icon {
-  transform: rotate(180deg) scale(var(--ojp-accordion-item-icon-scale));
+  transform: rotate(180deg);
   transition: transform var(--ojp-accordion-item--animation-speed) ease;
   
 }
 
 // Rotate icon when opening accordion item
-.ojp-accordion-item__trigger[aria-expanded="true"] .ojp-accordion-item__header__icon {
-  transform: rotate(0deg) scale(var(--ojp-accordion-item-icon-scale));
+.ojp-accordion-item__trigger[aria-expanded] .ojp-accordion-item__header__icon {
+  transform: rotate(0deg);
 }
 
 .ojp-accordion-item__panel {
   overflow: hidden;
-  transition: height var(--ojp-accordion-item--animation-speed) ease;  
+  transition: 
+    height var(--ojp-accordion-item--animation-speed) ease, 
+    opacity var(--ojp-accordion-item--animation-speed) ease;  
   padding-inline: var(--ojp-accordion-item--padding-inline);
-  // margin-block: var(--ojp-accordion-item--panel-padding-block)
+  opacity: 0;
+
+  &--open {
+    opacity: 1;
+  }
 }
 
 /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */

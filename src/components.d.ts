@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface OjpAccordion {
         "allowMultipleItemsOpen": boolean;
+        "toggleAll": () => Promise<void>;
     }
     interface OjpAccordionItem {
         "anchorId": any;

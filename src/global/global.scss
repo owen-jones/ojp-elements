@@ -79,13 +79,13 @@ ojp-col {
 
 
 // ojp-accordion-item vars
-ojp-accordion-item {
-  --ojp-accordion-item-icon-scale: .5;
-}
-// Desktop
-@supports (--breakpoint("desktop")) {
-  ojp-accordion-item {
-    --ojp-accordion-item-icon-scale: 1;
-  }
-}
+// ojp-accordion-item {
+//   --ojp-accordion-item-icon-scale: .5;
+// }
+// // Desktop
+// @supports (--breakpoint("desktop")) {
+//   ojp-accordion-item {
+//     --ojp-accordion-item-icon-scale: 1;
+//   }
+// }
 // end ojp-accordion-item vars

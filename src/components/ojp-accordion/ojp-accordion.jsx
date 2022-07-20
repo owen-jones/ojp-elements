@@ -1,4 +1,4 @@
-import { Element, Component, Host, h, Method, Listen } from '@stencil/core';
+import { Element, Component, Host, h, Method, Listen, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ojp-accordion',
@@ -18,6 +18,15 @@ export class OjpAccordion {
     reflect: true,
     mutable: false
   }) allowMultipleItemsOpen = false;
+
+  // Expand/Collapse all accordion items
+  @Method()
+  async toggleAll() {
+    this.allItemsOpen = !this.allItemsOpen;
+    this.items.forEach(item => {
+      (this.allItemsOpen) ?  item.openItem() : item.closeItem();
+    });
+  }
 
   // All ojp-accordion-items
   items = this.el.querySelectorAll('ojp-accordion-item');
@@ -62,14 +71,6 @@ export class OjpAccordion {
       else {
         item.closeItem();
       }
-    });
-  }
-
-  // Open or Close all items
-  toggleAll = () => {
-    this.allItemsOpen = !this.allItemsOpen;
-    this.items.forEach(item => {
-      (this.allItemsOpen) ?  item.openItem() : item.closeItem();
     });
   }
 
