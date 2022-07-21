@@ -7,13 +7,13 @@
   // 
 
   // L/R padding on accordion item (header and panel)
-  --ojp-accordion-item--padding-inline: 30px; 
+  --ojp-accordion-item--padding-inline: var(--space-s-m); 
 
   // Top/bottom padding on accordion item header
-  --ojp-accordion-item--header-padding-block: 20px;
+  --ojp-accordion-item--header-padding-block: var(--space-xs-s);
 
   // Top/bottom padding on accordion item panel
-  --ojp-accordion-item--panel-padding-block: 10px;
+  --ojp-accordion-item--panel-padding-block: var(--space-2xs-xs);
 
   // Opacity of header on hover
   --ojp-accordion-item--hover-opacity: .5;
@@ -22,10 +22,11 @@
   // (panel height, opacity AND icon rotate)
   --ojp-accordion-item--animation-speed: .35s;
 
-  // Defined in global.scss:
-
   // Width of caret icon
-  // --ojp-accordion-item--icon-width
+  --ojp-accordion-item--icon-width: var(--space-s-m);
+
+
+  // Defined in global.scss:
 
   // Stroke width of svg caret icon
   // --ojp-accordion-item--icon-stroke-width

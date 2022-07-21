@@ -11,6 +11,8 @@
   // Gap between rows
   --ojp-row--row-gap: 10px;
 
+  //// Minimum gutter width
+  --ojp-row--gutter: var(--space-s-3xl);
 
   // PROPS - can be overwritten with props b/c
   // likely to be different per component
@@ -20,8 +22,6 @@
   //// --ojp-row--tcols
   //// --ojp-row--dcols
   //// --ojp-row--cols
-  //// Minimum gutter width
-  //// --ojp-row--gutter
 
   // Align Items 
   --ojp-row--align-items: stretch;
@@ -32,7 +32,7 @@
   // CALC/HELPER VARS
   
   // Max Wrapper Width (not including gutters)
-  --ojp-row--max-wrapper-width: 1600px;
+  --ojp-row--max-wrapper-width: 1440px;
   // Max Wrapper Width (including gutters)
   --ojp-row--max-wrapper-width-plus-gutters: calc(var(--ojp-row--max-wrapper-width) + (2 * var(--ojp-row--gutter)));
 
