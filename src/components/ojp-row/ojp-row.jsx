@@ -67,6 +67,7 @@ export class OjpRow {
 
   // Custom function to set all necessary css vars
   setCssProperties(){
+
     // If mobile cols are not set by user, default to same as 'cols'
     if (typeof(this.mcols) == 'undefined'){
       this.el.style.setProperty('--ojp-row--mcols', this.cols);
@@ -101,6 +102,33 @@ export class OjpRow {
     this.el.style.setProperty('--ojp-row--align-items', this.align);
     this.el.style.setProperty('--ojp-row--justify-items', this.justify);
 
+    // Set column gap properties
+
+    switch (this.cols) {
+      case '1':
+        this.el.style.setProperty('--ojp-row--col-gap', 0); // 1 -> 0
+        break;
+      case '2':
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-xl-2xl')); // 1 -> XL-2XL
+        break;
+      case '3':
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-l-xl')); // 3 -> L-XL
+        break;
+      case '4':
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-m-l')); // 4 -> M-L
+        break;
+      case '5':
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-s-m')); // 5 -> S-M
+        break;
+      case '6':
+        console.log('6');
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-xs-s')); // 6 -> XS-S
+        break;
+      default:
+        this.el.style.setProperty('--ojp-row--col-gap', getComputedStyle(this.el).getPropertyValue('--space-2xs-xs')); // > 6 -> 2XS-XS
+        break;
+    }
+    console.log(getComputedStyle(this.el).getPropertyValue('--ojp-row--col-gap'));
   }
 
   render() {
@@ -110,7 +138,7 @@ export class OjpRow {
     return (
       <Host>
           <div class="ojp-row__container">
-          <slot></slot>
+            <slot></slot>
           </div>
       </Host>
     )
