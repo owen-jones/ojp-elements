@@ -118,7 +118,7 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * triggered when the accordion item is opened
+          * header-wrappered when the accordion item is opened
          */
         "onOpenEvent"?: (event: CustomEvent<any>) => void;
         /**

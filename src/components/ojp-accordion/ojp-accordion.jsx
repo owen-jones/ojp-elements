@@ -10,10 +10,12 @@ export class OjpAccordion {
 
   @Element() el;
 
-  // Allow multiple items to be open at once
-  // If set to false, open one item will auto-close
-  // all other items in the accordion
-  // Default: false
+  /* 
+    Allow multiple items to be open at once
+    If set to false, open one item will auto-close
+    all other items in the accordion
+    Default: false 
+  */
   @Prop({
     reflect: true,
     mutable: false
@@ -31,7 +33,7 @@ export class OjpAccordion {
   // All ojp-accordion-items
   items = this.el.querySelectorAll('ojp-accordion-item');
 
-  // used to keep track of toggle all open/closed
+  // Used to keep track of toggle all open/closed
   allItemsOpen = true;
 
   @Listen('openEvent')
@@ -58,18 +60,16 @@ export class OjpAccordion {
   // Scroll to item with id and open it
   goToItemId = (id) => {
     this.items.forEach(item => {
-      if (id == item.anchorId) {
+      if (id == item.anchorId){
+        // Scroll to item
         window.scroll({
           behavior: 'smooth',
           left: 0,
-          top: item.offsetTop - 100
+          top: item.offsetTop
         });
 
-        item.openItem();
-      }
-      // Close all other items
-      else {
-        item.closeItem();
+        // Open it
+        !item.open ? item.openItem() : '';
       }
     });
   }

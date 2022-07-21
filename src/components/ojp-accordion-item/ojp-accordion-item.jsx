@@ -13,7 +13,7 @@ export class OjpAccordionItem {
   // Is transtioning to open to closed
   @State() transitioning = false;
   
-  @State() calculatedHeight;
+  @State() calculatedMaxHeight;
   buttonEl;
   contentEl;
 
@@ -77,24 +77,18 @@ export class OjpAccordionItem {
   @Watch('open')
   stateChanged() {
     this.transitioning = true;
-    this.calculateHeight();
-  }
-
-  @Watch('calculatedHeight')
-  watchHeightHandler(newVal, oldVal){
-    console.log('calculated height changed', oldVal, newVal);
+    this.calculateMaxHeight();
   }
 
   /**
-   * triggered when the accordion item is opened
+   * header-wrappered when the accordion item is opened
    */
   @Event() openEvent;
 
 
   @Listen('resize', {target: 'window'})
   handleResize(ev) {
-    // console.log('window resized', ev);
-    this.calculateHeight();
+    this.calculateMaxHeight();
   }
 
   componentDidLoad() {
@@ -107,7 +101,7 @@ export class OjpAccordionItem {
       }
     } 
 
-    this.calculateHeight();
+    this.calculateMaxHeight();
 
   }
 
@@ -115,16 +109,15 @@ export class OjpAccordionItem {
     this.transitioning = false;
   }
 
-  calculateHeight() {
+  calculateMaxHeight() {
     const panelHeight = this.contentEl.scrollHeight;
-    this.calculatedHeight = panelHeight + 'px';
-    console.log('calculate height', this.calculatedHeight);
+    this.calculatedMaxHeight = panelHeight + 'px';
   }
 
   handleClick = (e) => {
     // whenever a click event occurs on
     // the component, update `open`,
-    // triggering the rerender
+    // trigger the rerender
     e.preventDefault();
     this.toggleItem();
   }
@@ -136,7 +129,7 @@ export class OjpAccordionItem {
         <a
           role= "header"
           // aria-expanded = {this.open}
-          class = {"ojp-accordion-item__trigger"}
+          class = {`ojp-accordion-item__header-wrapper ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}`}
           aria-controls = "section"
           id = "section-control" 
           onClick = {this.handleClick}
@@ -152,7 +145,7 @@ export class OjpAccordionItem {
 
               {/* Icon/Caret */}
               <div className="ojp-accordion-item__header__icon-wrapper">
-                <svg class="ojp-accordion-item__header__icon" width="31" height="17" viewBox="0 0 31 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
                 </svg>
               </div>
@@ -167,7 +160,7 @@ export class OjpAccordionItem {
             // hidden={!this.open}
             ref={(el) => { this.contentEl = el }}
             onTransitionEnd={() => this.handleTransitionEnd()}
-            style={ this.open ? {height: this.calculatedHeight} : {height: 0}}
+            style={ this.open ? {maxHeight: this.calculatedMaxHeight} : {maxHeight: 0}}
             >
             
             {/* Panel Slot */}

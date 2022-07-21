@@ -7,17 +7,36 @@
   // 
 
   // L/R padding on accordion item (header and panel)
-  --ojp-accordion-item--padding-inline: 40px; 
+  --ojp-accordion-item--padding-inline: 30px; 
+
   // Top/bottom padding on accordion item header
-  --ojp-accordion-item--header-padding-block: 40px;
+  --ojp-accordion-item--header-padding-block: 20px;
+
   // Top/bottom padding on accordion item panel
   --ojp-accordion-item--panel-padding-block: 10px;
 
   // Opacity of header on hover
   --ojp-accordion-item--hover-opacity: .5;
+
   // Animation speed of accordion item toggle
-  // (panel height, opacity & icon rotate)
-  --ojp-accordion-item--animation-speed: .75s;
+  // (panel height, opacity AND icon rotate)
+  --ojp-accordion-item--animation-speed: .35s;
+
+  // Defined in global.scss:
+
+  // Width of caret icon
+  // --ojp-accordion-item--icon-width
+
+  // Stroke width of svg caret icon
+  // --ojp-accordion-item--icon-stroke-width
+
+  // Max width of header content AND panel content
+  // --ojp-accordion-item--max-content-width
+
+
+
+  // PROPS vars - n/a
+
 
   border-bottom: 1px solid var(--ojp-color--gray);
   display: block;
@@ -26,64 +45,81 @@
 
 }
 
-.ojp-accordion-item__trigger {
+.ojp-accordion-item__header-wrapper {
   color: currentColor;
   display: block;
+  height: min-content;
   margin: 0;
+  padding-inline: var(--ojp-accordion-item--padding-inline);
   position: relative;
   text-align: left;
   text-decoration: none;
-  transition: opacity .2s ease;
 
-  padding-inline: var(--ojp-accordion-item--padding-inline);
-  opacity: 1;
-
-  &:hover, &:active {
+  &:hover ::slotted( [slot="header"]),
+  &:hover .ojp-accordion-item__header__icon {
     cursor: pointer;
     opacity: var(--ojp-accordion-item--hover-opacity);
   }
 }
 
 .ojp-accordion-item__header {
-  display: flex;
-  justify-content: space-between;
-
-}
-// Caret 
-.ojp-accordion-item__header__icon-wrapper {
   align-items: center;
   display: flex;
-  padding-left: var(--ojp-accordion-item--padding-inline);
+  justify-content: space-between;
+  opacity: 1;
 }
+
+::slotted( [slot="header"]) {
+  max-width: var(--ojp-accordion-item--max-content-width);
+}
+
+// Opacity transition for hover effect
+::slotted( [slot="header"]), .ojp-accordion-item__header__icon {
+  transition: opacity .25s ease;
+}
+
+// Caret 
+.ojp-accordion-item__header__icon-wrapper {
+  flex-shrink: 0;
+  padding-left: var(--ojp-accordion-item--padding-inline);
+  width: var(--ojp-accordion-item--icon-width);
+}
+
 .ojp-accordion-item__header__icon {
+  height: 1px; 
+  overflow: visible;
+  padding-bottom: 55%; 
   transform: rotate(180deg);
-  transition: transform var(--ojp-accordion-item--animation-speed) ease;
-  
+  transition: transform var(--ojp-accordion-item--animation-speed) ease, opacity .5s ease;
+  width: 100%; 
+
+  path {
+    stroke-width: var(--ojp-accordion-item--icon-stroke-width);
+  }
+
 }
 
 // Rotate icon when opening accordion item
-.ojp-accordion-item__trigger[aria-expanded] .ojp-accordion-item__header__icon {
+.ojp-accordion-item__header-wrapper--open .ojp-accordion-item__header__icon {
   transform: rotate(0deg);
 }
 
+// Panel
 .ojp-accordion-item__panel {
-  overflow: hidden;
-  transition: 
-    height var(--ojp-accordion-item--animation-speed) ease, 
-    opacity var(--ojp-accordion-item--animation-speed) ease;  
-  padding-inline: var(--ojp-accordion-item--padding-inline);
   opacity: 0;
+  overflow: hidden;
+  padding-inline: var(--ojp-accordion-item--padding-inline);
+  transition: 
+    max-height var(--ojp-accordion-item--animation-speed) ease,
+    opacity var(--ojp-accordion-item--animation-speed) ease;  
 
   &--open {
     opacity: 1;
   }
 }
 
-/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
-.ojp-accordion-item__panel[hidden] {
-  display: none;
-}
-
 ::slotted( [slot="panel"] ) { 
+  max-width: var(--ojp-accordion-item--max-content-width);
   padding-block: var(--ojp-accordion-item--panel-padding-block);
+
 }
