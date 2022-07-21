@@ -22,22 +22,18 @@ ojp-row {
   // Mobile
   --ojp-row--cols: var(--ojp-row--mcols);
 
-  // Minimum gutter width
-  --ojp-row--gutter: 20px;
 }
 
 // Tablet 
 @supports (--breakpoint("tablet")) {
   ojp-row {
     --ojp-row--cols: var(--ojp-row--tcols);
-    --ojp-row--gutter: 50px;
   }
 }
 // Desktop
 @supports (--breakpoint("desktop")) {
   ojp-row {
     --ojp-row--cols: var(--ojp-row--dcols);
-    --ojp-row--gutter: 100px;
   }
 }
 
@@ -80,14 +76,12 @@ ojp-col {
 
 // ojp-accordion-item vars
 ojp-accordion-item {
-  --ojp-accordion-item--icon-width: 17px;
   --ojp-accordion-item--icon-stroke-width: 3px;
   --ojp-accordion-item--max-content-width: 100%;
 }
 // Tablet
 @supports (--breakpoint("tablet")) {
   ojp-accordion-item {
-    --ojp-accordion-item--icon-width: 25px;
     --ojp-accordion-item--icon-stroke-width: 2px;
     --ojp-accordion-item--max-content-width: 100%;
   }
@@ -95,12 +89,10 @@ ojp-accordion-item {
 // Desktop
 @supports (--breakpoint("desktop")) {
   ojp-accordion-item {
-    --ojp-accordion-item--icon-width: 39px;
     --ojp-accordion-item--icon-stroke-width: 2px;
     --ojp-accordion-item--max-content-width: 75%;
   }
 }
-
 
 // end ojp-accordion-item vars
 
@@ -179,4 +171,5 @@ ojp-accordion-item {
   /* Custom pairs */
   --space-: calc(((var(--fc--min) / 16) * 1rem) + (var(--fc--max) - var(--fc--min)) * var(--fluid-bp));
   --space-m-4xl: calc(((var(--fc-m-min) / 16) * 1rem) + (var(--fc-4xl-max) - var(--fc-m-min)) * var(--fluid-bp));
+  --space-s-3xl: calc(((var(--fc-s-min) / 16) * 1rem) + (var(--fc-3xl-max) - var(--fc-s-min)) * var(--fluid-bp));
 }
