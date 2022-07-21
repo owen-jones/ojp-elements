@@ -22,83 +22,76 @@
       height: 100%;
     }
 
+    ojp-accordion {
+      padding-bottom: 30px;
+    }
+
   </style>
+
+  <script>
+    // End user can write a function to expose ojp-accordion's "toggleAll" function
+    function toggleAll(){
+      let accordion = document.querySelector('ojp-accordion');
+      accordion.toggleAll();
+    }
+  </script>
 </head>
 <body>
   <div class="container">
     <ojp-row>
-      <ojp-col span="12">
+      <ojp-col mspan="12" tspan="12" dspan="8" dstart="3">
         <ojp-accordion allow-multiple-items-open>
-          <button class="ojp-accordion__toggle-all" onClick={$this.handleClick}>Collapse/Expand All</button>
-          <ojp-accordion-item open>
-            <span slot="header">Item header with a really long title. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptas necessitatibus ad dolore commodi cupiditate dolores similique debitis magnam! Optio cum debitis laboriosam aliquam laudantium culpa ea natus amet dolore!</span>
+          <h1>This is accordion allows multiple items open at once</h1>
+          <button class="ojp-accordion__toggle-all" onClick="toggleAll()">Collapse/Expand All (button can be styled or removed)</button>
+          <ojp-accordion-item>
+            <h4 slot="header">This header has a long title. All type will be styled by the end-user developer. Lorem ipsum dolor sit, amet consectetur adipisicing elit. </h4>
             <div slot="panel">Item panel. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
           </ojp-accordion-item>
           <ojp-accordion-item open>
-              <span slot="header">item</span>
+              <h4 slot="header">This item is set to default to "open".</h4>
               <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
             </ojp-accordion-item>
             <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">This item is set to default to "closed".</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
+                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </ojp-accordion-item>
+            <ojp-accordion-item anchor-id="custom-anchor-id">
+                <h4 slot="header">If you right click this item, you can copy the link address. Going to that address in your browser will jump to and auto-open this item.</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
+                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </ojp-accordion-item>
+            
+          </ojp-accordion>
+          <ojp-accordion>
+            <h1>This accordion only allows one item open at once</h1>
+            <ojp-accordion-item>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>
-            <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
             <ojp-accordion-item anchor-id="myid">
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
               <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>            <ojp-accordion-item>
-                <span slot="header">item</span>
+                <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>            
         </ojp-accordion>

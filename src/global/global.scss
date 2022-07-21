@@ -80,12 +80,24 @@ ojp-col {
 
 // ojp-accordion-item vars
 ojp-accordion-item {
-  --ojp-accordion-item-icon-scale: .5;
+  --ojp-accordion-item--icon-width: 17px;
+  --ojp-accordion-item--icon-stroke-width: 3px;
+  --ojp-accordion-item--max-content-width: 100%;
+}
+// Tablet
+@supports (--breakpoint("tablet")) {
+  ojp-accordion-item {
+    --ojp-accordion-item--icon-width: 25px;
+    --ojp-accordion-item--icon-stroke-width: 2px;
+    --ojp-accordion-item--max-content-width: 100%;
+  }
 }
 // Desktop
 @supports (--breakpoint("desktop")) {
   ojp-accordion-item {
-    --ojp-accordion-item-icon-scale: 1;
+    --ojp-accordion-item--icon-width: 39px;
+    --ojp-accordion-item--icon-stroke-width: 2px;
+    --ojp-accordion-item--max-content-width: 75%;
   }
 }
 // end ojp-accordion-item vars

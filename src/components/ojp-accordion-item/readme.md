@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event       | Description                                 | Type               |
-| ----------- | ------------------------------------------- | ------------------ |
-| `openEvent` | triggered when the accordion item is opened | `CustomEvent<any>` |
+| Event       | Description                                        | Type               |
+| ----------- | -------------------------------------------------- | ------------------ |
+| `openEvent` | header-wrappered when the accordion item is opened | `CustomEvent<any>` |
 
 
 ## Methods
