@@ -7,15 +7,46 @@ export default {
                 component: `
 # Description:
 The \`<ojp-accordion>\` element will render a simple accordion. Items can be added to the accordion using the \`<ojp-accordion-item>\` element.
-                
+
+## \`<ojp-accordion>\`
+
 # Attributes:   
-The \`<ojp-accordion>\` and \`<ojp-accordion-item>\` elements come with a few options that developers can use to customize the implementation.
+The \`<ojp-accordion>\` element comes with an option that developers can use to customize the implementation.
+
+- \`allow-multiple-items-open\`
+
+## "allow-multiple-items-open":
+
+This option specifies if an accordion can allow multiple items to be open at the same time. Can be modified by adding the keyphrase "allow-multiple-items-open" or removing it from the element parameters.
+                  
+>  **Usage**:
+\`<ojp-accordion allow-multiple-items-open>\`.
+
+
+# Methods (cannot be modified through props):   
+The \`<ojp-accordion>\` element comes with a method that developers can use to modify the behavior of the accordion.
+
+- \`toggleAll()\`
+
+## "toggleAll":
+
+This method allows users to toggle all items of an accordion. This method can be triggered from a button.
+
+### NOTE: This kind of accordion must have the "allow-multiple-items-open" attribute set.
+                  
+>  **Usage**:
+\`<button class="toggle" onClick="toggleAll()">\`.
+
+<br>
+
+## \`<ojp-accordion-item>\`
+
+# Attributes:   
+The \`<ojp-accordion-item>\` element comes with options that developers can use to customize the implementation.
 
 - \`anchor-id\`
 - \`index\`
 - \`open\`
-- \`allow-multiple-items-open\`
-
 
 ## "anchor-id":
 
@@ -38,24 +69,15 @@ This option specifies the index of an accordion item (from top to bottom).
 This option specifies the state of an accordion item on page load, and can be modified by adding the keyword "open" or removing it from the element parameters.
                   
 >  **Usage**:
-\`<ojp-accordion open>\`.
-
-
-## "allow-multiple-items-open":
-
-This option specifies if an accordion can allow multiple items to be open at the same time. Can be modified by adding the keyphrase "allow-multiple-items-open" or removing it from the element parameters.
-                  
->  **Usage**:
-\`<ojp-accordion allow-multiple-items-open>\`.
+\`<ojp-accordion-item open>\`.
 
 
 # Methods (cannot be modified through props):   
-The \`<ojp-accordion>\` element comes with some methods that developers can use to modify the behavior of the accordion.
+The \`<ojp-accordion-item>\` element comes with some methods that developers can use to modify the behavior of the accordion items.
 
 - \`closeItem()\`
 - \`openItem()\`
 - \`toggleItem()\`
-- \`toggleAll()\`
 
 #### NOTE: All the methods will return a \`Promise<void>\`
     
@@ -69,17 +91,12 @@ This method allows users to open an accordion item.
 
 ## "toggleItem()":
 
-This method allows users to toggle the open/closed an accordion item. By default, the \`accordion item arrow\` and the \`header text\` are bound to this method.
+This method allows users to toggle the open/closed state an accordion item. By default, the \`accordion item arrow\` and the \`header text\` are bound to this method.
 
-## "toggleAll":
+# Events:
+The \`<ojp-accordion-item>\` element has an event to handle certain use cases.
 
-This method allows users to toggle all items of an accordion. This method can be triggered from a button.
-
-### NOTE: This kind of accordion must have the "allow-multiple-items-open" attribute set.
-                  
->  **Usage**:
-\`<button class="toggle" onClick="toggleAll()">\`.
-
+The event \`openEvent\` is triggered when an accordion does not have \`allow-multiple-items-open\` set, if another closed item is opened. This event will handle the output by closing the other accordion items and opening the specified item.
                 
                 `
             }
