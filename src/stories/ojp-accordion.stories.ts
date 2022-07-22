@@ -6,7 +6,7 @@ export default {
             description: {
                 component: `
 # Description:
-The \`<ojp-accordion>\` element will render a simple accordian. Items can be added to the accordian using the \`<ojp-accordion-item>\` element.
+The \`<ojp-accordion>\` element will render a simple accordion. Items can be added to the accordion using the \`<ojp-accordion-item>\` element.
                 
 # Attributes:   
 The \`<ojp-accordion>\` and \`<ojp-accordion-item>\` elements come with a few options that developers can use to customize the implementation.
@@ -19,7 +19,7 @@ The \`<ojp-accordion>\` and \`<ojp-accordion-item>\` elements come with a few op
 
 ## "anchor-id":
 
-This optional attribute for \`<ojp-accordian-item> specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
+This optional attribute for \`<ojp-accordion-item> specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
                   
 >  **Usage**:
 \`<ojp-accordion-item anchor-id="custom-anchor-id">\`.
@@ -50,7 +50,7 @@ This option specifies if an accordion can allow multiple items to be open at the
 
 
 # Methods (cannot be modified through props):   
-The \`<ojp-accordion>\` element comes with some methods that developers can use to modify the behavior of the accordian.
+The \`<ojp-accordion>\` element comes with some methods that developers can use to modify the behavior of the accordion.
 
 - \`closeItem()\`
 - \`openItem()\`
@@ -69,11 +69,13 @@ This method allows users to open an accordion item.
 
 ## "toggleItem()":
 
-This method allows users to toggle the open/closed an accordion item. By default, the \`accordian item arrow\` and the \`header text\` are bound to this method.
+This method allows users to toggle the open/closed an accordion item. By default, the \`accordion item arrow\` and the \`header text\` are bound to this method.
 
 ## "toggleAll":
 
 This method allows users to toggle all items of an accordion. This method can be triggered from a button.
+
+### NOTE: This kind of accordion must have the "allow-multiple-items-open" attribute set.
                   
 >  **Usage**:
 \`<button class="toggle" onClick="toggleAll()">\`.
@@ -97,7 +99,7 @@ This method allows users to toggle all items of an accordion. This method can be
     },
     docs: {
         description: {
-            story: 'This is Accordian text'
+            story: 'This is Accordion text'
         }
     }
 
