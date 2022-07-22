@@ -127,8 +127,8 @@ export class OjpAccordionItem {
     return (
       <Host>
         <a
-          role= "header"
-          // aria-expanded = {this.open}
+          role= "button"
+          aria-expanded = {this.open}
           class = {`ojp-accordion-item__header-wrapper ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}`}
           aria-controls = "section"
           id = "section-control" 
