@@ -125,7 +125,7 @@ export class OjpAccordionItem {
   render() {
 
     return (
-      <Host>
+      <Host class={`${this.open ? 'is-open' : 'is-closed'}`}>
         <a
           role= "button"
           aria-expanded = {this.open}
@@ -144,11 +144,13 @@ export class OjpAccordionItem {
               </slot>
 
               {/* Icon/Caret */}
-              <div className="ojp-accordion-item__header__icon-wrapper">
-                <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
-                </svg>
-              </div>
+              <slot name="icon">
+                <div className="ojp-accordion-item__header__icon-wrapper">
+                  <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
+                  </svg>
+                </div>
+              </slot>
             </div>
         </a>
         
