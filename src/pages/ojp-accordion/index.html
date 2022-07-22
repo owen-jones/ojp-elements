@@ -30,21 +30,23 @@
       padding-bottom: 30px;
     }
 
-    ojp-accordion-item.is-open ::slotted(.open-icon){
-      display: block;
-    }
-
-    ojp-accordion-item.is-closed ::slotted(.open-icon){
+    ojp-accordion-item .open-icon {
       display: none;
     }
 
-    ojp-accordion-item.is-open ::slotted(.closed-icon){
+    ojp-accordion-item[open] .open-icon {
+      display: block;
+    }
+
+    ojp-accordion-item .closed-icon{
+      display: block;
+    }
+
+    ojp-accordion-item[open] .closed-icon{
       display: none;
     }
 
-    ojp-accordion-item.is-closed ::slotted(.closed-icon){
-      display: block;
-    }
+
 
 
 
@@ -97,7 +99,7 @@
                 <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
               </ojp-accordion-item>
-            
+
           </ojp-accordion>
           <ojp-accordion>
             <h1>This accordion only allows one item open at once</h1>
@@ -123,7 +125,7 @@
               </ojp-accordion-item>            <ojp-accordion-item>
                 <h4 slot="header">item</h4>
                 <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              </ojp-accordion-item>            
+              </ojp-accordion-item>
         </ojp-accordion>
       </ojp-col>
     </ojp-row>
