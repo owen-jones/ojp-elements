@@ -7,25 +7,9 @@ import { Meta } from '@storybook/addon-docs';
 `ojp-elements` is a collection of HTML custom elements that encapsulate the logic of our most frequently used UI patterns. Each element is built to be generic, reusable, and framework-agnostic.
 The library is distributed as an NPM package, and is available on [GitHub](https://github.com/owen-jones/ojp-elements).
 
-## Getting Started
-
-Installing the library requires a valid GitHub token. To obtain a token, follow the instructions [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
-
-Once you have a token, create a .npmrc file in your computer's home directory.
-
-```bash
-touch ~/.npmrc
-```
-
-Open the file and add the following line, replacing TOKEN with your token:
-
-```bash
-//npm.pkg.github.com/:_authToken=TOKEN
-```
-
 ## Installing the Library
 
-After you have created the .npmrc file, you can install the library in your project using the following command:
+You can install the library in your project using the following command:
 
 ```bash
 npm install @owen-jones/ojp-elements
@@ -33,24 +17,12 @@ npm install @owen-jones/ojp-elements
 
 ## Using the Library
 
-There are two ways to invoke the library:
-1. If you are using a bundler such as Webpack or a framework like React, you can import elements directly into your JavaScript source as needed.
-
-```js
-import { OjpAccordion } from '@owen-jones/ojp-elements';
-```
-
-2. Alternatively, you can import the library through a script tag in the **head** your HTML file.
+Import the library through a script tag in the **head** your HTML file.
 
 ```html
-<script type='module' src='node_modules/ojp-elements/dist/ojp-elements.esm.js'></script>
-<script nomodule src="node_modules/ojp-elements/dist/ojp-elements.js"></script>
-```
-
-You will always need to import the global CSS file for the library.
-
-```html
-<link rel='stylesheet' href='node_modules/ojp-elements/dist/ojp-elements.css'/>
+<script type='module' src='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.esm.js'></script>
+<script nomodule src="node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.js"></script>
+<link rel='stylesheet' href='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.css'/>
 ```
 
 You will then be able to use any element in your HTML as you would any regular HTML tag.
@@ -64,4 +36,15 @@ You will then be able to use any element in your HTML as you would any regular H
     <p>Lorem ipsum....</p>
   </ojp-column>
 </ojp-row>
+```
+
+## Global Breakpoints
+
+Some elements use breakpoints to determine how they should be displayed. You should override the following
+defaults in your own project's stylesheet according to your project's needs.
+
+```css
+--breakpoint--mobile: "(min-width: 320px)";
+--breakpoint--tablet: "(min-width: 768px)";
+--breakpoint--desktop: "(min-width: 1024px)";
 ```

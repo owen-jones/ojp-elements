@@ -5,6 +5,7 @@ web/
 storybook-static/
 .htpasswd
 storybook-static/.htpasswd
+.idea/
 
 *~
 *.sw[mnpcod]
@@ -28,3 +29,4 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env
+owen-jones-ojp-elements-0.1.0.tgz

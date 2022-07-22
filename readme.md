@@ -1,23 +1,19 @@
 # Owen Jones Pattern Library
 
-The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins that encapsulate the logic of our most frequently used UI patterns. The library is distributed as an NPM module that can be installed on any JavaScript project when necessary. As a living document, the Owen Pattern Library is extensible and version controlled. Updates to the APIs exposed by the Owen Pattern Library should be documented in the internal library website or Figma document.
+The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins that encapsulate the logic of our most frequently used UI patterns. The library is distributed as an NPM module that can be installed on any JavaScript project when necessary. As a living document, the Owen Pattern Library is extensible and version controlled. Updates to the APIs exposed by the Owen Pattern Library should be documented in the [internal library website](http://storybook.whoisowenjones.com) or Figma document.
 
 ## Getting Started
 
-### Setup NPM Private Registry
+### Using this library in a project:
 
-Installing and publishing this library requires a Github token. To obtain a token, follow the instructions [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+Install the library in your project by running `npm install @owen-jones/ojp-elements`
 
-Once you have a token, create a .npmrc file in your home directory:
+Include the following imports in the `<head>` of your HTML file:
 
-```bash
-touch ~/.npmrc
-```
-
-Open the file and add the following line, replacing TOKEN with your token:
-
-```bash
-//npm.pkg.github.com/:_authToken=TOKEN
+```html
+<script type='module' src='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.esm.js'></script>
+<script nomodule src="node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.js"></script>
+<link rel='stylesheet' href='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.css'/>
 ```
 
 ### Development:
@@ -50,10 +46,3 @@ Need help? Check the Stencil.js docs [here](https://stenciljs.com/docs/my-first-
 An HTML page can be made for each component to test the component. Add pages to the `pages` directory in a sub-directory with the same name as the component. Then edit the `src/index.html` file to link to the new page.
 
 When a build is made, the `web` directory will be generated and all HTML pages will be copied over. This directory can be served remotely to test on a QA server.
-
-## Installing this library in a project
-- Follow the steps above to get a Github token and create a .npmrc file.
-- Run `npm install @owen-jones/ojp-elements --save`
-- If you are using a bundler like Webpack, you can import elements directly in your JS source files as needed.
-- Alternately, you can put a script tag similar to this `<script type='module' src='node_modules/ojp-elements/dist/ojp-elements.esm.js'></script>` in the head of your index.html
-- Then you can use the element anywhere in your template, JSX, html etc

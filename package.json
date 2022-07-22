@@ -15,9 +15,6 @@
     "type": "git",
     "url": "git@github.com:owen-jones/ojp-elements.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "files": [
     "dist/",
     "loader/"

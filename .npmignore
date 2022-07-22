@@ -1,0 +1,11 @@
+.idea/
+.storybook/
+.vscode/
+web/
+src/
+storybook-static/
+.editorconfig
+stencil.config.ts
+tsconfig.json
+node_modules/
+owen-jones-ojp-elements-0.1.0.tgz
