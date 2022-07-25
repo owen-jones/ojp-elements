@@ -12,7 +12,7 @@ export class OjpAccordionItem {
 
   // Is transtioning to open to closed
   @State() transitioning = false;
-  
+
   @State() calculatedMaxHeight;
   buttonEl;
   contentEl;
@@ -21,7 +21,7 @@ export class OjpAccordionItem {
    * index of accordion item from top to bottom
    */
     @Prop({
-      mutable:true, 
+      mutable:true,
       reflect:true
     }) index = -1;
 
@@ -52,7 +52,7 @@ export class OjpAccordionItem {
       this.closeItem();
     } else {
       this.openItem();
-    } 
+    }
   }
 
   /**
@@ -99,7 +99,7 @@ export class OjpAccordionItem {
       if (child == this.el) {
         this.index = i;
       }
-    } 
+    }
 
     this.calculateMaxHeight();
 
@@ -125,17 +125,17 @@ export class OjpAccordionItem {
   render() {
 
     return (
-      <Host>
+      <Host class={`${this.open ? 'is-open' : 'is-closed'}`}>
         <a
-          role= "header"
-          // aria-expanded = {this.open}
+          role= "button"
+          aria-expanded = {this.open ? `true` : `false`}
           class = {`ojp-accordion-item__header-wrapper ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}`}
           aria-controls = "section"
-          id = "section-control" 
+          id = "section-control"
           onClick = {this.handleClick}
           ref = {(button) => { this.buttonEl = button }}
           href = {this.anchorId ? '#' + this.anchorId : '#'}
-          >   
+          >
             <div class="ojp-accordion-item__header">
 
               {/* Header Slot */}
@@ -144,15 +144,17 @@ export class OjpAccordionItem {
               </slot>
 
               {/* Icon/Caret */}
-              <div className="ojp-accordion-item__header__icon-wrapper">
-                <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
-                </svg>
-              </div>
+              <slot name="icon">
+                <div className="ojp-accordion-item__header__icon-wrapper">
+                  <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
+                  </svg>
+                </div>
+              </slot>
             </div>
         </a>
-        
-        <div 
+
+        <div
             id="section"
             role="region"
             aria-labelledby="section-control"
@@ -162,7 +164,7 @@ export class OjpAccordionItem {
             onTransitionEnd={() => this.handleTransitionEnd()}
             style={ this.open ? {maxHeight: this.calculatedMaxHeight} : {maxHeight: 0}}
             >
-            
+
             {/* Panel Slot */}
             <slot name="panel">
               Default Item content
