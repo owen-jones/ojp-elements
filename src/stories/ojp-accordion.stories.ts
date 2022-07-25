@@ -45,13 +45,9 @@ myAccordion.toggleAll();\`
 # Attributes:   
 The \`<ojp-accordion-item>\` element comes with options that developers can use to customize the implementation.
 
-- \`anchor-id\`
-- \`index\`
-- \`open\`
-
 ## "anchor-id":
 
-This optional attribute for \`<ojp-accordion-item> specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
+This optional attribute for \`<ojp-accordion-item>\` specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
                   
 >  **Usage**:
 \`<ojp-accordion-item anchor-id="custom-anchor-id">\`.
