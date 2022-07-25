@@ -34,8 +34,9 @@ This method allows users to toggle all items of an accordion. This method can be
 
 ### NOTE: This kind of accordion must have the "allow-multiple-items-open" attribute set.
                   
->  **Usage**:
-\`<button class="toggle" onClick="toggleAll()">\`.
+**Usage**:
+\`const myAccordion = document.getElementById('my-accordion');
+myAccordion.toggleAll();\`
 
 <br>
 
@@ -85,19 +86,36 @@ The \`<ojp-accordion-item>\` element comes with some methods that developers can
 
 This method allows users to close an accordion item.
 
+**Usage**:
+\`const myAccordionItem = document.getElementById('my-accordion-item');
+myAccordionItem.closeItem();\`
+
 ## "openItem()":
 
 This method allows users to open an accordion item.
+
+**Usage**:
+\`const myAccordionItem = document.getElementById('my-accordion-item');
+myAccordionItem.openItem();\`
+
 
 ## "toggleItem()":
 
 This method allows users to toggle the open/closed state an accordion item. By default, the \`accordion item arrow\` and the \`header text\` are bound to this method.
 
-# Events:
-The \`<ojp-accordion-item>\` element has an event to handle certain use cases.
+**Usage**:
+\`const myAccordionItem = document.getElementById('my-accordion-item');
+myAccordionItem.toggleItem();\`
 
-The event \`openEvent\` is triggered when an accordion does not have \`allow-multiple-items-open\` set, if another closed item is opened. This event will handle the output by closing the other accordion items and opening the specified item.
-                
+# Events:
+The event \`openEvent\` is triggered when this item is opened. You can listen to this even in your javascript to be notified when this item is opened or closed."
+
+> **Usage**:
+
+\`const someAccordionItem = document.getElementById("some-accordion-item");
+someAccordionItem.addEventListener('openEvent', event => {
+    //do something
+});                \`
                 `
             }
         }
