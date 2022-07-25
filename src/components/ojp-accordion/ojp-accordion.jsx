@@ -40,12 +40,13 @@ export class OjpAccordion {
    * Requires JSDocs for public API documentation.
    */
 
-  /* 
-    Allow multiple items to be open at once
-    If set to false, open one item will auto-close
-    all other items in the accordion
-    Default: false 
-  */
+  /** 
+    * Allow multiple items to be open at once
+    * If set to false, opening one item will auto-close
+    * all other items in the accordion
+    * Type: boolean
+    * 
+    */
   @Prop({
     reflect: true,
     mutable: false
