@@ -72,12 +72,8 @@ This option specifies the state of an accordion item on page load, and can be mo
 # Methods (cannot be modified through props):   
 The \`<ojp-accordion-item>\` element comes with some methods that developers can use to modify the behavior of the accordion items.
 
-- \`closeItem()\`
-- \`openItem()\`
-- \`toggleItem()\`
+> **NOTE**: All the methods will return a \`Promise<void>\` 
 
-#### NOTE: All the methods will return a \`Promise<void>\`
-    
 ## "closeItem()":
 
 This method allows users to close an accordion item.
@@ -104,12 +100,12 @@ This method allows users to toggle the open/closed state an accordion item. By d
 myAccordionItem.toggleItem();\`
 
 # Events:
-The event \`openEvent\` is triggered when this item is opened. You can listen to this even in your javascript to be notified when this item is opened or closed."
+The event \`stateChangeEvent\` is triggered when this item is opened. You can listen to this even in your javascript to be notified when this item is opened or closed."
 
 > **Usage**:
 
-\`const someAccordionItem = document.getElementById("some-accordion-item");
-someAccordionItem.addEventListener('openEvent', event => {
+\`const myAccordionItem = document.getElementById("my-accordion-item");
+myAccordionItem.addEventListener('stateChangeEvent', event => {
     //do something
 });                \`
                 `
