@@ -7,72 +7,65 @@ import { Component, Host, h, Element, State, Prop, Watch, Method, Event, EventEm
 })
 
 export class OjpAccordionItem {
-
-  @Element() el;
-
-  // Is transtioning to open to closed
-  @State() transitioning = false;
-
-  @State() calculatedMaxHeight;
+  /**
+   * 1. Own Properties
+   * Note that because these properties
+   * do not have the @Prop() decorator, they will not be exposed
+   * publicly on the host element, but only used internally.
+   */
   buttonEl;
   contentEl;
 
   /**
-   * index of accordion item from top to bottom
+   * 2. Reference to host HTML element.
+   * Inlined decorator
    */
-    @Prop({
-      mutable:true,
-      reflect:true
-    }) index = -1;
+  @Element() el;
+
 
   /**
-  * accordion item is open or opening (css transition)
+   * 3. State() variables
+   * Inlined decorator, alphabetical order.
+   */
+  @State() calculatedMaxHeight; // Calculated max height of open panel
+  @State() transitioning = false; // Is transtioning to open to closed
+
+
+  /**
+   * 4. Public Property API
+   * Inlined decorator, alphabetical order. These are
+   * different than "own properties" in that public props
+   * are exposed as properties and attributes on the host element.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /** 
+   * Optional User-defined anchor id
+   * Used so item can be auto-opened with url param
+   * Type: string
+   */
+   @Prop({
+    reflect: true,
+    mutable: false,
+  }) anchorId;
+
+  /**
+   * Index of accordion item from top to bottom
+   * Type: number
+   */
+  @Prop({
+    mutable:true, 
+    reflect:true
+  }) index = -1;
+
+  /**
+  * Accordion item is open or opening (css transition)
+  * Type: boolean
   */
-  // Default: false
   @Prop({
     reflect: true,
     mutable: false
   }) open = false;
-
-  // Optional User-defined anchor id
-  // Used so item can be auto-opened with url param
-  // Type: string
-  // Default: not set
-  @Prop({
-    reflect: true,
-    mutable: false
-  }) anchorId;
-
-  /**
-   * toggle the accordion item
-   */
-  @Method()
-  async toggleItem() {
-    if (this.open) {
-      this.closeItem();
-    } else {
-      this.openItem();
-    }
-  }
-
-  /**
-   * close the accordion item
-   */
-  @Method()
-  async closeItem() {
-    this.open = false;
-  }
-
-  /**
-   * open the accordion item
-   */
-  @Method()
-  async openItem() {
-    this.open = true;
-    this.openEvent.emit({
-      index: this.index
-    });
-  }
 
   @Watch('open')
   stateChanged() {
@@ -80,16 +73,23 @@ export class OjpAccordionItem {
     this.calculateMaxHeight();
   }
 
+
   /**
-   * header-wrappered when the accordion item is opened
+   * 5. Events section
+   * Inlined decorator, alphabetical order.
+   * Requires JSDocs for public API documentation.
    */
-  @Event() openEvent;
 
+  /**
+   * Triggered when the accordion item is opened or closed
+   */
+   @Event() stateChangeEvent;
 
-  @Listen('resize', {target: 'window'})
-  handleResize(ev) {
-    this.calculateMaxHeight();
-  }
+  /**
+   * 6. Component lifecycle events
+   * Ordered by their natural call order, for example
+   * WillLoad should go before DidLoad.
+   */
 
   componentDidLoad() {
     const items = this.el.parentElement.querySelectorAll('ojp-accordion-item');
@@ -105,6 +105,68 @@ export class OjpAccordionItem {
 
   }
 
+
+  /**
+   * 7. Listeners
+   * It is ok to place them in a different location
+   * if makes more sense in the context. Recommend
+   * starting a listener method with "on".
+   * Always use two lines.
+   */
+  @Listen('resize', {target: 'window'})
+  onWindowResize(ev) {
+     this.calculateMaxHeight();
+  }
+
+  /**
+   * 8. Public methods API
+   * These methods are exposed on the host element.
+   * Always use two lines.
+   * Public Methods must be async.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /**
+   * Toggle the accordion item
+   */
+  @Method()
+  async toggleItem() {
+    if (this.open) {
+      this.closeItem();
+    } else {
+      this.openItem();
+    } 
+  }
+
+  /**
+   * Close the accordion item
+   */
+  @Method()
+  async closeItem() {
+    this.open = false;
+    this.stateChangeEvent.emit({
+      index: this.index,
+      isOpen: this.open
+    });
+  }
+
+  /**
+   * Open the accordion item
+   */
+  @Method()
+  async openItem() {
+    this.open = true;
+    this.stateChangeEvent.emit({
+      index: this.index,
+      isOpen: this.open
+    });
+  }
+
+  /**
+   * 9. Local methods
+   * Internal business logic. These methods cannot be
+   * called from the host element.
+   */
   handleTransitionEnd() {
     this.transitioning = false;
   }
@@ -122,6 +184,11 @@ export class OjpAccordionItem {
     this.toggleItem();
   }
 
+  /**
+   * 10. render() function
+   * Always the last public method in the class.
+   * If private methods present, they are below public methods.
+   */
   render() {
 
     return (

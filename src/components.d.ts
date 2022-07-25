@@ -7,29 +7,38 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface OjpAccordion {
+        /**
+          * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
+         */
         "allowMultipleItemsOpen": boolean;
+        /**
+          * Expand/Collapse all accordion items
+         */
         "toggleAll": () => Promise<void>;
     }
     interface OjpAccordionItem {
+        /**
+          * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
+         */
         "anchorId": any;
         /**
-          * close the accordion item
+          * Close the accordion item
          */
         "closeItem": () => Promise<void>;
         /**
-          * index of accordion item from top to bottom
+          * Index of accordion item from top to bottom Type: number
          */
         "index": number;
         /**
-          * accordion item is open or opening (css transition)
+          * Accordion item is open or opening (css transition) Type: boolean
          */
         "open": boolean;
         /**
-          * open the accordion item
+          * Open the accordion item
          */
         "openItem": () => Promise<void>;
         /**
-          * toggle the accordion item
+          * Toggle the accordion item
          */
         "toggleItem": () => Promise<void>;
     }
@@ -109,20 +118,26 @@ declare global {
 }
 declare namespace LocalJSX {
     interface OjpAccordion {
+        /**
+          * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
+         */
         "allowMultipleItemsOpen"?: boolean;
     }
     interface OjpAccordionItem {
+        /**
+          * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
+         */
         "anchorId"?: any;
         /**
-          * index of accordion item from top to bottom
+          * Index of accordion item from top to bottom Type: number
          */
         "index"?: number;
         /**
-          * header-wrappered when the accordion item is opened
+          * Triggered when the accordion item is opened or closed
          */
-        "onOpenEvent"?: (event: CustomEvent<any>) => void;
+        "onStateChangeEvent"?: (event: CustomEvent<any>) => void;
         /**
-          * accordion item is open or opening (css transition)
+          * Accordion item is open or opening (css transition) Type: boolean
          */
         "open"?: boolean;
     }
