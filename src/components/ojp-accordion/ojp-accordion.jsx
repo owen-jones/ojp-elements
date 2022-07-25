@@ -104,7 +104,7 @@ export class OjpAccordion {
    */
 
 
-  // Expand/Collapse all accordion items
+  /** Expand/Collapse all accordion items  */ 
   @Method()
   async toggleAll() {
     this.allItemsOpen = !this.allItemsOpen;

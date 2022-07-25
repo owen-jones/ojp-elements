@@ -16,11 +16,7 @@
 
 ### `toggleAll() => Promise<void>`
 
-8. Public methods API
-These methods are exposed on the host element.
-Always use two lines.
-Public Methods must be async.
-Requires JSDocs for public API documentation.
+Expand/Collapse all accordion items
 
 #### Returns
 
