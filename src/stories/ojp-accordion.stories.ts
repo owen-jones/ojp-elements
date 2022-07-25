@@ -10,23 +10,19 @@ The \`<ojp-accordion>\` element will render a simple accordion. Items can be add
 
 ## \`<ojp-accordion>\`
 
-# Attributes:   
+# Attribute:   
 The \`<ojp-accordion>\` element comes with an option that developers can use to customize the implementation.
-
-- \`allow-multiple-items-open\`
 
 ## "allow-multiple-items-open":
 
 This option specifies if an accordion can allow multiple items to be open at the same time. Can be modified by adding the keyphrase "allow-multiple-items-open" or removing it from the element parameters.
                   
 >  **Usage**:
-\`<ojp-accordion allow-multiple-items-open>\`.
+\`<ojp-accordion allow-multiple-items-open>\`
 
 
-# Methods (cannot be modified through props):   
+# Non-modifiable Method (cannot be modified through props):   
 The \`<ojp-accordion>\` element comes with a method that developers can use to modify the behavior of the accordion.
-
-- \`toggleAll()\`
 
 ## "toggleAll":
 
@@ -50,26 +46,26 @@ The \`<ojp-accordion-item>\` element comes with options that developers can use 
 This optional attribute for \`<ojp-accordion-item>\` specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
                   
 >  **Usage**:
-\`<ojp-accordion-item anchor-id="custom-anchor-id">\`.
-
-
-## "index":
-
-This option specifies the index of an accordion item (from top to bottom).
-                  
->  **Usage**:
-\`<ojp-accordion index=?>\`.
-
+\`<ojp-accordion-item anchor-id="custom-anchor-id">\`
 
 ## "open":
 
 This option specifies the state of an accordion item on page load, and can be modified by adding the keyword "open" or removing it from the element parameters.
                   
 >  **Usage**:
-\`<ojp-accordion-item open>\`.
+\`<ojp-accordion-item open>\`
+
+# Non-modifiable Attributes:   
+
+## "index":
+
+This auto-generated attribute specifies the index of an accordion item (from top to bottom).
+                  
+>  **Example**:
+\`<ojp-accordion index=3>\`
 
 
-# Methods (cannot be modified through props):   
+# Non-modifiable Methods (cannot be modified through props):   
 The \`<ojp-accordion-item>\` element comes with some methods that developers can use to modify the behavior of the accordion items.
 
 > **NOTE**: All the methods will return a \`Promise<void>\` 
