@@ -7,25 +7,25 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                        | Type      | Default     |
-| ---------- | ----------- | -------------------------------------------------- | --------- | ----------- |
-| `anchorId` | `anchor-id` |                                                    | `any`     | `undefined` |
-| `index`    | `index`     | index of accordion item from top to bottom         | `number`  | `-1`        |
-| `open`     | `open`      | accordion item is open or opening (css transition) | `boolean` | `false`     |
+| Property   | Attribute   | Description                                                                                 | Type      | Default     |
+| ---------- | ----------- | ------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `anchorId` | `anchor-id` | Optional User-defined anchor id Used so item can be auto-opened with url param Type: string | `any`     | `undefined` |
+| `index`    | `index`     | Index of accordion item from top to bottom Type: number                                     | `number`  | `-1`        |
+| `open`     | `open`      | Accordion item is open or opening (css transition) Type: boolean                            | `boolean` | `false`     |
 
 
 ## Events
 
-| Event       | Description                                        | Type               |
-| ----------- | -------------------------------------------------- | ------------------ |
-| `openEvent` | header-wrappered when the accordion item is opened | `CustomEvent<any>` |
+| Event              | Description                                           | Type               |
+| ------------------ | ----------------------------------------------------- | ------------------ |
+| `stateChangeEvent` | Triggered when the accordion item is opened or closed | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `closeItem() => Promise<void>`
 
-close the accordion item
+Close the accordion item
 
 #### Returns
 
@@ -35,7 +35,7 @@ Type: `Promise<void>`
 
 ### `openItem() => Promise<void>`
 
-open the accordion item
+Open the accordion item
 
 #### Returns
 
@@ -45,7 +45,7 @@ Type: `Promise<void>`
 
 ### `toggleItem() => Promise<void>`
 
-toggle the accordion item
+Toggle the accordion item
 
 #### Returns
 

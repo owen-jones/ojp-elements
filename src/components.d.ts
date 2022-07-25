@@ -7,29 +7,38 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface OjpAccordion {
+        /**
+          * 4. Public Property API Inlined decorator, alphabetical order. These are different than "own properties" in that public props are exposed as properties and attributes on the host element. Requires JSDocs for public API documentation.
+         */
         "allowMultipleItemsOpen": boolean;
+        /**
+          * 8. Public methods API These methods are exposed on the host element. Always use two lines. Public Methods must be async. Requires JSDocs for public API documentation.
+         */
         "toggleAll": () => Promise<void>;
     }
     interface OjpAccordionItem {
+        /**
+          * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
+         */
         "anchorId": any;
         /**
-          * close the accordion item
+          * Close the accordion item
          */
         "closeItem": () => Promise<void>;
         /**
-          * index of accordion item from top to bottom
+          * Index of accordion item from top to bottom Type: number
          */
         "index": number;
         /**
-          * accordion item is open or opening (css transition)
+          * Accordion item is open or opening (css transition) Type: boolean
          */
         "open": boolean;
         /**
-          * open the accordion item
+          * Open the accordion item
          */
         "openItem": () => Promise<void>;
         /**
-          * toggle the accordion item
+          * Toggle the accordion item
          */
         "toggleItem": () => Promise<void>;
     }
@@ -109,20 +118,26 @@ declare global {
 }
 declare namespace LocalJSX {
     interface OjpAccordion {
+        /**
+          * 4. Public Property API Inlined decorator, alphabetical order. These are different than "own properties" in that public props are exposed as properties and attributes on the host element. Requires JSDocs for public API documentation.
+         */
         "allowMultipleItemsOpen"?: boolean;
     }
     interface OjpAccordionItem {
+        /**
+          * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
+         */
         "anchorId"?: any;
         /**
-          * index of accordion item from top to bottom
+          * Index of accordion item from top to bottom Type: number
          */
         "index"?: number;
         /**
-          * header-wrappered when the accordion item is opened
+          * Triggered when the accordion item is opened or closed
          */
-        "onOpenEvent"?: (event: CustomEvent<any>) => void;
+        "onStateChangeEvent"?: (event: CustomEvent<any>) => void;
         /**
-          * accordion item is open or opening (css transition)
+          * Accordion item is open or opening (css transition) Type: boolean
          */
         "open"?: boolean;
     }
