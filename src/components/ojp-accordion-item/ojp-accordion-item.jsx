@@ -7,44 +7,127 @@ import { Component, Host, h, Element, State, Prop, Watch, Method, Event, EventEm
 })
 
 export class OjpAccordionItem {
-
-  @Element() el;
-
-  // Is transtioning to open to closed
-  @State() transitioning = false;
-  
-  @State() calculatedMaxHeight;
+  /**
+   * 1. Own Properties
+   * Note that because these properties
+   * do not have the @Prop() decorator, they will not be exposed
+   * publicly on the host element, but only used internally.
+   */
   buttonEl;
   contentEl;
 
   /**
-   * index of accordion item from top to bottom
+   * 2. Reference to host HTML element.
+   * Inlined decorator
    */
-    @Prop({
-      mutable:true, 
-      reflect:true
-    }) index = -1;
+  @Element() el;
+
 
   /**
-  * accordion item is open or opening (css transition)
+   * 3. State() variables
+   * Inlined decorator, alphabetical order.
+   */
+  @State() calculatedMaxHeight; // Calculated max height of open panel
+  @State() transitioning = false; // Is transtioning to open to closed
+
+
+  /**
+   * 4. Public Property API
+   * Inlined decorator, alphabetical order. These are
+   * different than "own properties" in that public props
+   * are exposed as properties and attributes on the host element.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /** 
+   * Optional User-defined anchor id
+   * Used so item can be auto-opened with url param
+   * Type: string
+   */
+   @Prop({
+    reflect: true,
+    mutable: false,
+  }) anchorId;
+
+  /**
+   * Index of accordion item from top to bottom
+   * Type: number
+   */
+  @Prop({
+    mutable:true, 
+    reflect:true
+  }) index = -1;
+
+  /**
+  * Accordion item is open or opening (css transition)
+  * Type: boolean
   */
-  // Default: false
   @Prop({
     reflect: true,
     mutable: false
   }) open = false;
 
-  // Optional User-defined anchor id
-  // Used so item can be auto-opened with url param
-  // Type: string
-  // Default: not set
-  @Prop({
-    reflect: true,
-    mutable: false
-  }) anchorId;
+  @Watch('open')
+  stateChanged() {
+    this.transitioning = true;
+    this.calculateMaxHeight();
+  }
+
 
   /**
-   * toggle the accordion item
+   * 5. Events section
+   * Inlined decorator, alphabetical order.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /**
+   * Triggered when the accordion item is opened or closed
+   */
+   @Event() stateChangeEvent;
+
+  /**
+   * 6. Component lifecycle events
+   * Ordered by their natural call order, for example
+   * WillLoad should go before DidLoad.
+   */
+
+  componentDidLoad() {
+    const items = this.el.parentElement.querySelectorAll('ojp-accordion-item');
+    // Set this item's index
+    for (let i = 0; i < items.length; i++) {
+      const child = items[i];
+      if (child == this.el) {
+        this.index = i;
+      }
+    }
+
+    this.calculateMaxHeight();
+
+  }
+
+
+  /**
+   * 7. Listeners
+   * It is ok to place them in a different location
+   * if makes more sense in the context. Recommend
+   * starting a listener method with "on".
+   * Always use two lines.
+   */
+  @Listen('resize', {target: 'window'})
+  onWindowResize(ev) {
+     this.calculateMaxHeight();
+  }
+
+  /**
+   * 8. Public methods API
+   * These methods are exposed on the host element.
+   * Always use two lines.
+   * Public Methods must be async.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /**
+   * Toggle the accordion item
    */
   @Method()
   async toggleItem() {
@@ -56,55 +139,34 @@ export class OjpAccordionItem {
   }
 
   /**
-   * close the accordion item
+   * Close the accordion item
    */
   @Method()
   async closeItem() {
     this.open = false;
+    this.stateChangeEvent.emit({
+      index: this.index,
+      isOpen: this.open
+    });
   }
 
   /**
-   * open the accordion item
+   * Open the accordion item
    */
   @Method()
   async openItem() {
     this.open = true;
-    this.openEvent.emit({
-      index: this.index
+    this.stateChangeEvent.emit({
+      index: this.index,
+      isOpen: this.open
     });
   }
 
-  @Watch('open')
-  stateChanged() {
-    this.transitioning = true;
-    this.calculateMaxHeight();
-  }
-
   /**
-   * header-wrappered when the accordion item is opened
+   * 9. Local methods
+   * Internal business logic. These methods cannot be
+   * called from the host element.
    */
-  @Event() openEvent;
-
-
-  @Listen('resize', {target: 'window'})
-  handleResize(ev) {
-    this.calculateMaxHeight();
-  }
-
-  componentDidLoad() {
-    const items = this.el.parentElement.querySelectorAll('ojp-accordion-item');
-    // Set this item's index
-    for (let i = 0; i < items.length; i++) {
-      const child = items[i];
-      if (child == this.el) {
-        this.index = i;
-      }
-    } 
-
-    this.calculateMaxHeight();
-
-  }
-
   handleTransitionEnd() {
     this.transitioning = false;
   }
@@ -122,20 +184,25 @@ export class OjpAccordionItem {
     this.toggleItem();
   }
 
+  /**
+   * 10. render() function
+   * Always the last public method in the class.
+   * If private methods present, they are below public methods.
+   */
   render() {
 
     return (
-      <Host>
+      <Host class={`${this.open ? 'is-open' : 'is-closed'}`}>
         <a
-          role= "header"
-          // aria-expanded = {this.open}
+          role= "button"
+          aria-expanded = {this.open ? `true` : `false`}
           class = {`ojp-accordion-item__header-wrapper ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}`}
           aria-controls = "section"
-          id = "section-control" 
+          id = "section-control"
           onClick = {this.handleClick}
           ref = {(button) => { this.buttonEl = button }}
           href = {this.anchorId ? '#' + this.anchorId : '#'}
-          >   
+          >
             <div class="ojp-accordion-item__header">
 
               {/* Header Slot */}
@@ -144,15 +211,17 @@ export class OjpAccordionItem {
               </slot>
 
               {/* Icon/Caret */}
-              <div className="ojp-accordion-item__header__icon-wrapper">
-                <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
-                </svg>
-              </div>
+              <slot name="icon">
+                <div className="ojp-accordion-item__header__icon-wrapper">
+                  <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
+                  </svg>
+                </div>
+              </slot>
             </div>
         </a>
-        
-        <div 
+
+        <div
             id="section"
             role="region"
             aria-labelledby="section-control"
@@ -162,7 +231,7 @@ export class OjpAccordionItem {
             onTransitionEnd={() => this.handleTransitionEnd()}
             style={ this.open ? {maxHeight: this.calculatedMaxHeight} : {maxHeight: 0}}
             >
-            
+
             {/* Panel Slot */}
             <slot name="panel">
               Default Item content

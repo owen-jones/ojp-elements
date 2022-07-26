@@ -35,9 +35,7 @@
   // --ojp-accordion-item--max-content-width
 
 
-
   // PROPS vars - n/a
-
 
   border-bottom: 1px solid var(--ojp-color--gray);
   display: block;
@@ -100,11 +98,6 @@
 
 }
 
-// Rotate icon when opening accordion item
-.ojp-accordion-item__header-wrapper--open .ojp-accordion-item__header__icon {
-  transform: rotate(0deg);
-}
-
 // Panel
 .ojp-accordion-item__panel {
   opacity: 0;
@@ -113,14 +106,26 @@
   transition: 
     max-height var(--ojp-accordion-item--animation-speed) ease,
     opacity var(--ojp-accordion-item--animation-speed) ease;  
-
-  &--open {
-    opacity: 1;
-  }
 }
+
 
 ::slotted( [slot="panel"] ) { 
   max-width: var(--ojp-accordion-item--max-content-width);
   padding-block: var(--ojp-accordion-item--panel-padding-block);
 
 }
+
+// Open state
+:host(.is-open) {
+  
+  // Rotate icon
+  .ojp-accordion-item__header__icon {
+    transform: rotate(0deg);
+  }
+
+  // Panel opacity
+  .ojp-accordion-item__panel {
+    opacity: 1;
+  }
+}
+
