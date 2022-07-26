@@ -26,6 +26,11 @@
       margin-block: 0;
     }
 
+    /* Example of overridding a css var */
+    ojp-row {
+      --ojp-row--col-gap: var(--space-m-l);
+    }
+
     ojp-accordion {
       padding-bottom: 30px;
     }
@@ -47,9 +52,6 @@
     }
 
 
-
-
-
   </style>
 
   <script>
@@ -62,8 +64,8 @@
 </head>
 <body>
   <div class="container">
-    <ojp-row>
-      <ojp-col mspan="12" tspan="12" dspan="8" dstart="3">
+    <ojp-row cols="5" mcols="1">
+      <ojp-col span="5" mspan="1">
         <ojp-accordion allow-multiple-items-open>
           <h1>This accordion allows multiple items open at once</h1>
           <button class="ojp-accordion__toggle-all" onClick="toggleAll()">Collapse/Expand All (button can be styled or removed)</button>
