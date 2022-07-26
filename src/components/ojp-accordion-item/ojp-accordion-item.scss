@@ -63,10 +63,10 @@
 
 .ojp-accordion-item__header {
   align-items: center;
+  column-gap: var(--ojp-accordion-item--padding-inline);
   display: flex;
   justify-content: space-between;
   opacity: 1;
-  column-gap: var(--ojp-accordion-item--padding-inline);
 }
 
 ::slotted( [slot="header"]) {
