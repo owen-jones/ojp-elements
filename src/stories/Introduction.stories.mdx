@@ -7,22 +7,36 @@ import { Meta } from '@storybook/addon-docs';
 `ojp-elements` is a collection of HTML custom elements that encapsulate the logic of our most frequently used UI patterns. Each element is built to be generic, reusable, and framework-agnostic.
 The library is distributed as an NPM package, and is available on [GitHub](https://github.com/owen-jones/ojp-elements).
 
-## Installing the Library
+## Using this library in a project:
 
-You can install the library in your project using the following command:
+### Using the library with NPM, Webpack or Gulp
 
+Install the library in your project by running
 ```bash
-npm install @owen-jones/ojp-elements
+npm install @owen-jones/ojp-elements@0.2.0`
 ```
 
-## Using the Library
+Import the loader in your main JavaScript file and invoke it:
+```javascript
+import { defineCustomElements } from '@owen-jones/ojp-elements/loader';
+defineCustomElements();
+```
 
-Import the library through a script tag in the **head** your HTML file.
+Import the library styles in your main SCSS file:
+```scss
+@import "~@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.css";
+```
+
+### Using the library through the CDN
+
+If you can't install the library into your project, the library can be imported
+directly from the CDN through an HTML `<script>` tag.
+
+Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.esm.js'></script>
-<script nomodule src="node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.js"></script>
-<link rel='stylesheet' href='node_modules/@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@owen-jones/ojp-elements@0.2.0/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@owen-jones/ojp-elements@0.2.0/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 You will then be able to use any element in your HTML as you would any regular HTML tag.
