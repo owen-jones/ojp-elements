@@ -63,6 +63,7 @@
 
 .ojp-accordion-item__header {
   align-items: center;
+  column-gap: var(--ojp-accordion-item--padding-inline);
   display: flex;
   justify-content: space-between;
   opacity: 1;
@@ -80,7 +81,6 @@
 // Caret 
 .ojp-accordion-item__header__icon-wrapper {
   flex-shrink: 0;
-  padding-left: var(--ojp-accordion-item--padding-inline);
   width: var(--ojp-accordion-item--icon-width);
 }
 

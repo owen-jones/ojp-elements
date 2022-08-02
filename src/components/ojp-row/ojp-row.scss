@@ -33,14 +33,12 @@
   
   // Max Wrapper Width (not including gutters)
   --ojp-row--max-wrapper-width: 1440px;
-  // Max Wrapper Width (including gutters)
-  --ojp-row--max-wrapper-width-plus-gutters: calc(var(--ojp-row--max-wrapper-width) + (2 * var(--ojp-row--gutter)));
 
   // STYLES
   display: block;
   padding-left: var(--ojp-row--gutter);
   padding-right: var(--ojp-row--gutter);
-
+  
   .ojp-row__container {
     align-items: var(--ojp-row--align-items);
     column-gap: var(--ojp-row--col-gap);
@@ -49,7 +47,8 @@
     height: 100%;
     justify-items: var(--ojp-row--justify-items);
     margin: 0 auto;
-    max-width: var(--ojp-row--max-wrapper-width-plus-gutters);
+    max-width: var(--ojp-row--max-wrapper-width);
+    row-gap: var(--ojp-row--row-gap);
     width: 100%;
   }
 
