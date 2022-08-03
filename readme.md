@@ -8,7 +8,7 @@ The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.2.1`
+npm install @ojp/ojp-elements@0.2.1
 ```
 
 Import the loader in your main JavaScript file and invoke it:
