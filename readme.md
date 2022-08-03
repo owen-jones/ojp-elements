@@ -8,18 +8,18 @@ The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins
 
 Install the library in your project by running
 ```bash
-npm install @owen-jones/ojp-elements@0.2.1`
+npm install @ojp/ojp-elements@0.2.1`
 ```
 
 Import the loader in your main JavaScript file and invoke it:
 ```javascript
-import { defineCustomElements } from '@owen-jones/ojp-elements/loader';
+import { defineCustomElements } from '@ojp/ojp-elements/loader';
 defineCustomElements();
 ```
 
 Import the library styles in your main SCSS file:
 ```scss
-@import "~@owen-jones/ojp-elements/dist/ojp-elements/ojp-elements.css";
+@import "~@ojp/ojp-elements/dist/ojp-elements/ojp-elements.css";
 ```
 
 ### Using the library through the CDN
@@ -30,8 +30,8 @@ directly from the CDN through an HTML `<script>` tag.
 Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='https://cdn.jsdelivr.net/npm/@owen-jones/ojp-elements@0.2.1/dist/ojp-elements/ojp-elements.esm.min.js'></script>
-<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@owen-jones/ojp-elements@0.2.1/dist/ojp-elements/ojp-elements.min.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.2.1/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.2.1/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 ## Development:
