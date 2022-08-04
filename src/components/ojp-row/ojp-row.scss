@@ -4,7 +4,7 @@
   // PUBLIC CSS VALUES - can be overwritten by end user
   // likely to be persistent across a project and/or
   // easier to set as css vars so they can use Utopia
-  // 
+  // :)
 
   // Gap between columns
   --ojp-row--col-gap: 10px;
@@ -23,14 +23,14 @@
   //// --ojp-row--dcols
   //// --ojp-row--cols
 
-  // Align Items 
+  // Align Items
   --ojp-row--align-items: stretch;
   // Justify Items
   --ojp-row--justify-items: stretch;
 
 
   // CALC/HELPER VARS
-  
+
   // Max Wrapper Width (not including gutters)
   --ojp-row--max-wrapper-width: 1440px;
 
@@ -38,7 +38,7 @@
   display: block;
   padding-left: var(--ojp-row--gutter);
   padding-right: var(--ojp-row--gutter);
-  
+
   .ojp-row__container {
     align-items: var(--ojp-row--align-items);
     column-gap: var(--ojp-row--col-gap);
