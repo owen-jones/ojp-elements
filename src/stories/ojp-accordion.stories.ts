@@ -8,7 +8,29 @@ export default {
 # Description:
 The \`<ojp-accordion>\` element will render a simple accordion. Items can be added to the accordion using the \`<ojp-accordion-item>\` element.
 
-## \`<ojp-accordion>\`
+# Usage:
+Implement the accordion using \`<ojp-accordion>\`, \`<ojp-accordion-item>\` referring to the following example.
+
+\`
+<ojp-accordion-item  anchor-id=test-anchor-url>
+<span slot="header">open accordion element</span>
+<div slot="panel">Item no 1 panel. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+</ojp-accordion-item>
+\`
+
+### Slots:
+The accordion element uses \`slots\` to place content properly in the component tree. These slots have have names to allow for specifying slot outputs, and they can be used as follows.
+
+## \`slot="header"\`
+This is the slot name given to the header section of the accordion item. This will be the text next to the icon.
+## \`slot="panel"\`
+This is the slot name given to the panel/content section of the accordion item. This will be the content under the header section.
+
+> ### These can be used to specify which section of your markup is the \`header\` or the \`panel\` section. 
+
+<br>
+
+## *Element*: \`<ojp-accordion>\` 
 
 # Attribute:   
 The \`<ojp-accordion>\` element comes with an option that developers can use to customize the implementation.
@@ -36,7 +58,7 @@ myAccordion.toggleAll();\`
 
 <br>
 
-## \`<ojp-accordion-item>\`
+## *Element*: \`<ojp-accordion-item>\` 
 
 # Attributes:   
 The \`<ojp-accordion-item>\` element comes with options that developers can use to customize the implementation.
