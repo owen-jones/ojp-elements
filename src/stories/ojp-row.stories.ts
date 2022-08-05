@@ -116,7 +116,7 @@ The \`--ojp-row--row-gutter\` attribute lets developers override the minimum gut
 \`<style>.my-element{--ojp-row--row-gutter: 30px;}</style>\` will change the inline margin of \`my-element\` to 30px.
 
 ## "--ojp-row--max-wrapper-width":
-The \`--ojp-row--max-wrapper-width\` attribute lets developers override the max width of the grid wrapper *(excluding gutters)* which **defaults to 1600px**.
+The \`--ojp-row--max-wrapper-width\` attribute lets developers override the max width of the grid wrapper *(excluding gutters)* which **defaults to 1440px**.
 
 > **Usage**:
 \`<style>.my-element{--ojp-row--max-wrapper-width: 1440px;}</style>\` will change the max width of the wrapper \`my-element\` to 1440px.
