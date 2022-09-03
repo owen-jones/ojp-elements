@@ -39,7 +39,7 @@ export class OjpAccordionItem {
    * Requires JSDocs for public API documentation.
    */
 
-  /** 
+  /**
    * Optional User-defined anchor id
    * Used so item can be auto-opened with url param
    * Type: string
@@ -54,7 +54,7 @@ export class OjpAccordionItem {
    * Type: number
    */
   @Prop({
-    mutable:true, 
+    mutable:true,
     reflect:true
   }) index = -1;
 
@@ -135,7 +135,7 @@ export class OjpAccordionItem {
       this.closeItem();
     } else {
       this.openItem();
-    } 
+    }
   }
 
   /**
@@ -225,11 +225,18 @@ export class OjpAccordionItem {
             id="section"
             role="region"
             aria-labelledby="section-control"
+            aria-hidden={this.open ? `false` : `true`}
             class={`ojp-accordion-item__panel ${this.transitioning ? 'transitioning': ''} ${this.open ? 'ojp-accordion-item__panel--open' : ''}`}
             // hidden={!this.open}
             ref={(el) => { this.contentEl = el }}
             onTransitionEnd={() => this.handleTransitionEnd()}
-            style={ this.open ? {maxHeight: this.calculatedMaxHeight} : {maxHeight: 0}}
+            style={ this.open ? {
+              maxHeight: this.calculatedMaxHeight,
+              visibility: 'visible'
+            } : {
+              maxHeight: 0,
+              visibility: 'hidden'
+            }}
             >
 
             {/* Panel Slot */}
