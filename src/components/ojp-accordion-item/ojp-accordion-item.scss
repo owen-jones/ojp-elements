@@ -4,10 +4,10 @@
   // PUBLIC CSS VALUES - can be overwritten by end user
   // likely to be persistent across a project and/or
   // easier to set as css vars so they can use Utopia
-  // 
+  //
 
   // L/R padding on accordion item (header and panel)
-  --ojp-accordion-item--padding-inline: var(--space-s-m); 
+  --ojp-accordion-item--padding-inline: var(--space-s-m);
 
   // Top/bottom padding on accordion item header
   --ojp-accordion-item--header-padding-block: var(--space-xs-s);
@@ -78,19 +78,19 @@
   transition: opacity .25s ease;
 }
 
-// Caret 
+// Caret
 .ojp-accordion-item__header__icon-wrapper {
   flex-shrink: 0;
   width: var(--ojp-accordion-item--icon-width);
 }
 
 .ojp-accordion-item__header__icon {
-  height: 1px; 
+  height: 1px;
   overflow: visible;
-  padding-bottom: 55%; 
+  padding-bottom: 55%;
   transform: rotate(180deg);
   transition: transform var(--ojp-accordion-item--animation-speed) ease, opacity .5s ease;
-  width: 100%; 
+  width: 100%;
 
   path {
     stroke-width: var(--ojp-accordion-item--icon-stroke-width);
@@ -103,13 +103,15 @@
   opacity: 0;
   overflow: hidden;
   padding-inline: var(--ojp-accordion-item--padding-inline);
-  transition: 
+  transition:
+    visibility 0s linear,
     max-height var(--ojp-accordion-item--animation-speed) ease,
-    opacity var(--ojp-accordion-item--animation-speed) ease;  
+    opacity var(--ojp-accordion-item--animation-speed) ease;
+  visibility: hidden;
 }
 
 
-::slotted( [slot="panel"] ) { 
+::slotted( [slot="panel"] ) {
   max-width: var(--ojp-accordion-item--max-content-width);
   padding-block: var(--ojp-accordion-item--panel-padding-block);
 
@@ -117,7 +119,7 @@
 
 // Open state
 :host(.is-open) {
-  
+
   // Rotate icon
   .ojp-accordion-item__header__icon {
     transform: rotate(0deg);
