@@ -10,6 +10,7 @@
   <script nomodule src="../../build/ojp-elements.js"></script>
   <!--    Needs to import the global stylesheet-->
   <link rel='stylesheet' href='../../build/ojp-elements.css'>
+  <link rel='stylesheet' href='../styles/demo.css'>
 
   <style>
     body {
@@ -64,26 +65,18 @@
 </head>
 <body>
   <div class="container">
-    <ojp-row cols="5" mcols="1">
-      <ojp-col span="5" mspan="1">
+    <ojp-row cols="4" mcols="1">
+      <ojp-col span="4" mspan="1">
+        <h3>This accordion allows multiple items open at once</h3>
+        <button class="ojp-accordion__toggle-all" onClick="toggleAll()">Collapse/Expand All </button><div><small>(button can be styled or removed)</small></div>
         <ojp-accordion allow-multiple-items-open>
-          <h1>This accordion allows multiple items open at once</h1>
-          <button class="ojp-accordion__toggle-all" onClick="toggleAll()">Collapse/Expand All (button can be styled or removed)</button>
           <ojp-accordion-item>
-            <h4 slot="header">This header has a long title. All type will be styled by the end-user developer. Here is an example of how the end-user can override the icon too</h4>
-            <span slot="icon">
-              <svg class="open-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.9927 30C17.044 30 18.9744 29.6079 20.7837 28.8238C22.5931 28.0494 24.1896 26.97 25.5733 25.5857C26.9569 24.2014 28.0406 22.6041 28.8244 20.7938C29.6081 18.9835 30 17.0523 30 15C30 12.9477 29.6081 11.0165 28.8244 9.2062C28.0406 7.39593 26.9569 5.80348 25.5733 4.42885C24.1896 3.04453 22.5931 1.96031 20.7837 1.17619C18.9744 0.392062 17.0392 0 14.9782 0C12.9269 0 10.9966 0.392062 9.18723 1.17619C7.38752 1.96031 5.79584 3.04453 4.41219 4.42885C3.03822 5.80348 1.95936 7.39593 1.17562 9.2062C0.391872 11.0165 0 12.9477 0 15C0 17.0523 0.391872 18.9835 1.17562 20.7938C1.95936 22.6041 3.03822 24.2014 4.41219 25.5857C5.79584 26.97 7.39236 28.0494 9.20174 28.8238C11.0111 29.6079 12.9415 30 14.9927 30ZM14.9927 27.0378C13.3285 27.0378 11.7658 26.728 10.3048 26.1084C8.85341 25.4889 7.5762 24.6273 6.47315 23.5237C5.37978 22.4201 4.52346 21.1423 3.90421 19.6902C3.28495 18.2381 2.97533 16.6747 2.97533 15C2.97533 13.3349 3.28495 11.7764 3.90421 10.3243C4.52346 8.86254 5.37978 7.57986 6.47315 6.47628C7.56652 5.3727 8.8389 4.51113 10.2903 3.89158C11.7513 3.27202 13.314 2.96225 14.9782 2.96225C16.6522 2.96225 18.2148 3.27202 19.6662 3.89158C21.1176 4.51113 22.3948 5.3727 23.4978 6.47628C24.6105 7.57986 25.4765 8.86254 26.0958 10.3243C26.715 11.7764 27.0247 13.3349 27.0247 15C27.0247 16.6747 26.715 18.2381 26.0958 19.6902C25.4765 21.1423 24.6154 22.4201 23.5123 23.5237C22.419 24.6273 21.1418 25.4889 19.6807 26.1084C18.2293 26.728 16.6667 27.0378 14.9927 27.0378ZM9.49202 16.3795H20.4935C20.9289 16.3795 21.2869 16.2633 21.5675 16.031C21.8481 15.789 21.9884 15.455 21.9884 15.029C21.9884 14.6128 21.8529 14.2788 21.582 14.0271C21.3111 13.7754 20.9482 13.6496 20.4935 13.6496H9.49202C9.04693 13.6496 8.68408 13.7754 8.40348 14.0271C8.13256 14.2788 7.9971 14.6128 7.9971 15.029C7.9971 15.455 8.1374 15.789 8.418 16.031C8.6986 16.2633 9.0566 16.3795 9.49202 16.3795Z" fill="#9F00FE"></path>
-              </svg>
-              <svg class="closed-icon" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.9928 30.6001C17.0517 30.6001 18.985 30.2086 20.7927 29.4256C22.6003 28.6426 24.1953 27.56 25.5776 26.1777C26.9599 24.7954 28.0425 23.2004 28.8255 21.3928C29.6085 19.5754 30 17.6421 30 15.5928C30 13.5435 29.6085 11.6151 28.8255 9.80744C28.0425 7.99981 26.9599 6.40483 25.5776 5.02252C24.1953 3.64021 22.5955 2.55756 20.7782 1.77458C18.9705 0.991591 17.042 0.600098 14.9928 0.600098C12.9338 0.600098 11.0005 0.991591 9.19285 1.77458C7.38521 2.55756 5.79024 3.64021 4.40793 5.02252C3.03528 6.40483 1.95747 7.99981 1.17448 9.80744C0.391493 11.6151 0 13.5435 0 15.5928C0 17.6421 0.391493 19.5754 1.17448 21.3928C1.95747 23.2004 3.04012 24.7954 4.42243 26.1777C5.80474 27.56 7.39971 28.6426 9.20735 29.4256C11.015 30.2086 12.9435 30.6001 14.9928 30.6001ZM14.9928 27.5841C13.3301 27.5841 11.7738 27.2748 10.3238 26.6562C8.88352 26.0375 7.61237 25.182 6.51039 24.0897C5.41808 22.9877 4.56259 21.7117 3.94393 20.2618C3.32528 18.8118 3.01595 17.2555 3.01595 15.5928C3.01595 13.9302 3.32528 12.3739 3.94393 10.9239C4.56259 9.47395 5.41808 8.2028 6.51039 7.11049C7.60271 6.00851 8.87385 5.14819 10.3238 4.52953C11.7738 3.91088 13.3301 3.60155 14.9928 3.60155C16.6554 3.60155 18.2069 3.91088 19.6472 4.52953C21.0971 5.14819 22.3731 6.00851 23.4751 7.11049C24.5771 8.2028 25.4374 9.47395 26.0561 10.9239C26.6844 12.3739 26.9986 13.9302 26.9986 15.5928C26.9986 17.2555 26.6892 18.8118 26.0706 20.2618C25.4519 21.7117 24.5916 22.9877 23.4896 24.0897C22.3973 25.182 21.1261 26.0375 19.6762 26.6562C18.2262 27.2748 16.6651 27.5841 14.9928 27.5841ZM14.9638 22.0887C15.3891 22.0887 15.7274 21.9534 15.9787 21.6827C16.2301 21.4121 16.3557 21.0544 16.3557 20.6098V16.9848H20.2272C20.6622 16.9848 21.015 16.864 21.2856 16.6223C21.566 16.3807 21.7061 16.0472 21.7061 15.6218C21.7061 15.2062 21.5708 14.8727 21.3001 14.6214C21.0295 14.37 20.6718 14.2444 20.2272 14.2444H16.3557V10.4019C16.3557 9.94761 16.2301 9.58511 15.9787 9.31445C15.7274 9.04379 15.3891 8.90846 14.9638 8.90846C14.5384 8.90846 14.2049 9.04862 13.9633 9.32895C13.7313 9.59961 13.6153 9.95728 13.6153 10.4019V14.2444H9.75834C9.30401 14.2444 8.93668 14.37 8.65636 14.6214C8.38569 14.8727 8.25036 15.2062 8.25036 15.6218C8.25036 16.0472 8.39053 16.3807 8.67086 16.6223C8.96085 16.864 9.32334 16.9848 9.75834 16.9848H13.6153V20.6098C13.6153 21.0448 13.7313 21.4024 13.9633 21.6827C14.2049 21.9534 14.5384 22.0887 14.9638 22.0887Z" fill="#0813517F"></path>
-              </svg>
-            </span>
-            <div slot="panel">Item panel. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div slot="header"><p class="intro">This header has a long title. All type will be styled by the end-user developer.</p></div>
+            <div slot="panel"><p class="p2">Item panel. Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
           </ojp-accordion-item>
           <ojp-accordion-item open>
-              <h4 slot="header">This item is set to default to "open". This header has a long title. This header has a long title. </h4>
-              <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              <div slot="header"><p class="intro">This item is set to default to "open". This header has a long title. This header has a long title.</p> </div>
+              <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
             </ojp-accordion-item>
             <ojp-accordion-item>
                 <h4 slot="header">This item is set to default to "closed".</h4>
@@ -93,43 +86,52 @@
                 </div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
             <ojp-accordion-item anchor-id="custom-anchor-id">
-                <h4 slot="header">If you right click this item, you can copy the link address. Going to that address in your browser will jump to and auto-open this item.</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">If you right click this item, you can copy the link address. Going to that address in your browser will jump to and auto-open this item.</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Here is an example of how the end-user dev can override the icon</p></div>
+                <span slot="icon">
+                  <svg class="open-icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.9927 30C17.044 30 18.9744 29.6079 20.7837 28.8238C22.5931 28.0494 24.1896 26.97 25.5733 25.5857C26.9569 24.2014 28.0406 22.6041 28.8244 20.7938C29.6081 18.9835 30 17.0523 30 15C30 12.9477 29.6081 11.0165 28.8244 9.2062C28.0406 7.39593 26.9569 5.80348 25.5733 4.42885C24.1896 3.04453 22.5931 1.96031 20.7837 1.17619C18.9744 0.392062 17.0392 0 14.9782 0C12.9269 0 10.9966 0.392062 9.18723 1.17619C7.38752 1.96031 5.79584 3.04453 4.41219 4.42885C3.03822 5.80348 1.95936 7.39593 1.17562 9.2062C0.391872 11.0165 0 12.9477 0 15C0 17.0523 0.391872 18.9835 1.17562 20.7938C1.95936 22.6041 3.03822 24.2014 4.41219 25.5857C5.79584 26.97 7.39236 28.0494 9.20174 28.8238C11.0111 29.6079 12.9415 30 14.9927 30ZM14.9927 27.0378C13.3285 27.0378 11.7658 26.728 10.3048 26.1084C8.85341 25.4889 7.5762 24.6273 6.47315 23.5237C5.37978 22.4201 4.52346 21.1423 3.90421 19.6902C3.28495 18.2381 2.97533 16.6747 2.97533 15C2.97533 13.3349 3.28495 11.7764 3.90421 10.3243C4.52346 8.86254 5.37978 7.57986 6.47315 6.47628C7.56652 5.3727 8.8389 4.51113 10.2903 3.89158C11.7513 3.27202 13.314 2.96225 14.9782 2.96225C16.6522 2.96225 18.2148 3.27202 19.6662 3.89158C21.1176 4.51113 22.3948 5.3727 23.4978 6.47628C24.6105 7.57986 25.4765 8.86254 26.0958 10.3243C26.715 11.7764 27.0247 13.3349 27.0247 15C27.0247 16.6747 26.715 18.2381 26.0958 19.6902C25.4765 21.1423 24.6154 22.4201 23.5123 23.5237C22.419 24.6273 21.1418 25.4889 19.6807 26.1084C18.2293 26.728 16.6667 27.0378 14.9927 27.0378ZM9.49202 16.3795H20.4935C20.9289 16.3795 21.2869 16.2633 21.5675 16.031C21.8481 15.789 21.9884 15.455 21.9884 15.029C21.9884 14.6128 21.8529 14.2788 21.582 14.0271C21.3111 13.7754 20.9482 13.6496 20.4935 13.6496H9.49202C9.04693 13.6496 8.68408 13.7754 8.40348 14.0271C8.13256 14.2788 7.9971 14.6128 7.9971 15.029C7.9971 15.455 8.1374 15.789 8.418 16.031C8.6986 16.2633 9.0566 16.3795 9.49202 16.3795Z" fill="#9F00FE"></path>
+                  </svg>
+                  <svg class="closed-icon" width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.9928 30.6001C17.0517 30.6001 18.985 30.2086 20.7927 29.4256C22.6003 28.6426 24.1953 27.56 25.5776 26.1777C26.9599 24.7954 28.0425 23.2004 28.8255 21.3928C29.6085 19.5754 30 17.6421 30 15.5928C30 13.5435 29.6085 11.6151 28.8255 9.80744C28.0425 7.99981 26.9599 6.40483 25.5776 5.02252C24.1953 3.64021 22.5955 2.55756 20.7782 1.77458C18.9705 0.991591 17.042 0.600098 14.9928 0.600098C12.9338 0.600098 11.0005 0.991591 9.19285 1.77458C7.38521 2.55756 5.79024 3.64021 4.40793 5.02252C3.03528 6.40483 1.95747 7.99981 1.17448 9.80744C0.391493 11.6151 0 13.5435 0 15.5928C0 17.6421 0.391493 19.5754 1.17448 21.3928C1.95747 23.2004 3.04012 24.7954 4.42243 26.1777C5.80474 27.56 7.39971 28.6426 9.20735 29.4256C11.015 30.2086 12.9435 30.6001 14.9928 30.6001ZM14.9928 27.5841C13.3301 27.5841 11.7738 27.2748 10.3238 26.6562C8.88352 26.0375 7.61237 25.182 6.51039 24.0897C5.41808 22.9877 4.56259 21.7117 3.94393 20.2618C3.32528 18.8118 3.01595 17.2555 3.01595 15.5928C3.01595 13.9302 3.32528 12.3739 3.94393 10.9239C4.56259 9.47395 5.41808 8.2028 6.51039 7.11049C7.60271 6.00851 8.87385 5.14819 10.3238 4.52953C11.7738 3.91088 13.3301 3.60155 14.9928 3.60155C16.6554 3.60155 18.2069 3.91088 19.6472 4.52953C21.0971 5.14819 22.3731 6.00851 23.4751 7.11049C24.5771 8.2028 25.4374 9.47395 26.0561 10.9239C26.6844 12.3739 26.9986 13.9302 26.9986 15.5928C26.9986 17.2555 26.6892 18.8118 26.0706 20.2618C25.4519 21.7117 24.5916 22.9877 23.4896 24.0897C22.3973 25.182 21.1261 26.0375 19.6762 26.6562C18.2262 27.2748 16.6651 27.5841 14.9928 27.5841ZM14.9638 22.0887C15.3891 22.0887 15.7274 21.9534 15.9787 21.6827C16.2301 21.4121 16.3557 21.0544 16.3557 20.6098V16.9848H20.2272C20.6622 16.9848 21.015 16.864 21.2856 16.6223C21.566 16.3807 21.7061 16.0472 21.7061 15.6218C21.7061 15.2062 21.5708 14.8727 21.3001 14.6214C21.0295 14.37 20.6718 14.2444 20.2272 14.2444H16.3557V10.4019C16.3557 9.94761 16.2301 9.58511 15.9787 9.31445C15.7274 9.04379 15.3891 8.90846 14.9638 8.90846C14.5384 8.90846 14.2049 9.04862 13.9633 9.32895C13.7313 9.59961 13.6153 9.95728 13.6153 10.4019V14.2444H9.75834C9.30401 14.2444 8.93668 14.37 8.65636 14.6214C8.38569 14.8727 8.25036 15.2062 8.25036 15.6218C8.25036 16.0472 8.39053 16.3807 8.67086 16.6223C8.96085 16.864 9.32334 16.9848 9.75834 16.9848H13.6153V20.6098C13.6153 21.0448 13.7313 21.4024 13.9633 21.6827C14.2049 21.9534 14.5384 22.0887 14.9638 22.0887Z" fill="#0813517F"></path>
+                  </svg>
+                </span>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
 
           </ojp-accordion>
+
+          <h3>This accordion only allows one item open at once</h3>
           <ojp-accordion>
-            <h1>This accordion only allows one item open at once</h1>
             <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
             <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
             <ojp-accordion-item anchor-id="myid">
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
               <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>            <ojp-accordion-item>
-                <h4 slot="header">item</h4>
-                <div  slot="panel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div slot="header"><p class="intro">Item</p></div>
+                <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
         </ojp-accordion>
       </ojp-col>

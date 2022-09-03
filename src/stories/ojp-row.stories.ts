@@ -90,19 +90,33 @@ The \`<ojp-row>\` element comes with some special CSS properties that can be ove
 - maximum wrapper width
 
 ## "--ojp-row--col-gap":
-The \`--ojp-row--col-gap\` attribute lets developers override the grid column gap, which **defaults to 10px**.
+The \`--ojp-row--col-gap\` attribute lets developers override the grid column gap, which **defaults to Utopia spacer \`--space-2xs-xs\`**.
 
 > **Usage**:
 \`<style>.my-element{--ojp-row--col-gap: 20px;}</style>\` will change the column gap of \`my-element\` to 20px.
 
 ## "--ojp-row--row-gap":
-The \`--ojp-row--row-gap\` attribute lets developers override the grid row gap, which **defaults to 10px**.
+The \`--ojp-row--row-gap\` attribute lets developers override the grid row gap, which **defaults to Utopia spacer \`--space-2xs-xs\`**.
 
 > **Usage**:
 \`<style>.my-element{--ojp-row--row-gap: 30px;}</style>\` will change the row gap of \`my-element\` to 30px.
 
+## "--ojp-row--margin-inline":
+The \`--ojp-row--margin-inline\` attribute lets developers override the inline margin between rows, which **defaults to Utopia spacer \`--space-xs-s\`**.
+**NOTE:** First and only child rows will automatically have **top margin of zero**. Last and only child rows will automatically have a **bottom margin of zero**.
+
+> **Usage**:
+\`<style>.my-element{--ojp-row--margin-inline: 30px;}</style>\` will change the inline margin of \`my-element\` to 30px.
+
+## "--ojp-row--row-gutter":
+The \`--ojp-row--row-gutter\` attribute lets developers override the minimum gutter width on the row, which **defaults to Utopia spacer \`--space-s-3xl\`**.
+**NOTE:** Using the \`fullbleed\` attribute will set \`--ojp-row--row-gutter\` to \`0\`.
+
+> **Usage**:
+\`<style>.my-element{--ojp-row--row-gutter: 30px;}</style>\` will change the inline margin of \`my-element\` to 30px.
+
 ## "--ojp-row--max-wrapper-width":
-The \`--ojp-row--max-wrapper-width\` attribute lets developers override the max width of the grid wrapper *(excluding gutters)* which **defaults to 1600px**.
+The \`--ojp-row--max-wrapper-width\` attribute lets developers override the max width of the grid wrapper *(excluding gutters)* which **defaults to 1440px**.
 
 > **Usage**:
 \`<style>.my-element{--ojp-row--max-wrapper-width: 1440px;}</style>\` will change the max width of the wrapper \`my-element\` to 1440px.
