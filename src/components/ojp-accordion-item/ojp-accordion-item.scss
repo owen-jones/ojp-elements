@@ -39,7 +39,8 @@
 
   border-bottom: 1px solid var(--ojp-color--gray);
   display: block;
-  padding-block: var(--ojp-accordion-item--header-padding-block);
+  padding-top: var(--ojp-accordion-item--header-padding-block);
+  padding-bottom: var(--ojp-accordion-item--header-padding-block);
   text-decoration: none;
 
 }
@@ -49,7 +50,8 @@
   display: block;
   height: min-content;
   margin: 0;
-  padding-inline: var(--ojp-accordion-item--padding-inline);
+  padding-top: var(--ojp-accordion-item--padding-inline);
+  padding-bottom: var(--ojp-accordion-item--padding-inline);
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -102,7 +104,8 @@
 .ojp-accordion-item__panel {
   opacity: 0;
   overflow: hidden;
-  padding-inline: var(--ojp-accordion-item--padding-inline);
+  padding-top: var(--ojp-accordion-item--padding-inline);
+  padding-bottom: var(--ojp-accordion-item--padding-inline);
   transition:
     visibility 0s linear,
     max-height var(--ojp-accordion-item--animation-speed) ease,
@@ -113,7 +116,8 @@
 
 ::slotted( [slot="panel"] ) {
   max-width: var(--ojp-accordion-item--max-content-width);
-  padding-block: var(--ojp-accordion-item--panel-padding-block);
+  padding-top: var(--ojp-accordion-item--panel-padding-block);
+  padding-bottom: var(--ojp-accordion-item--panel-padding-block);
 
 }
 
