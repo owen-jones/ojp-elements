@@ -50,8 +50,8 @@
   display: block;
   height: min-content;
   margin: 0;
-  padding-top: var(--ojp-accordion-item--padding-inline);
-  padding-bottom: var(--ojp-accordion-item--padding-inline);
+  padding-left: var(--ojp-accordion-item--padding-inline);
+  padding-right: var(--ojp-accordion-item--padding-inline);
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -104,8 +104,8 @@
 .ojp-accordion-item__panel {
   opacity: 0;
   overflow: hidden;
-  padding-top: var(--ojp-accordion-item--padding-inline);
-  padding-bottom: var(--ojp-accordion-item--padding-inline);
+  padding-left: var(--ojp-accordion-item--padding-inline);
+  padding-right: var(--ojp-accordion-item--padding-inline);
   transition:
     visibility 0s linear,
     max-height var(--ojp-accordion-item--animation-speed) ease,
