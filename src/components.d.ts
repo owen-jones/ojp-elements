@@ -61,11 +61,15 @@ export namespace Components {
         "open": boolean;
     }
     interface OjpModal {
-        "closeIcon": string;
+        "closeModal": () => Promise<void>;
         /**
           * Modal is open or opening (css transition) Type: boolean
          */
         "open": boolean;
+        /**
+          * Open, close modal
+         */
+        "openModal": () => Promise<void>;
     }
     interface OjpRow {
         "align": string;
@@ -174,7 +178,6 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface OjpModal {
-        "closeIcon"?: string;
         /**
           * Modal is open or opening (css transition) Type: boolean
          */

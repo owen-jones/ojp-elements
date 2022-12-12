@@ -7,17 +7,13 @@ import { Component, Host, h, Prop, getAssetPath, Element } from '@stencil/core';
 })
 
 export class OjpModal {
-// Props!
+  // Props!
 
   /**
-   * 2. Reference to host HTML element.
+   * Reference to host HTML element.
    * Inlined decorator
    */
   @Element() el;
-
-  // // Close icon svg
-  // @Prop() closeIcon = 'close.svg';
-
 
   /**
    * Modal is open or opening (css transition)
@@ -28,39 +24,51 @@ export class OjpModal {
     mutable: false,
   }) open = false;
 
-  close() {
-    //do the closing here
+
+  /**
+   * Open, close modal
+   */
+  @Method()
+  async openModal() {
+    this.open = true;
+    this.el.shadowRoot.dispatchEvent(new CustomEvent('open'));
+  }
+
+  @Method()
+  async closeModal() {
+    this.open = false;
     this.el.shadowRoot.dispatchEvent(new CustomEvent('close'));
   }
 
-
   componentDidLoad() {
-    this.closeButton = this.el.shadowRoot.querySelector('.close-button');
+    this.openButton = document.querySelector('.open-modal');
+    this.openButton.addEventListener('click', () => {
+      this.openModal();
+    });
 
+    this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {
-      console.log("wpw!");
-      this.close();
+      this.closeModal();
     });
   }
-
 
   render() {
     return (
       <Host>
-        <div class="ojp-modal-wrapper">
+        <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
           <div class='ojp-modal-overlay' />
-          <div class='ojp-modal-panel'>
+          <div class='ojp-modal-panel'
+          aria-modal="true">
             <div class='ojp-modal-close'>
               <button class='close-button'>
                 <slot name='close-icon'>
-                <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"/></svg>                </slot>
+                  <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>                </slot>
               </button>
             </div>
-            <slot name='panel'></slot>
+            <slot></slot>
           </div>
         </div>
       </Host>
     );
   }
-
 }

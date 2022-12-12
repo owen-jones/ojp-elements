@@ -7,10 +7,32 @@
 
 ## Properties
 
-| Property    | Attribute    | Description                                             | Type      | Default       |
-| ----------- | ------------ | ------------------------------------------------------- | --------- | ------------- |
-| `closeIcon` | `close-icon` |                                                         | `string`  | `'close.svg'` |
-| `open`      | `open`       | Modal is open or opening (css transition) Type: boolean | `boolean` | `false`       |
+| Property | Attribute | Description                                             | Type      | Default |
+| -------- | --------- | ------------------------------------------------------- | --------- | ------- |
+| `open`   | `open`    | Modal is open or opening (css transition) Type: boolean | `boolean` | `false` |
+
+
+## Methods
+
+### `closeModal() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `openModal() => Promise<void>`
+
+Open, close modal
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------
