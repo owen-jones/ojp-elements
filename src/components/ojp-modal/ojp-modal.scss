@@ -1,3 +1,51 @@
 :host {
   display: block;
 }
+
+
+.ojp-modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // opacity: 0;
+  // visibility: hidden;
+  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.ojp-modal-overlay {
+  background-color: rgba(0,0,0,0.6);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.ojp-modal-wrapper .ojp-modal-panel {
+  padding: 20px;
+  // background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);  width: auto;
+  background-color: white;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  border-radius: 4px;
+  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.ojp-modal-wrapper .ojp-modal-panel .ojp-modal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ojp-modal-wrapper .ojp-modal-panel .ojp-modal-close .close-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  right: 0;
+}

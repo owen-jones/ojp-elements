@@ -4,7 +4,6 @@ import { Component, Host, h, Prop, getAssetPath, Element } from '@stencil/core';
   tag: 'ojp-modal',
   styleUrl: 'ojp-modal.scss',
   shadow: true,
-  assetsDirs: ['assets'],
 })
 
 export class OjpModal {
@@ -16,8 +15,8 @@ export class OjpModal {
    */
   @Element() el;
 
-  // Close icon svg
-  @Prop() closeIcon = 'close.svg';
+  // // Close icon svg
+  // @Prop() closeIcon = 'close.svg';
 
 
   /**
@@ -39,6 +38,7 @@ export class OjpModal {
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
 
     this.closeButton.addEventListener('click', () => {
+      console.log("wpw!");
       this.close();
     });
   }
@@ -47,17 +47,16 @@ export class OjpModal {
   render() {
     return (
       <Host>
-        <div class='ojp-modal-wrapper'>
+        <div class="ojp-modal-wrapper">
           <div class='ojp-modal-overlay' />
           <div class='ojp-modal-panel'>
             <div class='ojp-modal-close'>
               <button class='close-button'>
                 <slot name='close-icon'>
-                  <img src={getAssetPath('./assets/${this.closeIcon}')} alt='Close Icon' />
-                </slot>
+                <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"/></svg>                </slot>
               </button>
             </div>
-            <slot></slot>
+            <slot name='panel'></slot>
           </div>
         </div>
       </Host>
