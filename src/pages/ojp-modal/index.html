@@ -8,6 +8,7 @@
     <script type="module" src="../../build/ojp-elements.esm.js"></script>
     <script nomodule="nomodule" src="../../build/ojp-elements.js"></script>
 
+
     <style></style>
   </head>
   <body>
@@ -16,10 +17,24 @@
         Open
       </button>
     </div>
-    <ojp-modal>
+    <ojp-modal
+    id="ojp-modal-1">
       <h1>Headline</h1>
       Wow! What happens here
     </ojp-modal>
 
   </body>
+
+      <script>
+      let modal = document.querySelector('#ojp-modal-1');
+
+      modal.addEventListener('open', () => {
+        console.log('open')
+      });
+
+      modal.addEventListener('close', () => {
+        console.log('close')
+      });
+      
+    </script>
 </html>
