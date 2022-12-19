@@ -1,4 +1,8 @@
 :host {
+  // public methods section
+
+  --ojp-modal--side-padding: 50px;
+  --ojp-modal--overlay-color: rgba(0,0,0,0.6);
   display: block;
 }
 
@@ -16,7 +20,7 @@
 }
 
 .ojp-modal-overlay {
-  background-color: rgba(0,0,0,0.6);
+  background-color: var(--ojp-modal--overlay-color);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -24,7 +28,10 @@
 
 // Modal panel
 .ojp-modal-wrapper .ojp-modal-panel {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: var(--ojp-modal--side-padding);
+  padding-right: var(--ojp-modal--side-padding);
   // Fade background CSS
   // background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
   background-color: white;
@@ -32,7 +39,7 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0px);
-  border-radius: 4px;
+  border-radius: 10px;
   transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
@@ -42,16 +49,27 @@
   justify-content: flex-end;
 }
 
-.ojp-modal-wrapper .ojp-modal-panel .ojp-modal-close .close-button {
+.ojp-modal-wrapper .ojp-modal-close .close-button {
   background: none;
 	color: inherit;
-	border: none;
-	padding: 0;
+	border: 2px dashed black;
+  border-radius: 50%;
+  padding: 6px;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
   right: 0;
 }
+
+.ojp-modal-wrapper .ojp-modal-close .close-button:focus {
+ border: 2px dashed red;
+}
+
+.ojp-modal-wrapper .ojp-modal-close .close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+ }
 
 
 // Active open modal styles
@@ -63,4 +81,8 @@
 
 .is-open .ojp-modal-panel {
   transform: translate(-50%, 90px);
+}
+
+.noscroll {
+  overflow: hidden;
 }

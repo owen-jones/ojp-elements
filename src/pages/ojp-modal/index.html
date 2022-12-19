@@ -8,33 +8,34 @@
     <script type="module" src="../../build/ojp-elements.esm.js"></script>
     <script nomodule="nomodule" src="../../build/ojp-elements.js"></script>
 
-
     <style></style>
   </head>
   <body>
     <div class="ojp-modal-button">
-      Open me! : <button class="open-modal">
+      Open the modal! :
+      <button class="open-modal">
         Open
       </button>
     </div>
-    <ojp-modal
-    id="ojp-modal-1">
+    <ojp-modal id="ojp-modal-1">
       <h1>Headline</h1>
-      Wow! What happens here
+      Wow! What happens here This is a test text of some kind. Here's an extra button
+      <button>for you</button>
+      <br/>
+      Here's some lorem text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas.
     </ojp-modal>
 
   </body>
 
-      <script>
-      let modal = document.querySelector('#ojp-modal-1');
+  <script>
+    let modal = document.querySelector('#ojp-modal-1');
 
-      modal.addEventListener('open', () => {
-        console.log('open')
-      });
+    modal.addEventListener('open', () => {
+      console.log('open event fired')
+    });
 
-      modal.addEventListener('close', () => {
-        console.log('close')
-      });
-      
-    </script>
+    modal.addEventListener('close', () => {
+      console.log('close event fired')
+    });
+  </script>
 </html>

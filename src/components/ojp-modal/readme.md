@@ -24,6 +24,16 @@ Type: `Promise<void>`
 
 
 
+### `keystrokeListener(e: any) => Promise<void>`
+
+Listen for keystrokes
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `openModal() => Promise<void>`
 
 Open, close modal

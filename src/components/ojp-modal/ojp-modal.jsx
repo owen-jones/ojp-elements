@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath, Element } from '@stencil/core';
+import { Component, Host, h, Prop, getAssetPath, Element, Method } from '@stencil/core';
 
 @Component({
   tag: 'ojp-modal',
@@ -25,7 +25,26 @@ export class OjpModal {
   }) open = false;
 
 
-
+  /**
+   * Listen for keystrokes
+   */
+  @Method()
+  async keystrokeListener(e) {
+      switch (e.key) {
+          case 'Escape':
+              e.preventDefault();
+              this.closeModal();
+              break;
+          case 'Tab':
+              if (!this.el.contains(e.target)) {
+                  e.preventDefault();
+                  this.closeButton.focus();
+              }
+              break;
+          default:
+              // do nothing
+      }
+  }
 
   /**
    * Open, close modal
@@ -34,12 +53,19 @@ export class OjpModal {
   async openModal() {
     this.open = true;
     this.el.dispatchEvent(new CustomEvent('open'));
+    this.el.focus();
+    this.el.setAttribute('aria-hidden', false);
+    // this.el.classList.toggle('noscroll', true);
   }
 
   @Method()
   async closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
+    this.el.focus();
+    this.el.setAttribute('aria-hidden', true);
+    this.el.addEventListener('keydown', this.keystrokeListener);
+    // this.el.classList.toggle('noscroll', false);
   }
 
   componentDidLoad() {
@@ -54,22 +80,26 @@ export class OjpModal {
     });
   }
 
-  
+
 
   render() {
     return (
       <Host>
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
           <div class='ojp-modal-overlay' />
-          <div class='ojp-modal-panel'
-          aria-modal="true">
-            <div class='ojp-modal-close'>
+          <div class='ojp-modal-close'>
               <button class='close-button'>
                 <slot name='close-icon'>
-                  <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>                
+                  <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>
                 </slot>
               </button>
             </div>
+          <div class='ojp-modal-panel'
+            id="alert-modal"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="dialog_label"
+            aria-describedby="dialog_desc">
             <slot></slot>
           </div>
         </div>
