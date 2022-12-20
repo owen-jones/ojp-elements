@@ -63,10 +63,6 @@ export namespace Components {
     interface OjpModal {
         "closeModal": () => Promise<void>;
         /**
-          * Listen for keystrokes
-         */
-        "keystrokeListener": (e: any) => Promise<void>;
-        /**
           * Modal is open or opening (css transition) Type: boolean
          */
         "open": boolean;
