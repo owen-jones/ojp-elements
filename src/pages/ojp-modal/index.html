@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
     <title>Modal</title>
 
+    <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
     <script type="module" src="../../build/ojp-elements.esm.js"></script>
     <script nomodule="nomodule" src="../../build/ojp-elements.js"></script>
 
@@ -14,21 +16,31 @@
     <div class="ojp-modal-button">
       Open the modal! :
       <button class="open-modal">
-        Open
+        Open Modal
       </button>
     </div>
     <ojp-modal id="ojp-modal-1">
-      <h1>Headline</h1>
-      Wow! What happens here This is a test text of some kind. Here's an extra button
-      <button>for you</button>
-      <br/>
-      Here's some lorem text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas.
+      <div slot="close-icon">
+        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181"/></svg>
+      </div>
+      <div slot="content">
+        <h1>Headline</h1>
+        Wow! What happens here This is a test text of some kind. Here's an extra button
+        <button>for you</button>
+        <br/>
+        Here's some lorem text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet tincidunt neque. Integer urna nibh, dapibus et orci at, lobortis ultrices risus. Integer in laoreet ipsum. Nunc dapibus, ligula vitae maximus tincidunt, turpis neque fermentum erat, sed malesuada arcu risus nec eros. Morbi diam eros, egestas sed maximus vel, dignissim a sem. Aliquam vitae blandit nulla, quis porttitor augue. Quisque eget ipsum sit amet sem faucibus suscipit in quis mi. Phasellus volutpat, felis vitae pharetra consectetur, est dui porttitor risus, sed gravida eros felis ut magna. Sed eu ligula arcu. Nam euismod enim ac neque aliquet luctus. In condimentum gravida leo vitae fringilla. Integer eu mollis arcu, et mollis orci. Maecenas sed laoreet diam, non sagittis nibh. Sed efficitur eu lectus nec accumsan. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis non feugiat leo. Aenean sollicitudin facilisis risus, et aliquam enim maximus ut. Vestibulum ac dignissim arcu. Pellentesque at enim elit. Ut ultrices sit amet nisi euismod mollis. Maecenas vestibulum eget ipsum eget aliquam. Ut condimentum, velit at feugiat congue, mi dui tempor justo, eu hendrerit velit est et nulla. Fusce sit amet libero lobortis neque sagittis aliquet. Morbi tempor dapibus urna at dictum. Pellentesque quis magna metus. Donec faucibus hendrerit leo, in ornare urna congue in. Morbi feugiat massa eu justo bibendum, sed rhoncus ex egestas.
+      </div>
     </ojp-modal>
 
   </body>
 
   <script>
     let modal = document.querySelector('#ojp-modal-1');
+    let openModalButton = document.querySelector(".open-modal");
+
+    openModalButton.addEventListener('click', () => {
+      modal.openModal();
+    });
 
     modal.addEventListener('open', () => {
       console.log('open event fired')
