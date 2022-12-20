@@ -101,13 +101,13 @@ ojp-accordion-item {
 
 // ojp-modal variables
 ojp-modal {
-  --ojp-modal--side-padding: var(--space-s-3xl);
+  --ojp-modal--padding-inline: var(--space-s-3xl);
 }
 
 // tablet and up
 @supports (--breakpoint("tablet")) {
   ojp-modal {
-    --ojp-modal--side-padding: var(--space-xl-2xl);
+    --ojp-modal--padding-inline: var(--space-xl-2xl);
   }
 }
 
