@@ -48,6 +48,8 @@
   transform: translate(-50%, 0px);
   border-radius: 10px;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 // Close button
