@@ -1,8 +1,8 @@
 :host {
   // public methods section
 
-  // --ojp-modal--side-padding: 50px;
-  --ojp-modal--overlay-color: rgba(0,0,0,0.6);
+  // --ojp-modal--side-padding: var(--spacer-x-2xl);
+  --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
   display: block;
 }
 
@@ -13,6 +13,11 @@
   bottom: 0;
   left: 0;
   right: 0;
+  // display: grid;
+  // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
+  // grid-template-rows: max-content 50px max-content 50px;
+  // height: 100%;
+  // width: 100%;
   opacity: 0;
   visibility: hidden;
   transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
@@ -23,6 +28,7 @@
   background-color: var(--ojp-modal--overlay-color);
   height: 100%;
   width: 100%;
+  // grid-area: 1/1/5/4;
   position: absolute;
 }
 
@@ -37,46 +43,49 @@
   background-color: white;
   height: auto;
   position: absolute;
+  // grid-area: 3/2/4/3;
   left: 50%;
   transform: translate(-50%, 0px);
   border-radius: 10px;
-  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
 // Close button
 .ojp-modal-wrapper .ojp-modal-panel .ojp-modal-close {
   display: flex;
   justify-content: flex-end;
+  // grid-area: 1/3/2/4;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
   background: none;
-	color: inherit;
-	border: 2px dashed black;
+  color: inherit;
+  border: 2px dashed black;
   border-radius: 50%;
   padding: 6px;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
   right: 0;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button:focus {
- border: 2px dashed red;
+  border: 3px dashed yellow;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
+  // grid-area: 3/2/4/3;
   position: absolute;
   top: 0;
   right: 0;
- }
+}
 
 
 // Active open modal styles
 .is-open {
   opacity: 1;
   visibility: visible;
-  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
 .is-open .ojp-modal-panel {
