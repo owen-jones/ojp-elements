@@ -101,13 +101,23 @@ ojp-accordion-item {
 
 // ojp-modal variables
 ojp-modal {
+  --ojp-modal--max-content-width: 100%;
   --ojp-modal--padding-inline: var(--space-s-3xl);
+  --ojp-modal--padding-top-bottom: var(--space-2xl);
+  --ojp-modal--close-icon-margin: var(--space-s-m);
+  --ojp-modal--panel-grid-area: 3/1/4/4;
+  --ojp-modal--close-grid-area: 3/1/4/4;
 }
 
 // tablet and up
-@supports (--breakpoint("tablet")) {
+@supports (--breakpoint("mobile")) {
   ojp-modal {
+    --ojp-modal--max-content-width: 80%;
     --ojp-modal--padding-inline: var(--space-xl-2xl);
+    --ojp-modal--padding-top-bottom: var(--space-xl-2xl);
+    --ojp-modal--panel-grid-area: 3/2/4/3;
+    // --ojp-modal--close-grid-area: 3/2/4/3;
+    --ojp-modal--close-grid-area: 1/3/2/4;
   }
 }
 
