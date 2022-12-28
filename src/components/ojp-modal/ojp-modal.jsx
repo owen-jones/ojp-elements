@@ -24,15 +24,18 @@ export class OjpModal {
     mutable: false,
   }) open = false;
 
-
+  /**
+   * Modal's close button is inside or outside the modal panel
+   * Type: boolean
+   */
   @Prop({
     reflect: true,
     mutable: false,
-  }) closeButtonInside = false;
+  }) closebuttoninside = false;
 
 
   /**
-   * Open, close modal
+   * Methods to open, close modal
    */
   @Method()
   async openModal() {
@@ -86,24 +89,24 @@ export class OjpModal {
     this.overlayArea = this.el.shadowRoot.querySelector('.ojp-modal-overlay');
     this.overlayArea.addEventListener('click', () => {
       this.closeModal();
-    })
+    });
+
+    if (this.closebuttoninside) {
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3'); // set grid area to inner corner
+    }
+
+    else {
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/3/2/4'); // set grid area to outer corner
+    }
   }
 
   componentDidRender() {
     if (this.open) {
-      console.log(this.open);
+      console.log("this.open is " + this.open);
       this.closeButton.focus();
     }
 
-    if (this.closeButtonInside) {
-      console.log('true' + this.closeButtonInside);
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3');
-    }
-
-    else {
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/4/2/3');
-      console.log('false' + this.closeButtonInside);
-    }
+   
   }
 
 
