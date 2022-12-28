@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
 
 @Component({
   tag: 'ojp-modal',
@@ -25,6 +25,12 @@ export class OjpModal {
   }) open = false;
 
 
+  @Prop({
+    reflect: true,
+    mutable: false,
+  }) closeButtonInside = false;
+
+
   /**
    * Open, close modal
    */
@@ -43,23 +49,21 @@ export class OjpModal {
         case 'Tab':
           if (!(this.el && this.contentSlot)) {
             console.error('Please make sure content slot is defined using the slot="content" attribute');
-          break;
+            break;
           }
           if (this.el.contains(e.target) && this.contentSlot.contains(e.target)) {
             e.preventDefault();
             this.closeButton.focus();
           }
-        break;
+          break;
         default:
-        }
-        
-        // do nothing
-      
+      }
+
+      // do nothing
+
     }
 
     document.addEventListener('keydown', this.keystrokeListener);
-
-    // this.el.classList.toggle('noscroll', true);
   }
 
   @Method()
@@ -69,7 +73,6 @@ export class OjpModal {
     this.el.focus();
     this.el.setAttribute('aria-hidden', true);
     document.removeEventListener('keydown', this.keystrokeListener);
-    // this.el.classList.toggle('noscroll', false);
   }
 
   componentDidLoad() {
@@ -88,13 +91,25 @@ export class OjpModal {
 
   componentDidRender() {
     if (this.open) {
+      console.log(this.open);
       this.closeButton.focus();
+    }
+
+    if (this.closeButtonInside) {
+      console.log('true' + this.closeButtonInside);
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3');
+    }
+
+    else {
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/4/2/3');
+      console.log('false' + this.closeButtonInside);
     }
   }
 
 
 
   render() {
+
     return (
       <Host>
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
