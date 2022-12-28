@@ -52,28 +52,16 @@
 }
 
 // Close button
-.inside-panel {
-  div>div.ojp-modal-close {
-    align-items: flex-start;
-    display: inline-flex;
-    grid-area: var(--ojp-modal--close-grid-area);
-    justify-content: flex-end;
-    margin-right: var(--ojp-modal--close-icon-margin);
-    margin-top: var(--ojp-modal--close-icon-margin);
-  }
-}
-
-// .outside-panel {
 div>div.ojp-modal-close {
   align-items: flex-start;
-  z-index: 12;
+  cursor: pointer;
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
   justify-content: flex-end;
   margin-right: var(--ojp-modal--close-icon-margin);
   margin-top: var(--ojp-modal--close-icon-margin);
+  z-index: 12;
 }
-// }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
@@ -87,7 +75,6 @@ div>div.ojp-modal-close {
 // Fade background CSS
 .modal-fade {
   background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
-
 }
 
 
@@ -98,6 +85,8 @@ div>div.ojp-modal-close {
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
+
+// Noscroll class
 .noscroll {
   overflow: hidden;
 }
