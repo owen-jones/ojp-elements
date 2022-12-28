@@ -1,10 +1,4 @@
 :host {
-  // public CSS variables section
-  // These can be modified by the end user
-
-
-  // L/R padding on modal panel
-  // --ojp-modal--padding-inline: var(--spacer-x-2xl);
 
   // Overlay color with opacity
   --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
@@ -13,90 +7,87 @@
 
 
 .ojp-modal-wrapper {
-  position: fixed;
-  top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   display: grid;
-  grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
-  grid-template-rows: 1fr max-content 1fr max-content;
+  // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
+  // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
+  grid-template-columns: var(--ojp-modal--outer-padding) 1fr var(--ojp-modal--outer-padding);
+  grid-template-rows: max-content var(--space-2xl) 1fr var(--space-2xl);
   height: 100%;
-  width: 100%;
+  left: 0;
   opacity: 0;
-  visibility: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
   transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+  visibility: hidden;
+  width: 100%;
   z-index: 10;
 }
 
 .ojp-modal-overlay {
   background-color: var(--ojp-modal--overlay-color);
+  grid-area: 1/1/5/4;
   height: 100%;
   width: 100%;
-  grid-area: 1/1/5/4;
 }
 
 // Modal panel
 .ojp-modal-wrapper .ojp-modal-panel {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 15px;
+  grid-area: var(--ojp-modal--panel-grid-area);
+  height: fit-content;
+  overflow-y: auto;
+  padding-top: var(--ojp-modal--padding-top-bottom);
+  padding-bottom: var(--ojp-modal--padding-top-bottom);
   padding-left: var(--ojp-modal--padding-inline);
   padding-right: var(--ojp-modal--padding-inline);
-  // Fade background CSS
-  // background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
-  background-color: white;
-  height: auto;
-  grid-area: 2/2/2/3;
-  left: 50%;
-  border-radius: 10px;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
-  // height: 80vh;
-  overflow-y: auto;
+}
+
+::slotted([slot="content"]) {
+  max-width: var(--ojp-modal--max-content-width);
+  margin: 0 auto;
 }
 
 // Close button
 .inside-panel {
   div>div.ojp-modal-close {
-    grid-area: 2/2/3/3;
-    z-index: 11;
-    justify-content: end;
-    display: flex;
-    justify-content: flex-end;
     align-items: flex-start;
-    margin: 10px;
+    display: inline-flex;
+    grid-area: var(--ojp-modal--close-grid-area);
+    justify-content: flex-end;
+    margin-right: var(--ojp-modal--close-icon-margin);
+    margin-top: var(--ojp-modal--close-icon-margin);
   }
 }
 
-.outside-panel {
-  div>div.ojp-modal-close {
-    grid-area: 1/3/2/4;
-    z-index: 11;
-    justify-content: end;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin: 10px;
-  }
+// .outside-panel {
+div>div.ojp-modal-close {
+  align-items: flex-start;
+  z-index: 12;
+  display: inline-flex;
+  grid-area: var(--ojp-modal--close-grid-area);
+  justify-content: flex-end;
+  margin-right: var(--ojp-modal--close-icon-margin);
+  margin-top: var(--ojp-modal--close-icon-margin);
 }
+// }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
-  background-color: white;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
-}
-
-.ojp-modal-wrapper .ojp-modal-close .close-button {
-  // background: none;
-  color: inherit;
-  border: 3px dashed black;
-  border-radius: 50%;
-  padding: 5px 6px;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button:focus {
   border: 3px dashed hotpink;
+}
+
+// Fade css class
+// Fade background CSS
+.modal-fade {
+  background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+
 }
 
 
@@ -105,10 +96,6 @@
   opacity: 1;
   visibility: visible;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
-}
-
-.is-open .ojp-modal-panel {
-  // transform: translate(-50%, 90px);
 }
 
 .noscroll {
