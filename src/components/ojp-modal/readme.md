@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                             | Type      | Default |
-| -------- | --------- | ------------------------------------------------------- | --------- | ------- |
-| `open`   | `open`    | Modal is open or opening (css transition) Type: boolean | `boolean` | `false` |
+| Property            | Attribute             | Description                                             | Type      | Default |
+| ------------------- | --------------------- | ------------------------------------------------------- | --------- | ------- |
+| `closeButtonInside` | `close-button-inside` |                                                         | `boolean` | `false` |
+| `open`              | `open`                | Modal is open or opening (css transition) Type: boolean | `boolean` | `false` |
 
 
 ## Methods

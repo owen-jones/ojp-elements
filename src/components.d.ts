@@ -61,6 +61,7 @@ export namespace Components {
         "open": boolean;
     }
     interface OjpModal {
+        "closeButtonInside": boolean;
         "closeModal": () => Promise<void>;
         /**
           * Modal is open or opening (css transition) Type: boolean
@@ -178,6 +179,7 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface OjpModal {
+        "closeButtonInside"?: boolean;
         /**
           * Modal is open or opening (css transition) Type: boolean
          */
