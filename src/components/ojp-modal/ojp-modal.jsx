@@ -31,7 +31,7 @@ export class OjpModal {
   @Prop({
     reflect: true,
     mutable: false,
-  }) closebuttoninside = false;
+  }) closebuttonoutside = false;
 
 
   /**
@@ -91,18 +91,17 @@ export class OjpModal {
       this.closeModal();
     });
 
-    if (this.closebuttoninside) {
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3'); // set grid area to inner corner
+    if (this.closebuttonoutside) {
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/3/2/4'); // set grid area to outer corner
     }
 
     else {
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/3/2/4'); // set grid area to outer corner
+      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3'); // set grid area to inner corner
     }
   }
 
   componentDidRender() {
     if (this.open) {
-      console.log("this.open is " + this.open);
       this.closeButton.focus();
     }
 

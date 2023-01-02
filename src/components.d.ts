@@ -65,7 +65,7 @@ export namespace Components {
         /**
           * Modal's close button is inside or outside the modal panel Type: boolean
          */
-        "closebuttoninside": boolean;
+        "closebuttonoutside": boolean;
         /**
           * Modal is open or opening (css transition) Type: boolean
          */
@@ -185,7 +185,7 @@ declare namespace LocalJSX {
         /**
           * Modal's close button is inside or outside the modal panel Type: boolean
          */
-        "closebuttoninside"?: boolean;
+        "closebuttonoutside"?: boolean;
         /**
           * Modal is open or opening (css transition) Type: boolean
          */

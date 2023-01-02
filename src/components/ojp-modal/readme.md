@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property            | Attribute           | Description                                                             | Type      | Default |
-| ------------------- | ------------------- | ----------------------------------------------------------------------- | --------- | ------- |
-| `closebuttoninside` | `closebuttoninside` | Modal's close button is inside or outside the modal panel Type: boolean | `boolean` | `false` |
-| `open`              | `open`              | Modal is open or opening (css transition) Type: boolean                 | `boolean` | `false` |
+| Property             | Attribute            | Description                                                             | Type      | Default |
+| -------------------- | -------------------- | ----------------------------------------------------------------------- | --------- | ------- |
+| `closebuttonoutside` | `closebuttonoutside` | Modal's close button is inside or outside the modal panel Type: boolean | `boolean` | `false` |
+| `open`               | `open`               | Modal is open or opening (css transition) Type: boolean                 | `boolean` | `false` |
 
 
 ## Methods
