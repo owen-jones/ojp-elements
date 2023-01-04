@@ -80,6 +80,7 @@ export class OjpModal {
 
   componentDidLoad() {
     this.contentSlot = this.el.querySelector("[ slot = 'content' ]");
+    this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {
@@ -92,11 +93,11 @@ export class OjpModal {
     });
 
     if (this.closebuttonoutside) {
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '1/3/2/4'); // set grid area to outer corner
+      this.closeButtonArea.classList.add("close-button--outside");
     }
 
     else {
-      this.el.style.setProperty('--ojp-modal--close-grid-area', '3/2/4/3'); // set grid area to inner corner
+      this.closeButtonArea.classList.add("close-button--inside");
     }
   }
 
@@ -105,7 +106,7 @@ export class OjpModal {
       this.closeButton.focus();
     }
 
-   
+
   }
 
 
