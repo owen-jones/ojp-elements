@@ -1,5 +1,4 @@
 :host {
-
   // Overlay color with opacity
   --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
   display: block;
@@ -9,10 +8,11 @@
 .ojp-modal-wrapper {
   bottom: 0;
   display: grid;
+  // Custom modification option example
   // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
   // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
   grid-template-columns: var(--ojp-modal--outer-padding) 1fr var(--ojp-modal--outer-padding);
-  grid-template-rows: max-content var(--space-2xl) 1fr var(--space-2xl);
+  grid-template-rows: max-content var(--space-2xl) 1fr 0;
   height: 100%;
   left: 0;
   opacity: 0;
@@ -23,6 +23,10 @@
   visibility: hidden;
   width: 100%;
   z-index: 10;
+
+  @supports (--breakpoint("mobile")) {
+    grid-template-rows: max-content var(--space-2xl) 1fr var(--space-2xl);
+  }
 }
 
 .ojp-modal-overlay {
@@ -35,9 +39,9 @@
 // Modal panel
 .ojp-modal-wrapper .ojp-modal-panel {
   background-color: white;
-  border-radius: 15px;
+  border-radius: var(--ojp-modal--panel-border-radius);
   grid-area: var(--ojp-modal--panel-grid-area);
-  height: fit-content;
+  height: auto;
   overflow-y: auto;
   padding-top: var(--ojp-modal--padding-top-bottom);
   padding-bottom: var(--ojp-modal--padding-top-bottom);
@@ -54,13 +58,31 @@
 // Close button
 div>div.ojp-modal-close {
   align-items: flex-start;
-  cursor: pointer;
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
   justify-content: flex-end;
   margin-right: var(--ojp-modal--close-icon-margin);
   margin-top: var(--ojp-modal--close-icon-margin);
   z-index: 12;
+}
+
+// Reset close button styling
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+}
+
+::slotted([slot="close-icon"]) {
+  cursor: pointer;
+  height: var(--ojp-modal--close-icon-height);
+  width: var(--ojp-modal--close-icon-width);
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
@@ -83,6 +105,17 @@ div>div.ojp-modal-close {
   opacity: 1;
   visibility: visible;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+// Close button inside modal panel
+.close-button--inside {
+  --ojp-modal--close-grid-area: var(--ojp-modal--close-grid-area--inside);
+}
+
+
+// Close button outside modal panel
+.close-button--outside {
+    --ojp-modal--close-grid-area: 1/3/2/4;
 }
 
 
