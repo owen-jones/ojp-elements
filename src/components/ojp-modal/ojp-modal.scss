@@ -54,6 +54,10 @@
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+
+  @supports (--breakpoint("tablet")) {
+    height: fit-content;
+  }
 }
 
 .ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
@@ -74,6 +78,16 @@
   left: 0;
   top: 0;
   background: linear-gradient(180deg, #FF0000 57.88%, rgba(255, 255, 255, 0) 99.99%);
+}
+
+::slotted([slot="content"]):after {
+  content: '';
+  width: 100%;
+  height: var(--space-l-xl);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, #FF0000 57.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
 // Close button
