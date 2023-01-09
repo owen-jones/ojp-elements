@@ -13,7 +13,7 @@
   // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
   // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
   grid-template-columns: var(--ojp-modal--outer-padding) 1fr var(--ojp-modal--outer-padding);
-  grid-template-rows: max-content var(--space-2xl) 1fr 0;
+  grid-template-rows: max-content var(--space-xl) 1fr 0;
   height: 100%;
   left: 0;
   opacity: 0;
@@ -48,12 +48,32 @@
   padding-bottom: var(--ojp-modal--padding-top-bottom);
   padding-left: var(--ojp-modal--padding-inline);
   padding-right: var(--ojp-modal--padding-inline);
+  position: relative;
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
+.ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
+  display: none;
+}
+
 
 ::slotted([slot="content"]) {
   max-width: var(--ojp-modal--max-content-width);
   margin: 0 auto;
+}
+
+::slotted([slot="content"]):before {
+  content: '';
+  width: 100%;
+  height: var(--space-l-xl);
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(180deg, #FF0000 57.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
 // Close button
@@ -116,7 +136,7 @@ input[type="reset"] {
 
 // Close button outside modal panel
 .close-button--outside {
-    --ojp-modal--close-grid-area: 1/3/2/4;
+  --ojp-modal--close-grid-area: 1/3/2/4;
 }
 
 
