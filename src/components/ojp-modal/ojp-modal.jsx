@@ -152,8 +152,8 @@ export class OjpModal {
             <div class={'slot-container'}>
               <slot name="content"></slot>
             </div>
-            <div class={this.isOverflowing ? "ojp-modal-overflow--top" : "ojp-modal-overflow--top overflow-gradient--visible"}></div>
-            <div class={this.isOverflowing ? "ojp-modal-overflow--bottom" : "ojp-modal-overflow--bottom overflow-gradient--visible"}></div>
+            <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
+            <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
           </div>
         </div>
       </Host>
