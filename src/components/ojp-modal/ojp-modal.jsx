@@ -78,8 +78,21 @@ export class OjpModal {
     document.removeEventListener('keydown', this.keystrokeListener);
   }
 
+  isOverflowing() {
+    if(!this.contentSlot || !this.panelArea) {
+      return false;
+    }
+      // else if (this.contentSlot.getBoundingClientRect().height > this.panelArea.getBoundingClientRect().height) {
+      //   return true;
+      // }
+      // else return false;
+      return (this.contentSlot.getBoundingClientRect().height > this.panelArea.getBoundingClientRect().height);
+  }
+
   componentDidLoad() {
     this.contentSlot = this.el.querySelector("[ slot = 'content' ]");
+    this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
+
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
@@ -106,7 +119,11 @@ export class OjpModal {
       this.closeButton.focus();
     }
 
-
+    // if (this.isOverflowing) {
+    //   console.log('this is overflowing' + this.isOverflowing);
+    // }
+    console.log(this.isOverflowing());
+    
   }
 
 
@@ -118,7 +135,7 @@ export class OjpModal {
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
           <div class='ojp-modal-overlay' />
           <div class='ojp-modal-close'>
-            <button class='close-button' tabindex='0'>
+            <button class='close-button' tabindex='0' title="Close the modal">
               <slot name='close-icon'>
                 <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>
               </slot>
@@ -133,6 +150,8 @@ export class OjpModal {
             tabindex="-1"
           >
             <slot name="content"></slot>
+            <div class={this.isOverflowing ? "ojp-modal-overflow--top" : "ojp-modal-overflow--top overflow-gradient--visible"}></div>
+            <div class={this.isOverflowing ? "ojp-modal-overflow--bottom" : "ojp-modal-overflow--bottom overflow-gradient--visible"}></div>
           </div>
         </div>
       </Host>
