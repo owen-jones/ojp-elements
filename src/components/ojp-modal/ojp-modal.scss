@@ -46,6 +46,7 @@
   grid-template-rows: var(--space-l-xl) 1fr var(--space-l-xl);
   grid-area: var(--ojp-modal--panel-grid-area);
   height: auto;
+  min-height: 400px;
   overflow-y: auto;
   padding-top: var(--ojp-modal--padding-top-bottom);
   padding-bottom: var(--ojp-modal--padding-top-bottom);
