@@ -106,7 +106,8 @@ ojp-modal {
   --ojp-modal--padding-top-bottom: var(--space-2xl);
   --ojp-modal--close-icon-margin: var(--space-s-m);
   --ojp-modal--panel-grid-area: 1/1/4/4;
-  --ojp-modal--outer-padding: 0;
+  --ojp-modal--outer-horizontal-padding: 0;
+  --ojp-modal--outer-vertical-padding: 0;
   --ojp-modal--panel-border-radius: 0;
   --ojp-modal--close-icon-height: 44px;
   --ojp-modal--close-icon-width: 44px;
@@ -116,7 +117,8 @@ ojp-modal {
 // tablet and up
 @supports (--breakpoint("tablet")) {
   ojp-modal {
-    --ojp-modal--outer-padding: var(--space-s-3xl);
+    --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
+    --ojp-modal--outer-vertical-padding: var(--space-l-xl);
     --ojp-modal--max-content-width: 80%;
     --ojp-modal--padding-inline: var(--space-xl-2xl);
     --ojp-modal--padding-top-bottom: var(--space-xl-2xl);
