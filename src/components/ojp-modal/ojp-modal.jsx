@@ -123,7 +123,7 @@ export class OjpModal {
     //   console.log('this is overflowing' + this.isOverflowing);
     // }
     console.log(this.isOverflowing());
-    
+
   }
 
 
@@ -149,7 +149,9 @@ export class OjpModal {
             aria-describedby="dialog_desc"
             tabindex="-1"
           >
-            <slot name="content"></slot>
+            <div class={'slot-container'}>
+              <slot name="content"></slot>
+            </div>
             <div class={this.isOverflowing ? "ojp-modal-overflow--top" : "ojp-modal-overflow--top overflow-gradient--visible"}></div>
             <div class={this.isOverflowing ? "ojp-modal-overflow--bottom" : "ojp-modal-overflow--bottom overflow-gradient--visible"}></div>
           </div>
