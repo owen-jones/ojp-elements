@@ -41,6 +41,9 @@
 .ojp-modal-wrapper .ojp-modal-panel {
   background-color: white;
   border-radius: var(--ojp-modal--panel-border-radius);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--space-l-xl) 1fr var(--space-l-xl);
   grid-area: var(--ojp-modal--panel-grid-area);
   height: auto;
   overflow-y: auto;
@@ -70,24 +73,30 @@
   margin: 0 auto;
 }
 
-::slotted([slot="content"]):before {
-  content: '';
+.ojp-modal-overflow--top {
+  // content: '';
   width: 100%;
   height: var(--space-l-xl);
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: linear-gradient(180deg, #FF0000 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  // position: absolute;
+  // left: 0;
+  // top: 0;
+  grid-area: 1/1/2/2;
+  background: linear-gradient(180deg, rgba(255, 0, 0, 0)7.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
-::slotted([slot="content"]):after {
-  content: '';
+.ojp-modal-overflow--bottom {
+  // content: '';
   width: 100%;
   height: var(--space-l-xl);
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background: linear-gradient(0deg, #FF0000 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  // position: absolute;
+  // left: 0;
+  // bottom: 0;
+  grid-area: 1/3/2/4;
+  background: linear-gradient(0deg, #fa000000 57.88%, rgba(255, 255, 255, 0) 99.99%);
+}
+
+.overflow-gradient--visible {
+  background: linear-gradient(0deg, #ffffff 57.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
 // Close button
@@ -96,6 +105,8 @@ div>div.ojp-modal-close {
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
   justify-content: flex-end;
+  margin-right: var(--ojp-modal--close-icon-margin);
+  margin-top: var(--ojp-modal--close-icon-margin);
   z-index: 12;
 }
 
@@ -116,8 +127,10 @@ input[type="reset"] {
   cursor: pointer;
   height: var(--ojp-modal--close-icon-height);
   width: var(--ojp-modal--close-icon-width);
-  margin-right: var(--ojp-modal--close-icon-margin);
-  margin-top: var(--ojp-modal--close-icon-margin);
+}
+
+slot[name="content"] {
+  grid-area: 1/1/4/2;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
