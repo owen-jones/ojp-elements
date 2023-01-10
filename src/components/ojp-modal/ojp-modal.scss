@@ -12,8 +12,8 @@
   // Custom modification option example
   // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
   // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
-  grid-template-columns: var(--ojp-modal--outer-padding) 1fr var(--ojp-modal--outer-padding);
-  grid-template-rows: max-content var(--space-xl) 1fr 0;
+  grid-template-columns: var(--ojp-modal--outer-horizontal-padding) 1fr var(--ojp-modal--outer-horizontal-padding);
+  grid-template-rows: max-content var(--ojp-modal--outer-vertical-padding) 1fr var(--ojp-modal--outer-vertical-padding);
   height: 100%;
   left: 0;
   opacity: 0;
@@ -96,8 +96,6 @@ div>div.ojp-modal-close {
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
   justify-content: flex-end;
-  margin-right: var(--ojp-modal--close-icon-margin);
-  margin-top: var(--ojp-modal--close-icon-margin);
   z-index: 12;
 }
 
@@ -118,6 +116,8 @@ input[type="reset"] {
   cursor: pointer;
   height: var(--ojp-modal--close-icon-height);
   width: var(--ojp-modal--close-icon-width);
+  margin-right: var(--ojp-modal--close-icon-margin);
+  margin-top: var(--ojp-modal--close-icon-margin);
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
