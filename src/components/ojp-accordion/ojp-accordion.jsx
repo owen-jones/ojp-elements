@@ -1,4 +1,4 @@
-import { Element, Component, Host, h, Method, Listen, Prop } from '@stencil/core';
+import { Element, Component, Host, h, Method, Listen, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ojp-accordion',
@@ -20,6 +20,9 @@ export class OjpAccordion {
   // Used to keep track of toggle all open/closed
   allItemsOpen = true;
 
+  // Used for Intersection Observer
+  observer;
+
   /**
    * 2. Reference to host HTML element.
    * Inlined decorator
@@ -40,12 +43,12 @@ export class OjpAccordion {
    * Requires JSDocs for public API documentation.
    */
 
-  /** 
+  /**
     * Allow multiple items to be open at once
     * If set to false, opening one item will auto-close
     * all other items in the accordion
     * Type: boolean
-    * 
+    *
     */
   @Prop({
     reflect: true,
@@ -58,7 +61,12 @@ export class OjpAccordion {
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
    */
-  // N/A
+
+  /**
+   * Triggered when the accordion is visible/invisible in the viewport
+   */
+  @Event() elementIsVisibleEvent;
+  @Event() elementIsInvisibleEvent;
 
 
   /**
@@ -70,6 +78,12 @@ export class OjpAccordion {
     // If an anchor id is present in the url, jump to it and open it
     if (window.location.hash) {
       this.goToItemId(window.location.hash.substring(1));
+    }
+
+    // Create Intersection Observer
+    if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
+      this.observer = new IntersectionObserver(this.handleIntersection);
+      this.observer.observe(this.el);
     }
   }
 
@@ -84,7 +98,7 @@ export class OjpAccordion {
   onStateChange(event) {
     // If allowMultipleItemsOpen prop is false, opening one
     // item should auto close all other items
-    if (!this.allowMultipleItemsOpen && 
+    if (!this.allowMultipleItemsOpen &&
         event.detail.isOpen == true){
       const indexOpened = event.detail.index;
       this.items.forEach((item,index) => {
@@ -105,7 +119,7 @@ export class OjpAccordion {
    */
 
 
-  /** Expand/Collapse all accordion items  */ 
+  /** Expand/Collapse all accordion items  */
   @Method()
   async toggleAll() {
     this.allItemsOpen = !this.allItemsOpen;
@@ -137,6 +151,18 @@ export class OjpAccordion {
       }
     });
   }
+
+  // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
+  handleIntersection = async (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        this.elementIsVisibleEvent.emit(entry);
+      }
+      else {
+        this.elementIsInvisibleEvent.emit(entry);
+      }
+    }
+  };
 
   /**
    * 10. render() function
