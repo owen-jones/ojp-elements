@@ -51,11 +51,11 @@ export class OjpModal {
           this.closeModal();
           break;
         case 'Tab':
-          if (!(this.el && this.contentSlot)) {
+          if (!(this.el && this.modalContent)) {
             console.error('Please make sure content slot is defined using the slot="content" attribute');
             break;
           }
-          if (this.el.contains(e.target) && this.contentSlot.contains(e.target)) {
+          if (!document.hasFocus() || this.modalContent.contains(e.target)) {
             e.preventDefault();
             this.closeButton.focus();
           }
@@ -101,6 +101,7 @@ export class OjpModal {
   componentDidLoad() {
 
     this.contentSlot = this.el.shadowRoot.querySelector("slot[name='content']");
+    this.modalContent = this.el.querySelector("[slot='content']");
     this.slotContainer = this.el.shadowRoot.querySelector('.slot-container');
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
 
