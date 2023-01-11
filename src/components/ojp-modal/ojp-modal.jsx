@@ -85,7 +85,6 @@ export class OjpModal {
   }
 
   updateOverflowState() {
-    console.log('update overflow state');
     if(!this.contentSlot || !this.panelArea) {
       this.isOverflowing = false;
       return;
@@ -133,7 +132,6 @@ export class OjpModal {
   }
 
   render() {
-    this.updateOverflowState();
     return (
       <Host>
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>

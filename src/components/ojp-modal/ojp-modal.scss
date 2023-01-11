@@ -57,7 +57,7 @@
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: scroll;
-    padding-bottom: 30px;
+    padding-bottom: calc(var(--space-l-xl) / 2);
   }
 }
 
@@ -131,7 +131,7 @@ input[type="reset"] {
 // Fade css class
 // Fade background CSS
 .modal-fade {
-  background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: --ojp-modal--overflow-gradient;
 }
 
 
