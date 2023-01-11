@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ojp-modal',
@@ -33,6 +33,7 @@ export class OjpModal {
     mutable: false,
   }) closebuttonoutside = false;
 
+  @State() isOverflowing = false;
 
   /**
    * Methods to open, close modal
@@ -78,19 +79,29 @@ export class OjpModal {
     document.removeEventListener('keydown', this.keystrokeListener);
   }
 
-  isOverflowing() {
+  @Listen('resize', {target: 'window'})
+  handleWindowResize() {
+    this.updateOverflowState();
+  }
+
+  updateOverflowState() {
     if(!this.contentSlot || !this.panelArea) {
-      return false;
+      this.isOverflowing = false;
+      return;
     }
-      // else if (this.contentSlot.getBoundingClientRect().height > this.panelArea.getBoundingClientRect().height) {
-      //   return true;
-      // }
-      // else return false;
-      return (this.contentSlot.getBoundingClientRect().height > this.panelArea.getBoundingClientRect().height);
+
+    let slotContentHeight = 0;
+    this.contentSlot.assignedElements().forEach(element => {
+      slotContentHeight += element.getBoundingClientRect().height;
+    });
+
+    this.isOverflowing = (slotContentHeight > this.slotContainer.getBoundingClientRect().height);
   }
 
   componentDidLoad() {
-    this.contentSlot = this.el.querySelector("[ slot = 'content' ]");
+
+    this.contentSlot = this.el.shadowRoot.querySelector("slot[name='content']");
+    this.slotContainer = this.el.shadowRoot.querySelector('.slot-container');
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
 
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
@@ -107,29 +118,20 @@ export class OjpModal {
 
     if (this.closebuttonoutside) {
       this.closeButtonArea.classList.add("close-button--outside");
-    }
-
-    else {
+    } else {
       this.closeButtonArea.classList.add("close-button--inside");
     }
+
+    this.updateOverflowState();
   }
 
   componentDidRender() {
     if (this.open) {
       this.closeButton.focus();
     }
-
-    // if (this.isOverflowing) {
-    //   console.log('this is overflowing' + this.isOverflowing);
-    // }
-    console.log(this.isOverflowing());
-
   }
 
-
-
   render() {
-
     return (
       <Host>
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
@@ -152,8 +154,8 @@ export class OjpModal {
             <div class={'slot-container'}>
               <slot name="content"></slot>
             </div>
-            <div class={this.isOverflowing ? "ojp-modal-overflow--top" : "ojp-modal-overflow--top overflow-gradient--visible"}></div>
-            <div class={this.isOverflowing ? "ojp-modal-overflow--bottom" : "ojp-modal-overflow--bottom overflow-gradient--visible"}></div>
+            <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
+            <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
           </div>
         </div>
       </Host>
