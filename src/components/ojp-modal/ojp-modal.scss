@@ -1,8 +1,6 @@
 :host {
   // Overlay color with opacity
-  --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
   display: block;
-  font-family: sans-serif;
 }
 
 
@@ -35,7 +33,7 @@
 
 // Modal panel
 .ojp-modal-wrapper .ojp-modal-panel {
-  background-color: white;
+  background-color: var(--ojp-modal--panel-color);
   border-radius: var(--ojp-modal--panel-border-radius);
   display: grid;
   grid-template-columns: 1fr;
@@ -65,7 +63,6 @@
 .ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
   display: none;
 }
-
 
 ::slotted([slot="content"]) {
   max-width: var(--ojp-modal--max-content-width);

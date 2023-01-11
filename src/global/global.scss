@@ -107,8 +107,10 @@ ojp-modal {
   --ojp-modal--outer-horizontal-padding: 0; // Public
   --ojp-modal--outer-vertical-padding: 0; // Public
   --ojp-modal--panel-border-radius: 0; // Public
+  --ojp-modal--panel-color: #fff; // Public
   --ojp-modal--close-icon-height: 44px; // Public
   --ojp-modal--close-icon-width: 44px; // Public
+  --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6); // Public
   --ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
 
 
