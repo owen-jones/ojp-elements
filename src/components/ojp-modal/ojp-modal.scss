@@ -1,0 +1,167 @@
+:host {
+  // Overlay color with opacity
+  --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
+  display: block;
+  font-family: sans-serif;
+}
+
+
+.ojp-modal-wrapper {
+  bottom: 0;
+  display: grid;
+  // Custom modification option example
+  // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
+  // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
+  grid-template-columns: var(--ojp-modal--outer-horizontal-padding) 1fr var(--ojp-modal--outer-horizontal-padding);
+  grid-template-rows: max-content var(--ojp-modal--outer-vertical-padding) 1fr var(--ojp-modal--outer-vertical-padding);
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
+  visibility: hidden;
+  width: 100%;
+  z-index: 10;
+}
+
+.ojp-modal-overlay {
+  background-color: var(--ojp-modal--overlay-color);
+  grid-area: 1/1/5/4;
+  height: 100%;
+  width: 100%;
+}
+
+// Modal panel
+.ojp-modal-wrapper .ojp-modal-panel {
+  background-color: var(--ojp-modal--panel-color);
+  border-radius: var(--ojp-modal--panel-border-radius);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--space-l-xl) 1fr var(--space-l-xl);
+  grid-area: var(--ojp-modal--panel-grid-area);
+  height: auto;
+  overflow-y: auto;
+  padding-top: var(--ojp-modal--padding-top-bottom);
+  padding-bottom: var(--ojp-modal--padding-top-bottom);
+  padding-left: var(--ojp-modal--padding-inline);
+  padding-right: var(--ojp-modal--padding-inline);
+  position: relative;
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+  .slot-container {
+    grid-area: 1 / 1 / 4 / 2;
+    overflow: auto;
+    padding-bottom: calc(var(--space-l-xl) / 2);
+    scrollbar-width: none;
+  }
+
+  .slot-container::-webkit-scrollbar {
+    background: transparent;
+    display: none;
+  }
+}
+
+.ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
+  display: none;
+}
+
+
+::slotted([slot="content"]) {
+  max-width: var(--ojp-modal--max-content-width);
+  margin: 0 auto;
+}
+
+.ojp-modal-overflow--top {
+  grid-area: 1/1/2/2;
+  height: var(--space-l-xl);
+  transform: rotate(180deg) translateY(calc(var(--space-l-xl) / 2));
+  width: 100%;
+  z-index: 0;
+}
+
+.ojp-modal-overflow--bottom {
+  grid-area: 3 / 1 / 4 / 2;
+  height: var(--space-l-xl);
+  transform: translateY(calc(var(--space-l-xl) / 2));
+  width: 100%;
+}
+
+.overflow-gradient--visible {
+  background: linear-gradient(0deg, #ffffff 57.88%, rgba(255, 255, 255, 0) 99.99%);
+}
+
+// Close button
+div>div.ojp-modal-close {
+  align-items: flex-start;
+  display: inline-flex;
+  grid-area: var(--ojp-modal--close-grid-area);
+  justify-content: flex-end;
+  margin-right: var(--ojp-modal--close-icon-margin);
+  margin-top: var(--ojp-modal--close-icon-margin);
+  z-index: 12;
+}
+
+// Reset close button styling
+button,
+input[type="submit"],
+input[type="reset"] {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
+}
+
+::slotted([slot="close-icon"]) {
+  cursor: pointer;
+  height: var(--ojp-modal--close-icon-height);
+  width: var(--ojp-modal--close-icon-width);
+}
+
+.ojp-modal-wrapper .ojp-modal-close .close-button {
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.ojp-modal-wrapper .ojp-modal-close .close-button:focus {
+  border: 3px dashed hotpink;
+}
+
+// Fade css class
+// Fade background CSS
+.modal-fade {
+  background: --ojp-modal--overflow-gradient;
+}
+
+
+// Active open modal styles
+.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+// Close button inside modal panel
+.close-button--inside {
+  --ojp-modal--close-grid-area: var(--ojp-modal--close-grid-area--inside);
+
+  align-self: flex-start;
+}
+
+// Close button outside modal panel
+.close-button--outside {
+  --ojp-modal--close-grid-area: 1/3/2/4;
+}
+
+
+// Noscroll class
+.noscroll {
+  overflow: hidden;
+}

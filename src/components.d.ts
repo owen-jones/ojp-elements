@@ -60,6 +60,21 @@ export namespace Components {
         "onItemSelected": Function;
         "open": boolean;
     }
+    interface OjpModal {
+        "closeModal": () => Promise<void>;
+        /**
+          * Modal's close button is inside or outside the modal panel Type: boolean
+         */
+        "closebuttonoutside": boolean;
+        /**
+          * Modal is open or opening (css transition) Type: boolean
+         */
+        "open": boolean;
+        /**
+          * Methods to open, close modal
+         */
+        "openModal": () => Promise<void>;
+    }
     interface OjpRow {
         "align": string;
         "cols": string;
@@ -101,6 +116,12 @@ declare global {
         prototype: HTMLOjpListboxElement;
         new (): HTMLOjpListboxElement;
     };
+    interface HTMLOjpModalElement extends Components.OjpModal, HTMLStencilElement {
+    }
+    var HTMLOjpModalElement: {
+        prototype: HTMLOjpModalElement;
+        new (): HTMLOjpModalElement;
+    };
     interface HTMLOjpRowElement extends Components.OjpRow, HTMLStencilElement {
     }
     var HTMLOjpRowElement: {
@@ -113,6 +134,7 @@ declare global {
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
+        "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
     }
 }
@@ -164,6 +186,16 @@ declare namespace LocalJSX {
         "onItemSelected"?: Function;
         "open"?: boolean;
     }
+    interface OjpModal {
+        /**
+          * Modal's close button is inside or outside the modal panel Type: boolean
+         */
+        "closebuttonoutside"?: boolean;
+        /**
+          * Modal is open or opening (css transition) Type: boolean
+         */
+        "open"?: boolean;
+    }
     interface OjpRow {
         "align"?: string;
         "cols"?: string;
@@ -179,6 +211,7 @@ declare namespace LocalJSX {
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
+        "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
     }
 }
@@ -191,6 +224,7 @@ declare module "@stencil/core" {
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
+            "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
         }
     }
