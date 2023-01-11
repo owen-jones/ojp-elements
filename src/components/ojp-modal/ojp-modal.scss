@@ -24,10 +24,6 @@
   visibility: hidden;
   width: 100%;
   z-index: 10;
-
-  @supports (--breakpoint("mobile")) {
-    grid-template-rows: max-content var(--space-2xl) 1fr var(--space-2xl);
-  }
 }
 
 .ojp-modal-overlay {
@@ -62,10 +58,7 @@
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: scroll;
-  }
-
-  @supports (--breakpoint("tablet")) {
-    height: fit-content;
+    padding-bottom: calc(var(--space-l-xl) / 2);
   }
 }
 
@@ -80,25 +73,18 @@
 }
 
 .ojp-modal-overflow--top {
-  // content: '';
-  width: 100%;
-  height: var(--space-l-xl);
-  // position: absolute;
-  // left: 0;
-  // top: 0;
   grid-area: 1/1/2/2;
-  background: linear-gradient(180deg, rgba(255, 0, 0, 0)7.88%, rgba(255, 255, 255, 0) 99.99%);
+  height: var(--space-l-xl);
+  transform: rotate(180deg) translateY(calc(var(--space-l-xl) / 2));
+  width: 100%;
+  z-index: 0;
 }
 
 .ojp-modal-overflow--bottom {
-  // content: '';
-  width: 100%;
-  height: var(--space-l-xl);
-  // position: absolute;
-  // left: 0;
-  // bottom: 0;
   grid-area: 3 / 1 / 4 / 2;
-  background: linear-gradient(0deg, #fa000000 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  height: var(--space-l-xl);
+  transform: translateY(calc(var(--space-l-xl) / 2));
+  width: 100%;
 }
 
 .overflow-gradient--visible {
@@ -146,7 +132,7 @@ input[type="reset"] {
 // Fade css class
 // Fade background CSS
 .modal-fade {
-  background: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: --ojp-modal--overflow-gradient;
 }
 
 

@@ -101,16 +101,20 @@ ojp-accordion-item {
 
 // ojp-modal variables
 ojp-modal {
+  --ojp-modal--padding-inline: var(--space-s-3xl); // Public
+  --ojp-modal--padding-top-bottom: var(--space-2xl); // Public
+  --ojp-modal--close-icon-margin: var(--space-s-m); // Public
+  --ojp-modal--outer-horizontal-padding: 0; // Public
+  --ojp-modal--outer-vertical-padding: 0; // Public
+  --ojp-modal--panel-border-radius: 0; // Public
+  --ojp-modal--close-icon-height: 44px; // Public
+  --ojp-modal--close-icon-width: 44px; // Public
+  --ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+
+
+  // ---- Private variables. Users should not change ----
   --ojp-modal--max-content-width: 100%;
-  --ojp-modal--padding-inline: var(--space-s-3xl);
-  --ojp-modal--padding-top-bottom: var(--space-2xl);
-  --ojp-modal--close-icon-margin: var(--space-s-m);
   --ojp-modal--panel-grid-area: 1/1/4/4;
-  --ojp-modal--outer-horizontal-padding: 0;
-  --ojp-modal--outer-vertical-padding: 0;
-  --ojp-modal--panel-border-radius: 0;
-  --ojp-modal--close-icon-height: 44px;
-  --ojp-modal--close-icon-width: 44px;
   --ojp-modal--close-grid-area--inside: 1/3/2/4;
 }
 
