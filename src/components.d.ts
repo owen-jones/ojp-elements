@@ -122,6 +122,11 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
