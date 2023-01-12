@@ -93,7 +93,7 @@
 }
 
 .overflow-gradient--visible {
-  background: linear-gradient(0deg, #ffffff 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
 // Close button
