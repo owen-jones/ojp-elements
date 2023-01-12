@@ -20,6 +20,8 @@
         --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
         --ojp-modal--overlay-color: rgba(0, 0, 0, 0.8);
         --ojp-modal--panel-color: transparent;
+        --ojp-modal--padding-top-bottom: var(--space-l-xl);
+        --ojp-modal--padding-inline: var(--space-s-m);
       }
 
       .close-icon-2 {
@@ -28,29 +30,34 @@
         padding: 2px 0 0;
       }
 
-      #ojp-modal-2 iframe {
+      .example-module-container {
+        display: flex;
+        flex-direction: column;
         height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
+        min-height: 400px;
+        width: auto;
+        margin-top: 50px;
+      }
+
+      .example-module-container iframe {
+        height: 100%;
+        min-height: inherit;
         width: 100%;
       }
 
       .video-caption {
-        bottom: 0;
-        color: red;
+        align-self: center;
+        color: white;
         display: flex;
-        font-size: 18px;
-        left: 0;
-        margin-top: 20px;
-        position: absolute;
+        font-size: 16px;
+        margin-top: var(--space-s-m); 
       }
 
       #demo-form {
         textarea {
-            width:90%;
-            max-width:90%;
-            max-height:30%;
+            max-height: 30%;
+            max-width: 90%;
+            width: 90%;
         }
       }
 
@@ -92,11 +99,11 @@
     </div>
     <ojp-modal id="ojp-modal-2" closebuttonoutside="closebuttonoutside">
       <div slot="content">
-        <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/713606356?h=372d22e460" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
-        </div>
-        <div class="video-caption">
-          This is a caption for the embedded video.
+        <div class="example-module-container">
+            <iframe src="https://player.vimeo.com/video/713606356?h=372d22e460" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+          <div class="video-caption">
+            This is a caption for the embedded video.
+          </div>
         </div>
       </div>
       <div class="close-icon-2" slot="close-icon">

@@ -93,7 +93,7 @@
 }
 
 .overflow-gradient--visible {
-  background: linear-gradient(0deg, #ffffff 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
 }
 
 // Close button
@@ -101,7 +101,7 @@ div>div.ojp-modal-close {
   align-items: flex-start;
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
-  justify-content: flex-end;
+  justify-self: flex-end;
   margin-right: var(--ojp-modal--close-icon-margin);
   margin-top: var(--ojp-modal--close-icon-margin);
   z-index: 12;
