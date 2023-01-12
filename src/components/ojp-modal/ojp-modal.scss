@@ -101,7 +101,7 @@ div>div.ojp-modal-close {
   align-items: flex-start;
   display: inline-flex;
   grid-area: var(--ojp-modal--close-grid-area);
-  justify-content: flex-end;
+  justify-self: flex-end;
   margin-right: var(--ojp-modal--close-icon-margin);
   margin-top: var(--ojp-modal--close-icon-margin);
   z-index: 12;
