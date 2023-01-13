@@ -53,6 +53,9 @@ export namespace Components {
         "tstart": any;
     }
     interface OjpImage {
+        /**
+          * Image src Type: string
+         */
         "src": string;
     }
     interface OjpListbox {
@@ -179,6 +182,14 @@ declare namespace LocalJSX {
         "tstart"?: any;
     }
     interface OjpImage {
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Image src Type: string
+         */
         "src"?: string;
     }
     interface OjpListbox {
