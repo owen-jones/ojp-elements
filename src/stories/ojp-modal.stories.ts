@@ -88,17 +88,57 @@ myModal.addEventListener('close', event => {
 
 # Custom CSS Properties:
 
-The \`<ojp-modal>\` element comes with some special CSS properties that can be overriden inside the styles.
---ojp-modal--padding-inline: var(--space-s-3xl); // Public
---ojp-modal--padding-top-bottom: var(--space-2xl); // Public
---ojp-modal--close-icon-margin: var(--space-s-m); // Public
---ojp-modal--outer-horizontal-padding: 0; // Public
---ojp-modal--outer-vertical-padding: 0; // Public
---ojp-modal--panel-border-radius: 0; // Public
---ojp-modal--panel-color: #fff; // Public
---ojp-modal--close-icon-height: 44px; // Public
---ojp-modal--close-icon-width: 44px; // Public
---ojp-modal--overlay-color: rgba(0, 0, 0, 0.6); // Public
+The \`<ojp-modal>\` element comes with some special CSS properties that can be overriden inside the styles. Examples are default values.
+
+## "--ojp-modal--padding-inline":
+Specifies the horizontal distance of the inset content from the edges of the modal.
+
+>  **Usage**: \`--ojp-modal--padding-inline: var(--space-s-3xl);\`
+
+## "--ojp-modal--padding-top-bottom":
+Specifies the vertical distance of the inset content from the edges of the modal.
+
+>  **Usage**: \`--ojp-modal--padding-top-bottom: var(--space-2xl);\`
+    
+## "--ojp-modal--close-icon-margin":
+Specifies the distance of the close icon from the corner of the modal. User-specified value overrides a top and right margin.
+
+>  **Usage**: \`--ojp-modal--close-icon-margin: var(--space-s-m);\`
+
+## "--ojp-modal--outer-horizontal-padding":
+Specifies the horizontal distance between the edge of the screen and the edge of the modal. Affects tablet and larger screens.
+
+>  **Usage**: \`--ojp-modal--outer-horizontal-padding: 0;\`
+
+## "--ojp-modal--outer-vertical-padding":
+Specifies the vertical distance between the edge of the screen and the edge of the modal. Affects tablet and larger screens.
+
+>  **Usage**: \`--ojp-modal--outer-vertical-padding: 0;\`
+
+## "--ojp-modal--panel-border-radius":
+Specifies the border radius of the modal panel.
+
+>  **Usage**: \`--ojp-modal--panel-border-radius: 15px;\`
+
+## "--ojp-modal--close-icon-height":
+Specifies the height of the close icon.
+
+>  **Usage**: \`--ojp-modal--close-icon-height: 44px;\`
+
+## "--ojp-modal--close-icon-width":
+Specifies the width of the close icon.
+
+>  **Usage**: \`--ojp-modal--close-icon-width: 44px;\`
+
+## "--ojp-modal--panel-color":
+Specifies the color of the modal panel.
+
+>  **Usage**: \`--ojp-modal--panel-color: #fff;\`
+
+## "--ojp-modal--overlay-color":
+Specifies the color of the dark overlay for the modal.
+
+>  **Usage**: \`--ojp-modal--overlay-color: rgba(0, 0, 0, 0.6); \`
                 `
             }
         }
