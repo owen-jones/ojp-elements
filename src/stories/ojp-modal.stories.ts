@@ -63,7 +63,10 @@ This method allows users to open a modal.
 
 **Usage**:
 \`const myModalButton = document.getElementById('button-to-trigger-modal');
-myModalButton.openModal();\`
+const myModal = document.getElementById('my-modal');
+myModalButton.addEventListener('click', event => {
+    myModal.openModal();
+}\`
 
 
 # Events:
@@ -99,7 +102,7 @@ Specifies the horizontal distance of the inset content from the edges of the mod
 Specifies the vertical distance of the inset content from the edges of the modal.
 
 >  **Usage**: \`--ojp-modal--padding-top-bottom: var(--space-2xl);\`
-    
+
 ## "--ojp-modal--close-icon-margin":
 Specifies the distance of the close icon from the corner of the modal. User-specified value overrides a top and right margin.
 
@@ -169,7 +172,7 @@ const TemplateModal = (args) => `
   <!-- Start component code -->
   <ojp-row>
   <ojp-col span="10" start="2">
-  <button class="my-modal-button">Open Modal</button>
+  <button id="my-modal-button">Open Modal</button>
      <ojp-modal id="my-demo-modal" ${args.closebuttonoutside?'closebuttonoutside':''}>
       <div slot="content">
       Test text
@@ -180,9 +183,9 @@ const TemplateModal = (args) => `
 
   <script>
   let myDemoModal = document.querySelector('#my-demo-modal');
-    let openDemoModalButton = document.querySelector(".my-modal-button");
+  let openDemoModalButton = document.querySelector("#my-modal-button");
 
-    openModalDemoButton.addEventListener('click', () => {
+  openDemoModalButton.addEventListener('click', () => {
       myDemoModal.openModal();
     });
   </script>
