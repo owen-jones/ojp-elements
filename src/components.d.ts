@@ -54,9 +54,39 @@ export namespace Components {
     }
     interface OjpImage {
         /**
-          * Image src Type: string
+          * Image alt text Type: string Default: ""
+         */
+        "alt": string;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus": string;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy": string;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio": string;
+        /**
+          * Source tags Type: string array of objects Default: [] Example: sources='[           {             "media":"(max-width: 599px)",             "srcset":"../../assets/small_700x600.png"           },           {             "media":"(min-width: 600px) and (max-width: 1000px)",             "srcset":"../../assets/medium_1000x400.png"           }         ]'
+         */
+        "sources": string;
+        /**
+          * Image src Type: string Required: true Default: null
          */
         "src": string;
+    }
+    interface OjpImageSource {
+        /**
+          * Media query Type: string Example: "(min-width: 600px)"
+         */
+        "media": string;
+        /**
+          * Image src Type: string Example: https://www.example.com/image.jpg
+         */
+        "srcset": string;
     }
     interface OjpListbox {
         "activeSelectionIndex": number;
@@ -113,6 +143,12 @@ declare global {
         prototype: HTMLOjpImageElement;
         new (): HTMLOjpImageElement;
     };
+    interface HTMLOjpImageSourceElement extends Components.OjpImageSource, HTMLStencilElement {
+    }
+    var HTMLOjpImageSourceElement: {
+        prototype: HTMLOjpImageSourceElement;
+        new (): HTMLOjpImageSourceElement;
+    };
     interface HTMLOjpListboxElement extends Components.OjpListbox, HTMLStencilElement {
     }
     var HTMLOjpListboxElement: {
@@ -136,6 +172,7 @@ declare global {
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
+        "ojp-image-source": HTMLOjpImageSourceElement;
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
@@ -182,15 +219,54 @@ declare namespace LocalJSX {
         "tstart"?: any;
     }
     interface OjpImage {
+        /**
+          * Image alt text Type: string Default: ""
+         */
+        "alt"?: string;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus"?: string;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy"?: string;
         "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
         /**
-          * Triggered when the accordion is visible/invisible in the viewport
+          * Triggered when the element is visible/invisible in the viewport
          */
         "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onImageFailedToLoadEvent"?: (event: CustomEvent<any>) => void;
         /**
-          * Image src Type: string
+          * Triggered when the image loaded/failed to load
+         */
+        "onImageLoadedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
+         */
+        "onImageSourceChangedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio"?: string;
+        /**
+          * Source tags Type: string array of objects Default: [] Example: sources='[           {             "media":"(max-width: 599px)",             "srcset":"../../assets/small_700x600.png"           },           {             "media":"(min-width: 600px) and (max-width: 1000px)",             "srcset":"../../assets/medium_1000x400.png"           }         ]'
+         */
+        "sources"?: string;
+        /**
+          * Image src Type: string Required: true Default: null
          */
         "src"?: string;
+    }
+    interface OjpImageSource {
+        /**
+          * Media query Type: string Example: "(min-width: 600px)"
+         */
+        "media"?: string;
+        /**
+          * Image src Type: string Example: https://www.example.com/image.jpg
+         */
+        "srcset"?: string;
     }
     interface OjpListbox {
         "activeSelectionIndex"?: number;
@@ -221,6 +297,7 @@ declare namespace LocalJSX {
         "ojp-accordion-item": OjpAccordionItem;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
+        "ojp-image-source": OjpImageSource;
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
@@ -234,6 +311,7 @@ declare module "@stencil/core" {
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
+            "ojp-image-source": LocalJSX.OjpImageSource & JSXBase.HTMLAttributes<HTMLOjpImageSourceElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;

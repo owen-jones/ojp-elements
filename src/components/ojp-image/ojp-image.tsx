@@ -1,4 +1,4 @@
-import {Component, Host, h, Element, Prop, Event} from '@stencil/core';
+import {Component, Host, h, Watch, Element, Prop, Event} from '@stencil/core';
 
 @Component({
   tag: 'ojp-image',
@@ -14,6 +14,9 @@ export class OjpImage {
    */
     // Used for Intersection Observer
     observer;
+    // Used for loading event
+    img;
+    currentSrc;
   /**
    * 2. Reference to host HTML element.
    * Inlined decorator
@@ -37,12 +40,90 @@ export class OjpImage {
   /**
    * Image src
    * Type: string
-   *
+   * Required: true
+   * Default: null
+   */
+  @Prop({
+    reflect: true,
+    mutable: false,
+  }) src = "";
+
+  /**
+   * Image alt text
+   * Type: string
+   * Default: ""
    */
   @Prop({
     reflect: true,
     mutable: false
-  }) src = "";
+  }) alt = "";
+
+  /**
+   * Loading type (using browser's native lazy loading)
+   * Type: boolean
+   * Default: true
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) lazy = "true";
+
+  /**
+   * Image aspect ratio
+   * Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
+   * Default: null
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) ratio = "auto";
+
+  /**
+   * Image focus/object position
+   * Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position
+   * Default: null
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) imageFocus = "50% 50%";
+
+  /**
+   * Source tags
+   * Type: string array of objects
+   * Default: []
+   * Example: sources='[
+   *           {
+   *             "media":"(max-width: 599px)",
+   *             "srcset":"../../assets/small_700x600.png"
+   *           },
+   *           {
+   *             "media":"(min-width: 600px) and (max-width: 1000px)",
+   *             "srcset":"../../assets/medium_1000x400.png"
+   *           }
+   *         ]'
+   */
+
+  // We need some extra logic in order to parse the string data passed in from the sources attribute into an array of objects// See  https://medium.com/@scottmgerstl/passing-an-object-or-array-to-stencil-dd62b7d92641
+
+  // private array to
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) sources = '';
+  private _sources = [];
+
+  @Watch('sources')
+  sourcesWatcher(newValue) {
+    if (typeof newValue === 'string') {
+      this._sources = JSON.parse(newValue);
+    }
+    else {
+      this._sources = newValue;
+    }
+  }
+
+  // TODO: should width and height be props?
 
 
   /**
@@ -50,12 +131,26 @@ export class OjpImage {
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
    */
+  // TODO: document events
 
   /**
-   * Triggered when the accordion is visible/invisible in the viewport
+   * Triggered when the element is visible/invisible in the viewport
    */
   @Event() elementIsVisibleEvent;
   @Event() elementIsInvisibleEvent;
+
+  /**
+   * Triggered when the image loaded/failed to load
+   */
+  @Event() imageLoadedEvent;
+  @Event() imageFailedToLoadEvent;
+
+  /**
+   * Triggered when the current image source changes
+   * Note: this event is not emitted when the image is loaded for the first time
+   * Emits the previous source and the new source
+   */
+  @Event() imageSourceChangedEvent;
 
 
   /**
@@ -63,14 +158,55 @@ export class OjpImage {
    * Ordered by their natural call order, for example
    * WillLoad should go before DidLoad.
    */
+  componentWillLoad() {
+    if (this.sources) {
+      this.sourcesWatcher(this.sources);
+    }
+  }
+
   componentDidLoad() {
+    // Display console error if no src is provided
+    if (this.src === '' || this.src === null) {
+      console.error('ojp-image src is required', this.el);
+    }
 
     // Create Intersection Observer
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
       this.observer = new IntersectionObserver(this.handleIntersection);
       this.observer.observe(this.el);
     }
+
+    this.img = this.el.shadowRoot.querySelector('img');
+    if (this.img) {
+      this.currentSrc = this.img.currentSrc;
+
+      this.img.addEventListener('load', () => {
+        // Dispatch event when image is loaded
+        this.imageLoadedEvent.emit(this.img);
+
+        if (this.currentSrc !== this.img.currentSrc) {
+          if (this.currentSrc) {
+            // Dispatch event when image source changes (but not on load) (e.g. responsive images)
+            // TODO should we emit the image itself as well?
+            this.imageSourceChangedEvent.emit({
+              previousSrc: this.currentSrc,
+              newSrc: this.img.currentSrc
+            });
+          }
+          this.currentSrc = this.img.currentSrc;
+
+        }
+      });
+
+      // Dispatch event when image fails to load
+      this.img.addEventListener('error', () => {
+        this.imageFailedToLoadEvent.emit(this.img);
+      });
+    }
   }
+
+  // TODO should we add a componentDidUnload() to remove the event listeners?
+
 
   /**
    * 7. Listeners
@@ -79,6 +215,7 @@ export class OjpImage {
    * starting a listener method with "on".
    * Always use two lines.
    */
+  // N/A
 
 
   /**
@@ -88,6 +225,7 @@ export class OjpImage {
    * Public Methods must be async.
    * Requires JSDocs for public API documentation.
    */
+  // N/A
 
 
   /**
@@ -95,7 +233,6 @@ export class OjpImage {
    * Internal business logic. These methods cannot be
    * called from the host element.
    */
-
 
   // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
@@ -117,7 +254,23 @@ export class OjpImage {
   render() {
     return (
       <Host>
-        <img src={this.src} />
+        <picture>
+          {this._sources.map((source) => {
+            return <source
+              srcSet={source.srcset}
+              media={source.media}
+            />
+          })}
+          <img
+            src={this.src}
+            alt={this.alt}
+            {...(this.lazy === 'true' ? {loading: 'lazy'} : {loading: 'eager'})}
+            style={{
+              aspectRatio: this.ratio,
+              objectPosition: this.imageFocus
+            }}
+          />
+        </picture>
       </Host>
     );
   }
