@@ -73,7 +73,7 @@
 
 
 ::slotted([slot="content"]) {
-  max-width: var(--ojp-modal--max-content-width);
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -122,8 +122,8 @@ input[type="reset"] {
 
 ::slotted([slot="close-icon"]) {
   cursor: pointer;
-  height: var(--ojp-modal--close-icon-height);
-  width: var(--ojp-modal--close-icon-width);
+  height: 40px;
+  width: 40px;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
