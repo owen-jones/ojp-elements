@@ -35,35 +35,69 @@ export class OjpModal {
 
   @State() isOverflowing = false;
 
+  getAllFocusableElements(parent) {
+    if (!parent) {
+      console.warn('You need to pass a parent HTMLElement');
+      return []; // Return array so length queries will work
+    }
+
+    return parent.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
+    );
+  };
+
+  findLastElement(node) {
+    if(!node.children || node.children.length === 0) {
+      return node instanceof HTMLElement ? node : node[0];
+    }
+
+    return this.findLastElement(node.children[node.children.length - 1]);
+  }
+
   /**
    * Methods to open, close modal
    */
   @Method()
   async openModal() {
+    //reveal the modal element
+    this.dialogElement.addEventListener('transitionend', (e) => {
+      const firstElement = e.target.querySelector('.close-button');
+      if(firstElement) {
+        firstElement.focus();
+      }
+    });
     this.dialogElement.showModal();
+
+    // When this invisible button gains focus, you know
+    // you reached the end of the content area. Return
+    // focus to the top fo the modal
+    this.focusTrapListener = () => {
+      this.closeButton.focus();
+    }
+    this.focusTrap.addEventListener('focusin', this.focusTrapListener);
+
     this.open = true;
     this.el.dispatchEvent(new CustomEvent('open'));
     this.el.setAttribute('aria-hidden', false);
+
     this.keystrokeListener = (e) => {
       switch (e.key) {
         case 'Escape':
           e.preventDefault();
           this.closeModal();
           break;
-        // case 'Tab':
-        //   if (!(this.el && this.modalContent)) {
-        //     console.error('Please make sure content slot is defined using the slot="content" attribute');
-        //     break;
-        //   }
-        //   if (!document.hasFocus() || this.modalContent.contains(e.target)) {
-        //     e.preventDefault();
-        //     this.closeButton.focus();
-        //   }
-        //   break;
-        // default:
+        case 'Tab':
+          if(e.shiftKey && this.el.shadowRoot.activeElement && this.el.shadowRoot.activeElement.isEqualNode(this.closeButton)) {
+            const focusableElements = this.getAllFocusableElements(this.modalContent);
+            if(focusableElements.length > 0) {
+              const lastElement = focusableElements[focusableElements.length - 1];
+              lastElement.focus();
+            }
+          }
+          break;
       }
     }
-    document.addEventListener('keydown', this.keystrokeListener);
+    this.el.addEventListener('keydown', this.keystrokeListener);
   }
 
   /**
@@ -87,9 +121,9 @@ export class OjpModal {
   async closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
-    this.el.focus();
     this.el.setAttribute('aria-hidden', true);
-    document.removeEventListener('keydown', this.keystrokeListener);
+    this.el.removeEventListener('keydown', this.keystrokeListener);
+    this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
   }
 
@@ -120,6 +154,7 @@ export class OjpModal {
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
     this.dialogElement = this.el.shadowRoot.querySelector('#dialog-element');
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
+    this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {
@@ -138,12 +173,6 @@ export class OjpModal {
     }
 
     this.updateOverflowState();
-  }
-
-  componentDidRender() {
-    if (this.open) {
-      this.closeButton.focus();
-    }
   }
 
   render() {
@@ -169,6 +198,7 @@ export class OjpModal {
             <div class='ojp-modal-panel'>
               <div class={'slot-container'}>
                 <slot name="content" id="modal-content"></slot>
+                <button id="focus-trap"/>
               </div>
               <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
               <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
