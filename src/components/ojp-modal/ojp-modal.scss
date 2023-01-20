@@ -79,8 +79,8 @@
 
 .ojp-modal-overflow--top {
   grid-area: 1/1/2/2;
-  height: var(--space-l-xl);
-  transform: rotate(180deg) translateY(calc(var(--space-l-xl) / 2));
+  height: var(--ojp-modal--overflow-gradient-height);
+  transform: rotate(180deg) translateY(var(--ojp-modal--overflow-gradient-offset));
   width: 100%;
   z-index: 0;
 }
@@ -88,7 +88,8 @@
 .ojp-modal-overflow--bottom {
   grid-area: 3 / 1 / 4 / 2;
   height: var(--space-l-xl);
-  transform: translateY(calc(var(--space-l-xl) / 2));
+  transform: translateY(var(--ojp-modal--overflow-gradient-offset));
+  visibility: var(--ojp-modal--overflow-gradient-visibility);
   width: 100%;
 }
 
