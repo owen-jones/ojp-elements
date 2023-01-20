@@ -50,7 +50,7 @@
         color: white;
         display: flex;
         font-size: 16px;
-        margin-top: var(--space-s-m); 
+        margin-top: var(--space-s-m);
       }
 
       #demo-form {
@@ -90,7 +90,7 @@
 
     <br/>
 
-    
+
     <div class="ojp-modal-button">
       Modal 2 example with embedded video and default close button:
       <button class="open-modal-2">
@@ -195,6 +195,18 @@
         </svg>
       </div>
     </ojp-modal>
+    <div style='width: 100%;height: 100vh'></div>
+    <h2>This content is here just to take up space for testing</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <button id='open-scroll-test-modal-button'>Open A Modal</button>
+    <ojp-modal id='modal-4'>
+      <div slot='content'>
+        <h1>This is a test</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </ojp-modal>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </body>
 
   <script>
@@ -207,6 +219,10 @@
     let modal3 = document.querySelector('#ojp-modal-3');
     let openModal3Button = document.querySelector(".open-modal-3");
 
+    let modal4 = document.querySelector('#modal-4');
+    let openModal4Button = document.querySelector('#open-scroll-test-modal-button');
+
+
     openModal1Button.addEventListener('click', () => {
       modal1.openModal();
     });
@@ -217,6 +233,10 @@
 
     openModal3Button.addEventListener('click', () => {
       modal3.openModal();
+    });
+
+    openModal4Button.addEventListener('click', () => {
+      modal4.openModal();
     });
 
     // Example of events being fired by modal 1

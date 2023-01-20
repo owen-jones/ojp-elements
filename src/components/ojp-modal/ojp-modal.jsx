@@ -70,6 +70,23 @@ export class OjpModal {
     document.addEventListener('keydown', this.keystrokeListener);
   }
 
+  /**
+   * This fixes the position of the body (background)
+   * to prevent it from being moved when the user
+   * touches and scrolls the overlay
+   */
+  toggleBodyScrolling(isVisible) {
+    if(isVisible) {
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.position = 'fixed';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }
+
   @Method()
   async closeModal() {
     this.open = false;
@@ -133,6 +150,7 @@ export class OjpModal {
   }
 
   render() {
+    this.toggleBodyScrolling(this.open);
     return (
       <Host>
         <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
