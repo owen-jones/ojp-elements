@@ -40,9 +40,9 @@ export class OjpModal {
    */
   @Method()
   async openModal() {
+    this.dialogElement.showModal();
     this.open = true;
     this.el.dispatchEvent(new CustomEvent('open'));
-    this.closeButton.focus();
     this.el.setAttribute('aria-hidden', false);
     this.keystrokeListener = (e) => {
       switch (e.key) {
@@ -50,23 +50,19 @@ export class OjpModal {
           e.preventDefault();
           this.closeModal();
           break;
-        case 'Tab':
-          if (!(this.el && this.modalContent)) {
-            console.error('Please make sure content slot is defined using the slot="content" attribute');
-            break;
-          }
-          if (!document.hasFocus() || this.modalContent.contains(e.target)) {
-            e.preventDefault();
-            this.closeButton.focus();
-          }
-          break;
-        default:
+        // case 'Tab':
+        //   if (!(this.el && this.modalContent)) {
+        //     console.error('Please make sure content slot is defined using the slot="content" attribute');
+        //     break;
+        //   }
+        //   if (!document.hasFocus() || this.modalContent.contains(e.target)) {
+        //     e.preventDefault();
+        //     this.closeButton.focus();
+        //   }
+        //   break;
+        // default:
       }
-
-      // do nothing
-
     }
-
     document.addEventListener('keydown', this.keystrokeListener);
   }
 
@@ -94,6 +90,7 @@ export class OjpModal {
     this.el.focus();
     this.el.setAttribute('aria-hidden', true);
     document.removeEventListener('keydown', this.keystrokeListener);
+    this.dialogElement.close();
   }
 
   @Listen('resize', {target: 'window'})
@@ -117,12 +114,11 @@ export class OjpModal {
   }
 
   componentDidLoad() {
-
     this.contentSlot = this.el.shadowRoot.querySelector("slot[name='content']");
     this.modalContent = this.el.querySelector("[slot='content']");
     this.slotContainer = this.el.shadowRoot.querySelector('.slot-container');
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
-
+    this.dialogElement = this.el.shadowRoot.querySelector('#dialog-element');
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
@@ -153,32 +149,32 @@ export class OjpModal {
   render() {
     this.toggleBodyScrolling(this.open);
     return (
-      <Host>
-        <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
-          <div class='ojp-modal-overlay' />
-          <div class='ojp-modal-close'>
-            <button class='close-button' tabindex='0' title="Close the modal">
-              <slot name='close-icon'>
-                <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>
-              </slot>
-            </button>
-          </div>
-          <div class='ojp-modal-panel'
-            id="alert-modal"
-            role="alertdialog"
+      <dialog id="dialog-element"
+               role="dialog"
+              tabindex="-1"
             aria-modal="true"
-            aria-labelledby="dialog_label"
-            aria-describedby="dialog_desc"
-            tabindex="-1"
-          >
-            <div class={'slot-container'}>
-              <slot name="content"></slot>
+            aria-label="Modal dialog window"
+            aria-details="modal-content"
+            aria-hidden={!this.open}>
+
+          <div class={this.open ? "ojp-modal-wrapper is-open" : "ojp-modal-wrapper"}>
+            <div class='ojp-modal-overlay' />
+            <div class='ojp-modal-close'>
+              <button class='close-button' title="Close the modal window">
+                <slot name='close-icon'>
+                  <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px"><path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" /></svg>
+                </slot>
+              </button>
             </div>
-            <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
-            <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
+            <div class='ojp-modal-panel'>
+              <div class={'slot-container'}>
+                <slot name="content" id="modal-content"></slot>
+              </div>
+              <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
+              <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
+            </div>
           </div>
-        </div>
-      </Host>
+      </dialog>
     );
   }
 }
