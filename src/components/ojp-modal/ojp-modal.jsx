@@ -108,11 +108,12 @@ export class OjpModal {
     }
 
     let slotContentHeight = 0;
+    const slotContentTolerance = 30;
     this.contentSlot.assignedElements().forEach(element => {
       slotContentHeight += element.getBoundingClientRect().height;
     });
 
-    this.isOverflowing = (slotContentHeight > this.slotContainer.getBoundingClientRect().height);
+    this.isOverflowing = (slotContentHeight + slotContentTolerance > this.slotContainer.getBoundingClientRect().height);
   }
 
   componentDidLoad() {

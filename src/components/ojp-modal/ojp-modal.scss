@@ -57,7 +57,6 @@
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: auto;
-    padding-bottom: calc(var(--space-l-xl) / 2);
     scrollbar-width: none;
   }
 
