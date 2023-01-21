@@ -198,7 +198,7 @@ export class OjpModal {
             <div class='ojp-modal-panel'>
               <div class={'slot-container'}>
                 <slot name="content" id="modal-content"></slot>
-                <button id="focus-trap"/>
+                <button id="focus-trap" class="focus-trap"/>
               </div>
               <div class={`ojp-modal-overflow--top ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>
               <div class={`ojp-modal-overflow--bottom ${this.isOverflowing ? 'overflow-gradient--visible' : ''}`}></div>

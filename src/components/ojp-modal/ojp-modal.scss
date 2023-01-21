@@ -127,7 +127,15 @@ dialog {
 }
 
 :focus-visible {
+  outline: Highlight auto 1px;
   outline: -webkit-focus-ring-color auto 1px;
+}
+
+.focus-trap {
+  border: 0;
+  height: 0;
+  padding: 0;
+  width: 0;
 }
 
 // Fade css class
