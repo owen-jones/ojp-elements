@@ -50,7 +50,7 @@ dialog {
   grid-template-rows: var(--ojp-modal--inner-vertical-padding) 1fr var(--ojp-modal--inner-vertical-padding);
   grid-area: var(--ojp-modal--panel-grid-area);
   height: auto;
-  overflow-y: auto;
+  overflow: hidden;
   padding-top: var(--ojp-modal--padding-top-bottom);
   padding-bottom: var(--ojp-modal--padding-top-bottom);
   padding-left: var(--ojp-modal--padding-inline);

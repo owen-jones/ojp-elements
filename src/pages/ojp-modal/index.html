@@ -43,7 +43,7 @@
       .example-module-container {
         display: flex;
         flex-direction: column;
-        height: 100%;
+        height: 90%;
         margin-top: 50px;
         min-height: 400px;
         width: auto;
@@ -53,7 +53,7 @@
         border-radius: 0px;
         height: 100%;
         min-height: inherit;
-        width: 100%; 
+        width: 100%;
       }
 
       .video-caption {
@@ -85,7 +85,7 @@
           --ojp-modal--padding-inline: var(--space-s-m);
           --ojp-modal--padding-top-bottom: 0;
         }
-      
+
         .example-module-container iframe {
           border-radius: 15px;
         }
@@ -149,12 +149,10 @@
       </button>
     </div>
     <ojp-modal id="ojp-modal-2" closebuttonoutside>
-      <div slot="content">
-        <div class="example-module-container">
-          <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe>
-          <div class="video-caption">
-            This is a caption for the embedded video.
-          </div>
+      <div class="example-module-container" slot="content">
+        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe>
+        <div class="video-caption">
+          This is a caption for the embedded video.
         </div>
       </div>
       <div class="close-icon-2" slot="close-icon">
