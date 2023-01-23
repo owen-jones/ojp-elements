@@ -104,6 +104,7 @@ ojp-modal {
   --ojp-modal--padding-inline: var(--space-s-3xl); // Public
   --ojp-modal--padding-top-bottom: var(--space-2xl); // Public
   --ojp-modal--close-icon-margin: var(--space-s-m); // Public
+  --ojp-modal--inner-vertical-padding: 0; // Public
   --ojp-modal--outer-horizontal-padding: 0; // Public
   --ojp-modal--outer-vertical-padding: 0; // Public
   --ojp-modal--panel-border-radius: 0; // Public
@@ -127,6 +128,7 @@ ojp-modal {
 @supports (--breakpoint("tablet")) {
   ojp-modal {
     // Public
+    --ojp-modal--inner-vertical-padding: var(--space-l-xl);
     --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
     --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
     --ojp-modal--outer-vertical-padding: var(--space-l-xl);

@@ -47,7 +47,7 @@ dialog {
   border-radius: var(--ojp-modal--panel-border-radius);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: var(--space-l-xl) 1fr var(--space-l-xl);
+  grid-template-rows: var(--ojp-modal--inner-vertical-padding) 1fr var(--ojp-modal--inner-vertical-padding);
   grid-area: var(--ojp-modal--panel-grid-area);
   height: auto;
   overflow-y: auto;
