@@ -53,9 +53,7 @@ The \`<ojp-modal>\` element comes with some methods that developers can use to m
 
 ## "closeModal()":
 
-This method closes the modal. The function is handled under the hood and is triggered on 1. Clicking the close button 2. Clicking outside the modal 3. Clicking the escape key while the modal is open
-
-**Usage**:
+This method closes the modal. The function is triggered on 1. Clicking the close button 2. Clicking outside the modal 3. Clicking the escape key while the modal is open. The functionality is handled under the hood.
 
 ## "openModal()":
 
@@ -70,7 +68,7 @@ myModalButton.addEventListener('click', event => {
 
 
 # Events:
-The event \`open\` is triggered when this modal is opened. You can listen to this in your JavaScript to be notified when this item is opened."
+The event \`open\` is triggered when this modal is opened. You can listen to this in your JavaScript to be notified when this item is opened.
 
 > **Usage**:
 
@@ -79,7 +77,7 @@ myModal.addEventListener('open', event => {
     //do something
 });                \`
 
-The event \`close\` is triggered when this modal is opened. You can listen to this in your JavaScript to be notified when this item is closed."
+The event \`close\` is triggered when this modal is closed. You can listen to this in your JavaScript to be notified when this item is closed.
 
 > **Usage**:
 
@@ -117,6 +115,11 @@ Specifies the horizontal distance between the edge of the screen and the edge of
 Specifies the vertical distance between the edge of the screen and the edge of the modal. Affects tablet and larger screens.
 
 >  **Usage**: \`--ojp-modal--outer-vertical-padding: 0;\`
+
+## "--ojp-modal--inner-vertical-padding":
+Specifies the vertical distance between the edge of the modal and the top edge of the inner content. Affects tablet and larger screens.
+
+>  **Usage**: \`--ojp-modal--inner-vertical-padding: 0;\`
 
 ## "--ojp-modal--panel-border-radius":
 Specifies the border radius of the modal panel.
