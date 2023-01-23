@@ -47,7 +47,7 @@ dialog {
   border-radius: var(--ojp-modal--panel-border-radius);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: var(--space-l-xl) 1fr var(--space-l-xl);
+  grid-template-rows: var(--ojp-modal--inner-vertical-padding) 1fr var(--ojp-modal--inner-vertical-padding);
   grid-area: var(--ojp-modal--panel-grid-area);
   height: auto;
   overflow-y: auto;
@@ -76,12 +76,6 @@ dialog {
 
 .ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
   display: none;
-}
-
-
-::slotted([slot="content"]) {
-  max-width: var(--ojp-modal--max-content-width);
-  margin: 0 auto;
 }
 
 .ojp-modal-overflow--top {
@@ -124,6 +118,10 @@ dialog {
   justify-content: center;
   outline: none;
   padding: 0;
+}
+
+.ojp-modal-wrapper .ojp-modal-close .close-button {
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
 :focus-visible {

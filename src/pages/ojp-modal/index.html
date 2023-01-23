@@ -17,57 +17,111 @@
       }
 
       #ojp-modal-2 {
-        --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
+        --ojp-modal--outer-horizontal-padding: 0;
         --ojp-modal--overlay-color: rgba(0, 0, 0, 0.8);
+        --ojp-modal--outer-vertical-padding: 0;
+        --ojp-modal--padding-inline: 0;
         --ojp-modal--panel-color: transparent;
-        --ojp-modal--padding-top-bottom: var(--space-l-xl);
-        --ojp-modal--padding-inline: var(--space-s-m);
       }
 
       .close-icon-2 {
         border-radius: 50%;
         background: white;
-        padding: 2px 0 0;
+        height: 40px;
+        width: 40px;
+      }
+
+      #ojp-modal-2 > div.close-icon-2 > svg {
+        display: block;
+      }
+
+      #ojp-modal-2 > div.close-icon-2 > svg > circle {
+        height: 40px;
+        width: 40px;
       }
 
       .example-module-container {
         display: flex;
         flex-direction: column;
         height: 100%;
+        margin-top: 50px;
         min-height: 400px;
         width: auto;
-        margin-top: 50px;
       }
 
       .example-module-container iframe {
+        border-radius: 0px;
         height: 100%;
         min-height: inherit;
-        width: 100%;
+        width: 100%; 
       }
 
       .video-caption {
-        align-self: center;
         color: white;
         display: flex;
         font-size: 16px;
         margin-top: var(--space-s-m);
+        margin-left: var(--space-s-m);
       }
 
-      #demo-form textarea{
+      #demo-form textarea {
         max-height: 30%;
         max-width: 90%;
         width: 90%;
       }
 
       #ojp-modal-3 {
-        --ojp-modal--outer-horizontal-padding: var(--space-m-4xl);
+        --ojp-modal--outer-horizontal-padding: 0;
+      }
+
+      @media (min-width: 768px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 150px;
+        }
+
+        #ojp-modal-2 {
+          --ojp-modal--inner-vertical-padding: 0;
+          --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
+          --ojp-modal--padding-inline: var(--space-s-m);
+          --ojp-modal--padding-top-bottom: 0;
+        }
+      
+        .example-module-container iframe {
+          border-radius: 15px;
+        }
+
+        .video-caption {
+          margin-left: 0;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 300px;
+        }
+
+        .example-module-container {
+          min-height: 500px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 400px;
+        }
+      }
+
+      @media (min-width : 1820px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 600px;
+        }
       }
     </style>
   </head>
   <body>
 
     <div class="ojp-modal-button">
-      Modal 1 example with custom close button outside, normal layout on desktop:
+      Modal 1 example with custom close button outside (normal, wide layout):
       <button class="open-modal-1">
         Open Modal
       </button>
@@ -88,24 +142,23 @@
 
     <br/>
 
-
     <div class="ojp-modal-button">
       Modal 2 example with embedded video and default close button:
       <button class="open-modal-2">
         Open Modal 2 with close inside, video
       </button>
     </div>
-    <ojp-modal id="ojp-modal-2" closebuttonoutside="closebuttonoutside">
+    <ojp-modal id="ojp-modal-2" closebuttonoutside>
       <div slot="content">
         <div class="example-module-container">
-            <iframe src="https://player.vimeo.com/video/713606356?h=372d22e460" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
+          <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe>
           <div class="video-caption">
             This is a caption for the embedded video.
           </div>
         </div>
       </div>
       <div class="close-icon-2" slot="close-icon">
-        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
           <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2"/>
         </svg>
@@ -114,7 +167,7 @@
 
     <br/>
     <div class="ojp-modal-button">
-      Modal 3 example with form and extra desktop padding:
+      Modal 3 example with form (narrow):
       <button class="open-modal-3">
         Open Modal
       </button>
@@ -219,7 +272,6 @@
 
     let modal4 = document.querySelector('#modal-4');
     let openModal4Button = document.querySelector('#open-scroll-test-modal-button');
-
 
     openModal1Button.addEventListener('click', () => {
       modal1.openModal();
