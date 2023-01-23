@@ -98,6 +98,8 @@ export class OjpModal {
       }
     }
     this.el.addEventListener('keydown', this.keystrokeListener);
+
+    this.toggleBodyScrolling(true);
   }
 
   /**
@@ -125,6 +127,7 @@ export class OjpModal {
     this.el.removeEventListener('keydown', this.keystrokeListener);
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
+    this.toggleBodyScrolling(false);
   }
 
   @Listen('resize', {target: 'window'})
@@ -176,7 +179,6 @@ export class OjpModal {
   }
 
   render() {
-    this.toggleBodyScrolling(this.open);
     return (
       <dialog id="dialog-element"
                role="dialog"
