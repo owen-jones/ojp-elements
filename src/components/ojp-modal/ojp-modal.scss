@@ -1,27 +1,35 @@
-:host {
-  // Overlay color with opacity
-  --ojp-modal--overlay-color: rgba(0, 0, 0, 0.6);
-  display: block;
-  font-family: sans-serif;
-}
 
+dialog {
+  background-color: transparent;
+  border: none;
+  display: block;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
+  visibility: hidden;
+  width: 100%;
+
+  &[open] {
+    opacity: 1;
+    transition: opacity 0.1s linear 0.2s, visibility 0s linear 0.2s;
+    visibility: visible;
+  }
+
+  &::backdrop {
+    display: none;
+  }
+}
 
 .ojp-modal-wrapper {
   bottom: 0;
   display: grid;
-  // Custom modification option example
-  // grid-template-columns: var(--space-s-3xl) 1fr var(--space-s-3xl);
-  // grid-template-columns: var(--space-4xl) 1fr var(--space-4xl);
   grid-template-columns: var(--ojp-modal--outer-horizontal-padding) 1fr var(--ojp-modal--outer-horizontal-padding);
   grid-template-rows: max-content var(--ojp-modal--outer-vertical-padding) 1fr var(--ojp-modal--outer-vertical-padding);
   height: 100%;
   left: 0;
-  opacity: 0;
   position: fixed;
   right: 0;
   top: 0;
-  transition: visibility 0s linear 0.2s, opacity 0.2s, transform 0.2s;
-  visibility: hidden;
   width: 100%;
   z-index: 10;
 }
@@ -57,7 +65,6 @@
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: auto;
-    padding-bottom: calc(var(--space-l-xl) / 2);
     scrollbar-width: none;
   }
 
@@ -79,8 +86,8 @@
 
 .ojp-modal-overflow--top {
   grid-area: 1/1/2/2;
-  height: var(--space-l-xl);
-  transform: rotate(180deg) translateY(calc(var(--space-l-xl) / 2));
+  height: var(--ojp-modal--overflow-gradient-height);
+  transform: rotate(180deg) translateY(var(--ojp-modal--overflow-gradient-offset));
   width: 100%;
   z-index: 0;
 }
@@ -88,7 +95,8 @@
 .ojp-modal-overflow--bottom {
   grid-area: 3 / 1 / 4 / 2;
   height: var(--space-l-xl);
-  transform: translateY(calc(var(--space-l-xl) / 2));
+  transform: translateY(var(--ojp-modal--overflow-gradient-offset));
+  visibility: var(--ojp-modal--overflow-gradient-visibility);
   width: 100%;
 }
 
@@ -97,9 +105,8 @@
 }
 
 // Close button
-div>div.ojp-modal-close {
-  align-items: flex-start;
-  display: inline-flex;
+.ojp-modal-close {
+  align-self: flex-start;
   grid-area: var(--ojp-modal--close-grid-area);
   justify-self: flex-end;
   margin-right: var(--ojp-modal--close-icon-margin);
@@ -108,44 +115,33 @@ div>div.ojp-modal-close {
 }
 
 // Reset close button styling
-button,
-input[type="submit"],
-input[type="reset"] {
+.close-button {
+  align-items: center;
   background: none;
   border: none;
-  color: inherit;
   cursor: pointer;
-  font: inherit;
-  outline: inherit;
+  display: flex;
+  justify-content: center;
+  outline: none;
   padding: 0;
 }
 
-::slotted([slot="close-icon"]) {
-  cursor: pointer;
-  height: var(--ojp-modal--close-icon-height);
-  width: var(--ojp-modal--close-icon-width);
+:focus-visible {
+  outline: Highlight auto 1px;
+  outline: -webkit-focus-ring-color auto 1px;
 }
 
-.ojp-modal-wrapper .ojp-modal-close .close-button {
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
-}
-
-.ojp-modal-wrapper .ojp-modal-close .close-button:focus {
-  border: 3px dashed hotpink;
+.focus-trap {
+  border: 0;
+  height: 0;
+  padding: 0;
+  width: 0;
 }
 
 // Fade css class
 // Fade background CSS
 .modal-fade {
   background: --ojp-modal--overflow-gradient;
-}
-
-
-// Active open modal styles
-.is-open {
-  opacity: 1;
-  visibility: visible;
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
 // Close button inside modal panel
