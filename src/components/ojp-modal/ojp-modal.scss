@@ -78,12 +78,6 @@ dialog {
   display: none;
 }
 
-
-::slotted([slot="content"]) {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
 .ojp-modal-overflow--top {
   grid-area: 1/1/2/2;
   height: var(--ojp-modal--overflow-gradient-height);
@@ -124,10 +118,6 @@ dialog {
   justify-content: center;
   outline: none;
   padding: 0;
-}
-
-::slotted([slot="close-icon"]) {
-  cursor: pointer;
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
