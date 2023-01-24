@@ -25,21 +25,14 @@
         --ojp-modal--panel-color: transparent;
       }
 
-      .close-icon-1, .close-icon-2, .close-icon-3 {
+      .close-icon-1,
+      .close-icon-2,
+      .close-icon-3 {
         border-radius: 50%;
         display: flex;
         height: 44px;
         justify-content: center;
         width: 44px;
-      }
-
-      #ojp-modal-2 > div.close-icon-2 > svg {
-        display: block;
-      }
-
-      #ojp-modal-2 > div.close-icon-2 > svg > circle {
-        height: 40px;
-        width: 40px;
       }
 
       .example-module-container {
@@ -51,7 +44,7 @@
       }
 
       .example-module-container iframe {
-        border-radius: 0px;
+        border-radius: 0;
         height: 100%;
         min-height: inherit;
         width: 100%;
@@ -75,7 +68,9 @@
         --ojp-modal--outer-horizontal-padding: 0;
       }
 
-      {# tablet media queries #}
+      {
+        # tablet media queries #
+      }
       @media (min-width: 768px) {
         #ojp-modal-1 {
           --ojp-modal--outer-horizontal-padding: 50px;
@@ -100,7 +95,9 @@
         }
       }
 
-      {# laptop media queries #}
+      {
+        # laptop media queries #
+      }
       @media (min-width: 1024px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 300px;
@@ -111,14 +108,18 @@
         }
       }
 
-      {# desktop media queries #}
+      {
+        # desktop media queries #
+      }
       @media (min-width: 1280px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 400px;
         }
       }
 
-      {# large desktop media queries #}
+      {
+        # large desktop media queries #
+      }
       @media (min-width : 1820px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 600px;
