@@ -21,36 +21,30 @@
         --ojp-modal--overlay-color: rgba(0, 0, 0, 0.8);
         --ojp-modal--outer-vertical-padding: 0;
         --ojp-modal--padding-inline: 0;
+        --ojp-modal--padding-top-bottom: 0;
         --ojp-modal--panel-color: transparent;
       }
 
-      .close-icon-2 {
+      .close-icon-1,
+      .close-icon-2,
+      .close-icon-3 {
         border-radius: 50%;
-        background: white;
-        height: 40px;
-        width: 40px;
-      }
-
-      #ojp-modal-2 > div.close-icon-2 > svg {
-        display: block;
-      }
-
-      #ojp-modal-2 > div.close-icon-2 > svg > circle {
-        height: 40px;
-        width: 40px;
+        display: flex;
+        height: 44px;
+        justify-content: center;
+        width: 44px;
       }
 
       .example-module-container {
         display: flex;
         flex-direction: column;
-        height: 90%;
-        margin-top: 50px;
-        min-height: 400px;
+        height: 80%;
+        margin-top: var(--space-s-m);
         width: auto;
       }
 
       .example-module-container iframe {
-        border-radius: 0px;
+        border-radius: 0;
         height: 100%;
         min-height: inherit;
         width: 100%;
@@ -74,16 +68,22 @@
         --ojp-modal--outer-horizontal-padding: 0;
       }
 
+      {
+        # tablet media queries #
+      }
       @media (min-width: 768px) {
-        #ojp-modal-3 {
-          --ojp-modal--outer-horizontal-padding: 150px;
+        #ojp-modal-1 {
+          --ojp-modal--outer-horizontal-padding: 50px;
         }
 
         #ojp-modal-2 {
           --ojp-modal--inner-vertical-padding: 0;
           --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
           --ojp-modal--padding-inline: var(--space-s-m);
-          --ojp-modal--padding-top-bottom: 0;
+        }
+
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 150px;
         }
 
         .example-module-container iframe {
@@ -95,6 +95,9 @@
         }
       }
 
+      {
+        # laptop media queries #
+      }
       @media (min-width: 1024px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 300px;
@@ -105,12 +108,18 @@
         }
       }
 
+      {
+        # desktop media queries #
+      }
       @media (min-width: 1280px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 400px;
         }
       }
 
+      {
+        # large desktop media queries #
+      }
       @media (min-width : 1820px) {
         #ojp-modal-3 {
           --ojp-modal--outer-horizontal-padding: 600px;
@@ -131,11 +140,11 @@
         Open Modal
       </button>
     </div>
-    <ojp-modal id="ojp-modal-1">
+    <ojp-modal id="ojp-modal-1" closebuttonoutside>
       <div slot="close-icon" class="close-icon-1">
         <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
-          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2"/>
         </svg>
       </div>
       <div slot="content">
@@ -161,9 +170,9 @@
         </div>
       </div>
       <div class="close-icon-2" slot="close-icon">
-        <svg width="40" height="40" viewbox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
-          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2"/>
         </svg>
       </div>
     </ojp-modal>
@@ -242,7 +251,7 @@
 
         </form>
       </div>
-      <div class="close-icon-2" slot="close-icon">
+      <div class="close-icon-3" slot="close-icon">
         <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
           <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2"/>
