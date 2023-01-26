@@ -9,10 +9,14 @@ export default {
 The \`<ojp-modal>\` element will render a simple modal. Content can be added to the modal using the \`<div slot="content">\` element.
 
 # Usage:
-Implement the modal using \`<ojp-modal>\` referring to the following example.
+Implement the default modal using \`<ojp-modal>\` referring to the following example.
 
 \`
-<ojp-modal>
+<ojp-modal id="my-demo-modal">
+        <div slot="content">
+            <h1>Awesome Headline</h1>
+        </div>
+</ojp-modal>
 \`
 
 ### Slots:
@@ -24,6 +28,17 @@ This is the slot name given to the close icon section of the modal. Defaults to 
 This is the slot name given to the panel/content section of the modal. This will be the content under the 'slot-container' section.
 
 > ### These can be used to specify which section of your markup is the \`close-icon\` or the \`content\` section.
+
+## Usage with custom close icon:
+\`<div slot="close-icon" class="close-icon-1">
+    <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+    </svg>
+</div>
+<div slot="content">
+    <h1>Awesome Headline</h1>
+</div>\`
 
 <br>
 
@@ -39,12 +54,7 @@ This option specifies the state of the modal's close icon on page load, and can 
 >  **Usage**:
 \`<ojp-modal closebuttonoutside>\`
 
-# Non-modifiable Attributes:
-
-\` \`
-
-
-# Non-modifiable Methods (cannot be modified through props):
+# Public Methods (cannot be modified through props):
 The \`<ojp-modal>\` element comes with some methods that developers can use to modify the behavior of the modal.
 
 
@@ -102,27 +112,27 @@ Specifies the vertical distance of the inset content from the edges of the modal
 >  **Usage**: \`--ojp-modal--padding-top-bottom: var(--space-2xl);\`
 
 ## "--ojp-modal--close-icon-margin":
-Specifies the distance of the close icon from the corner of the modal. User-specified value overrides a top and right margin.
+Specifies the distance of the close icon from the top right corner of the modal. User-specified value overrides a top and right margin.
 
 >  **Usage**: \`--ojp-modal--close-icon-margin: var(--space-s-m);\`
 
 ## "--ojp-modal--outer-horizontal-padding":
-Specifies the horizontal distance between the edge of the screen and the edge of the modal. Affects tablet and larger screens.
+Specifies the horizontal distance between the edges of the screen and the edges of the modal. Affects tablet and larger screens.
 
 >  **Usage**: \`--ojp-modal--outer-horizontal-padding: 0;\`
 
 ## "--ojp-modal--outer-vertical-padding":
-Specifies the vertical distance between the edge of the screen and the edge of the modal. Affects tablet and larger screens.
+Specifies the vertical distance between the edges of the screen and the edges of the modal. Affects tablet and larger screens.
 
 >  **Usage**: \`--ojp-modal--outer-vertical-padding: 0;\`
 
 ## "--ojp-modal--inner-vertical-padding":
-Specifies the vertical distance between the edge of the modal and the top edge of the inner content. Affects tablet and larger screens.
+Specifies the vertical distance between the edges of the modal and the edges of the inner content. Affects tablet and larger screens.
 
 >  **Usage**: \`--ojp-modal--inner-vertical-padding: 0;\`
 
 ## "--ojp-modal--panel-border-radius":
-Specifies the border radius of the modal panel.
+Specifies the border radius of the modal panel. Affects tablet and larger screens.
 
 >  **Usage**: \`--ojp-modal--panel-border-radius: 15px;\`
 
@@ -145,7 +155,13 @@ Specifies the color of the modal panel.
 Specifies the color of the dark overlay for the modal.
 
 >  **Usage**: \`--ojp-modal--overlay-color: rgba(0, 0, 0, 0.6); \`
-                `
+
+## "--ojp-modal--overflow-gradient":
+Specifies the color of the top and bottom overlays for overflowing content inside the modal.
+
+> **Usage**: \`--ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);\`
+                
+`
             }
         }
     },
@@ -174,27 +190,32 @@ const TemplateModal = (args) => `
 
   <!-- Start component code -->
   <ojp-row>
-  <ojp-col span="10" start="2">
-  <button id="my-modal-button">Open Modal</button>
-     <ojp-modal id="my-demo-modal" ${args.closebuttonoutside?'closebuttonoutside':''}>
-      <div slot="content">
-      Test text
-      </div>
-     </ojp-modal>
-  </ojp-col>
+    <ojp-col span="10" start="2">
+        <button id="my-modal-button">Open Modal</button>
+        <ojp-modal id="my-demo-modal" ${args.closebuttonoutside ? 'closebuttonoutside' : ''}>
+            <div slot="close-icon" class="close-icon-1">
+                <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+                </svg>
+            </div>
+            <div slot="content">
+                <h1>Awesome Headline</h1>
+                Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus
+                <button>Hello</button>
+            </div>
+        </ojp-modal>
+    </ojp-col>
   </ojp-row>
 
   <script>
-  let myDemoModal = document.querySelector('#my-demo-modal');
-  let openDemoModalButton = document.querySelector("#my-modal-button");
-
-  openDemoModalButton.addEventListener('click', () => {
-      myDemoModal.openModal();
+    document.querySelector("#my-modal-button").addEventListener('click', () => {
+        document.querySelector('#my-demo-modal').openModal();
     });
   </script>
   `;
 
 export const OjpModal = TemplateModal.bind({});
 OjpModal.args = {
-    closebuttonoutside: '',
+    closebuttonoutside: false,
 }
