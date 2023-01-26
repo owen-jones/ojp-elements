@@ -25,7 +25,7 @@ The modal element uses \`slots\` to place content properly in the component tree
 ## \`slot="close-icon"\`
 This is the slot name given to the close icon section of the modal. Defaults to a simple, unstyled X svg.
 ## \`slot="content"\`
-This is the slot name given to the panel/content section of the modal. This will be the content under the 'slot-container' section.
+This is the slot name given to the panel/content section of the modal. **Your custom modal needs to have a content slot to work properly.** This will be the content under the 'slot-container' section.
 
 > ### These can be used to specify which section of your markup is the \`close-icon\` or the \`content\` section.
 
