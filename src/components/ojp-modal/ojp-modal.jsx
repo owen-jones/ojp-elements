@@ -59,6 +59,8 @@ export class OjpModal {
    */
   @Method()
   async openModal() {
+    this.toggleLockBodyScrolling(true);
+
     //reveal the modal element
     this.dialogElement.addEventListener('transitionend', (e) => {
       const firstElement = e.target.querySelector('.close-button');
@@ -98,8 +100,6 @@ export class OjpModal {
       }
     }
     this.el.addEventListener('keydown', this.keystrokeListener);
-
-    this.toggleBodyScrolling(true);
   }
 
   /**
@@ -107,7 +107,7 @@ export class OjpModal {
    * to prevent it from being moved when the user
    * touches and scrolls the overlay
    */
-  toggleBodyScrolling(isVisible) {
+  toggleLockBodyScrolling(isVisible) {
     if(isVisible) {
       document.body.style.top = `-${window.scrollY}px`;
       document.body.style.position = 'fixed';
@@ -127,7 +127,7 @@ export class OjpModal {
     this.el.removeEventListener('keydown', this.keystrokeListener);
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
-    this.toggleBodyScrolling(false);
+    this.toggleLockBodyScrolling(false);
   }
 
   @Listen('resize', {target: 'window'})
