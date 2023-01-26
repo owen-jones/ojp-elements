@@ -191,7 +191,9 @@ const TemplateModal = (args) => `
   <!-- Start component code -->
   <ojp-row>
     <ojp-col span="10" start="2">
-        <button id="my-modal-button">Open Modal</button>
+        Play around with the "closebuttonoutside" control element on the Canvas page.
+        <br/>
+        <button id="my-modal-button" style="margin: 15px;">Open Modal</button>
         <ojp-modal id="my-demo-modal" ${args.closebuttonoutside ? 'closebuttonoutside' : ''}>
             <div slot="close-icon" class="close-icon-1">
                 <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
