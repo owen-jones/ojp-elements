@@ -30,7 +30,7 @@ export class OjpModal {
    */
   @Prop({
     reflect: true,
-    mutable: false,
+    mutable: true,
   }) closebuttonoutside = false;
 
   @State() isOverflowing = false;
