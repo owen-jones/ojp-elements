@@ -29,16 +29,20 @@ This is the slot name given to the panel/content section of the modal. **Your cu
 
 > ### These can be used to specify which section of your markup is the \`close-icon\` or the \`content\` section.
 
-## Usage with custom close icon:
-\`<div slot="close-icon" class="close-icon-1">
-    <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
-    </svg>
-</div>
-<div slot="content">
-    <h1>Awesome Headline</h1>
-</div>\`
+## Modal implementation with custom close icon:
+\`
+<ojp-modal>
+    <div slot="close-icon" class="close-icon-1">
+        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+        </svg>
+    </div>
+    <div slot="content">
+        <h1>Awesome Headline</h1>
+    </div>
+</ojp-modal>    
+\`
 
 <br>
 
@@ -54,12 +58,9 @@ This option specifies the state of the modal's close icon on page load, and can 
 >  **Usage**:
 \`<ojp-modal closebuttonoutside>\`
 
-# Public Methods (cannot be modified through props):
+# Public Methods:
 The \`<ojp-modal>\` element comes with some methods that developers can use to modify the behavior of the modal.
 
-
-
-> **NOTE**: All the methods will return a \`Promise<void>\`
 
 ## "closeModal()":
 
@@ -184,8 +185,9 @@ const TemplateModal = (args) => `
   <!-- Style tag is shown here as an example only. -->
   <!-- Individual projects will implement their own styling. -->
   <style>
-      
-
+      body {
+        font-family: Sans-serif;
+      }
   </style>
 
   <!-- Start component code -->
