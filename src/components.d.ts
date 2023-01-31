@@ -58,35 +58,33 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height": any;
+        /**
           * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
          */
-        "imageFocus": string;
+        "imageFocus": any;
         /**
           * Loading type (using browser's native lazy loading) Type: boolean Default: true
          */
         "lazy": string;
         /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder": any;
+        /**
           * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
          */
-        "ratio": string;
-        /**
-          * Source tags Type: string array of objects Default: [] Example: sources='[           {             "media":"(max-width: 599px)",             "srcset":"../../assets/small_700x600.png"           },           {             "media":"(min-width: 600px) and (max-width: 1000px)",             "srcset":"../../assets/medium_1000x400.png"           }         ]'
-         */
-        "sources": string;
+        "ratio": any;
         /**
           * Image src Type: string Required: true Default: null
          */
         "src": string;
-    }
-    interface OjpImageSource {
         /**
-          * Media query Type: string Example: "(min-width: 600px)"
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */
-        "media": string;
-        /**
-          * Image src Type: string Example: https://www.example.com/image.jpg
-         */
-        "srcset": string;
+        "width": any;
     }
     interface OjpListbox {
         "activeSelectionIndex": number;
@@ -143,12 +141,6 @@ declare global {
         prototype: HTMLOjpImageElement;
         new (): HTMLOjpImageElement;
     };
-    interface HTMLOjpImageSourceElement extends Components.OjpImageSource, HTMLStencilElement {
-    }
-    var HTMLOjpImageSourceElement: {
-        prototype: HTMLOjpImageSourceElement;
-        new (): HTMLOjpImageSourceElement;
-    };
     interface HTMLOjpListboxElement extends Components.OjpListbox, HTMLStencilElement {
     }
     var HTMLOjpListboxElement: {
@@ -172,7 +164,6 @@ declare global {
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
-        "ojp-image-source": HTMLOjpImageSourceElement;
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
@@ -224,9 +215,13 @@ declare namespace LocalJSX {
          */
         "alt"?: string;
         /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height"?: any;
+        /**
           * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
          */
-        "imageFocus"?: string;
+        "imageFocus"?: any;
         /**
           * Loading type (using browser's native lazy loading) Type: boolean Default: true
          */
@@ -246,27 +241,21 @@ declare namespace LocalJSX {
          */
         "onImageSourceChangedEvent"?: (event: CustomEvent<any>) => void;
         /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder"?: any;
+        /**
           * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
          */
-        "ratio"?: string;
-        /**
-          * Source tags Type: string array of objects Default: [] Example: sources='[           {             "media":"(max-width: 599px)",             "srcset":"../../assets/small_700x600.png"           },           {             "media":"(min-width: 600px) and (max-width: 1000px)",             "srcset":"../../assets/medium_1000x400.png"           }         ]'
-         */
-        "sources"?: string;
+        "ratio"?: any;
         /**
           * Image src Type: string Required: true Default: null
          */
         "src"?: string;
-    }
-    interface OjpImageSource {
         /**
-          * Media query Type: string Example: "(min-width: 600px)"
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */
-        "media"?: string;
-        /**
-          * Image src Type: string Example: https://www.example.com/image.jpg
-         */
-        "srcset"?: string;
+        "width"?: any;
     }
     interface OjpListbox {
         "activeSelectionIndex"?: number;
@@ -297,7 +286,6 @@ declare namespace LocalJSX {
         "ojp-accordion-item": OjpAccordionItem;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
-        "ojp-image-source": OjpImageSource;
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
@@ -311,7 +299,6 @@ declare module "@stencil/core" {
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
-            "ojp-image-source": LocalJSX.OjpImageSource & JSXBase.HTMLAttributes<HTMLOjpImageSourceElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;

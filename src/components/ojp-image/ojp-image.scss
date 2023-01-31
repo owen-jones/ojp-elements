@@ -4,12 +4,11 @@
   // PUBLIC CSS VALUES - can be overwritten by end user
   // likely to be persistent across a project and/or
   // easier to set as css vars so they can use Utopia
-  //
-
-  // TODO - add any public css vars here
-
-
-  display: block;
+  // These are set in global.scss
+  //--ojp-image--max-width: max-content;
+  //--ojp-image--object-fit: cover;
+  //--ojp-image--width: 100%;
+  //--ojp-image--display: block;
 
 
   /*
@@ -20,11 +19,14 @@
    */
   & > img {
     all: inherit;
+
   }
+
   img {
-    margin: auto;
-    max-width: 100%;
-    position: relative;
-    object-fit: var(--ojp-image--object-fit);
+    display: var(--ojp-image--display, block);
+    max-width: var(--ojp-image--max-width, 100%);
+    object-fit: var(--ojp-image--object-fit, cover);
+    width: var(--ojp-image--width, 100%);
   }
+
 }

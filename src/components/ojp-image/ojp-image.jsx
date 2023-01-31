@@ -1,4 +1,4 @@
-import {Component, Host, h, Watch, Element, Prop, Event} from '@stencil/core';
+import {Component, Host, h, Element, Prop, Event} from '@stencil/core';
 
 @Component({
   tag: 'ojp-image',
@@ -13,10 +13,14 @@ export class OjpImage {
    * publicly on the host element, but only used internally.
    */
     // Used for Intersection Observer
-    observer;
+    _observer;
     // Used for loading event
-    img;
-    currentSrc;
+    _image;
+    _currentSrc;
+    // Used for appending the sources to
+    _picture;
+    _slottedSources;
+
   /**
    * 2. Reference to host HTML element.
    * Inlined decorator
@@ -76,7 +80,7 @@ export class OjpImage {
   @Prop({
     reflect: true,
     mutable: false
-  }) ratio = "auto";
+  }) ratio = null;
 
   /**
    * Image focus/object position
@@ -86,53 +90,48 @@ export class OjpImage {
   @Prop({
     reflect: true,
     mutable: false
-  }) imageFocus = "50% 50%";
+  }) imageFocus = null;
 
   /**
-   * Source tags
-   * Type: string array of objects
-   * Default: []
-   * Example: sources='[
-   *           {
-   *             "media":"(max-width: 599px)",
-   *             "srcset":"../../assets/small_700x600.png"
-   *           },
-   *           {
-   *             "media":"(min-width: 600px) and (max-width: 1000px)",
-   *             "srcset":"../../assets/medium_1000x400.png"
-   *           }
-   *         ]'
+   * Width of the image
+   * Type: string
+   * Default: null
+   * Note: this is not the width of the image container, but the width of the image itself
+   *
    */
-
-  // We need some extra logic in order to parse the string data passed in from the sources attribute into an array of objects// See  https://medium.com/@scottmgerstl/passing-an-object-or-array-to-stencil-dd62b7d92641
-
-  // private array to
   @Prop({
     reflect: true,
     mutable: false
-  }) sources = '';
-  private _sources = [];
+  }) width = null;
 
-  @Watch('sources')
-  sourcesWatcher(newValue) {
-    if (typeof newValue === 'string') {
-      this._sources = JSON.parse(newValue);
-    }
-    else {
-      this._sources = newValue;
-    }
-  }
 
-  // TODO: should width and height be props?
+  /**
+   * Height of the image
+   * Type: string
+   * Default: null
+   * Note: this is not the height of the image container, but the height of the image itself
+   *
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) height = null;
 
+  /**
+   * Optional placeholder image path
+   * Type: string
+   * Default: null
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) placeholder = null;
 
   /**
    * 5. Events section
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
    */
-  // TODO: document events
-
   /**
    * Triggered when the element is visible/invisible in the viewport
    */
@@ -159,53 +158,84 @@ export class OjpImage {
    * WillLoad should go before DidLoad.
    */
   componentWillLoad() {
-    if (this.sources) {
-      this.sourcesWatcher(this.sources);
+    this._slottedSources = Array.from(this.el.children);
+
+    if (this.width) {
+      this.el.style.setProperty('--ojp-image--width',  `${this.width}px`);
     }
   }
 
   componentDidLoad() {
+
+    // Get picture to be used during rendering
+    this._picture = this.el.shadowRoot.querySelector('picture');
+
+    this._image = this.el.shadowRoot.querySelector('img');
+
+
     // Display console error if no src is provided
+    // TODO is the console error helpful or cluttering?
     if (this.src === '' || this.src === null) {
       console.error('ojp-image src is required', this.el);
+      if (this.placeholder) {
+        this.src = this.placeholder;
+      }
     }
 
     // Create Intersection Observer
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
-      this.observer = new IntersectionObserver(this.handleIntersection);
-      this.observer.observe(this.el);
+      this._observer = new IntersectionObserver(this.handleIntersection);
+      this._observer.observe(this.el);
     }
 
-    this.img = this.el.shadowRoot.querySelector('img');
-    if (this.img) {
-      this.currentSrc = this.img.currentSrc;
+    if (this._image) {
+      this._currentSrc = this._image.currentSrc;
 
-      this.img.addEventListener('load', () => {
-        // Dispatch event when image is loaded
-        this.imageLoadedEvent.emit(this.img);
+      this._image.addEventListener('load', () => {
+        // Dispatch event when image is first loaded
+        this.imageLoadedEvent.emit(this._image);
 
-        if (this.currentSrc !== this.img.currentSrc) {
-          if (this.currentSrc) {
-            // Dispatch event when image source changes (but not on load) (e.g. responsive images)
+        // Dispatch event when image source changes (but not on first load) (for responsive images)
+        if (this._currentSrc !== this._image.currentSrc) {
+          if (this._currentSrc) {
             // TODO should we emit the image itself as well?
             this.imageSourceChangedEvent.emit({
-              previousSrc: this.currentSrc,
-              newSrc: this.img.currentSrc
+              previousSrc: this._currentSrc,
+              newSrc: this._image.currentSrc
             });
           }
-          this.currentSrc = this.img.currentSrc;
-
+          this._currentSrc = this._image.currentSrc;
         }
       });
 
       // Dispatch event when image fails to load
-      this.img.addEventListener('error', () => {
-        this.imageFailedToLoadEvent.emit(this.img);
+      this._image.addEventListener('error', () => {
+        console.log('error');
+        if (this.placeholder) {
+          this.src = this.placeholder;
+        }
+        this.imageFailedToLoadEvent.emit(this._image);
       });
+
     }
   }
 
-  // TODO should we add a componentDidUnload() to remove the event listeners?
+  disconnectedCallback() {
+    // Disconnect observer
+    if (this._observer) {
+      this._observer.disconnect();
+    }
+    // Remove event listeners
+    if (this._image) {
+      this._image.removeEventListener('load', () => {
+        // Dispatch event when image is loaded
+        this.imageLoadedEvent.emit(this._image);
+      });
+      this._image.removeEventListener('error', () => {
+        this.imageFailedToLoadEvent.emit(this._image);
+      });
+    }
+  }
 
 
   /**
@@ -234,7 +264,7 @@ export class OjpImage {
    * called from the host element.
    */
 
-  // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
+  //Code borrowed from https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
@@ -245,21 +275,23 @@ export class OjpImage {
       }
     }
   };
-
+ // TODO figure out why firefox doesn't lazy load
   /**
    * 10. render() function
    * Always the last public method in the class.
    * If private methods present, they are below public methods.
    */
+
   render() {
+
     return (
       <Host>
         <picture>
-          {this._sources.map((source) => {
-            return <source
-              srcSet={source.srcset}
-              media={source.media}
-            />
+          <slot></slot>
+          {this._slottedSources.map(child => {
+            return (
+              <source srcset={child.srcset} media={child.media} type={child.type} />
+            );
           })}
           <img
             src={this.src}
@@ -267,8 +299,10 @@ export class OjpImage {
             {...(this.lazy === 'true' ? {loading: 'lazy'} : {loading: 'eager'})}
             style={{
               aspectRatio: this.ratio,
-              objectPosition: this.imageFocus
+              objectPosition: this.imageFocus ? this.imageFocus : 'center',
             }}
+            width={this.width}
+            height={this.height}
           />
         </picture>
       </Host>
