@@ -53,7 +53,38 @@ export namespace Components {
         "tstart": any;
     }
     interface OjpImage {
+        /**
+          * Image alt text Type: string Default: ""
+         */
+        "alt": string;
+        /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height": any;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus": any;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy": string;
+        /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder": any;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio": any;
+        /**
+          * Image src Type: string Required: true Default: null
+         */
         "src": string;
+        /**
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
+         */
+        "width": any;
     }
     interface OjpListbox {
         "activeSelectionIndex": number;
@@ -179,7 +210,52 @@ declare namespace LocalJSX {
         "tstart"?: any;
     }
     interface OjpImage {
+        /**
+          * Image alt text Type: string Default: ""
+         */
+        "alt"?: string;
+        /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height"?: any;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus"?: any;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy"?: string;
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the element is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onImageFailedToLoadEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the image loaded/failed to load
+         */
+        "onImageLoadedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
+         */
+        "onImageSourceChangedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder"?: any;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio"?: any;
+        /**
+          * Image src Type: string Required: true Default: null
+         */
         "src"?: string;
+        /**
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
+         */
+        "width"?: any;
     }
     interface OjpListbox {
         "activeSelectionIndex"?: number;
