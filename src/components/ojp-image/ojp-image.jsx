@@ -174,7 +174,6 @@ export class OjpImage {
 
 
     // Display console error if no src is provided
-    // TODO is the console error helpful or cluttering?
     if (this.src === '' || this.src === null) {
       console.error('ojp-image src is required', this.el);
       if (this.placeholder) {
@@ -198,7 +197,6 @@ export class OjpImage {
         // Dispatch event when image source changes (but not on first load) (for responsive images)
         if (this._currentSrc !== this._image.currentSrc) {
           if (this._currentSrc) {
-            // TODO should we emit the image itself as well?
             this.imageSourceChangedEvent.emit({
               previousSrc: this._currentSrc,
               newSrc: this._image.currentSrc
