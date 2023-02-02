@@ -59,6 +59,7 @@
         --ojp-image--display: inline-block; // Default is block
       }
       </textarea>
+    </ojp-col>
   </ojp-row>
   <ojp-row>
     <ojp-col class="column" span="8" start="3" tspan="12" tstart="0" mspan="12" mstart="0">
@@ -341,6 +342,8 @@
             });
           </script>
 
+          Note: Lazy loading does not work in Firefox, even with explicit height and width set.
+
         </textarea>
         <ojp-image
           id="my-lazy-image"
@@ -348,7 +351,8 @@
           src="https://via.placeholder.com/400/A020F0/"
           alt="Descriptive text"
           lazy="true"
-          height="200"
+          height="400"
+          width="400"
         ></ojp-image>
 
       </ojp-col>
