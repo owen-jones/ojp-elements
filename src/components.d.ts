@@ -119,16 +119,6 @@ export namespace Components {
         "mcols": any;
         "tcols": any;
     }
-    interface OjpSource {
-        /**
-          * Media query Type: string Required: true Default: ""
-         */
-        "media": string;
-        /**
-          * Source set Type: string Required: true Default: ""
-         */
-        "srcset": string;
-    }
 }
 declare global {
     interface HTMLOjpAccordionElement extends Components.OjpAccordion, HTMLStencilElement {
@@ -173,12 +163,6 @@ declare global {
         prototype: HTMLOjpRowElement;
         new (): HTMLOjpRowElement;
     };
-    interface HTMLOjpSourceElement extends Components.OjpSource, HTMLStencilElement {
-    }
-    var HTMLOjpSourceElement: {
-        prototype: HTMLOjpSourceElement;
-        new (): HTMLOjpSourceElement;
-    };
     interface HTMLElementTagNameMap {
         "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
@@ -187,7 +171,6 @@ declare global {
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
-        "ojp-source": HTMLOjpSourceElement;
     }
 }
 declare namespace LocalJSX {
@@ -306,16 +289,6 @@ declare namespace LocalJSX {
         "mcols"?: any;
         "tcols"?: any;
     }
-    interface OjpSource {
-        /**
-          * Media query Type: string Required: true Default: ""
-         */
-        "media"?: string;
-        /**
-          * Source set Type: string Required: true Default: ""
-         */
-        "srcset"?: string;
-    }
     interface IntrinsicElements {
         "ojp-accordion": OjpAccordion;
         "ojp-accordion-item": OjpAccordionItem;
@@ -324,7 +297,6 @@ declare namespace LocalJSX {
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
-        "ojp-source": OjpSource;
     }
 }
 export { LocalJSX as JSX };
@@ -338,7 +310,6 @@ declare module "@stencil/core" {
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
-            "ojp-source": LocalJSX.OjpSource & JSXBase.HTMLAttributes<HTMLOjpSourceElement>;
         }
     }
 }
