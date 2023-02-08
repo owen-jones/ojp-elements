@@ -217,19 +217,16 @@ export class OjpImage {
   }
 
   disconnectedCallback() {
+
     // Disconnect observer
     if (this._observer) {
       this._observer.disconnect();
     }
+
     // Remove event listeners
     if (this._image) {
-      this._image.removeEventListener('load', () => {
-        // Dispatch event when image is loaded
-        this.imageLoadedEvent.emit();
-      });
-      this._image.removeEventListener('error', () => {
-        this.imageFailedToLoadEvent.emit();
-      });
+      this._image.removeEventListener('load', this.loadListener);
+      this._image.removeEventListener('error', this.loadFailedListener);
     }
   }
 
@@ -270,11 +267,6 @@ export class OjpImage {
 
         // Load image
         this._loadComponent = true;
-
-        // Disconnect observer
-        if (this._observer) {
-          this._observer.disconnect();
-        }
       }
       else {
         this.elementIsInvisibleEvent.emit(entry);
@@ -289,31 +281,36 @@ export class OjpImage {
     if (this._image) {
       // Add event listeners
 
-      this._image.addEventListener('load', () => {
+      this.loadListener = () => {
+
         // Dispatch event when image is loaded for the first time
         if (this._prevCurrentSrc === null) {
-          this.imageLoadedEvent.emit(this._image);
+          this.imageLoadedEvent.emit(this._image.currentSrc);
         }
 
         // Dispatch event when image source changes (for responsive images)
         else if (this._prevCurrentSrc !== this._image.currentSrc) {
           this.imageSourceChangedEvent.emit({
             previousSrc: this._prevCurrentSrc,
-            newSrc: this._image.currentSrc
+            currentSrc: this._image.currentSrc
           });
         }
 
         this._prevCurrentSrc = this._image.currentSrc;
-      });
 
-      this._image.addEventListener('error', (e) => {
+      };
+
+      this._image.addEventListener('load', this.loadListener);
+
+      this.loadFailedListener = (e) => {
         // Dispatch event when image fails to load
         console.error('Image loading error', e.target);
         if (this.placeholder) {
           this.src = this.placeholder;
         }
         this.imageFailedToLoadEvent.emit(this._image);
-      });
+      };
+      this._image.addEventListener('error', this.loadFailedListener);
     }
   }
 

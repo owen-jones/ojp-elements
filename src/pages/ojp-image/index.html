@@ -66,12 +66,14 @@
       <h2>Ojp Image - simple (intrinsic size)</h2>
       <textarea rows="7" disabled>
         <ojp-image
+          id="my-image"
           class="my-class"
           src="/assets/placeimg_1000_500_nature.jpg"
           alt="Descriptive text"
         ></ojp-image>
       </textarea>
       <ojp-image
+        id="my-image"
         class="my-class"
         src="/assets/placeimg_1000_500_nature.jpg"
         alt="Descriptive text"
@@ -382,7 +384,7 @@
 
 <script>
   // Project developer can listen for the visibility of the element in the viewport
-  const myImage = document.querySelector('#my-lazy-image');
+  const myImage = document.querySelector('#my-image');
   myImage.addEventListener('elementIsVisibleEvent', event => {
     console.log('My image is now visible', event);
   });
@@ -404,11 +406,14 @@
   // Project developer can listen for an image loading success
   const myRespImage = document.querySelector('#my-resp-image');
   myRespImage.addEventListener('imageLoadedEvent', event => {
-    document.querySelector('#image-path').innerHTML = event.detail.currentSrc;
+    console.log('------My responsive image loaded', event.detail);
+    document.querySelector('#image-path').innerHTML = event.detail;
   });
+
   const myLazyImage = document.querySelector('#my-lazy-image');
   myLazyImage.addEventListener('imageLoadedEvent', event => {
-    alert('My lazy image loaded -- ' + event.detail.currentSrc);
+    console.log('My lazy image loaded', event);
+    alert('My lazy image loaded -- ' + event.detail);
   });
 
   // Listen for image source changing
