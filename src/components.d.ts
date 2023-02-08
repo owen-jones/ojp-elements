@@ -66,9 +66,13 @@ export namespace Components {
          */
         "imageFocus": any;
         /**
-          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+          * Loading type (true = lazy, false = eager) Type: boolean Default: false
          */
-        "lazy": string;
+        "lazy": boolean;
+        /**
+          * Optional lazy load offset Type: string (pixels) Default: "300"
+         */
+        "lazyOffset": string;
         /**
           * Optional placeholder image path Type: string Default: null
          */
@@ -223,9 +227,13 @@ declare namespace LocalJSX {
          */
         "imageFocus"?: any;
         /**
-          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+          * Loading type (true = lazy, false = eager) Type: boolean Default: false
          */
-        "lazy"?: string;
+        "lazy"?: boolean;
+        /**
+          * Optional lazy load offset Type: string (pixels) Default: "300"
+         */
+        "lazyOffset"?: string;
         "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
         /**
           * Triggered when the element is visible/invisible in the viewport
