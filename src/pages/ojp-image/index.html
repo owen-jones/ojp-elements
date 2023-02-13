@@ -66,12 +66,14 @@
       <h2>Ojp Image - simple (intrinsic size)</h2>
       <textarea rows="7" disabled>
         <ojp-image
+          id="my-image"
           class="my-class"
           src="/assets/placeimg_1000_500_nature.jpg"
           alt="Descriptive text"
         ></ojp-image>
       </textarea>
       <ojp-image
+        id="my-image"
         class="my-class"
         src="/assets/placeimg_1000_500_nature.jpg"
         alt="Descriptive text"
@@ -158,14 +160,15 @@
         class="my-class"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
+        lazy
+      >
+        <source
+          media="(max-width: 599px)"
+          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
         >
         <source
-          media="(max-width: 600px)"
-          srcset="/assets/unsplash__400w.jpg"
-        >
-        <source
-          media="(max-width: 1200px)"
-          srcset="/assets/unsplash__1000w.jpg"
+          media="(min-width: 600px) and (max-width: 1200px)"
+          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
         >
       </ojp-image>
       </textarea>
@@ -174,17 +177,16 @@
         class="my-class test"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
+        lazy
       >
         <source
-          media="(max-width: 600px)"
-          srcset="/assets/unsplash__400w.jpg"
-          style="object-position: top left;"
+          media="(max-width: 599px)"
+          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
         >
         <source
-          media="(max-width: 1200px)"
-          srcset="/assets/unsplash__1000w.jpg"
-          style="object-position: bottom right;"
-          >
+          media="(min-width: 600px) and (max-width: 1200px)"
+          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
+        >
       </ojp-image>
       <caption>Current filepath: <span id="image-path" style="color: purple;font-weight: bold;"></span></caption>
 
@@ -277,14 +279,12 @@
         <h2>Ojp Image - Demo of broken image with custom fallback/placeholder image</h2>
         <textarea rows="7" disabled>
           <ojp-image
-            class="my-class"
             src="not-a-real-url.jpg"
             alt="Descriptive text"'
           ></ojp-image>
         </textarea>
         <ojp-image
           id="my-broken-image"
-          class="my-class"
           src="not-a-real-url.jpg"
           alt="Descriptive text"
           placeholder="/assets/custom-placeholder.png"
@@ -297,14 +297,12 @@
         <h2>Ojp Image - Demo of missing image with custom fallback/placeholder image</h2>
         <textarea rows="7" disabled>
           <ojp-image
-            class="my-class"
             alt="Descriptive text"
             placeholder="/assets/custom-placeholder.png"
             width="200"
           ></ojp-image>
         </textarea>
         <ojp-image
-          class="my-class"
           alt="Descriptive text"
           placeholder="/assets/custom-placeholder.png"
           width="200"
@@ -316,41 +314,26 @@
       <ojp-col span="12">
         <div style="height: 200vh; display: flex; padding-top: 100px;">This space is intentionally left blank to move images lower down the page to demonstrate browser lazy loading.<br><br>You will get a browser alert when the lazy image below loads.</div>
 
-        <h2>Ojp Image lazy loads by default</h2>
+        <h2>Ojp Image does NOT lazy load by default</h2>
         <textarea rows="25" disabled>
           <ojp-image
-            id="my-lazy-image"
-            class="my-class"
             src="https://via.placeholder.com/400/A020F0/"
-            alt="Descriptive text"'
+            alt="Descriptive text"
           ></ojp-image>
 
           --- OR ---
 
           <ojp-image
-            id="my-lazy-image"
-            class="my-class"
             src="https://via.placeholder.com/400/A020F0/"
-            alt="Descriptive text"'
-            lazy="true"
+            alt="Descriptive text"
+            lazy="false"
           ></ojp-image>
-
-          <script>
-            const myLazyImage = document.querySelector('#my-lazy-image');
-            myLazyImage.addEventListener('imageLoadedEvent', event => {
-              alert('My lazy image loaded');
-            });
-          </script>
-
-          Note: Lazy loading does not work in Firefox, even with explicit height and width set.
 
         </textarea>
         <ojp-image
-          id="my-lazy-image"
-          class="my-class"
           src="https://via.placeholder.com/400/A020F0/"
           alt="Descriptive text"
-          lazy="true"
+          lazy="false"
           height="400"
           width="400"
         ></ojp-image>
@@ -360,21 +343,39 @@
   <ojp-row>
     <ojp-col span="12">
 
-      <h2>Ojp Image - Eager loading (not lazy)</h2>
+      <h2>Ojp Image - Lazy Loading</h2>
+      <p>Dev can change number of pixels for lazy threshold (default is lazy-offset="300", meaning the image loads when the viewport is 300px before the image)</p>
       <textarea rows="7" disabled>
         <ojp-image
-          class="my-class"
+          id="my-lazy-image"
           src="https://via.placeholder.com/400/0000FF/"
-          alt="Descriptive text"'
-          lazy="false"
+          alt="Descriptive text"
+          lazy
+          lazy-offset="200"
         ></ojp-image>
+
+        <script>
+          const myLazyImage = document.querySelector('#my-lazy-image');
+            myLazyImage.addEventListener('imageLoadedEvent', event => {
+            alert('My lazy image loaded');
+          });
+        </script>
       </textarea>
       <ojp-image
-        class="my-class"
-        alt="Descriptive text"
-        lazy="false"
+        id="my-lazy-image"
         src="https://via.placeholder.com/400/0000FF/"
-      ></ojp-image>
+        alt="Descriptive text"
+        lazy="true"
+      >
+        <source
+          media="(max-width: 599px)"
+          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
+        >
+        <source
+          media="(min-width: 600px) and (max-width: 1200px)"
+          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
+        >
+      </ojp-image>
     </ojp-col>
   </ojp-row>
   <br><br>
@@ -383,40 +384,41 @@
 
 <script>
   // Project developer can listen for the visibility of the element in the viewport
-  const myImage = document.querySelector('#my-lazy-image');
+  const myImage = document.querySelector('#my-image');
   myImage.addEventListener('elementIsVisibleEvent', event => {
-    console.log('My image is now visible');
-    console.log('IntersectionObserverEntry', event.detail);
+    console.log('My image is now visible', event);
   });
   myImage.addEventListener('elementIsInvisibleEvent', event => {
-    console.log('My image is now invisible');
-    console.log('IntersectionObserverEntry', event.detail);
+    console.log('My image is now invisible', event);
   });
   // Project developer can listen for the successful loading of the image
   myImage.addEventListener('imageLoadedEvent', event => {
-    console.log('My image loaded', event);
+    console.log('My image loaded', event.target);
   });
 
   // Project developer can listen for an image loading error
   const myBrokenImage = document.querySelector('#my-broken-image');
   myBrokenImage.addEventListener('imageFailedToLoadEvent', event => {
-    console.error('My image failed to load', event);
+    console.log('My image failed to load', event.target);
   });
 
 
   // Project developer can listen for an image loading success
   const myRespImage = document.querySelector('#my-resp-image');
   myRespImage.addEventListener('imageLoadedEvent', event => {
-    document.querySelector('#image-path').innerHTML = event.detail.currentSrc;
+    console.log('------My responsive image loaded', event.detail);
+    document.querySelector('#image-path').innerHTML = event.detail;
   });
+
   const myLazyImage = document.querySelector('#my-lazy-image');
   myLazyImage.addEventListener('imageLoadedEvent', event => {
-    alert('My lazy image loaded');
+    console.log('My lazy image loaded', event);
+    alert('My lazy image loaded -- ' + event.detail);
   });
 
   // Listen for image source changing
   myRespImage.addEventListener('imageSourceChangedEvent', event => {
-    console.log('My image source changed', event);
+    alert('My image source changed from ' + event.detail.previousSrc + ' to ' + event.detail.currentSrc);
     document.querySelector('#image-path').innerHTML = event.detail.newSrc;
   });
 

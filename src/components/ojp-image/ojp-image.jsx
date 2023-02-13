@@ -1,4 +1,6 @@
-import {Component, Host, h, Element, Prop, Event} from '@stencil/core';
+import {Component, Host, h, Element, Prop, Event, State} from '@stencil/core';
+import {OjpLazy} from '../ojp-lazy/ojp-lazy';
+
 
 @Component({
   tag: 'ojp-image',
@@ -13,13 +15,12 @@ export class OjpImage {
    * publicly on the host element, but only used internally.
    */
     // Used for Intersection Observer
-    _observer;
+    _observer = null;
     // Used for loading event
-    _image;
-    _currentSrc;
+    _image = null;
+    _prevCurrentSrc = null;
     // Used for appending the sources to
-    _picture;
-    _slottedSources;
+    _slottedSources = null;
 
   /**
    * 2. Reference to host HTML element.
@@ -31,7 +32,10 @@ export class OjpImage {
    * 3. State() variables
    * Inlined decorator, alphabetical order.
    */
-  // N/A
+
+  // Used for lazy loading
+  @State() _loadComponent = false;
+
 
   /**
    * 4. Public Property API
@@ -63,14 +67,14 @@ export class OjpImage {
   }) alt = "";
 
   /**
-   * Loading type (using browser's native lazy loading)
+   * Loading type (true = lazy, false = eager)
    * Type: boolean
-   * Default: true
+   * Default: false
    */
   @Prop({
     reflect: true,
     mutable: false
-  }) lazy = "true";
+  }) lazy = false;
 
   /**
    * Image aspect ratio
@@ -128,6 +132,20 @@ export class OjpImage {
   }) placeholder = null;
 
   /**
+   * Optional lazy load offset
+   * Type: string (pixels)
+   * Default: "300"
+   */
+  @Prop({
+    reflect: true,
+    mutable: false
+  }) lazyOffset = '300';
+
+  _lazyLoadOptions = {
+    rootMargin: `${this.lazyOffset}px 0px`,
+  };
+
+  /**
    * 5. Events section
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
@@ -163,75 +181,52 @@ export class OjpImage {
     if (this.width) {
       this.el.style.setProperty('--ojp-image--width',  `${this.width}px`);
     }
-  }
-
-  componentDidLoad() {
-
-    // Get picture to be used during rendering
-    this._picture = this.el.shadowRoot.querySelector('picture');
-
-    this._image = this.el.shadowRoot.querySelector('img');
-
 
     // Display console error if no src is provided
     if (this.src === '' || this.src === null) {
-      console.error('ojp-image src is required', this.el);
+      console.warn('ojp-image src is required', this.el);
       if (this.placeholder) {
         this.src = this.placeholder;
       }
     }
 
-    // Create Intersection Observer
+    // If lazy loading is disabled, set the loadComponent to true
+    if (!this.lazy) {
+      this._loadComponent = true;
+    }
+  }
+
+  componentDidUpdate(){
+    this.handleImageLoaded();
+  }
+  componentDidLoad(){
+    this.handleImageLoaded();
+  }
+
+  componentDidRender() {
+    // Create Intersection Observer if browser supports it
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
-      this._observer = new IntersectionObserver(this.handleIntersection);
+      this._observer = new IntersectionObserver(
+        this.handleIntersection, this._lazyLoadOptions);
       this._observer.observe(this.el);
     }
-
-    if (this._image) {
-      this._currentSrc = this._image.currentSrc;
-
-      this._image.addEventListener('load', () => {
-        // Dispatch event when image is first loaded
-        this.imageLoadedEvent.emit(this._image);
-
-        // Dispatch event when image source changes (but not on first load) (for responsive images)
-        if (this._currentSrc !== this._image.currentSrc) {
-          if (this._currentSrc) {
-            this.imageSourceChangedEvent.emit({
-              previousSrc: this._currentSrc,
-              newSrc: this._image.currentSrc
-            });
-          }
-          this._currentSrc = this._image.currentSrc;
-        }
-      });
-
-      // Dispatch event when image fails to load
-      this._image.addEventListener('error', () => {
-        console.log('error');
-        if (this.placeholder) {
-          this.src = this.placeholder;
-        }
-        this.imageFailedToLoadEvent.emit(this._image);
-      });
-
+    // Otherwise, don't lazy load
+    else {
+      this._loadComponent = true;
     }
   }
 
   disconnectedCallback() {
+
     // Disconnect observer
     if (this._observer) {
       this._observer.disconnect();
     }
+
     // Remove event listeners
     if (this._image) {
-      this._image.removeEventListener('load', () => {
-        // Dispatch event when image is loaded
-        this.imageLoadedEvent.emit(this._image);
-      });
-      this._image.removeEventListener('error', () => {
-        this.imageFailedToLoadEvent.emit(this._image);
-      });
+      this._image.removeEventListener('load', this.loadListener);
+      this._image.removeEventListener('error', this.loadFailedListener);
     }
   }
 
@@ -266,14 +261,59 @@ export class OjpImage {
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
+
+        // Emit event when element is visible
         this.elementIsVisibleEvent.emit(entry);
+
+        // Load image
+        this._loadComponent = true;
       }
       else {
         this.elementIsInvisibleEvent.emit(entry);
       }
     }
   };
- // TODO figure out why firefox doesn't lazy load
+
+  handleImageLoaded() {
+    // Get image
+    this._image = this.el.shadowRoot.querySelector('img');
+
+    if (this._image) {
+      // Add event listeners
+
+      this.loadListener = () => {
+
+        // Dispatch event when image is loaded for the first time
+        if (this._prevCurrentSrc === null) {
+          this.imageLoadedEvent.emit(this._image.currentSrc);
+        }
+
+        // Dispatch event when image source changes (for responsive images)
+        else if (this._prevCurrentSrc !== this._image.currentSrc) {
+          this.imageSourceChangedEvent.emit({
+            previousSrc: this._prevCurrentSrc,
+            currentSrc: this._image.currentSrc
+          });
+        }
+
+        this._prevCurrentSrc = this._image.currentSrc;
+
+      };
+
+      this._image.addEventListener('load', this.loadListener);
+
+      this.loadFailedListener = (e) => {
+        // Dispatch event when image fails to load
+        console.error('Image loading error', e.target);
+        if (this.placeholder) {
+          this.src = this.placeholder;
+        }
+        this.imageFailedToLoadEvent.emit(this._image);
+      };
+      this._image.addEventListener('error', this.loadFailedListener);
+    }
+  }
+
   /**
    * 10. render() function
    * Always the last public method in the class.
@@ -281,28 +321,29 @@ export class OjpImage {
    */
 
   render() {
-
     return (
       <Host>
-        <picture>
-          <slot></slot>
-          {this._slottedSources.map(child => {
-            return (
-              <source srcset={child.srcset} media={child.media} type={child.type} />
-            );
-          })}
-          <img
-            src={this.src}
-            alt={this.alt}
-            {...(this.lazy === 'true' ? {loading: 'lazy'} : {loading: 'eager'})}
-            style={{
-              aspectRatio: this.ratio,
-              objectPosition: this.imageFocus ? this.imageFocus : 'center',
-            }}
-            width={this.width}
-            height={this.height}
-          />
-        </picture>
+        <OjpLazy if={this._loadComponent}>
+          <picture>
+            <slot></slot>
+            {this._slottedSources.map(child => {
+              return (
+                <source srcset={child.srcset} media={child.media} type={child.type} />
+              );
+            })}
+
+            <img
+              src={this.src}
+              alt={this.alt}
+              style={{
+                aspectRatio: this.ratio,
+                objectPosition: this.imageFocus ? this.imageFocus : 'center',
+              }}
+              width={this.width}
+              height={this.height}
+            />
+          </picture>
+        </OjpLazy>
       </Host>
     );
   }
