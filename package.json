@@ -1,10 +1,10 @@
 {
   "name": "@ojp/ojp-elements",
-  "version": "0.2.6",
+  "version": "0.3.2",
   "author": "Owen Jones & Partners",
   "description": "Owen Jones Pattern Library",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "module": "dist/components/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/components.d.ts",
@@ -33,12 +33,13 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@stencil/core": "^2.13.0",
+    "@stencil/core": "^3.0.1",
     "cssomtools": "^0.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",
-    "@stencil/sass": "^1.5.2",
+    "@mdx-js/react": "^2.3.0",
+    "@stencil/sass": "^2.0.3",
     "@storybook/addon-actions": "^6.5.8",
     "@storybook/addon-essentials": "^6.5.8",
     "@storybook/addon-interactions": "^6.5.8",
