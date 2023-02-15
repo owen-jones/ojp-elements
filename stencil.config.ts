@@ -12,7 +12,8 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist-custom-elements',
-      customElementsExportBehavior: 'auto-define-custom-elements'
+      customElementsExportBehavior: 'auto-define-custom-elements',
+      includeGlobalScripts: true,
     },
     {
       type: 'docs-readme',
