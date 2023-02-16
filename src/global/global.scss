@@ -157,3 +157,34 @@ ojp-image {
 
 // end ojp-image variables
 
+
+// ojp-card variables
+
+ojp-card {
+  --ojp-card--border-radius: 0;
+  --ojp-card--box-shadow: none;
+  --ojp-card--max-width: 100%;
+  --ojp-card--padding: var(--space-s-m);
+  --ojp-card--padding__top: var(--ojp-card--padding);
+  --ojp-card--padding__bottom: var(--ojp-card--padding);
+  --ojp-card--padding__left: var(--ojp-card--padding);
+  --ojp-card--padding__right: var(--ojp-card--padding);
+  --ojp-card--margin: var(--space-m-l);
+  --ojp-card--margin__top: var(--ojp-card--margin);
+  --ojp-card--margin__bottom: var(--ojp-card--margin);
+  --ojp-card--margin__left: var(--ojp-card--margin);
+  --ojp-card--margin__right: var(--ojp-card--margin);
+  --ojp-card--slot__margin: var(--space-s);
+  --ojp-card--slot1__bottom-margin: var(--ojp-card--slot__margin);
+  --ojp-card--slot1__right-margin: 0px;
+  --ojp-card--slot2__bottom-margin: var(--ojp-card--slot__margin);
+  --ojp-card--slot3__top-margin: var(--ojp-card--slot__margin);
+}
+@supports (--breakpoint("desktop")) {
+  ojp-card {
+    flex-direction: var(--ojp-card--flex-direction__desktop);
+    --ojp-card--justify-content__desktop: unset;
+  }
+}
+
+// end ojp-card variables

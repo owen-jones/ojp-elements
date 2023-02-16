@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: var(--ojp-card--padding);
+  padding-top: var(--ojp-card--padding__top);
+  padding-bottom: var(--ojp-card--padding__bottom);
+  padding-left: var(--ojp-card--padding__left);
+  padding-right: var(--ojp-card--padding__right);
+  margin: var(--ojp-card--margin);
+  margin-top: var(--ojp-card--margin__top);
+  margin-bottom: var(--ojp-card--margin__bottom);
+  margin-left: var(--ojp-card--margin__left);
+  margin-right: var(--ojp-card--margin__right);
+  ::slotted(div[slot="card-content-one"]) {
+    margin-bottom: var(--ojp-card--slot1__bottom-margin);
+    margin-right: var(--ojp-card--slot1__right-margin);
+  }
+
+  ::slotted(div[slot="card-content-two"]) {
+    margin-bottom: var(--ojp-card--slot2__bottom-margin);
+    > *:last-child {
+      flex-grow: 1;
+    }
+  }
+  ::slotted(div[slot="card-content-cta"]) {
+    margin-top: var(--ojp-card--slot3__top-margin);
+  }
+}
