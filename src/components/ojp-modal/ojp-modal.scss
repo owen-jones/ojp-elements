@@ -9,7 +9,7 @@ dialog {
   padding: 0;
   transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
   visibility: hidden;
-  width: 100vw;
+  width: 100%;
 
   &[open] {
     opacity: 1;

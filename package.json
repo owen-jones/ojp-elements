@@ -1,6 +1,6 @@
 {
   "name": "@ojp/ojp-elements",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "author": "Owen Jones & Partners",
   "description": "Owen Jones Pattern Library",
   "main": "dist/index.cjs.js",
