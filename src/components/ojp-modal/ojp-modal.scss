@@ -102,7 +102,7 @@ dialog {
 }
 
 .overflow-gradient--visible {
-  background: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: var(--ojp-modal--overflow-gradient);
 }
 
 // Close button
@@ -146,7 +146,7 @@ dialog {
 // Fade css class
 // Fade background CSS
 .modal-fade {
-  background: --ojp-modal--overflow-gradient;
+  background: var(--ojp-modal--overflow-gradient);
 }
 
 // Close button inside modal panel

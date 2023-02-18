@@ -112,7 +112,7 @@ ojp-modal {
   --ojp-modal--close-icon-height: 44px; // Public
   --ojp-modal--close-icon-width: 44px; // Public
   --ojp-modal--overlay-color: #fff; // Public
-  --ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  --ojp-modal--overflow-gradient: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
 
 
   // ---- Private variables. Users should not change ----
