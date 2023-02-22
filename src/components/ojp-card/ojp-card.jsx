@@ -40,6 +40,7 @@ export class OjpCard {
   // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
     for (const entry of entries) {
+      console.log('entry', entry);
       if (entry.isIntersecting) {
         this.elementIsVisibleEvent.emit(entry);
       }

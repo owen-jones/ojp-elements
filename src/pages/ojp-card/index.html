@@ -29,12 +29,13 @@
       --ojp-card--margin: 0px;
       --ojp-card--slot__margin: 0;
       /*--ojp-card--slot1__bottom-margin: 0px;*/
-      /*--ojp-card--slot3__top-margin: auto;*/
       background-color: lavenderblush;
       border-radius: 15px;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       box-sizing: border-box;
-      height: 100%;
+    }
+    .card--1 {
+      --ojp-card--slot1__right-margin: 50px;
     }
     .card--2 h3 {
       margin-bottom: 30px;
@@ -53,6 +54,12 @@
     h3, p {
       margin: 0;
     }
+    .ojp-card--image {
+      --ojp-image--height: 100%;
+      --ojp-image--width: 100%;
+      --ojp-image--object-fit: cover;
+      --ojp-image--border-radius: 15px;
+    }
   </style>
 </head>
 <body>
@@ -61,23 +68,20 @@
     <ojp-col class="column" span=7 start="1" mspan="12" mstart="0">
       <ojp-card
         ishorizontal="true"
-        class="card"
+        class="card card--1"
       >
-        <div slot="card-content-one" class="card-content--one">
-          <ojp-image
-            class="ojp-card--image"
-            src="/assets/placeimg_1000_500_nature.jpg"
-            alt="Descriptive text">
-          </ojp-image>
-        </div>
+        <ojp-image
+          slot="card-content-one"
+          class="ojp-card--image"
+          src="/assets/placeimg_1000_500_nature.jpg"
+          alt="Descriptive text">
+        </ojp-image>
         <div slot="card-content-two" class="card-content--two">
           <div class="card--text">
             <h3>Card Content Two</h3>
             <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
           </div>
           <button href='../ojp-image/index.html'>Check out this image component</button>
-        </div>
-        <div slot="card-content-cta" class="card-content--cta">
         </div>
       </ojp-card>
     </ojp-col>
@@ -97,12 +101,10 @@
         <div slot="card-content-two" class="card-content--two">
           <div class="card--text">
             <h3>Card Content Two</h3>
-            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
+            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
           </div>
           <button href='../ojp-image/index.html'>Check out this image component</button>
-        </div>
-        <div slot="card-content-cta" class="card-content--cta">
-        </div>
+        </div>>
       </ojp-card>
     </ojp-col>
   </ojp-row>

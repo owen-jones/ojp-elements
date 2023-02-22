@@ -151,6 +151,7 @@ ojp-modal {
 ojp-image {
   --ojp-image--max-width: 100%;
   --ojp-image--object-fit: cover;
+  --ojp-image--height: auto;
   --ojp-image--width: auto;
   --ojp-image--display: block;
 }
@@ -176,14 +177,15 @@ ojp-card {
   --ojp-card--margin__right: var(--ojp-card--margin);
   --ojp-card--slot__margin: var(--space-s);
   --ojp-card--slot1__bottom-margin: var(--ojp-card--slot__margin);
-  --ojp-card--slot1__right-margin: 0px;
   --ojp-card--slot2__bottom-margin: var(--ojp-card--slot__margin);
-  --ojp-card--slot3__top-margin: var(--ojp-card--slot__margin);
+  --ojp-card--slot1__right-margin: 0px;
 }
 @supports (--breakpoint("desktop")) {
   ojp-card {
     flex-direction: var(--ojp-card--flex-direction__desktop);
-    --ojp-card--justify-content__desktop: unset;
+    ::slotted(div[slot="card-content-one"]) {
+      margin-right: var(--ojp-card--slot1__right-margin);
+    }
   }
 }
 

@@ -301,6 +301,7 @@ export class OjpImage {
             }}
             width={this.width}
             height={this.height}
+            part="card-image"
           />
         </picture>
       </Host>

@@ -1,6 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
+  height: 100%;
   padding: var(--ojp-card--padding);
   padding-top: var(--ojp-card--padding__top);
   padding-bottom: var(--ojp-card--padding__bottom);
@@ -11,18 +12,17 @@
   margin-bottom: var(--ojp-card--margin__bottom);
   margin-left: var(--ojp-card--margin__left);
   margin-right: var(--ojp-card--margin__right);
-  ::slotted(div[slot="card-content-one"]) {
+  ::slotted([slot="card-content-one"]) {
     margin-bottom: var(--ojp-card--slot1__bottom-margin);
     margin-right: var(--ojp-card--slot1__right-margin);
   }
+  ::slotted(ojp-image) {
+    height: 100%;
+    width: 100%;
+  }
 
-  ::slotted(div[slot="card-content-two"]) {
+  ::slotted([slot="card-content-two"]) {
     margin-bottom: var(--ojp-card--slot2__bottom-margin);
-    > *:last-child {
-      flex-grow: 1;
-    }
   }
-  ::slotted(div[slot="card-content-cta"]) {
-    margin-top: var(--ojp-card--slot3__top-margin);
-  }
+
 }
