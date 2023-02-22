@@ -132,6 +132,12 @@ export class OjpModal {
     this.toggleLockBodyScrolling(false);
   }
 
+  @Method()
+  async scrollTo(X, Y) {
+    this.slotContainer = getElementbyId('slot-container');
+    this.slotContainer.scrollTo(X, Y);
+  }
+
   @Listen('resize', {target: 'window'})
   handleWindowResize() {
     this.updateOverflowState();
