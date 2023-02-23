@@ -153,8 +153,23 @@ dialog {
 // Scrollbar visibility classes
 .scrollbar--visible::-webkit-scrollbar {
   scrollbar-width: auto;
+  width: 10px;
 }
 
+.scrollbar--visible::-webkit-scrollbar-track {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+}
+
+.scrollbar--visible::-webkit-scrollbar-thumb {
+  background: rgba(100,100,100,0.8);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+// Scrollbar hidden classes
 .scrollbar--hidden::-webkit-scrollbar {
   display: none;
 }
