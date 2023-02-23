@@ -123,7 +123,7 @@ export class OjpModal {
   }
 
   @Method()
-  async closeModal() {
+  closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
     this.el.setAttribute('aria-hidden', true);
@@ -131,6 +131,11 @@ export class OjpModal {
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
     this.toggleLockBodyScrolling(false);
+  }
+
+  @Method()
+  scrollModalTo(X, Y) {
+    this.slotContainer.scrollTo(X, Y);
   }
 
   @Listen('resize', {target: 'window'})
