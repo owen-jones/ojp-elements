@@ -68,7 +68,6 @@ dialog {
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: auto;
-    scrollbar-width: none;
   }
 }
 
@@ -157,11 +156,15 @@ dialog {
 
 // Scrollbar hidden classes
 .scrollbar--hidden::-webkit-scrollbar {
-  display: none;
+  background: transparent;
+  display: none; /* Chrome */
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
 }
 
-// TODO: write scrollbar classes for Firefox, Safari
-
+.scrollbar--hidden.slot-container {
+    scrollbar-width: none;
+}
 
 // Noscroll class
 .noscroll {
