@@ -165,9 +165,7 @@ export class OjpModal {
     this.contentSlot = this.el.shadowRoot.querySelector("slot[name='content']");
     this.modalContent = this.el.querySelector("[slot='content']");
     this.slotContainer = this.el.shadowRoot.querySelector('.slot-container');
-    // this.slotContainerScrollbar = this.el.shadowRoot.querySelector('.slot-container::-webkit-scrollbar');
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
-    this.panelScrollbar = this.el.shadowRoot.querySelector('.ojp-modal-panel::-webkit-scrollbar');
     this.dialogElement = this.el.shadowRoot.querySelector('#dialog-element');
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
     this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
