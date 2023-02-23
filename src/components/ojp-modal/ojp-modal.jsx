@@ -1,4 +1,5 @@
 import { Component, Host, h, Prop, Element, Method, State, Listen } from '@stencil/core';
+import dialogPolyfill from 'dialog-polyfill';
 
 @Component({
   tag: 'ojp-modal',
@@ -131,7 +132,7 @@ export class OjpModal {
   }
 
   @Method()
-  async closeModal() {
+  closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
     this.el.setAttribute('aria-hidden', true);
@@ -139,6 +140,11 @@ export class OjpModal {
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
     this.toggleLockBodyScrolling(false);
+  }
+
+  @Method()
+  scrollModalTo(X, Y) {
+    this.slotContainer.scrollTo(X, Y);
   }
 
   @Listen('resize', {target: 'window'})
@@ -169,6 +175,8 @@ export class OjpModal {
     this.dialogElement = this.el.shadowRoot.querySelector('#dialog-element');
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
     this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
+
+    dialogPolyfill.registerDialog(this.dialogElement);
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {

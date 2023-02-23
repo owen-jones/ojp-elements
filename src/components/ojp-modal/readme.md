@@ -36,6 +36,16 @@ Type: `Promise<void>`
 
 
 
+### `scrollModalTo(X: any, Y: any) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ----------------------------------------------
 
