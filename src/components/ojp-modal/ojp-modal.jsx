@@ -33,6 +33,15 @@ export class OjpModal {
     mutable: true,
   }) closebuttonoutside = false;
 
+  /**
+   * Modal content has a visible scrollbar
+   * Type: boolean
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) scrollbarvisible = false;
+
   @State() isOverflowing = false;
 
   getAllFocusableElements(parent) {
@@ -156,7 +165,9 @@ export class OjpModal {
     this.contentSlot = this.el.shadowRoot.querySelector("slot[name='content']");
     this.modalContent = this.el.querySelector("[slot='content']");
     this.slotContainer = this.el.shadowRoot.querySelector('.slot-container');
+    // this.slotContainerScrollbar = this.el.shadowRoot.querySelector('.slot-container::-webkit-scrollbar');
     this.panelArea = this.el.shadowRoot.querySelector(".ojp-modal-panel");
+    this.panelScrollbar = this.el.shadowRoot.querySelector('.ojp-modal-panel::-webkit-scrollbar');
     this.dialogElement = this.el.shadowRoot.querySelector('#dialog-element');
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
     this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
@@ -171,10 +182,18 @@ export class OjpModal {
       this.closeModal();
     });
 
+    // function to check if close button is inside or outside
     if (this.closebuttonoutside) {
       this.closeButtonArea.classList.add("close-button--outside");
     } else {
       this.closeButtonArea.classList.add("close-button--inside");
+    }
+
+    // function to check if scrollbar is visible or hidden
+    if (this.scrollbarvisible) {
+      this.slotContainer.classList.add("scrollbar--visible");
+    } else {
+      this.slotContainer.classList.add("scrollbar--hidden");
     }
 
     this.updateOverflowState();
