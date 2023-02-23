@@ -133,9 +133,9 @@ export class OjpModal {
   }
 
   @Method()
-  async scrollTo(X, Y) {
-    this.slotContainer = getElementbyId('slot-container');
-    this.slotContainer.scrollTo(X, Y);
+  async scrollModalTo(X, Y) {
+    this.panelArea.scrollTo(X, Y);
+    console.log('scrolling to', X, Y);
   }
 
   @Listen('resize', {target: 'window'})
