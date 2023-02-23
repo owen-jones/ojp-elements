@@ -110,6 +110,10 @@ export namespace Components {
          */
         "openModal": () => Promise<void>;
         "scrollModalTo": (X: any, Y: any) => Promise<void>;
+        /**
+          * Modal content has a visible scrollbar Type: boolean
+         */
+        "scrollbarvisible": boolean;
     }
     interface OjpRow {
         "align": string;
@@ -120,6 +124,18 @@ export namespace Components {
         "mcols": any;
         "tcols": any;
     }
+}
+export interface OjpAccordionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpAccordionElement;
+}
+export interface OjpAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpAccordionItemElement;
+}
+export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpImageElement;
 }
 declare global {
     interface HTMLOjpAccordionElement extends Components.OjpAccordion, HTMLStencilElement {
@@ -180,11 +196,11 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
-        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsInvisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
         /**
           * Triggered when the accordion is visible/invisible in the viewport
          */
-        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsVisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
@@ -198,7 +214,7 @@ declare namespace LocalJSX {
         /**
           * Triggered when the accordion item is opened or closed
          */
-        "onStateChangeEvent"?: (event: CustomEvent<any>) => void;
+        "onStateChangeEvent"?: (event: OjpAccordionItemCustomEvent<any>) => void;
         /**
           * Accordion item is open or opening (css transition) Type: boolean
          */
@@ -235,20 +251,20 @@ declare namespace LocalJSX {
           * Optional lazy load offset Type: string (pixels) Default: "300"
          */
         "lazyOffset"?: string;
-        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsInvisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Triggered when the element is visible/invisible in the viewport
          */
-        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
-        "onImageFailedToLoadEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsVisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onImageFailedToLoadEvent"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Triggered when the image loaded/failed to load
          */
-        "onImageLoadedEvent"?: (event: CustomEvent<any>) => void;
+        "onImageLoadedEvent"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
          */
-        "onImageSourceChangedEvent"?: (event: CustomEvent<any>) => void;
+        "onImageSourceChangedEvent"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Optional placeholder image path Type: string Default: null
          */
@@ -280,6 +296,10 @@ declare namespace LocalJSX {
           * Modal is open or opening (css transition) Type: boolean
          */
         "open"?: boolean;
+        /**
+          * Modal content has a visible scrollbar Type: boolean
+         */
+        "scrollbarvisible"?: boolean;
     }
     interface OjpRow {
         "align"?: string;
