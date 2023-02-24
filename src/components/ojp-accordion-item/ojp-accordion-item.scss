@@ -25,6 +25,10 @@
   // Width of caret icon
   --ojp-accordion-item--icon-width: var(--space-s-m);
 
+  // Stroke width and color of line separating each accordion item
+  --ojp-accordion-item--separator-line-width: 1px;
+  --ojp-accordion-item--separator-line-color: #BABABA;
+
 
   // Defined in global.scss:
 
@@ -37,12 +41,11 @@
 
   // PROPS vars - n/a
 
-  border-bottom: 1px solid var(--ojp-color--gray);
+  border-bottom: var(--ojp-accordion-item--separator-line-width) solid var(--ojp-accordion-item--separator-line-color);
   display: block;
   padding-top: var(--ojp-accordion-item--header-padding-block);
   padding-bottom: var(--ojp-accordion-item--header-padding-block);
   text-decoration: none;
-
 }
 
 .ojp-accordion-item__header-wrapper {
@@ -57,6 +60,7 @@
   text-decoration: none;
 
   &:hover ::slotted( [slot="header"]),
+  &:hover ::slotted( [slot="icon"]),
   &:hover .ojp-accordion-item__header__icon {
     cursor: pointer;
     opacity: var(--ojp-accordion-item--hover-opacity);
