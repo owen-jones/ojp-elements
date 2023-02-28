@@ -63,7 +63,7 @@ dialog {
   padding-left: var(--ojp-modal--padding-inline);
   padding-right: var(--ojp-modal--padding-inline);
   position: relative;
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
@@ -115,7 +115,7 @@ dialog {
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 }
 
 :focus-visible, :focus {
