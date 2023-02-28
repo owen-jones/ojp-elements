@@ -2,16 +2,22 @@
 dialog {
   background-color: transparent;
   border: none;
+  bottom: 0;
   display: block;
-  height: 100vh;
+  height: 0;
+  left: 0;
   margin: 0;
   opacity: 0;
   padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
   visibility: hidden;
   width: 100%;
 
   &[open] {
+    height: 100vh;
     opacity: 1;
     transition: opacity 0.1s linear 0.2s, visibility 0s linear 0.2s;
     visibility: visible;
