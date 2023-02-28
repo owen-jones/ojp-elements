@@ -118,7 +118,7 @@ dialog {
   transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
 }
 
-:focus-visible {
+:focus-visible, :focus {
   outline: Highlight auto 1px;
   outline: -webkit-focus-ring-color auto 1px;
 }

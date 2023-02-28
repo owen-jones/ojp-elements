@@ -4,7 +4,7 @@ import dialogPolyfill from 'dialog-polyfill';
 @Component({
   tag: 'ojp-modal',
   styleUrl: 'ojp-modal.scss',
-  shadow: true,
+  shadow: { delegatesFocus: true },
 })
 
 export class OjpModal {
@@ -71,13 +71,19 @@ export class OjpModal {
   async openModal() {
     this.toggleLockBodyScrolling(true);
 
-    //reveal the modal element
-    this.dialogElement.addEventListener('transitionend', (e) => {
-      const firstElement = e.target.querySelector('.close-button');
-      if(firstElement) {
-        firstElement.focus();
-      }
-    });
+    // Focus on the first focusable element
+    // which is the dialog element. When it receives focus
+    // it will focus on the close button
+    setTimeout(() => {
+      this.el.focus();
+    }, 500);
+    this.dialogElementFocusListener = () => {
+      this.closeButton.focus();
+      this.dialogElement.removeEventListener('focusin', this.dialogElementFocusListener);
+    };
+    this.dialogElement.addEventListener('focusin', this.dialogElementFocusListener);
+
+
     this.dialogElement.showModal();
 
     // When this invisible button gains focus, you know
@@ -140,6 +146,7 @@ export class OjpModal {
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
     this.toggleLockBodyScrolling(false);
+    this.dialogElement.removeEventListener('focusin', this.dialogElementFocusListener);
   }
 
   @Method()
