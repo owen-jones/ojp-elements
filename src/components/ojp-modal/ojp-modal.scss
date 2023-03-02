@@ -125,8 +125,7 @@ dialog {
 }
 
 :focus-visible, :focus {
-  outline: Highlight auto 1px;
-  outline: -webkit-focus-ring-color auto 1px;
+  outline: var(--ojp-modal--focus-outline);
 }
 
 .focus-trap {
