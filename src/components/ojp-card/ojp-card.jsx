@@ -23,7 +23,7 @@ export class OjpCard {
   flexDirectionDesktop = null;
 
   /**
-   * Triggered when the accordion is visible/invisible in the viewport
+   * Triggered when the card is visible/invisible in the viewport
    */
   @Event() elementIsVisibleEvent;
   @Event() elementIsInvisibleEvent;
@@ -59,7 +59,7 @@ export class OjpCard {
     else {
       this.flexDirectionDesktop = 'row';
     }
-    this.el.style.setProperty('--ojp-card--flex-direction__desktop', this.flexDirectionDesktop);
+    this.el.style.setProperty('--ojp-card--flex-direction--desktop', this.flexDirectionDesktop);
   }
 
   render() {

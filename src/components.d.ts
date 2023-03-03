@@ -219,7 +219,7 @@ declare namespace LocalJSX {
         "ishorizontal"?: boolean;
         "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
         /**
-          * Triggered when the accordion is visible/invisible in the viewport
+          * Triggered when the card is visible/invisible in the viewport
          */
         "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
     }

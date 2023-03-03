@@ -3,18 +3,18 @@
   flex-direction: column;
   height: 100%;
   padding: var(--ojp-card--padding);
-  padding-top: var(--ojp-card--padding__top);
-  padding-bottom: var(--ojp-card--padding__bottom);
-  padding-left: var(--ojp-card--padding__left);
-  padding-right: var(--ojp-card--padding__right);
+  padding-top: var(--ojp-card--padding-top);
+  padding-bottom: var(--ojp-card--padding-bottom);
+  padding-left: var(--ojp-card--padding-left);
+  padding-right: var(--ojp-card--padding-right);
   margin: var(--ojp-card--margin);
-  margin-top: var(--ojp-card--margin__top);
-  margin-bottom: var(--ojp-card--margin__bottom);
-  margin-left: var(--ojp-card--margin__left);
-  margin-right: var(--ojp-card--margin__right);
+  margin-top: var(--ojp-card--margin-top);
+  margin-bottom: var(--ojp-card--margin-bottom);
+  margin-left: var(--ojp-card--margin-left);
+  margin-right: var(--ojp-card--margin-right);
   ::slotted([slot="card-content-one"]) {
-    margin-bottom: var(--ojp-card--slot1__bottom-margin);
-    margin-right: var(--ojp-card--slot1__right-margin);
+    margin-bottom: var(--ojp-card--slot1--margin-bottom);
+    margin-right: var(--ojp-card--slot1--margin-right);
   }
   ::slotted(ojp-image) {
     height: 100%;
@@ -22,7 +22,7 @@
   }
 
   ::slotted([slot="card-content-two"]) {
-    margin-bottom: var(--ojp-card--slot2__bottom-margin);
+    margin-bottom: var(--ojp-card--slot2--margin-bottom);
   }
 
 }
