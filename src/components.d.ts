@@ -251,20 +251,26 @@ declare namespace LocalJSX {
           * Optional lazy load offset Type: string (pixels) Default: "300"
          */
         "lazyOffset"?: string;
-        "onElementIsInvisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
         /**
-          * Triggered when the element is visible/invisible in the viewport
+          * Triggered when the element has left the viewport
          */
-        "onElementIsVisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
-        "onImageFailedToLoadEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onElementIsInvisible"?: (event: OjpImageCustomEvent<any>) => void;
         /**
-          * Triggered when the image loaded/failed to load
+          * Triggered when the element has entered in the viewport
          */
-        "onImageLoadedEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onElementIsVisible"?: (event: OjpImageCustomEvent<any>) => void;
+        /**
+          * Triggered when the image failed to load
+         */
+        "onImageFailedToLoad"?: (event: OjpImageCustomEvent<any>) => void;
+        /**
+          * Triggered when the image loaded
+         */
+        "onImageLoaded"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
          */
-        "onImageSourceChangedEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onImageSourceChanged"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Optional placeholder image path Type: string Default: null
          */

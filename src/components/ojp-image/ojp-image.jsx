@@ -151,23 +151,29 @@ export class OjpImage {
    * Requires JSDocs for public API documentation.
    */
   /**
-   * Triggered when the element is visible/invisible in the viewport
+   * Triggered when the element has entered in the viewport
    */
-  @Event() elementIsVisibleEvent;
-  @Event() elementIsInvisibleEvent;
+  @Event() elementIsVisible;
+  /**
+   * Triggered when the element has left the viewport
+   */
+  @Event() elementIsInvisible;
 
   /**
-   * Triggered when the image loaded/failed to load
+   * Triggered when the image loaded
    */
-  @Event() imageLoadedEvent;
-  @Event() imageFailedToLoadEvent;
+  @Event() imageLoaded;
+  /**
+   * Triggered when the image failed to load
+   */
+  @Event() imageFailedToLoad;
 
   /**
    * Triggered when the current image source changes
    * Note: this event is not emitted when the image is loaded for the first time
    * Emits the previous source and the new source
    */
-  @Event() imageSourceChangedEvent;
+  @Event() imageSourceChanged;
 
 
   /**
@@ -263,13 +269,13 @@ export class OjpImage {
       if (entry.isIntersecting) {
 
         // Emit event when element is visible
-        this.elementIsVisibleEvent.emit(entry);
+        this.elementIsVisible.emit(entry);
 
         // Load image
         this._loadComponent = true;
       }
       else {
-        this.elementIsInvisibleEvent.emit(entry);
+        this.elementIsInvisible.emit(entry);
       }
     }
   };
@@ -285,12 +291,12 @@ export class OjpImage {
 
         // Dispatch event when image is loaded for the first time
         if (this._prevCurrentSrc === null) {
-          this.imageLoadedEvent.emit(this._image.currentSrc);
+          this.imageLoaded.emit(this._image.currentSrc);
         }
 
         // Dispatch event when image source changes (for responsive images)
         else if (this._prevCurrentSrc !== this._image.currentSrc) {
-          this.imageSourceChangedEvent.emit({
+          this.imageSourceChanged.emit({
             previousSrc: this._prevCurrentSrc,
             currentSrc: this._image.currentSrc
           });
@@ -308,7 +314,7 @@ export class OjpImage {
         if (this.placeholder) {
           this.src = this.placeholder;
         }
-        this.imageFailedToLoadEvent.emit(this._image);
+        this.imageFailedToLoad.emit(this._image);
       };
       this._image.addEventListener('error', this.loadFailedListener);
     }
