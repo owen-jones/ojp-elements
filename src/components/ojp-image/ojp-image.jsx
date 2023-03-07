@@ -16,11 +16,13 @@ export class OjpImage {
    */
     // Used for Intersection Observer
     _observer = null;
+    _lazyLoadOptions = null;
     // Used for loading event
     _image = null;
     _prevCurrentSrc = null;
     // Used for appending the sources to
     _slottedSources = null;
+
 
   /**
    * 2. Reference to host HTML element.
@@ -141,9 +143,6 @@ export class OjpImage {
     mutable: false
   }) lazyOffset = '300';
 
-  _lazyLoadOptions = {
-    rootMargin: `${this.lazyOffset}px 0px`,
-  };
 
   /**
    * 5. Events section
@@ -195,6 +194,11 @@ export class OjpImage {
         this.src = this.placeholder;
       }
     }
+
+    // Set the lazy load options based on the lazyOffset prop
+    this._lazyLoadOptions = {
+      rootMargin: `${this.lazyOffset}px 0px`,
+    };
 
     // If lazy loading is disabled, set the loadComponent to true
     if (!this.lazy) {
