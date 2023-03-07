@@ -65,7 +65,7 @@
         <h3>This accordion allows multiple items open at once</h3>
         <button class="ojp-accordion__toggle-all" onClick="toggleAll()">Collapse/Expand All </button><div><small>(button can be styled or removed)</small></div>
         <ojp-accordion allow-multiple-items-open>
-          <ojp-accordion-item>
+          <ojp-accordion-item id="my-item">
             <div slot="header"><p class="intro">This header has a long title. All type will be styled by the end-user developer.</p></div>
             <div slot="panel"><p class="p2">Item panel. Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
           </ojp-accordion-item>
@@ -124,7 +124,8 @@
               <ojp-accordion-item>
                 <div slot="header"><p class="intro">Item</p></div>
                 <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
-              </ojp-accordion-item>            <ojp-accordion-item>
+              </ojp-accordion-item>
+            <ojp-accordion-item>
                 <div slot="header"><p class="intro">Item</p></div>
                 <div  slot="panel"><p class="p2">Risus morbi quam a, scelerisque ac massa lectus. Id vitae aliquam, integer condimentum. Nulla scelerisque congue malesuada condimentum. Ultrices ridiculus vulputate sollicitudin id blandit potenti vel enim. Tempor at vitae neque, faucibus gravida convallis tellus pellentesque. </p></div>
               </ojp-accordion-item>
@@ -140,15 +141,24 @@
     let accordion = document.querySelector('ojp-accordion');
     accordion.toggleAll();
   }
+
   // End user can listen for the visibility of the element in the viewport
   const myAccordion = document.querySelector('#my-accordion');
-  myAccordion.addEventListener('elementIsVisibleEvent', event => {
+  myAccordion.addEventListener('elementIsVisible', event => {
     console.log('My accordion is now visible');
     console.log('IntersectionObserverEntry', event.detail);
   });
-  myAccordion.addEventListener('elementIsInvisibleEvent', event => {
+  myAccordion.addEventListener('elementIsInvisible', event => {
     console.log('My accordion is now invisible');
     console.log('IntersectionObserverEntry', event.detail);
+  });
+
+  const item = document.getElementById('my-item');
+  item.addEventListener('itemOpened', event => {
+    console.log('The item with index ' + event.detail.index + ' opened');
+  });
+  item.addEventListener('itemClosed', event => {
+    console.log('The item with index ' + event.detail.index + ' closed');
   });
 </script>
 </html>
