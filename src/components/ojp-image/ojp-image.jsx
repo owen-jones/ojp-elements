@@ -1,5 +1,4 @@
-import {Component, Host, h, Element, Prop, Event, State} from '@stencil/core';
-import {OjpLazy} from '../ojp-lazy/ojp-lazy';
+import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
 
 
 @Component({
@@ -181,6 +180,7 @@ export class OjpImage {
    * WillLoad should go before DidLoad.
    */
   componentWillLoad() {
+
     this._slottedSources = Array.from(this.el.children);
 
     if (this.width) {
@@ -193,16 +193,6 @@ export class OjpImage {
       if (this.placeholder) {
         this.src = this.placeholder;
       }
-    }
-
-    // Set the lazy load options based on the lazyOffset prop
-    this._lazyLoadOptions = {
-      rootMargin: `${this.lazyOffset}px 0px`,
-    };
-
-    // If lazy loading is disabled, set the loadComponent to true
-    if (!this.lazy) {
-      this._loadComponent = true;
     }
   }
 
@@ -333,27 +323,22 @@ export class OjpImage {
   render() {
     return (
       <Host>
-        <OjpLazy if={this._loadComponent}>
-          <picture>
-            <slot></slot>
-            {this._slottedSources.map(child => {
-              return (
-                <source srcset={child.srcset} media={child.media} type={child.type} />
-              );
-            })}
-
-            <img
-              src={this.src}
-              alt={this.alt}
-              style={{
-                aspectRatio: this.ratio,
-                objectPosition: this.imageFocus ? this.imageFocus : 'center',
-              }}
-              width={this.width}
-              height={this.height}
-            />
-          </picture>
-        </OjpLazy>
+        <picture>
+          {this._slottedSources.map((child) =>
+              <source srcset={child.srcset} media={child.media} type={child.type} />
+          )}
+          <img
+            src={this.src}
+            alt={this.alt}
+            style={{
+              aspectRatio: this.ratio,
+              objectPosition: this.imageFocus ? this.imageFocus : 'center',
+            }}
+            width={this.width}
+            height={this.height}
+            {...(this.lazy ? { loading: 'lazy' } : { loading: 'eager'})}
+          />
+        </picture>
       </Host>
     );
   }
