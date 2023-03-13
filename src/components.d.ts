@@ -58,6 +58,10 @@ export namespace Components {
          */
         "alt": string;
         /**
+          * Desktop image src Type: string
+         */
+        "dSrc": any;
+        /**
           * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
          */
         "height": any;
@@ -70,9 +74,9 @@ export namespace Components {
          */
         "lazy": boolean;
         /**
-          * Optional lazy load offset Type: string (pixels) Default: "300"
+          * Mobile image src
          */
-        "lazyOffset": string;
+        "mSrc": any;
         /**
           * Optional placeholder image path Type: string Default: null
          */
@@ -85,6 +89,14 @@ export namespace Components {
           * Image src Type: string Required: true Default: null
          */
         "src": string;
+        /**
+          * Tablet image src
+         */
+        "tSrc": any;
+        /**
+          * Widescreen image src
+         */
+        "wSrc": any;
         /**
           * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */
@@ -236,6 +248,10 @@ declare namespace LocalJSX {
          */
         "alt"?: string;
         /**
+          * Desktop image src Type: string
+         */
+        "dSrc"?: any;
+        /**
           * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
          */
         "height"?: any;
@@ -248,9 +264,9 @@ declare namespace LocalJSX {
          */
         "lazy"?: boolean;
         /**
-          * Optional lazy load offset Type: string (pixels) Default: "300"
+          * Mobile image src
          */
-        "lazyOffset"?: string;
+        "mSrc"?: any;
         /**
           * Triggered when the element has left the viewport
          */
@@ -283,6 +299,14 @@ declare namespace LocalJSX {
           * Image src Type: string Required: true Default: null
          */
         "src"?: string;
+        /**
+          * Tablet image src
+         */
+        "tSrc"?: any;
+        /**
+          * Widescreen image src
+         */
+        "wSrc"?: any;
         /**
           * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */

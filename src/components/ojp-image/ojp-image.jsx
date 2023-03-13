@@ -1,4 +1,4 @@
-import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
+import {Component, Element, Event, EventEmitter, h, Host, Prop, State} from '@stencil/core';
 
 
 @Component({
@@ -7,6 +7,7 @@ import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
   shadow: true,
 })
 export class OjpImage {
+
   /**
    * 1. Own Properties
    * Note that because these properties
@@ -15,12 +16,12 @@ export class OjpImage {
    */
     // Used for Intersection Observer
     _observer = null;
-    _lazyLoadOptions = null;
     // Used for loading event
     _image = null;
     _prevCurrentSrc = null;
-    // Used for appending the sources to
-    _slottedSources = null;
+
+    _loadListener = null;
+    _loadFailedListener = null;
 
 
   /**
@@ -33,15 +34,12 @@ export class OjpImage {
    * 3. State() variables
    * Inlined decorator, alphabetical order.
    */
-
-  // Used for lazy loading
-  @State() _loadComponent = false;
-
+    // N/A
 
   /**
    * 4. Public Property API
    * Inlined decorator, alphabetical order. These are
-   * different than "own properties" in that public props
+   * different from "own properties" in that public props
    * are exposed as properties and attributes on the host element.
    * Requires JSDocs for public API documentation.
    */
@@ -133,17 +131,6 @@ export class OjpImage {
   }) placeholder = null;
 
   /**
-   * Optional lazy load offset
-   * Type: string (pixels)
-   * Default: "300"
-   */
-  @Prop({
-    reflect: true,
-    mutable: false
-  }) lazyOffset = '300';
-
-
-  /**
    * 5. Events section
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
@@ -181,8 +168,6 @@ export class OjpImage {
    */
   componentWillLoad() {
 
-    this._slottedSources = Array.from(this.el.children);
-
     if (this.width) {
       this.el.style.setProperty('--ojp-image--width',  `${this.width}px`);
     }
@@ -207,12 +192,9 @@ export class OjpImage {
     // Create Intersection Observer if browser supports it
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
       this._observer = new IntersectionObserver(
-        this.handleIntersection, this._lazyLoadOptions);
+        this.handleIntersection
+      );
       this._observer.observe(this.el);
-    }
-    // Otherwise, don't lazy load
-    else {
-      this._loadComponent = true;
     }
   }
 
@@ -225,8 +207,8 @@ export class OjpImage {
 
     // Remove event listeners
     if (this._image) {
-      this._image.removeEventListener('load', this.loadListener);
-      this._image.removeEventListener('error', this.loadFailedListener);
+      this._image.removeEventListener('load', this._loadListener);
+      this._image.removeEventListener('error', this._loadFailedListener);
     }
   }
 
@@ -257,16 +239,11 @@ export class OjpImage {
    * called from the host element.
    */
 
-  //Code borrowed from https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-
         // Emit event when element is visible
         this.elementIsVisible.emit(entry);
-
-        // Load image
-        this._loadComponent = true;
       }
       else {
         this.elementIsInvisible.emit(entry);
@@ -281,7 +258,7 @@ export class OjpImage {
     if (this._image) {
       // Add event listeners
 
-      this.loadListener = () => {
+      this._loadListener = () => {
 
         // Dispatch event when image is loaded for the first time
         if (this._prevCurrentSrc === null) {
@@ -300,9 +277,9 @@ export class OjpImage {
 
       };
 
-      this._image.addEventListener('load', this.loadListener);
+      this._image.addEventListener('load', this._loadListener);
 
-      this.loadFailedListener = (e) => {
+      this._loadFailedListener = (e) => {
         // Dispatch event when image fails to load
         console.error('Image loading error', e.target);
         if (this.placeholder) {
@@ -310,7 +287,7 @@ export class OjpImage {
         }
         this.imageFailedToLoad.emit(this._image);
       };
-      this._image.addEventListener('error', this.loadFailedListener);
+      this._image.addEventListener('error', this._loadFailedListener);
     }
   }
 
