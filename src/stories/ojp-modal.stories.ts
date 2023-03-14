@@ -41,15 +41,15 @@ This is the slot name given to the panel/content section of the modal. **Your cu
     <div slot="content">
         <h1>Awesome Headline</h1>
     </div>
-</ojp-modal>    
+</ojp-modal>
 \`
 
 <br>
 
 ## *Element*: \`<ojp-modal>\`
 
-# Attribute:
-The \`<ojp-modal>\` element comes with an option that developers can use to customize the implementation.
+# Attributes:
+The \`<ojp-modal>\` element comes with options that developers can use to customize the implementation.
 
 ## "closebuttonoutside":
 
@@ -57,6 +57,14 @@ This option specifies the state of the modal's close icon on page load, and can 
 
 >  **Usage**:
 \`<ojp-modal closebuttonoutside>\`
+
+## "scrollbarvisible":
+
+This option specifies whether the scrollbar is visible, and can be modified by adding the keyword "scrollbarvisible" or removing it from the element parameters.
+
+>  **Usage**:
+\`<ojp-modal scrollbarvisible>\`
+
 
 # Public Methods:
 The \`<ojp-modal>\` element comes with some methods that developers can use to modify the behavior of the modal.
@@ -76,6 +84,21 @@ const myModal = document.getElementById('my-modal');
 myModalButton.addEventListener('click', event => {
     myModal.openModal();
 }\`
+
+## "scrollModalTo(X,Y)":
+
+This method allows users to scroll to/load the modal to a co-ordinate position.
+
+X is the pixel along the horizontal axis of the element that you want displayed in the upper left.
+Y is the pixel along the vertical axis of the element that you want displayed in the upper left.
+
+**Usage**:
+\`
+const myModal = document.getElementById("my-modal");
+myModal.addEventListener('open', event => {
+    myModal.scrollModalTo(0,100);
+    }
+\`
 
 
 # Events:
@@ -161,7 +184,7 @@ Specifies the color of the dark overlay for the modal.
 Specifies the color of the top and bottom overlays for overflowing content inside the modal.
 
 > **Usage**: \`--ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);\`
-                
+
 `
             }
         }
@@ -171,6 +194,11 @@ Specifies the color of the top and bottom overlays for overflowing content insid
             control: { type: 'boolean' },
             name: 'closebuttonoutside',
             description: 'Is the modal close icon outside the modal?',
+        },
+        scrollbarvisible: {
+          control: { type: 'boolean' },
+          name: 'scrollbarvisible',
+          description: 'Is the scrollbar visible?',
         }
     },
     docs: {
@@ -193,10 +221,10 @@ const TemplateModal = (args) => `
   <!-- Start component code -->
   <ojp-row>
     <ojp-col span="10" start="2">
-        Play around with the "closebuttonoutside" control element on the Canvas page.
+        Play around with the "closebuttonoutside" and "scrollbarvisible" controls element on the Canvas page.
         <br/>
         <button id="my-modal-button" style="margin: 15px;">Open Modal</button>
-        <ojp-modal id="my-demo-modal" ${args.closebuttonoutside ? 'closebuttonoutside' : ''}>
+        <ojp-modal id="my-demo-modal" ${args.closebuttonoutside ? 'closebuttonoutside' : ''} ${args.scrollbarvisible ? 'scrollbarvisible' : ''}>
             <div slot="close-icon" class="close-icon-1">
                 <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
@@ -222,4 +250,5 @@ const TemplateModal = (args) => `
 export const OjpModal = TemplateModal.bind({});
 OjpModal.args = {
     closebuttonoutside: false,
+    scrollbarvisible: false,
 }
