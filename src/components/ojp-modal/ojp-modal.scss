@@ -1,0 +1,161 @@
+
+dialog {
+  background-color: transparent;
+  border: none;
+  display: block;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
+  visibility: hidden;
+  width: 100%;
+
+  &[open] {
+    opacity: 1;
+    transition: opacity 0.1s linear 0.2s, visibility 0s linear 0.2s;
+    visibility: visible;
+  }
+
+  &::backdrop {
+    display: none;
+  }
+}
+
+.ojp-modal-wrapper {
+  bottom: 0;
+  display: grid;
+  grid-template-columns: var(--ojp-modal--outer-horizontal-padding) 1fr var(--ojp-modal--outer-horizontal-padding);
+  grid-template-rows: max-content var(--ojp-modal--outer-vertical-padding) 1fr var(--ojp-modal--outer-vertical-padding);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.ojp-modal-overlay {
+  background-color: var(--ojp-modal--overlay-color);
+  grid-area: 1/1/5/4;
+  height: 100%;
+  width: 100%;
+}
+
+// Modal panel
+.ojp-modal-wrapper .ojp-modal-panel {
+  background-color: var(--ojp-modal--panel-color);
+  border-radius: var(--ojp-modal--panel-border-radius);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: var(--ojp-modal--inner-vertical-padding) 1fr var(--ojp-modal--inner-vertical-padding);
+  grid-area: var(--ojp-modal--panel-grid-area);
+  height: auto;
+  overflow: hidden;
+  padding-top: var(--ojp-modal--padding-top-bottom);
+  padding-bottom: var(--ojp-modal--padding-top-bottom);
+  padding-left: var(--ojp-modal--padding-inline);
+  padding-right: var(--ojp-modal--padding-inline);
+  position: relative;
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+  .slot-container {
+    grid-area: 1 / 1 / 4 / 2;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+
+  .slot-container::-webkit-scrollbar {
+    background: transparent;
+    display: none;
+  }
+}
+
+.ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.ojp-modal-overflow--top {
+  grid-area: 1/1/2/2;
+  height: var(--ojp-modal--overflow-gradient-height);
+  transform: rotate(180deg) translateY(var(--ojp-modal--overflow-gradient-offset));
+  width: 100%;
+  z-index: 0;
+}
+
+.ojp-modal-overflow--bottom {
+  grid-area: 3 / 1 / 4 / 2;
+  height: var(--space-l-xl);
+  transform: translateY(var(--ojp-modal--overflow-gradient-offset));
+  visibility: var(--ojp-modal--overflow-gradient-visibility);
+  width: 100%;
+}
+
+.overflow-gradient--visible {
+  background: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
+}
+
+// Close button
+.ojp-modal-close {
+  align-self: flex-start;
+  grid-area: var(--ojp-modal--close-grid-area);
+  justify-self: flex-end;
+  margin-right: var(--ojp-modal--close-icon-margin);
+  margin-top: var(--ojp-modal--close-icon-margin);
+  z-index: 12;
+}
+
+// Reset close button styling
+.close-button {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  outline: none;
+  padding: 0;
+}
+
+.ojp-modal-wrapper .ojp-modal-close .close-button {
+  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+:focus-visible {
+  outline: Highlight auto 1px;
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+.focus-trap {
+  border: 0;
+  height: 0;
+  padding: 0;
+  width: 0;
+}
+
+// Fade css class
+// Fade background CSS
+.modal-fade {
+  background: --ojp-modal--overflow-gradient;
+}
+
+// Close button inside modal panel
+.close-button--inside {
+  --ojp-modal--close-grid-area: var(--ojp-modal--close-grid-area--inside);
+
+  align-self: flex-start;
+}
+
+// Close button outside modal panel
+.close-button--outside {
+  --ojp-modal--close-grid-area: 1/3/2/4;
+}
+
+
+// Noscroll class
+.noscroll {
+  overflow: hidden;
+}

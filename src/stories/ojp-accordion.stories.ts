@@ -26,24 +26,24 @@ This is the slot name given to the header section of the accordion item. This wi
 ## \`slot="panel"\`
 This is the slot name given to the panel/content section of the accordion item. This will be the content under the header section.
 
-> ### These can be used to specify which section of your markup is the \`header\` or the \`panel\` section. 
+> ### These can be used to specify which section of your markup is the \`header\` or the \`panel\` section.
 
 <br>
 
-## *Element*: \`<ojp-accordion>\` 
+## *Element*: \`<ojp-accordion>\`
 
-# Attribute:   
+# Attribute:
 The \`<ojp-accordion>\` element comes with an option that developers can use to customize the implementation.
 
 ## "allow-multiple-items-open":
 
 This option specifies if an accordion can allow multiple items to be open at the same time. Can be modified by adding the keyphrase "allow-multiple-items-open" or removing it from the element parameters.
-                  
+
 >  **Usage**:
 \`<ojp-accordion allow-multiple-items-open>\`
 
 
-# Non-modifiable Method (cannot be modified through props):   
+# Non-modifiable Method (cannot be modified through props):
 The \`<ojp-accordion>\` element comes with a method that developers can use to modify the behavior of the accordion.
 
 ## "toggleAll":
@@ -51,46 +51,46 @@ The \`<ojp-accordion>\` element comes with a method that developers can use to m
 This method allows users to toggle all items of an accordion. This method can be triggered from a button.
 
 ### NOTE: This kind of accordion must have the "allow-multiple-items-open" attribute set.
-                  
+
 **Usage**:
 \`const myAccordion = document.getElementById('my-accordion');
 myAccordion.toggleAll();\`
 
 <br>
 
-## *Element*: \`<ojp-accordion-item>\` 
+## *Element*: \`<ojp-accordion-item>\`
 
-# Attributes:   
+# Attributes:
 The \`<ojp-accordion-item>\` element comes with options that developers can use to customize the implementation.
 
 ## "anchor-id":
 
 This optional attribute for \`<ojp-accordion-item>\` specifies an alphanumeric, user-defined string. It can be used to auto-open an accordion item with the url parameters.
-                  
+
 >  **Usage**:
 \`<ojp-accordion-item anchor-id="custom-anchor-id">\`
 
 ## "open":
 
 This option specifies the state of an accordion item on page load, and can be modified by adding the keyword "open" or removing it from the element parameters.
-                  
+
 >  **Usage**:
 \`<ojp-accordion-item open>\`
 
-# Non-modifiable Attributes:   
+# Non-modifiable Attributes:
 
 ## "index":
 
 This auto-generated attribute specifies the index of an accordion item (from top to bottom).
-                  
+
 >  **Example**:
 \`<ojp-accordion index=3>\`
 
 
-# Non-modifiable Methods (cannot be modified through props):   
+# Non-modifiable Methods (cannot be modified through props):
 The \`<ojp-accordion-item>\` element comes with some methods that developers can use to modify the behavior of the accordion items.
 
-> **NOTE**: All the methods will return a \`Promise<void>\` 
+> **NOTE**: All the methods will return a \`Promise<void>\`
 
 ## "closeItem()":
 
@@ -126,6 +126,28 @@ The event \`stateChangeEvent\` is triggered when this item is opened. You can li
 myAccordionItem.addEventListener('stateChangeEvent', event => {
     //do something
 });                \`
+
+The event \`elementIsVisibleEvent\` is triggered when the element is visible in the viewport."
+
+> **Usage**:
+
+\`const myElement = document.getElementById("my-element");
+myElement.addEventListener('elementIsVisibleEvent', event => {
+    //do something
+    console.log('My accordion is now visible');
+    console.log('IntersectionObserverEntry', event.detail);
+});                \`
+
+The event \`elementIsInvisibleEvent\` is triggered when the element is no longer visible in the viewport."
+
+> **Usage**:
+
+\`const myElement = document.getElementById("my-element");
+myElement.addEventListener('elementIsInvisibleEvent', event => {
+    //do something
+    console.log('My accordion is now invisible');
+    console.log('IntersectionObserverEntry', event.detail);
+});                \`
                 `
             }
         }
@@ -159,7 +181,7 @@ const TemplateAccordion = (args) => `
       }
 
   </style>
-  
+
   <!-- Start component code -->
   <ojp-row>
   <ojp-col span="10" start="2">

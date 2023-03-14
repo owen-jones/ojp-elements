@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+    <title>Modal</title>
+
+    <!-- Needs to import the global stylesheet-->
+    <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+    <script type="module" src="../../build/ojp-elements.esm.js"></script>
+    <script nomodule="nomodule" src="../../build/ojp-elements.js"></script>
+
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      #ojp-modal-2 {
+        --ojp-modal--outer-horizontal-padding: 0;
+        --ojp-modal--overlay-color: rgba(0, 0, 0, 0.8);
+        --ojp-modal--outer-vertical-padding: 0;
+        --ojp-modal--padding-inline: 0;
+        --ojp-modal--padding-top-bottom: 0;
+        --ojp-modal--panel-color: transparent;
+      }
+
+      .close-icon-1,
+      .close-icon-2,
+      .close-icon-3 {
+        border-radius: 50%;
+        display: flex;
+        height: 44px;
+        justify-content: center;
+        width: 44px;
+      }
+
+      .example-module-container {
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        margin-top: var(--space-s-m);
+        width: auto;
+      }
+
+      .example-module-container iframe {
+        border-radius: 0;
+        height: 100%;
+        min-height: inherit;
+        width: 100%;
+      }
+
+      .video-caption {
+        color: white;
+        display: flex;
+        font-size: 16px;
+        margin-top: var(--space-s-m);
+        margin-left: var(--space-s-m);
+      }
+
+      #demo-form textarea {
+        max-height: 30%;
+        max-width: 90%;
+        width: 90%;
+      }
+
+      #ojp-modal-3 {
+        --ojp-modal--outer-horizontal-padding: 0;
+      }
+
+      {
+        # tablet media queries #
+      }
+      @media (min-width: 768px) {
+        #ojp-modal-1 {
+          --ojp-modal--outer-horizontal-padding: 50px;
+        }
+
+        #ojp-modal-2 {
+          --ojp-modal--inner-vertical-padding: 0;
+          --ojp-modal--outer-horizontal-padding: var(--space-s-3xl);
+          --ojp-modal--padding-inline: var(--space-s-m);
+        }
+
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 150px;
+        }
+
+        .example-module-container iframe {
+          border-radius: 15px;
+        }
+
+        .video-caption {
+          margin-left: 0;
+        }
+      }
+
+      {
+        # laptop media queries #
+      }
+      @media (min-width: 1024px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 300px;
+        }
+
+        .example-module-container {
+          min-height: 500px;
+        }
+      }
+
+      {
+        # desktop media queries #
+      }
+      @media (min-width: 1280px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 400px;
+        }
+      }
+
+      {
+        # large desktop media queries #
+      }
+      @media (min-width : 1820px) {
+        #ojp-modal-3 {
+          --ojp-modal--outer-horizontal-padding: 600px;
+        }
+      }
+
+      #modal-4 {
+        --ojp-modal--outer-horizontal-padding: 25vw;
+        --ojp-modal--outer-vertical-padding: 25vh;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="ojp-modal-button">
+      Modal 1 example with custom close button outside (normal, wide layout):
+      <button class="open-modal-1">
+        Open Modal
+      </button>
+    </div>
+    <ojp-modal id="ojp-modal-1" closebuttonoutside>
+      <div slot="close-icon" class="close-icon-1">
+        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+        </svg>
+      </div>
+      <div slot="content">
+        <h1>Awesome Headline</h1>
+        Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. Mattis pretium diam lectus euismod ullamcorper aliquam risus proin. Viverra diam placerat sed quis sagittis orci. Vitae proin eget sapien nullam. Non mattis tellus aliquet viverra nam id dignissim maecenas volutpat. Commodo commodo augue mi ut tincidunt euismod et luctus. Lobortis sed montes pulvinar adipiscing faucibus. A vitae venenatis natoque massa ut velit. Ac proin sit iaculis elit est in purus tempus. A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus A semper ullamcorper eleifend nulla. In scelerisque eros ultricies duis nibh tortor semper tempor in. Sapien nisi ullamcorper ut laoreet felis mauris risus lectus quis. Egestas risus nunc amet tristique. Nullam lectus fermentum sit mattis scelerisque semper aenean libero. Nibh id pretium convallis fermentum at amet gravida sed. Adipiscing lorem non nibh phasellus eget eget mattis. Lectus
+        <button>Hello</button>
+      </div>
+    </ojp-modal>
+
+    <br/>
+
+    <div class="ojp-modal-button">
+      Modal 2 example with embedded video and default close button:
+      <button class="open-modal-2">
+        Open Modal 2 with close inside, video
+      </button>
+    </div>
+    <ojp-modal id="ojp-modal-2" closebuttonoutside>
+      <div class="example-module-container" slot="content">
+        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4?controls=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe>
+        <div class="video-caption">
+          This is a caption for the embedded video.
+        </div>
+      </div>
+      <div class="close-icon-2" slot="close-icon">
+        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+        </svg>
+      </div>
+    </ojp-modal>
+
+    <br/>
+    <div class="ojp-modal-button">
+      Modal 3 example with form (narrow):
+      <button class="open-modal-3">
+        Open Modal
+      </button>
+    </div>
+    <ojp-modal id="ojp-modal-3">
+      <div slot="content">
+        <form id="demo-form" action="#" method="post">
+          <h3>Here's a sample form!</h3>
+          <div>
+            <label for="name">Text Input:</label>
+            <input type="text" name="name" id="name" value="" tabindex="1">
+          </div>
+
+          <div>
+            <h4>Radio Button Choice</h4>
+
+            <label for="radio-choice-1">Choice 1</label>
+            <input type="radio" name="radio-choice" id="radio-choice-1" tabindex="2" value="choice-1">
+
+            <label for="radio-choice-2">Choice 2</label>
+            <input type="radio" name="radio-choice" id="radio-choice-2" tabindex="3" value="choice-2">
+          </div>
+
+          <div>
+            <label for="select-choice">Select Dropdown Choice:</label>
+            <select name="select-choice" id="select-choice">
+              <option value="Choice 1">Choice 1</option>
+              <option value="Choice 2">Choice 2</option>
+              <option value="Choice 3">Choice 3</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="textarea">Textarea:</label>
+            <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+          </div>
+
+          <div>
+            <label for="checkbox">Checkbox:</label>
+            <input type="checkbox" name="checkbox">
+          </div>
+
+          <div>
+            <input type="submit" value="Submit">
+          </div>
+          <br/>
+          <div>
+            <label for="select-choice-2">Select Dropdown Choice:</label>
+            <select name="select-choice-2" id="select-choice-2">
+              <option value="Choice 1">Choice 1</option>
+              <option value="Choice 2">Choice 2</option>
+              <option value="Choice 3">Choice 3</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="textarea-2">Textarea 2:</label>
+            <textarea cols="40" rows="8" name="textarea" id="textarea-2"></textarea>
+          </div>
+
+          <div>
+            <label for="checkbox-2">Checkbox:</label>
+            <input type="checkbox-2" name="checkbox-2">
+          </div>
+
+          <div>
+            <input type="submit" value="Submit 2">
+          </div>
+
+        </form>
+      </div>
+      <div class="close-icon-3" slot="close-icon">
+        <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.494 12.0133C13.1023 11.6239 12.4672 11.6239 12.0755 12.0133C11.6838 12.4026 11.6838 13.0339 12.0755 13.4232L17.4852 18.8006L19.0168 20.3229L17.4852 21.8453L12.0755 27.2227C11.6838 27.612 11.6838 28.2433 12.0755 28.6326C12.4672 29.022 13.1023 29.022 13.494 28.6326L18.9037 23.2553L20.4352 21.7329L27.2688 28.5256C27.6605 28.9149 28.2955 28.9149 28.6872 28.5256C29.0789 28.1362 29.0789 27.505 28.6872 27.1156L21.8537 20.3229L28.6872 13.5303C29.0789 13.1409 29.0789 12.5097 28.6872 12.1203C28.2955 11.731 27.6605 11.731 27.2688 12.1203L20.4352 18.913L18.9037 17.3906L13.494 12.0133Z" fill="black"/>
+          <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2"/>
+        </svg>
+      </div>
+    </ojp-modal>
+    <div style='width: 100%;height: 100vh'></div>
+    <h2>This content is here just to take up space for testing</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <button id='open-scroll-test-modal-button'>Open A Modal</button>
+    <ojp-modal id='modal-4'>
+      <div slot='content'>
+        <h1>This is a test</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </ojp-modal>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </body>
+
+  <script>
+    let modal1 = document.querySelector('#ojp-modal-1');
+    let openModal1Button = document.querySelector(".open-modal-1");
+
+    let modal2 = document.querySelector('#ojp-modal-2');
+    let openModal2Button = document.querySelector(".open-modal-2");
+
+    let modal3 = document.querySelector('#ojp-modal-3');
+    let openModal3Button = document.querySelector(".open-modal-3");
+
+    let modal4 = document.querySelector('#modal-4');
+    let openModal4Button = document.querySelector('#open-scroll-test-modal-button');
+
+    openModal1Button.addEventListener('click', () => {
+      modal1.openModal();
+    });
+
+    openModal2Button.addEventListener('click', () => {
+      modal2.openModal();
+    });
+
+    openModal3Button.addEventListener('click', () => {
+      modal3.openModal();
+    });
+
+    openModal4Button.addEventListener('click', () => {
+      modal4.openModal();
+    });
+
+    // Example of events being fired by modal 1
+    modal1.addEventListener('open', () => {
+      console.log('modal 1 open event fired')
+    });
+
+    modal1.addEventListener('close', () => {
+      console.log('modal 1 close event fired')
+    });
+  </script>
+</html>

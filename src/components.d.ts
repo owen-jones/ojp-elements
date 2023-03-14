@@ -42,6 +42,12 @@ export namespace Components {
          */
         "toggleItem": () => Promise<void>;
     }
+    interface OjpCard {
+        /**
+          * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop Type: boolean
+         */
+        "ishorizontal": boolean;
+    }
     interface OjpCol {
         "dspan": any;
         "dstart": any;
@@ -53,12 +59,58 @@ export namespace Components {
         "tstart": any;
     }
     interface OjpImage {
+        /**
+          * Image alt text Type: string Default: ""
+         */
+        "alt": string;
+        /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height": any;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus": any;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy": string;
+        /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder": any;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio": any;
+        /**
+          * Image src Type: string Required: true Default: null
+         */
         "src": string;
+        /**
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
+         */
+        "width": any;
     }
     interface OjpListbox {
         "activeSelectionIndex": number;
         "onItemSelected": Function;
         "open": boolean;
+    }
+    interface OjpModal {
+        "closeModal": () => Promise<void>;
+        /**
+          * Modal's close button is inside or outside the modal panel Type: boolean
+         */
+        "closebuttonoutside": boolean;
+        /**
+          * Modal is open or opening (css transition) Type: boolean
+         */
+        "open": boolean;
+        /**
+          * Methods to open, close modal
+         */
+        "openModal": () => Promise<void>;
     }
     interface OjpRow {
         "align": string;
@@ -83,6 +135,12 @@ declare global {
         prototype: HTMLOjpAccordionItemElement;
         new (): HTMLOjpAccordionItemElement;
     };
+    interface HTMLOjpCardElement extends Components.OjpCard, HTMLStencilElement {
+    }
+    var HTMLOjpCardElement: {
+        prototype: HTMLOjpCardElement;
+        new (): HTMLOjpCardElement;
+    };
     interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
     }
     var HTMLOjpColElement: {
@@ -101,6 +159,12 @@ declare global {
         prototype: HTMLOjpListboxElement;
         new (): HTMLOjpListboxElement;
     };
+    interface HTMLOjpModalElement extends Components.OjpModal, HTMLStencilElement {
+    }
+    var HTMLOjpModalElement: {
+        prototype: HTMLOjpModalElement;
+        new (): HTMLOjpModalElement;
+    };
     interface HTMLOjpRowElement extends Components.OjpRow, HTMLStencilElement {
     }
     var HTMLOjpRowElement: {
@@ -110,9 +174,11 @@ declare global {
     interface HTMLElementTagNameMap {
         "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
+        "ojp-card": HTMLOjpCardElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
+        "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
     }
 }
@@ -122,6 +188,11 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
@@ -141,6 +212,17 @@ declare namespace LocalJSX {
          */
         "open"?: boolean;
     }
+    interface OjpCard {
+        /**
+          * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop Type: boolean
+         */
+        "ishorizontal"?: boolean;
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the card is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+    }
     interface OjpCol {
         "dspan"?: any;
         "dstart"?: any;
@@ -152,11 +234,66 @@ declare namespace LocalJSX {
         "tstart"?: any;
     }
     interface OjpImage {
+        /**
+          * Image alt text Type: string Default: ""
+         */
+        "alt"?: string;
+        /**
+          * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
+         */
+        "height"?: any;
+        /**
+          * Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null
+         */
+        "imageFocus"?: any;
+        /**
+          * Loading type (using browser's native lazy loading) Type: boolean Default: true
+         */
+        "lazy"?: string;
+        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the element is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onImageFailedToLoadEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the image loaded/failed to load
+         */
+        "onImageLoadedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
+         */
+        "onImageSourceChangedEvent"?: (event: CustomEvent<any>) => void;
+        /**
+          * Optional placeholder image path Type: string Default: null
+         */
+        "placeholder"?: any;
+        /**
+          * Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null
+         */
+        "ratio"?: any;
+        /**
+          * Image src Type: string Required: true Default: null
+         */
         "src"?: string;
+        /**
+          * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
+         */
+        "width"?: any;
     }
     interface OjpListbox {
         "activeSelectionIndex"?: number;
         "onItemSelected"?: Function;
+        "open"?: boolean;
+    }
+    interface OjpModal {
+        /**
+          * Modal's close button is inside or outside the modal panel Type: boolean
+         */
+        "closebuttonoutside"?: boolean;
+        /**
+          * Modal is open or opening (css transition) Type: boolean
+         */
         "open"?: boolean;
     }
     interface OjpRow {
@@ -171,9 +308,11 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ojp-accordion": OjpAccordion;
         "ojp-accordion-item": OjpAccordionItem;
+        "ojp-card": OjpCard;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
+        "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
     }
 }
@@ -183,9 +322,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ojp-accordion": LocalJSX.OjpAccordion & JSXBase.HTMLAttributes<HTMLOjpAccordionElement>;
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
+            "ojp-card": LocalJSX.OjpCard & JSXBase.HTMLAttributes<HTMLOjpCardElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
+            "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
         }
     }

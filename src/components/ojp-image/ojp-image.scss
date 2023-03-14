@@ -1,6 +1,16 @@
 // Encapsulate component style here as children of :host
 :host {
-  display: block;
+
+  // PUBLIC CSS VALUES - can be overwritten by end user
+  // likely to be persistent across a project and/or
+  // easier to set as css vars so they can use Utopia
+  // These are set in global.scss
+  //--ojp-image--max-width: max-content;
+  //--ojp-image--object-fit: cover;
+  //--ojp-image--height: 100%;
+  //--ojp-image--width: 100%;
+  //--ojp-image--display: block;
+
 
   /*
   This may not always be the case, but in this component
@@ -10,5 +20,15 @@
    */
   & > img {
     all: inherit;
+
   }
+
+  img, source {
+    display: var(--ojp-image--display, block);
+    height: var(--ojp-image--height, 100%);
+    max-width: var(--ojp-image--max-width, 100%);
+    object-fit: var(--ojp-image--object-fit, cover);
+    width: var(--ojp-image--width, 100%);
+  }
+
 }

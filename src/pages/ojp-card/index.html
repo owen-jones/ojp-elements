@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Ojp Card</title>
+
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <!--    Needs to import the global stylesheet-->
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #f5f5f5;
+      color: black;
+      position: relative;
+      padding: 40px 0;
+      height: 100%;
+    }
+
+    .card {
+      --ojp-card--padding: var(--space-xs);
+      --ojp-card--margin: 0px;
+      --ojp-card--slot--margin: 0;
+      background-color: lavenderblush;
+      border-radius: 15px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      box-sizing: border-box;
+    }
+    .card--1 {
+      --ojp-card--slot1--margin-right: 50px;
+      --ojp-card--slot1--margin-bottom: 40px;
+    }
+    @media (min-width: 1024px) {
+      .card--1 {
+        --ojp-card--slot1--margin-bottom: 0;
+      }
+    }
+    .card--2 {
+      --ojp-card--slot1--margin-bottom: 30px;
+    }
+    .card--4 {
+      flex-direction: row;
+    }
+    .card--2 h3 {
+      margin-bottom: 30px;
+    }
+    .card--2 button {
+      margin-top: 30px;
+    }
+    .card-content--two {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    button {
+      align-self: flex-end;
+    }
+    h3, p {
+      margin: 0;
+    }
+    .ojp-card--image {
+      --ojp-image--height: 100%;
+      --ojp-image--width: 100%;
+      --ojp-image--object-fit: cover;
+      --ojp-image--border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <ojp-row justify="">
+    <ojp-col class="column" span=7 start="1" mspan="12" mstart="0">
+      <ojp-card
+        ishorizontal="true"
+        class="card card--1"
+      >
+        <ojp-image
+          slot="card-content-one"
+          class="ojp-card--image"
+          src="/assets/placeimg_1000_500_nature.jpg"
+          alt="trees in the fog">
+        </ojp-image>
+        <div slot="card-content-two" class="card-content--two">
+          <div class="card--text">
+            <h3>Card Content Two</h3>
+            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
+          </div>
+          <button href='../ojp-image/index.html'>Check out this image component</button>
+        </div>
+      </ojp-card>
+    </ojp-col>
+
+    <ojp-col  class="column" span=4 start="9" mspan="12" mstart="0">
+      <ojp-card
+        ishorizontal="false"
+        class="card card--2"
+      >
+        <div slot="card-content-one" class="card-content--one">
+          <ojp-image
+            class="ojp-card--image"
+            src="/assets/placeimg_1000_500_nature.jpg"
+            alt="Descriptive text">
+          </ojp-image>
+        </div>
+        <div slot="card-content-two" class="card-content--two">
+          <div class="card--text">
+            <h3>Card Content Two</h3>
+            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
+          </div>
+          <button href='../ojp-image/index.html'>Check out this image component</button>
+        </div>>
+      </ojp-card>
+    </ojp-col>
+  </ojp-row>
+
+
+  <ojp-row justify="">
+    <ojp-col  class="column" span=4 start="1" mspan="12" mstart="0">
+      <ojp-card
+        ishorizontal="false"
+        class="card card--3"
+      >
+        <div slot="card-content-one" class="card-content--one">
+          <ojp-image
+            class="ojp-card--image"
+            src="/assets/placeimg_1000_500_nature.jpg"
+            alt="Descriptive text">
+          </ojp-image>
+        </div>
+        <div slot="card-content-two" class="card-content--two">
+          <div class="card--text">
+            <h3>Card Content Two</h3>
+            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
+          </div>
+          <button href='../ojp-image/index.html'>Check out this image component</button>
+        </div>>
+      </ojp-card>
+    </ojp-col>
+    <ojp-col class="column" span=7 start="6" mspan="12" mstart="0">
+      <ojp-card
+        ishorizontal="true"
+        class="card card--4"
+      >
+        <ojp-image
+          slot="card-content-one"
+          class="ojp-card--image"
+          src="/assets/placeimg_1000_500_nature.jpg"
+          alt="Descriptive text">
+        </ojp-image>
+        <div slot="card-content-two" class="card-content--two">
+          <div class="card--text">
+            <h3>Card Content Two</h3>
+            <p>Card Content two with extra text. Project dev can override any ojp-image vars in their style sheet like this:</p>
+          </div>
+          <button href='../ojp-image/index.html'>Check out this image component</button>
+        </div>
+      </ojp-card>
+    </ojp-col>
+
+  </ojp-row>
+</div>
+</body>
+</html>
