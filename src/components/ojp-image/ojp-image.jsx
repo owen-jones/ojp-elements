@@ -45,6 +45,44 @@ export class OjpImage {
    */
 
   /**
+   * Mobile image src
+   */
+  @Prop({
+    attribute: 'mSrc',
+    mutable: false,
+    reflect: true
+  }) mSrc = null;
+
+  /**
+   * Tablet image src
+   */
+  @Prop({
+    attribute: 'tSrc',
+    mutable: false,
+    reflect: true,
+  }) tSrc = null;
+
+  /**
+   * Desktop image src
+   * Type: string
+   */
+  @Prop({
+    attribute: 'dSrc',
+    mutable: false,
+    reflect: true
+  }) dSrc = null;
+
+  /**
+   * Widescreen image src
+   */
+  @Prop({
+    attribute: 'dSrc',
+    mutable: false,
+    reflect: true
+  }) wSrc = null;
+
+
+  /**
    * Image src
    * Type: string
    * Required: true
@@ -298,12 +336,52 @@ export class OjpImage {
    */
 
   render() {
+
+
+    // Get breakpoints from CSS variables. Note: These use CSS variables to allow them to be overridden by the end user.
+    let breakpointMobile = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile'), 10);
+    let breakpointTablet = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--tablet'), 10);
+    let breakpointDesktop = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--desktop'), 10);
+    let breakpointWidescreen = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--widescreen'), 10);
+
     return (
       <Host>
         <picture>
-          {this._slottedSources.map((child) =>
-              <source srcset={child.srcset} media={child.media} type={child.type} />
-          )}
+
+          {breakpointWidescreen && this.wSrc
+            ? <source
+                media={`(min-width: ${breakpointWidescreen}px)`}
+                srcSet={this.wSrc}
+              />
+            : null
+          }
+
+          {breakpointDesktop && this.dSrc
+            ? <source
+                media={`(min-width: ${breakpointDesktop}px) and (max-width: ${breakpointWidescreen - 1}px)`}
+                srcSet={this.dSrc}
+              />
+            : null
+          }
+          {breakpointTablet && this.tSrc
+            ? <source
+                media={`(min-width: ${breakpointTablet}px) and (max-width: ${breakpointDesktop - 1}px)`}
+                srcSet={this.tSrc}
+              />
+            : null
+          }
+          {breakpointMobile && this.mSrc
+            ? <source
+                media={`(min-width: ${breakpointMobile}px) and (max-width: ${breakpointTablet - 1}px)`}
+                srcSet={this.mSrc}
+              />
+            : null
+          }
+
+
+
+
+
           <img
             src={this.src}
             alt={this.alt}

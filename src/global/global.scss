@@ -1,16 +1,14 @@
 @import "utopia";
+@import "breakpoints";
 
 :root {
   // Developers can override this to set globals
 
   // Breakpoints
-  --breakpoint--mobile: "(min-width: 320px)";
-  --breakpoint--tablet: "(min-width: 768px)";
-  --breakpoint--desktop: "(min-width: 1024px)";
-
-  // Colors
-  --ojp-color--gray: #BABABA;
-
+  --breakpoint--mobile: #{$breakpoint--desktop};
+  --breakpoint--tablet: #{$breakpoint--tablet};
+  --breakpoint--desktop: #{$breakpoint--desktop};
+  --breakpoint--widescreen: #{$breakpoint--widescreen};
 }
 
 // ojp-row vars
@@ -148,13 +146,5 @@ ojp-modal {
 
 // end ojp-modal variables
 
-// ojp-image variables
-ojp-image {
-  --ojp-image--max-width: 100%;
-  --ojp-image--object-fit: cover;
-  --ojp-image--width: auto;
-  --ojp-image--display: block;
-}
 
-// end ojp-image variables
 

@@ -160,15 +160,9 @@
         class="my-class"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
+        mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+        tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
       >
-        <source
-          media="(max-width: 599px)"
-          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-        >
-        <source
-          media="(min-width: 600px) and (max-width: 1200px)"
-          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-        >
       </ojp-image>
       </textarea>
       <ojp-image
@@ -176,15 +170,9 @@
         class="my-class test"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
+        mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+        tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
       >
-        <source
-          media="(max-width: 599px)"
-          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-        >
-        <source
-          media="(min-width: 600px) and (max-width: 1200px)"
-          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-        >
       </ojp-image>
       <caption>Current filepath: <span id="image-path" style="color: purple;font-weight: bold;"></span></caption>
 
@@ -200,15 +188,9 @@
           class="my-class"
           src="https://via.placeholder.com/2000x800?text=Original+2000x800"
           alt="Descriptive text"
+          mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+          tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
           >
-          <source
-            media="(max-width: 599px)"
-            srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-          >
-          <source
-            media="(min-width: 600px) and (max-width: 1200px)"
-            srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-            >
         </ojp-image>
       </textarea>
       <ojp-image
@@ -216,15 +198,9 @@
         class="my-class"
         src="https://via.placeholder.com/2000x800?text=Original+2000x800"
         alt="Descriptive text"
+        mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+        tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
         >
-        <source
-          media="(max-width: 599px)"
-          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-        >
-        <source
-          media="(min-width: 600px) and (max-width: 1200px)"
-          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-          >
       </ojp-image>
 
       </ojp-col>
@@ -240,15 +216,10 @@
           src="/assets/placeimg_1000_500_nature.jpg"
           alt="Descriptive text"
           ratio="3 / 2"
+          mSrc="/assets/unsplash__400w.jpg"
+          tSrc="/assets/unsplash__1000w.jpg"
+          dSrc="/assets/unsplash__1000w.jpg"
         >
-          <source
-            media="(max-width: 600px)"
-            srcset="/assets/unsplash__400w.jpg"
-          >
-          <source
-            media="(max-width: 1200px)"
-            srcset="/assets/unsplash__1000w.jpg"
-          >
         </ojp-image>
       </textarea>
       <ojp-image
@@ -256,15 +227,10 @@
         src="/assets/placeimg_1000_500_nature.jpg"
         alt="Descriptive text"
         ratio="3 / 2"
+        mSrc="/assets/unsplash__400w.jpg"
+        tSrc="/assets/unsplash__1000w.jpg"
+        dSrc="/assets/unsplash__1000w.jpg"
       >
-        <source
-          media="(max-width: 600px)"
-          srcset="/assets/unsplash__400w.jpg"
-        >
-        <source
-          media="(max-width: 1200px)"
-          srcset="/assets/unsplash__1000w.jpg"
-        >
       </ojp-image>
 
 
@@ -348,16 +314,11 @@
           id="my-lazy-image"
           src="https://via.placeholder.com/400/0000FF/"
           alt="Descriptive text"
-          lazy
+          lazy="true"
+          mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+          tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
+          dSrc="https://via.placeholder.com/1000x500?text=Large+1000x500"
         >
-          <source
-            media="(max-width: 599px)"
-            srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-          >
-          <source
-            media="(min-width: 600px) and (max-width: 1200px)"
-            srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-          >
         </ojp-image>
 
         <script>
@@ -372,16 +333,10 @@
         src="https://via.placeholder.com/400/0000FF/"
         alt="Descriptive text"
         lazy="true"
+        mSrc="https://via.placeholder.com/700x600?text=Small+700x600"
+        tSrc="https://via.placeholder.com/1000x500?text=Medium+1000x500"
+        dSrc="https://via.placeholder.com/1000x500?text=Large+1000x500"
       >
-        <h1>TEST</h1>
-        <source slot="sources"
-          media="(max-width: 599px)"
-          srcset="https://via.placeholder.com/700x600?text=Small+700x600"
-        >
-        <source
-          media="(min-width: 600px) and (max-width: 1200px)"
-          srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
-        >
       </ojp-image>
     </ojp-col>
   </ojp-row>
