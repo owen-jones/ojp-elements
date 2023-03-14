@@ -7,10 +7,6 @@
   --breakpoint--mobile: "(min-width: 320px)";
   --breakpoint--tablet: "(min-width: 768px)";
   --breakpoint--desktop: "(min-width: 1024px)";
-
-  // Colors
-  --ojp-color--gray: #BABABA;
-
 }
 
 // ojp-row vars
@@ -38,7 +34,6 @@ ojp-row {
     --ojp-row--cols: var(--ojp-row--dcols);
   }
 }
-
 
 // end ojp-row vars
 
@@ -72,14 +67,41 @@ ojp-col {
     --ojp-col--start: var(--ojp-col--dstart);
   }
 }
-
 // end ojp-col vars
 
 
 // ojp-accordion-item vars
 ojp-accordion-item {
+
+  // Animation speed of accordion item toggle
+  // (panel height, opacity AND icon rotate)
+  --ojp-accordion-item--animation-speed: .35s;
+
+  // Top/bottom padding on accordion item header
+  --ojp-accordion-item--header-padding-block: var(--space-xs-s);
+
+  // Opacity of header on hover
+  --ojp-accordion-item--hover-opacity: .5;
+
+  // Stroke width of svg caret icon
   --ojp-accordion-item--icon-stroke-width: 3px;
+
+  // Width of caret icon
+  --ojp-accordion-item--icon-width: var(--space-s-m);
+
+  // Max width of header content AND panel content
   --ojp-accordion-item--max-content-width: 100%;
+
+  // L/R padding on accordion item (header and panel)
+  --ojp-accordion-item--padding-inline: var(--space-s-m);
+
+  // Top/bottom padding on accordion item panel
+  --ojp-accordion-item--panel-padding-block: var(--space-2xs-xs);
+
+  // Stroke width and color of line separating each accordion item
+  --ojp-accordion-item--separator-line-width: 1px;
+  --ojp-accordion-item--separator-line-color: #BABABA;
+
 }
 // Tablet
 @supports (--breakpoint("tablet")) {

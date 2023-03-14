@@ -21,9 +21,6 @@ export namespace Components {
           * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
          */
         "anchorId": any;
-        /**
-          * Close the accordion item
-         */
         "closeItem": () => Promise<void>;
         /**
           * Index of accordion item from top to bottom Type: number
@@ -209,11 +206,14 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
-        "onElementIsInvisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
         /**
-          * Triggered when the accordion is visible/invisible in the viewport
+          * Triggered when the accordion has visually left the viewport
          */
-        "onElementIsVisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
+        "onElementIsInvisible"?: (event: OjpAccordionCustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion has visually entered the viewport
+         */
+        "onElementIsVisible"?: (event: OjpAccordionCustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
@@ -225,9 +225,13 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * Triggered when the accordion item is opened or closed
+          * Triggered when the accordion item is closed
          */
-        "onStateChangeEvent"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        "onItemClosed"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion item is opened
+         */
+        "onItemOpened"?: (event: OjpAccordionItemCustomEvent<any>) => void;
         /**
           * Accordion item is open or opening (css transition) Type: boolean
          */
