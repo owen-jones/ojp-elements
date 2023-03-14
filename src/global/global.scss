@@ -25,13 +25,13 @@ ojp-row {
 }
 
 // Tablet
-@supports (--breakpoint("tablet")) {
+@media (min-width: $breakpoint--tablet) {
   ojp-row {
     --ojp-row--cols: var(--ojp-row--tcols);
   }
 }
 // Desktop
-@supports (--breakpoint("desktop")) {
+@media (min-width: $breakpoint--desktop) {
   ojp-row {
     --ojp-row--cols: var(--ojp-row--dcols);
   }
@@ -57,14 +57,14 @@ ojp-col {
 }
 
 // Tablet
-@supports (--breakpoint("tablet")) {
+@media (min-width: $breakpoint--tablet) {
   ojp-col {
     --ojp-col--span: var(--ojp-col--tspan);
     --ojp-col--start: var(--ojp-col--tstart);
   }
 }
 // Desktop
-@supports (--breakpoint("desktop")) {
+@media (min-width: $breakpoint--desktop) {
   ojp-col {
     --ojp-col--span: var(--ojp-col--dspan);
     --ojp-col--start: var(--ojp-col--dstart);
@@ -80,14 +80,14 @@ ojp-accordion-item {
   --ojp-accordion-item--max-content-width: 100%;
 }
 // Tablet
-@supports (--breakpoint("tablet")) {
+@media (min-width: $breakpoint--tablet) { //TODO: move these to the ojp-accordion-item component using @media (min-width: $breakpoint--tablet) {...
   ojp-accordion-item {
     --ojp-accordion-item--icon-stroke-width: 2px;
     --ojp-accordion-item--max-content-width: 100%;
   }
 }
 // Desktop
-@supports (--breakpoint("desktop")) {
+@media (min-width: $breakpoint--desktop) {
   ojp-accordion-item {
     --ojp-accordion-item--icon-stroke-width: 2px;
     --ojp-accordion-item--max-content-width: 75%;
@@ -124,7 +124,7 @@ ojp-modal {
 }
 
 // tablet and up
-@supports (--breakpoint("tablet")) {
+@media (min-width: $breakpoint--tablet) {
   ojp-modal {
     // Public
     --ojp-modal--inner-vertical-padding: var(--space-l-xl);
