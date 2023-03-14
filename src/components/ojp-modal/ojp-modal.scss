@@ -2,14 +2,22 @@
 dialog {
   background-color: transparent;
   border: none;
+  bottom: 0;
   display: block;
-  height: 100%;
+  height: 0;
+  left: 0;
+  margin: 0;
   opacity: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
   visibility: hidden;
   width: 100%;
 
   &[open] {
+    height: 100vh;
     opacity: 1;
     transition: opacity 0.1s linear 0.2s, visibility 0s linear 0.2s;
     visibility: visible;
@@ -17,6 +25,11 @@ dialog {
 
   &::backdrop {
     display: none;
+  }
+
+  &::modal {
+    max-width: 100vw;
+    width: 100vw;
   }
 }
 
@@ -56,27 +69,14 @@ dialog {
   padding-left: var(--ojp-modal--padding-inline);
   padding-right: var(--ojp-modal--padding-inline);
   position: relative;
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
     overflow: auto;
-    scrollbar-width: none;
-  }
-
-  .slot-container::-webkit-scrollbar {
-    background: transparent;
-    display: none;
   }
 }
 
-.ojp-modal-wrapper .ojp-modal-panel::-webkit-scrollbar {
-  display: none;
-}
 
 .ojp-modal-overflow--top {
   grid-area: 1/1/2/2;
@@ -95,7 +95,7 @@ dialog {
 }
 
 .overflow-gradient--visible {
-  background: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  background: var(--ojp-modal--overflow-gradient);
 }
 
 // Close button
@@ -121,12 +121,11 @@ dialog {
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 }
 
-:focus-visible {
-  outline: Highlight auto 1px;
-  outline: -webkit-focus-ring-color auto 1px;
+:focus-visible, :focus {
+  outline: var(--ojp-modal--focus-outline);
 }
 
 .focus-trap {
@@ -139,7 +138,7 @@ dialog {
 // Fade css class
 // Fade background CSS
 .modal-fade {
-  background: --ojp-modal--overflow-gradient;
+  background: var(--ojp-modal--overflow-gradient);
 }
 
 // Close button inside modal panel
@@ -154,6 +153,23 @@ dialog {
   --ojp-modal--close-grid-area: 1/3/2/4;
 }
 
+
+// Scrollbar visibility classes
+.scrollbar--visible::-webkit-scrollbar {
+  scrollbar-width: auto;
+}
+
+// Scrollbar hidden classes
+.scrollbar--hidden::-webkit-scrollbar {
+  background: transparent;
+  display: none; /* Chrome */
+  -ms-overflow-style: none; /* IE 11 */
+  scrollbar-width: none; /* Firefox 64 */
+}
+
+.scrollbar--hidden.slot-container {
+    scrollbar-width: none;
+}
 
 // Noscroll class
 .noscroll {

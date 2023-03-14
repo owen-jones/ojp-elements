@@ -1,9 +1,10 @@
 import { Component, Host, h, Prop, Element, Method, State, Listen } from '@stencil/core';
+import dialogPolyfill from 'dialog-polyfill';
 
 @Component({
   tag: 'ojp-modal',
   styleUrl: 'ojp-modal.scss',
-  shadow: true,
+  shadow: { delegatesFocus: true },
 })
 
 export class OjpModal {
@@ -33,6 +34,15 @@ export class OjpModal {
     mutable: true,
   }) closebuttonoutside = false;
 
+  /**
+   * Modal content has a visible scrollbar
+   * Type: boolean
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) scrollbarvisible = false;
+
   @State() isOverflowing = false;
 
   getAllFocusableElements(parent) {
@@ -61,13 +71,19 @@ export class OjpModal {
   async openModal() {
     this.toggleLockBodyScrolling(true);
 
-    //reveal the modal element
-    this.dialogElement.addEventListener('transitionend', (e) => {
-      const firstElement = e.target.querySelector('.close-button');
-      if(firstElement) {
-        firstElement.focus();
-      }
-    });
+    // Focus on the first focusable element
+    // which is the dialog element. When it receives focus
+    // it will focus on the close button
+    setTimeout(() => {
+      this.el.focus();
+    }, 500);
+    this.dialogElementFocusListener = () => {
+      this.closeButton.focus();
+      this.dialogElement.removeEventListener('focusin', this.dialogElementFocusListener);
+    };
+    this.dialogElement.addEventListener('focusin', this.dialogElementFocusListener);
+
+
     this.dialogElement.showModal();
 
     // When this invisible button gains focus, you know
@@ -111,16 +127,18 @@ export class OjpModal {
     if(isVisible) {
       document.body.style.top = `-${window.scrollY}px`;
       document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
       document.body.style.top = '';
+      document.body.style.width = '';
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
   }
 
   @Method()
-  async closeModal() {
+  closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
     this.el.setAttribute('aria-hidden', true);
@@ -128,6 +146,12 @@ export class OjpModal {
     this.focusTrap.removeEventListener('focusin', this.focusTrapListener);
     this.dialogElement.close();
     this.toggleLockBodyScrolling(false);
+    this.dialogElement.removeEventListener('focusin', this.dialogElementFocusListener);
+  }
+
+  @Method()
+  scrollModalTo(X, Y) {
+    this.slotContainer.scrollTo(X, Y);
   }
 
   @Listen('resize', {target: 'window'})
@@ -159,6 +183,8 @@ export class OjpModal {
     this.closeButtonArea = this.el.shadowRoot.querySelector(".ojp-modal-close");
     this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
 
+    dialogPolyfill.registerDialog(this.dialogElement);
+
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {
       this.closeModal();
@@ -169,10 +195,18 @@ export class OjpModal {
       this.closeModal();
     });
 
+    // function to check if close button is inside or outside
     if (this.closebuttonoutside) {
       this.closeButtonArea.classList.add("close-button--outside");
     } else {
       this.closeButtonArea.classList.add("close-button--inside");
+    }
+
+    // function to check if scrollbar is visible or hidden
+    if (this.scrollbarvisible) {
+      this.slotContainer.classList.add("scrollbar--visible");
+    } else {
+      this.slotContainer.classList.add("scrollbar--hidden");
     }
 
     this.updateOverflowState();

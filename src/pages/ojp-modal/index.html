@@ -17,6 +17,7 @@
       }
 
       #ojp-modal-2 {
+        --ojp-modal--focus-outline: 1px red solid;
         --ojp-modal--outer-horizontal-padding: 0;
         --ojp-modal--overlay-color: rgba(0, 0, 0, 0.8);
         --ojp-modal--outer-vertical-padding: 0;
@@ -140,7 +141,7 @@
         Open Modal
       </button>
     </div>
-    <ojp-modal id="ojp-modal-1" closebuttonoutside>
+    <ojp-modal id="ojp-modal-1" closebuttonoutside scrollbarvisible>
       <div slot="close-icon" class="close-icon-1">
         <svg width="41" height="41" viewbox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="20.3818" cy="20.323" r="19" stroke="black" stroke-width="2" fill="white"/>
@@ -184,7 +185,7 @@
         Open Modal
       </button>
     </div>
-    <ojp-modal id="ojp-modal-3">
+    <ojp-modal id="ojp-modal-3" scrollbarvisible>
       <div slot="content">
         <form id="demo-form" action="#" method="post">
           <h3>Here's a sample form!</h3>
@@ -287,6 +288,7 @@
 
     openModal1Button.addEventListener('click', () => {
       modal1.openModal();
+      modal1.scrollModalTo(0,0);
     });
 
     openModal2Button.addEventListener('click', () => {

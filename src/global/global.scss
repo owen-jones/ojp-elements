@@ -101,6 +101,7 @@ ojp-accordion-item {
 
 // ojp-modal variables
 ojp-modal {
+  --ojp-modal--focus-outline: Highlight auto 1px; // Public
   --ojp-modal--padding-inline: var(--space-s-3xl); // Public
   --ojp-modal--padding-top-bottom: var(--space-2xl); // Public
   --ojp-modal--close-icon-margin: var(--space-s-m); // Public
@@ -112,7 +113,7 @@ ojp-modal {
   --ojp-modal--close-icon-height: 44px; // Public
   --ojp-modal--close-icon-width: 44px; // Public
   --ojp-modal--overlay-color: #fff; // Public
-  --ojp-modal--overflow-gradient: linear-gradient(180deg, #FFFFFF 57.88%, rgba(255, 255, 255, 0) 99.99%);
+  --ojp-modal--overflow-gradient: linear-gradient(0deg, var(--ojp-modal--panel-color) 57.88%, rgba(255, 255, 255, 0) 99.99%);
 
 
   // ---- Private variables. Users should not change ----

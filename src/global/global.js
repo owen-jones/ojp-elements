@@ -2,11 +2,25 @@ import {process, property, all, stringify} from 'cssomtools';
 
 export default function() {
 
+  const hasRules = object => object && object.cssRules && object.cssRules.length
+
+  function allSecure() {
+    return [...document.styleSheets]
+      .filter(stylesheet => {
+        return !stylesheet.href || stylesheet.href.startsWith(window.location.origin)
+      })
+      .map(stylesheet => {
+        try { stylesheet.cssRules }
+        catch(error) { return null }
+        return stylesheet
+    }).filter(hasRules)
+  }
+
   let found = {}
 
 // Compute all breakpoints
   process(
-    property('--breakpoint'),
+    property('--breakpoint', false, allSecure()),
     rule => {
       if (
         rule.selectorText
@@ -24,7 +38,7 @@ export default function() {
 
 // Add @supports breakpoints to CSS as @media
   process(
-    all(),
+    allSecure(),
     rule => {
       if (
         rule.constructor.name === 'CSSSupportsRule'
