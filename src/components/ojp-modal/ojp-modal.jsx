@@ -138,7 +138,7 @@ export class OjpModal {
   }
 
   @Method()
-  closeModal() {
+  async closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
     this.el.setAttribute('aria-hidden', true);
@@ -150,7 +150,7 @@ export class OjpModal {
   }
 
   @Method()
-  scrollModalTo(X, Y) {
+  async scrollModalTo(X, Y) {
     this.slotContainer.scrollTo(X, Y);
   }
 

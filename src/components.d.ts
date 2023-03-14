@@ -136,6 +136,10 @@ export interface OjpAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpAccordionItemElement;
 }
+export interface OjpCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpCardElement;
+}
 export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
@@ -242,11 +246,11 @@ declare namespace LocalJSX {
           * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop Type: boolean
          */
         "ishorizontal"?: boolean;
-        "onElementIsInvisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsInvisibleEvent"?: (event: OjpCardCustomEvent<any>) => void;
         /**
           * Triggered when the card is visible/invisible in the viewport
          */
-        "onElementIsVisibleEvent"?: (event: CustomEvent<any>) => void;
+        "onElementIsVisibleEvent"?: (event: OjpCardCustomEvent<any>) => void;
     }
     interface OjpCol {
         "dspan"?: any;
