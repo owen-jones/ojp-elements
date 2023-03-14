@@ -1,5 +1,4 @@
-import {Component, Host, h, Element, Prop, Event, State} from '@stencil/core';
-import {OjpLazy} from '../ojp-lazy/ojp-lazy';
+import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
 
 
 @Component({
@@ -16,11 +15,13 @@ export class OjpImage {
    */
     // Used for Intersection Observer
     _observer = null;
+    _lazyLoadOptions = null;
     // Used for loading event
     _image = null;
     _prevCurrentSrc = null;
     // Used for appending the sources to
     _slottedSources = null;
+
 
   /**
    * 2. Reference to host HTML element.
@@ -141,9 +142,6 @@ export class OjpImage {
     mutable: false
   }) lazyOffset = '300';
 
-  _lazyLoadOptions = {
-    rootMargin: `${this.lazyOffset}px 0px`,
-  };
 
   /**
    * 5. Events section
@@ -151,23 +149,29 @@ export class OjpImage {
    * Requires JSDocs for public API documentation.
    */
   /**
-   * Triggered when the element is visible/invisible in the viewport
+   * Triggered when the element has entered in the viewport
    */
-  @Event() elementIsVisibleEvent;
-  @Event() elementIsInvisibleEvent;
+  @Event() elementIsVisible;
+  /**
+   * Triggered when the element has left the viewport
+   */
+  @Event() elementIsInvisible;
 
   /**
-   * Triggered when the image loaded/failed to load
+   * Triggered when the image loaded
    */
-  @Event() imageLoadedEvent;
-  @Event() imageFailedToLoadEvent;
+  @Event() imageLoaded;
+  /**
+   * Triggered when the image failed to load
+   */
+  @Event() imageFailedToLoad;
 
   /**
    * Triggered when the current image source changes
    * Note: this event is not emitted when the image is loaded for the first time
    * Emits the previous source and the new source
    */
-  @Event() imageSourceChangedEvent;
+  @Event() imageSourceChanged;
 
 
   /**
@@ -176,6 +180,7 @@ export class OjpImage {
    * WillLoad should go before DidLoad.
    */
   componentWillLoad() {
+
     this._slottedSources = Array.from(this.el.children);
 
     if (this.width) {
@@ -188,11 +193,6 @@ export class OjpImage {
       if (this.placeholder) {
         this.src = this.placeholder;
       }
-    }
-
-    // If lazy loading is disabled, set the loadComponent to true
-    if (!this.lazy) {
-      this._loadComponent = true;
     }
   }
 
@@ -263,13 +263,13 @@ export class OjpImage {
       if (entry.isIntersecting) {
 
         // Emit event when element is visible
-        this.elementIsVisibleEvent.emit(entry);
+        this.elementIsVisible.emit(entry);
 
         // Load image
         this._loadComponent = true;
       }
       else {
-        this.elementIsInvisibleEvent.emit(entry);
+        this.elementIsInvisible.emit(entry);
       }
     }
   };
@@ -285,12 +285,12 @@ export class OjpImage {
 
         // Dispatch event when image is loaded for the first time
         if (this._prevCurrentSrc === null) {
-          this.imageLoadedEvent.emit(this._image.currentSrc);
+          this.imageLoaded.emit(this._image.currentSrc);
         }
 
         // Dispatch event when image source changes (for responsive images)
         else if (this._prevCurrentSrc !== this._image.currentSrc) {
-          this.imageSourceChangedEvent.emit({
+          this.imageSourceChanged.emit({
             previousSrc: this._prevCurrentSrc,
             currentSrc: this._image.currentSrc
           });
@@ -308,7 +308,7 @@ export class OjpImage {
         if (this.placeholder) {
           this.src = this.placeholder;
         }
-        this.imageFailedToLoadEvent.emit(this._image);
+        this.imageFailedToLoad.emit(this._image);
       };
       this._image.addEventListener('error', this.loadFailedListener);
     }
@@ -323,27 +323,22 @@ export class OjpImage {
   render() {
     return (
       <Host>
-        <OjpLazy if={this._loadComponent}>
-          <picture>
-            <slot></slot>
-            {this._slottedSources.map(child => {
-              return (
-                <source srcset={child.srcset} media={child.media} type={child.type} />
-              );
-            })}
-
-            <img
-              src={this.src}
-              alt={this.alt}
-              style={{
-                aspectRatio: this.ratio,
-                objectPosition: this.imageFocus ? this.imageFocus : 'center',
-              }}
-              width={this.width}
-              height={this.height}
-            />
-          </picture>
-        </OjpLazy>
+        <picture>
+          {this._slottedSources.map((child) =>
+              <source srcset={child.srcset} media={child.media} type={child.type} />
+          )}
+          <img
+            src={this.src}
+            alt={this.alt}
+            style={{
+              aspectRatio: this.ratio,
+              objectPosition: this.imageFocus ? this.imageFocus : 'center',
+            }}
+            width={this.width}
+            height={this.height}
+            {...(this.lazy ? { loading: 'lazy' } : { loading: 'eager'})}
+          />
+        </picture>
       </Host>
     );
   }

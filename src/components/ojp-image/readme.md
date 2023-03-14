@@ -22,13 +22,13 @@
 
 ## Events
 
-| Event                     | Description                                                                                                                                                              | Type               |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
-| `elementIsInvisibleEvent` |                                                                                                                                                                          | `CustomEvent<any>` |
-| `elementIsVisibleEvent`   | Triggered when the element is visible/invisible in the viewport                                                                                                          | `CustomEvent<any>` |
-| `imageFailedToLoadEvent`  |                                                                                                                                                                          | `CustomEvent<any>` |
-| `imageLoadedEvent`        | Triggered when the image loaded/failed to load                                                                                                                           | `CustomEvent<any>` |
-| `imageSourceChangedEvent` | Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source | `CustomEvent<any>` |
+| Event                | Description                                                                                                                                                              | Type               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
+| `elementIsInvisible` | Triggered when the element has left the viewport                                                                                                                         | `CustomEvent<any>` |
+| `elementIsVisible`   | Triggered when the element has entered in the viewport                                                                                                                   | `CustomEvent<any>` |
+| `imageFailedToLoad`  | Triggered when the image failed to load                                                                                                                                  | `CustomEvent<any>` |
+| `imageLoaded`        | Triggered when the image loaded                                                                                                                                          | `CustomEvent<any>` |
+| `imageSourceChanged` | Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source | `CustomEvent<any>` |
 
 
 ----------------------------------------------
