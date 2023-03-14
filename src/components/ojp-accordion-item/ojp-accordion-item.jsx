@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, State, Prop, Watch, Method, Event, EventEmitter, Listen } from '@stencil/core';
+import {Component, Host, h, Element, State, Prop, Watch, Method, Event, Listen} from '@stencil/core';
 
 @Component({
   tag: 'ojp-accordion-item',
@@ -44,7 +44,7 @@ export class OjpAccordionItem {
    * Used so item can be auto-opened with url param
    * Type: string
    */
-   @Prop({
+  @Prop({
     reflect: true,
     mutable: false,
   }) anchorId;
@@ -54,21 +54,21 @@ export class OjpAccordionItem {
    * Type: number
    */
   @Prop({
-    mutable:true,
-    reflect:true
+    mutable: true,
+    reflect: true
   }) index = -1;
 
   /**
-  * Accordion item is open or opening (css transition)
-  * Type: boolean
-  */
+   * Accordion item is open or opening (css transition)
+   * Type: boolean
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) open = false;
 
   @Watch('open')
-  stateChanged() {
+  watchOpen() {
     this.transitioning = true;
     this.calculateMaxHeight();
   }
@@ -81,9 +81,14 @@ export class OjpAccordionItem {
    */
 
   /**
-   * Triggered when the accordion item is opened or closed
+   * Triggered when the accordion item is opened
    */
-   @Event() stateChangeEvent;
+  @Event() itemOpened;
+
+  /**
+   * Triggered when the accordion item is closed
+   */
+  @Event() itemClosed;
 
   /**
    * 6. Component lifecycle events
@@ -114,8 +119,8 @@ export class OjpAccordionItem {
    * Always use two lines.
    */
   @Listen('resize', {target: 'window'})
-  onWindowResize(ev) {
-     this.calculateMaxHeight();
+  onWindowResize() {
+    this.calculateMaxHeight();
   }
 
   /**
@@ -138,16 +143,16 @@ export class OjpAccordionItem {
     }
   }
 
-  /**
-   * Close the accordion item
-   */
+
+
   @Method()
   async closeItem() {
-    this.open = false;
-    this.stateChangeEvent.emit({
-      index: this.index,
-      isOpen: this.open
-    });
+    if (this.open) {
+      this.open = false;
+      this.itemClosed.emit({
+        index: this.index,
+      });
+    }
   }
 
   /**
@@ -155,11 +160,13 @@ export class OjpAccordionItem {
    */
   @Method()
   async openItem() {
-    this.open = true;
-    this.stateChangeEvent.emit({
-      index: this.index,
-      isOpen: this.open
-    });
+    if (!this.open) {
+      this.open = true;
+      this.itemOpened.emit({
+        index: this.index,
+        isOpen: this.open
+      });
+    }
   }
 
   /**
@@ -192,57 +199,68 @@ export class OjpAccordionItem {
   render() {
 
     return (
-      <Host class={`${this.open ? 'is-open' : 'is-closed'}`}>
+      <Host class={`
+          ${this.open ? 'is-open' : 'is-closed'}
+       `}>
         <a
-          role= "button"
-          aria-expanded = {this.open ? `true` : `false`}
-          class = {`ojp-accordion-item__header-wrapper ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}`}
-          aria-controls = "section"
-          id = "section-control"
-          onClick = {this.handleClick}
-          ref = {(button) => { this.buttonEl = button }}
-          href = {this.anchorId ? '#' + this.anchorId : '#'}
-          >
-            <div class="ojp-accordion-item__header">
+          role="button"
+          aria-expanded={this.open ? `true` : `false`}
+          class={`
+            ojp-accordion-item__header-wrapper
+            ${this.open ? 'ojp-accordion-item__header-wrapper--open' : ''}
+          `}
+          aria-controls="section"
+          id="section-control"
+          onClick={this.handleClick}
+          ref={(button) => {
+            this.buttonEl = button
+          }}
+          href={this.anchorId ? '#' + this.anchorId : '#'}
+        >
+          <div class="ojp-accordion-item__header">
 
-              {/* Header Slot */}
-              <slot name="header">
-                Default Item Title
-              </slot>
+            {/* Header Slot */}
+            <slot name="header">
+              Default Item Title
+            </slot>
 
-              {/* Icon/Caret */}
-              <slot name="icon">
-                <div className="ojp-accordion-item__header__icon-wrapper">
-                  <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
-                  </svg>
-                </div>
-              </slot>
-            </div>
+            {/* Icon/Caret */}
+            <slot name="icon">
+              <div className="ojp-accordion-item__header__icon-wrapper">
+                <svg class="ojp-accordion-item__header__icon" viewBox="0 0 31 17" preserveAspectRatio="xMidYMin slice"
+                     fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30 16L15.5 2L1 16" stroke="black" stroke-width="2"/>
+                </svg>
+              </div>
+            </slot>
+          </div>
         </a>
 
         <div
-            id="section"
-            role="region"
-            aria-labelledby="section-control"
-            aria-hidden={this.open ? `false` : `true`}
-            class={`ojp-accordion-item__panel ${this.transitioning ? 'transitioning': ''} ${this.open ? 'ojp-accordion-item__panel--open' : ''}`}
-            // hidden={!this.open}
-            ref={(el) => { this.contentEl = el }}
-            onTransitionEnd={() => this.handleTransitionEnd()}
-            style={ this.open ? {
-              maxHeight: this.calculatedMaxHeight,
-              visibility: 'visible'
-            } : {
-              maxHeight: 0,
-              visibility: 'hidden'
-            }}
-            >
+          id="section"
+          role="region"
+          aria-labelledby="section-control"
+          aria-hidden={this.open ? `false` : `true`}
+          class={`
+            ojp-accordion-item__panel ${this.transitioning ? 'transitioning' : ''} ${this.open ? 'ojp-accordion-item__panel--open' : ''}
+          `}
+          ref={(el) => {
+            this.contentEl = el
+          }}
+          onTransitionEnd={() => this.handleTransitionEnd()}
+          style={this.open ? {
+            maxHeight: this.calculatedMaxHeight,
+            visibility: 'visible'
+          } : {
+            maxHeight: 0,
+            visibility: 'hidden'
+          }}
+        >
 
-            {/* Panel Slot */}
-            <slot name="panel">
-              Default Item content
-            </slot>
+          {/* Panel Slot */}
+          <slot name="panel">
+            Default Item content
+          </slot>
         </div>
       </Host>
     );

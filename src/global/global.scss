@@ -7,10 +7,6 @@
   --breakpoint--mobile: "(min-width: 320px)";
   --breakpoint--tablet: "(min-width: 768px)";
   --breakpoint--desktop: "(min-width: 1024px)";
-
-  // Colors
-  --ojp-color--gray: #BABABA;
-
 }
 
 // ojp-row vars
@@ -38,7 +34,6 @@ ojp-row {
     --ojp-row--cols: var(--ojp-row--dcols);
   }
 }
-
 
 // end ojp-row vars
 
@@ -72,14 +67,41 @@ ojp-col {
     --ojp-col--start: var(--ojp-col--dstart);
   }
 }
-
 // end ojp-col vars
 
 
 // ojp-accordion-item vars
 ojp-accordion-item {
+
+  // Animation speed of accordion item toggle
+  // (panel height, opacity AND icon rotate)
+  --ojp-accordion-item--animation-speed: .35s;
+
+  // Top/bottom padding on accordion item header
+  --ojp-accordion-item--header-padding-block: var(--space-xs-s);
+
+  // Opacity of header on hover
+  --ojp-accordion-item--hover-opacity: .5;
+
+  // Stroke width of svg caret icon
   --ojp-accordion-item--icon-stroke-width: 3px;
+
+  // Width of caret icon
+  --ojp-accordion-item--icon-width: var(--space-s-m);
+
+  // Max width of header content AND panel content
   --ojp-accordion-item--max-content-width: 100%;
+
+  // L/R padding on accordion item (header and panel)
+  --ojp-accordion-item--padding-inline: var(--space-s-m);
+
+  // Top/bottom padding on accordion item panel
+  --ojp-accordion-item--panel-padding-block: var(--space-2xs-xs);
+
+  // Stroke width and color of line separating each accordion item
+  --ojp-accordion-item--separator-line-width: 1px;
+  --ojp-accordion-item--separator-line-color: #BABABA;
+
 }
 // Tablet
 @supports (--breakpoint("tablet")) {
@@ -101,6 +123,7 @@ ojp-accordion-item {
 
 // ojp-modal variables
 ojp-modal {
+  --ojp-modal--focus-outline: Highlight auto 1px; // Public
   --ojp-modal--padding-inline: var(--space-s-3xl); // Public
   --ojp-modal--padding-top-bottom: var(--space-2xl); // Public
   --ojp-modal--close-icon-margin: var(--space-s-m); // Public
@@ -151,9 +174,40 @@ ojp-modal {
 ojp-image {
   --ojp-image--max-width: 100%;
   --ojp-image--object-fit: cover;
+  --ojp-image--height: auto;
   --ojp-image--width: auto;
   --ojp-image--display: block;
 }
 
 // end ojp-image variables
 
+
+// ojp-card variables
+
+ojp-card {
+  --ojp-card--max-width: 100%;
+  --ojp-card--padding: var(--space-s-m);
+  --ojp-card--padding-top: var(--ojp-card--padding);
+  --ojp-card--padding-bottom: var(--ojp-card--padding);
+  --ojp-card--padding-left: var(--ojp-card--padding);
+  --ojp-card--padding-right: var(--ojp-card--padding);
+  --ojp-card--margin: var(--space-m-l);
+  --ojp-card--margin-top: var(--ojp-card--margin);
+  --ojp-card--margin-bottom: var(--ojp-card--margin);
+  --ojp-card--margin-left: var(--ojp-card--margin);
+  --ojp-card--margin-right: var(--ojp-card--margin);
+  --ojp-card--slot--margin: var(--space-s);
+  --ojp-card--slot1--margin-bottom: var(--ojp-card--slot--margin);
+  --ojp-card--slot2--margin-bottom: var(--ojp-card--slot--margin);
+  --ojp-card--slot1--margin-right: 0px;
+}
+@supports (--breakpoint("desktop")) {
+  ojp-card {
+    flex-direction: var(--ojp-card--flex-direction--desktop);
+    ::slotted(div[slot="card-content-one"]) {
+      margin-right: var(--ojp-card--slot1--margin-right);
+    }
+  }
+}
+
+// end ojp-card variables

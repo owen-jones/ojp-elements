@@ -160,7 +160,6 @@
         class="my-class"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
-        lazy
       >
         <source
           media="(max-width: 599px)"
@@ -177,7 +176,6 @@
         class="my-class test"
         src="/assets/unsplash__orig.jpg"
         alt="Descriptive text"
-        lazy
       >
         <source
           media="(max-width: 599px)"
@@ -312,7 +310,7 @@
 
     <ojp-row>
       <ojp-col span="12">
-        <div style="height: 200vh; display: flex; padding-top: 100px;">This space is intentionally left blank to move images lower down the page to demonstrate browser lazy loading.<br><br>You will get a browser alert when the lazy image below loads.</div>
+        <div style="height: 600vh; display: flex; padding-top: 300px;">This space is intentionally left blank to move images lower down the page to demonstrate browser lazy loading.<br><br>You will get a browser alert when the lazy image below loads.</div>
 
         <h2>Ojp Image does NOT lazy load by default</h2>
         <textarea rows="25" disabled>
@@ -344,19 +342,27 @@
     <ojp-col span="12">
 
       <h2>Ojp Image - Lazy Loading</h2>
-      <p>Dev can change number of pixels for lazy threshold (default is lazy-offset="300", meaning the image loads when the viewport is 300px before the image)</p>
-      <textarea rows="7" disabled>
+
+      <textarea rows="12" disabled>
         <ojp-image
           id="my-lazy-image"
           src="https://via.placeholder.com/400/0000FF/"
           alt="Descriptive text"
           lazy
-          lazy-offset="200"
-        ></ojp-image>
+        >
+          <source
+            media="(max-width: 599px)"
+            srcset="https://via.placeholder.com/700x600?text=Small+700x600"
+          >
+          <source
+            media="(min-width: 600px) and (max-width: 1200px)"
+            srcset="https://via.placeholder.com/1000x500?text=Medium+1000x500"
+          >
+        </ojp-image>
 
         <script>
           const myLazyImage = document.querySelector('#my-lazy-image');
-            myLazyImage.addEventListener('imageLoadedEvent', event => {
+            myLazyImage.addEventListener('imageLoaded', event => {
             alert('My lazy image loaded');
           });
         </script>
@@ -367,7 +373,8 @@
         alt="Descriptive text"
         lazy="true"
       >
-        <source
+        <h1>TEST</h1>
+        <source slot="sources"
           media="(max-width: 599px)"
           srcset="https://via.placeholder.com/700x600?text=Small+700x600"
         >
@@ -385,33 +392,33 @@
 <script>
   // Project developer can listen for the visibility of the element in the viewport
   const myImage = document.querySelector('#my-image');
-  myImage.addEventListener('elementIsVisibleEvent', event => {
+  myImage.addEventListener('elementIsVisible', event => {
     console.log('My image is now visible', event);
   });
-  myImage.addEventListener('elementIsInvisibleEvent', event => {
+  myImage.addEventListener('elementIsInvisible', event => {
     console.log('My image is now invisible', event);
   });
   // Project developer can listen for the successful loading of the image
-  myImage.addEventListener('imageLoadedEvent', event => {
+  myImage.addEventListener('imageLoaded', event => {
     console.log('My image loaded', event.target);
   });
 
   // Project developer can listen for an image loading error
   const myBrokenImage = document.querySelector('#my-broken-image');
-  myBrokenImage.addEventListener('imageFailedToLoadEvent', event => {
+  myBrokenImage.addEventListener('imageFailedToLoad', event => {
     console.log('My image failed to load', event.target);
   });
 
 
   // Project developer can listen for an image loading success
   const myRespImage = document.querySelector('#my-resp-image');
-  myRespImage.addEventListener('imageLoadedEvent', event => {
+  myRespImage.addEventListener('imageLoaded', event => {
     console.log('------My responsive image loaded', event.detail);
     document.querySelector('#image-path').innerHTML = event.detail;
   });
 
   const myLazyImage = document.querySelector('#my-lazy-image');
-  myLazyImage.addEventListener('imageLoadedEvent', event => {
+  myLazyImage.addEventListener('imageLoaded', event => {
     console.log('My lazy image loaded', event);
     alert('My lazy image loaded -- ' + event.detail);
   });

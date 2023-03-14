@@ -2,16 +2,22 @@
 dialog {
   background-color: transparent;
   border: none;
+  bottom: 0;
   display: block;
-  height: 100vh;
+  height: 0;
+  left: 0;
   margin: 0;
   opacity: 0;
   padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
   transition: opacity 0.2s linear 0s, visibility 0s linear 0.2s;
   visibility: hidden;
   width: 100%;
 
   &[open] {
+    height: 100vh;
     opacity: 1;
     transition: opacity 0.1s linear 0.2s, visibility 0s linear 0.2s;
     visibility: visible;
@@ -63,7 +69,7 @@ dialog {
   padding-left: var(--ojp-modal--padding-inline);
   padding-right: var(--ojp-modal--padding-inline);
   position: relative;
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 
   .slot-container {
     grid-area: 1 / 1 / 4 / 2;
@@ -115,12 +121,11 @@ dialog {
 }
 
 .ojp-modal-wrapper .ojp-modal-close .close-button {
-  transition: visibility 0.2s linear 0.2s, opacity 0.2s, transform 0.2s;
+  transition: visibility 0s linear 0s, opacity 0.2s, transform 0.2s;
 }
 
-:focus-visible {
-  outline: Highlight auto 1px;
-  outline: -webkit-focus-ring-color auto 1px;
+:focus-visible, :focus {
+  outline: var(--ojp-modal--focus-outline);
 }
 
 .focus-trap {
