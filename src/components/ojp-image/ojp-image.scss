@@ -7,6 +7,7 @@
   // These are set in global.scss
   //--ojp-image--max-width: max-content;
   //--ojp-image--object-fit: cover;
+  //--ojp-image--height: 100%;
   //--ojp-image--width: 100%;
   //--ojp-image--display: block;
 
@@ -22,8 +23,9 @@
 
   }
 
-  img {
+  img, source {
     display: var(--ojp-image--display, block);
+    height: var(--ojp-image--height, 100%);
     max-width: var(--ojp-image--max-width, 100%);
     object-fit: var(--ojp-image--object-fit, cover);
     width: var(--ojp-image--width, 100%);

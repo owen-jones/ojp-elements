@@ -152,9 +152,40 @@ ojp-modal {
 ojp-image {
   --ojp-image--max-width: 100%;
   --ojp-image--object-fit: cover;
+  --ojp-image--height: auto;
   --ojp-image--width: auto;
   --ojp-image--display: block;
 }
 
 // end ojp-image variables
 
+
+// ojp-card variables
+
+ojp-card {
+  --ojp-card--max-width: 100%;
+  --ojp-card--padding: var(--space-s-m);
+  --ojp-card--padding-top: var(--ojp-card--padding);
+  --ojp-card--padding-bottom: var(--ojp-card--padding);
+  --ojp-card--padding-left: var(--ojp-card--padding);
+  --ojp-card--padding-right: var(--ojp-card--padding);
+  --ojp-card--margin: var(--space-m-l);
+  --ojp-card--margin-top: var(--ojp-card--margin);
+  --ojp-card--margin-bottom: var(--ojp-card--margin);
+  --ojp-card--margin-left: var(--ojp-card--margin);
+  --ojp-card--margin-right: var(--ojp-card--margin);
+  --ojp-card--slot--margin: var(--space-s);
+  --ojp-card--slot1--margin-bottom: var(--ojp-card--slot--margin);
+  --ojp-card--slot2--margin-bottom: var(--ojp-card--slot--margin);
+  --ojp-card--slot1--margin-right: 0px;
+}
+@supports (--breakpoint("desktop")) {
+  ojp-card {
+    flex-direction: var(--ojp-card--flex-direction--desktop);
+    ::slotted(div[slot="card-content-one"]) {
+      margin-right: var(--ojp-card--slot1--margin-right);
+    }
+  }
+}
+
+// end ojp-card variables
