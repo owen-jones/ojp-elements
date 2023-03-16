@@ -339,10 +339,10 @@ export class OjpImage {
 
 
     // Get breakpoints from CSS variables. Note: These use CSS variables to allow them to be overridden by the end user.
-    let breakpointMobile = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile'), 10);
-    let breakpointTablet = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--tablet'), 10);
-    let breakpointDesktop = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--desktop'), 10);
-    let breakpointWidescreen = parseInt(getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--widescreen'), 10);
+    let breakpointMobile = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile').slice(1,-1);
+    let breakpointTablet = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--tablet').slice(1,-1);
+    let breakpointDesktop = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--desktop').slice(1,-1);
+    let breakpointWidescreen = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--widescreen').slice(1,-1);
 
     return (
       <Host>
@@ -350,7 +350,7 @@ export class OjpImage {
 
           {breakpointWidescreen && this.wSrc
             ? <source
-                media={`(min-width: ${breakpointWidescreen}px)`}
+                media={breakpointWidescreen}
                 srcSet={this.wSrc}
               />
             : null
@@ -358,21 +358,21 @@ export class OjpImage {
 
           {breakpointDesktop && this.dSrc
             ? <source
-                media={`(min-width: ${breakpointDesktop}px)`}
+                media={breakpointDesktop}
                 srcSet={this.dSrc}
               />
             : null
           }
           {breakpointTablet && this.tSrc
             ? <source
-                media={`(min-width: ${breakpointTablet}px)`}
+                media={breakpointTablet}
                 srcSet={this.tSrc}
               />
             : null
           }
           {breakpointMobile && this.mSrc
             ? <source
-                media={`(min-width: ${breakpointMobile}px)`}
+                media={breakpointMobile}
                 srcSet={this.mSrc}
               />
             : null

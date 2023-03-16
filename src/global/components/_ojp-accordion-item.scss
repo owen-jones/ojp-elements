@@ -67,14 +67,14 @@
   }
 
   // Tablet
-  @supports (--mq-breakpoint("tablet")) {
+  @supports (--breakpoint("tablet")) {
     ojp-accordion-item {
       --ojp-accordion-item--icon-stroke-width: 2px;
       --ojp-accordion-item--max-content-width: 100%;
     }
   }
   // Desktop
-  @supports (--mq-breakpoint("desktop")) {
+  @supports (--breakpoint("desktop")) {
     ojp-accordion-item {
       --ojp-accordion-item--icon-stroke-width: 2px;
       --ojp-accordion-item--max-content-width: 75%;

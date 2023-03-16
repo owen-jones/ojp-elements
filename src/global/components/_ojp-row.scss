@@ -11,9 +11,7 @@
   **** scss file.
  */
 
-:root {
-
-  ojp-row {
+ojp-row {
     /**
      * @prop --ojp-row--mcols: Number of columns in the row
      * for mobile screens. Defaults to 12.
@@ -76,16 +74,14 @@
   }
 
   // Tablet
-  @supports (--mq-breakpoint("tablet")) {
+  @supports (--breakpoint("tablet")) {
     ojp-row {
       --ojp-row--cols: var(--ojp-row--tcols);
     }
   }
   // Desktop
-  @supports (--mq-breakpoint("desktop")) {
+  @supports (--breakpoint("desktop")) {
     ojp-row {
       --ojp-row--cols: var(--ojp-row--dcols);
     }
   }
-
-}
