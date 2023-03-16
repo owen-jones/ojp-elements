@@ -1,7 +1,8 @@
 @import "utopia";
+@import "components/ojp-accordion-item";
+@import "components/ojp-col";
 @import "components/ojp-image";
 @import "components/ojp-row";
-@import "components/ojp-accordion-item";
 
 :root {
   // Developers can override this to set globals
@@ -18,41 +19,6 @@
   --mq-breakpoint--desktop: "(min-width: #{var(--breakpoint--desktop)})";
   --mq-breakpoint--widescreen: "(min-width: #{var(--mq-breakpoint--widescreen)})";
 }
-
-// ojp-col vars
-
-ojp-col {
-  // Column Span - device specific
-  --ojp-col--mspan: auto;
-  --ojp-col--tspan: auto;
-  --ojp-col--dspan: auto;
-  --ojp-col--span: var(--ojp-col--mspan);
-
-  // Column start - device specific
-  --ojp-col--mstart: auto;
-  --ojp-col--tstart: auto;
-  --ojp-col--dstart: auto;
-  --ojp-col--start: var(--ojp-col--mstart);
-}
-
-// Tablet
-@supports (--mq-breakpoint("tablet")) {
-  ojp-col {
-    --ojp-col--span: var(--ojp-col--tspan);
-    --ojp-col--start: var(--ojp-col--tstart);
-  }
-}
-// Desktop
-@supports (--mq-breakpoint("desktop")) {
-  ojp-col {
-    --ojp-col--span: var(--ojp-col--dspan);
-    --ojp-col--start: var(--ojp-col--dstart);
-  }
-}
-
-// end ojp-col vars
-
-
 
 // ojp-modal variables
 ojp-modal {

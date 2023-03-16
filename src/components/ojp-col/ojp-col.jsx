@@ -7,71 +7,109 @@ import { Element, Component, Host, h, Prop } from '@stencil/core';
 })
 export class OjpCol {
 
+  /**
+   * 1. Own Properties
+   * Note that because these properties
+   * do not have the @Prop() decorator, they will not be exposed
+   * publicly on the host element, but only used internally.
+   */
+   // N/A
+
+  /**
+   * 2. Reference to host HTML element.
+   * Inlined decorator
+   */
   @Element() el;
 
-  // Where the column should start
-  // Shorthand for desktop, tablet, and mobile start
-  // <ojp-col start="12"> is equivalent to
-  // <ojp-col mstart="12" tstart="12" dstart="12">
-  // Default: auto
+  /**
+   * 3. State() variables
+   * Inlined decorator, alphabetical order.
+   */
+    // N/A
+
+
+  /**
+   * 4. Public Property API
+   * Inlined decorator, alphabetical order. These are
+   * different from "own properties" in that public props
+   * are exposed as properties and attributes on the host element.
+   * Requires JSDocs for public API documentation.
+   */
+
+  /**
+   * The column's start position on all devices. Shorthand for desktop, tablet, and mobile start. (Internally uses `grid-column-start: <start>;`).
+   * <br><br>Defaults to `auto`.
+   * <br><br>`<ojp-col start="2">` is equivalent to
+   * <br>`<ojp-col mstart="2" tstart="2" dstart="2">`
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) start = 'auto';
 
-  // Mobile Start
-  // Default: Same as {this.start}
-  // Can be overwritten by user with <ojp-col mstart="x">
+  /**
+   * The column's start position on mobile devices. (Internally uses `grid-column-start: <mstart>;`).
+   * <br><br>Defaults to `auto` or `start` property if one is defined.
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) mstart;
 
-  // Tablet Start
-  // Default: Same as {this.start}
-  // Can be overwritten by user with <ojp-col tstart="x">
+  /**
+   * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`).
+   * <br><br>Defaults to `auto` or `start` property if one is defined.
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) tstart;
 
-  // Desktop Start
-  // Default: Same as {this.start}
-  // Can be overwritten by user with <ojp-col dstart="x">
+  /**
+   * The column's start position on desktop devices. (Internally uses `grid-column-start: <dstart>;`).
+   * <br><br>Defaults to `auto` or `start` property if one is defined.
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) dstart;
 
-  // How many columns the column should span
-  // Shorthand for desktop, tablet, and mobile span
-  // <ojp-col span="12"> is equivalent to
-  // <ojp-col mspan="12" tspan="12" dspan="12">
-  // Default: auto
+
+  /**
+   * How many grid columns this element will span. (Internally uses `grid-column-span: span <span>;`).
+   * <br><br>Defaults to `auto`.
+   * <br><br>`<ojp-col span="12">` is equivalent to
+   * <br>`<ojp-col mspan="12" tspan="12" dspan="12">`
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) span = 'auto';
 
-  // Mobile Span
-  // Default: Same as {this.span}
-  // Can be overwritten by user with <ojp-col mspan="x">
+  /**
+   * How many grid columns this element will span on mobile devices. (Internally uses `grid-column-span: span <span>;`).
+   * <br><br>Defaults to `auto`.
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) mspan;
 
-  // Tablet Span
-  // Default: Same as {this.span}
-  // Can be overwritten by user with <ojp-col tspan="x">
+
+  /**
+   * How many grid columns this element will span on tablet devices. (Internally uses `grid-column-span: span <span>;`).
+   * <br><br>Defaults to `auto`.
+   */
   @Prop({
     reflect: true,
     mutable: false
   }) tspan;
 
-  // Desktop Span
-  // Default: Same as {this.span}
-  // Can be overwritten by user with <ojp-col dspan="x">
+
+  /**
+   * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`).
+   * <br><br>Defaults to `auto`.
+   */
   @Prop({
     reflect: true,
     mutable: false
@@ -131,9 +169,9 @@ export class OjpCol {
 
   }
 
-  render() {    
+  render() {
     this.setCssProperties();
-    
+
     return (
       <Host>
         <slot></slot>

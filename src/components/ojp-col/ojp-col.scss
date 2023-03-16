@@ -1,24 +1,65 @@
 :host {
 
+  /**
+    * Component css variables are commented but NOT DEFINED here. They are defined in
+    * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+    * so that they can be used by other components and use globally set breakpoints.
+    *
+    **** NOTE: The @prop comments are necessary here because they will be picked up
+    **** by Stencil's docs auto-generator and output to the component's docs at
+    **** docs/components/<component-name>/readme.md
+    ****
+    **** Any comment changes here should be duplicated into the component's global scss file
+    **** (e.g. src/global/components/_ojp-image.scss)
+   */
+
   // PUBLIC CSS VALUES - can be overwritten by end user
   // n/a
 
-  // // PROPS - can be overwritten with props b/c
-  // // likely to be different per component
-  // Defined in global.scss:
-  //// Column Span - device specific
-  //// --ojp-col--mspan
-  //// --ojp-col--tspan
-  //// --ojp-col--dspan
-  //// --ojp-col--span
-  //// Column start - device specific
-  //// --ojp-col--mstart
-  //// --ojp-col--tstart
-  //// --ojp-col--dstart
-  //// --ojp-col--start
+  // PRIVATE CSS VALUES - used only internally
 
-  // STYLES
-  
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--mspan: How many columns this element will span on mobile devices. (Internally uses `grid-column-span: span var(--ojp-col--mspan);`). Defaults to `auto`.
+   */
+
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--tspan: How many columns this element will span on tablet devices. (Internally uses `grid-column-span: span var(--ojp-col--tspan);`). Defaults to `auto`.
+   */
+
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--dspan: How many columns this element will span on desktop devices. (Internally uses `grid-column-span: span var(--ojp-col--dspan);`). Defaults to `auto`.
+   */
+
+  /**
+   * Private variable - set in js based on props.
+   * --ojp-col--span: Keep track of current device's span.
+  */
+
+
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--mstart: The column's start position on mobile devices. (Internally uses `grid-column-start: var(--ojp-col--mstart);`). Defaults to `auto`.
+   */
+
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--tstart: The column's start position on tablet devices. (Internally uses `grid-column-start: var(--ojp-col--tstart);`). Defaults to `auto`.
+   */
+
+  /**
+    * Private variable - set in js based on props
+    * --ojp-col--dstart: The column's start position on desktop devices. (Internally uses `grid-column-start: var(--ojp-col--dstart);`). Defaults to `auto`.a
+   */
+
+  /**
+    * Private variable - set in js based on props.
+    * --ojp-col--span: Keep track of current device's start.
+   */
+
+
   grid-column-start: var(--ojp-col--start);
   grid-column-end: span var(--ojp-col--span);
 

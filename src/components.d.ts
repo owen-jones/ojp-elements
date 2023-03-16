@@ -43,13 +43,37 @@ export namespace Components {
         "toggleItem": () => Promise<void>;
     }
     interface OjpCol {
+        /**
+          * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "dspan": any;
+        /**
+          * The column's start position on desktop devices. (Internally uses `grid-column-start: <dstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "dstart": any;
+        /**
+          * How many grid columns this element will span on mobile devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "mspan": any;
+        /**
+          * The column's start position on mobile devices. (Internally uses `grid-column-start: <mstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "mstart": any;
+        /**
+          * How many grid columns this element will span. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col span="12">` is equivalent to <br>`<ojp-col mspan="12" tspan="12" dspan="12">`
+         */
         "span": string;
+        /**
+          * The column's start position on all devices. Shorthand for desktop, tablet, and mobile start. (Internally uses `grid-column-start: <start>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col start="2">` is equivalent to <br>`<ojp-col mstart="2" tstart="2" dstart="2">`
+         */
         "start": string;
+        /**
+          * How many grid columns this element will span on tablet devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "tspan": any;
+        /**
+          * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "tstart": any;
     }
     interface OjpImage {
@@ -236,13 +260,37 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface OjpCol {
+        /**
+          * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "dspan"?: any;
+        /**
+          * The column's start position on desktop devices. (Internally uses `grid-column-start: <dstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "dstart"?: any;
+        /**
+          * How many grid columns this element will span on mobile devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "mspan"?: any;
+        /**
+          * The column's start position on mobile devices. (Internally uses `grid-column-start: <mstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "mstart"?: any;
+        /**
+          * How many grid columns this element will span. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col span="12">` is equivalent to <br>`<ojp-col mspan="12" tspan="12" dspan="12">`
+         */
         "span"?: string;
+        /**
+          * The column's start position on all devices. Shorthand for desktop, tablet, and mobile start. (Internally uses `grid-column-start: <start>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col start="2">` is equivalent to <br>`<ojp-col mstart="2" tstart="2" dstart="2">`
+         */
         "start"?: string;
+        /**
+          * How many grid columns this element will span on tablet devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "tspan"?: any;
+        /**
+          * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "tstart"?: any;
     }
     interface OjpImage {
