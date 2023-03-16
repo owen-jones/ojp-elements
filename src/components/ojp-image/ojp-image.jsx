@@ -337,9 +337,8 @@ export class OjpImage {
 
   render() {
 
-
     // Get breakpoints from CSS variables. Note: These use CSS variables to allow them to be overridden by the end user.
-    let breakpointMobile = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile').slice(1,-1);
+    let breakpointMobile = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile').slice(1,-1); // Use slice to remove quotes
     let breakpointTablet = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--tablet').slice(1,-1);
     let breakpointDesktop = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--desktop').slice(1,-1);
     let breakpointWidescreen = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--widescreen').slice(1,-1);

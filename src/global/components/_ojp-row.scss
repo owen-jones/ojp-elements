@@ -12,76 +12,84 @@
  */
 
 ojp-row {
-    /**
-     * @prop --ojp-row--mcols: Number of columns in the row
+
+  // PUBLIC CSS VARIABLES
+  /**
+   * @prop --ojp-row--col-gap: Gap between columns. Defaults to `--space-2xs-xs`.
+  */
+  --ojp-row--col-gap: var(--space-2xs-xs);
+
+  /**
+   * @prop --ojp-row--row-gap: Vertical gap between stacking columns in a row. Defaults to `--space-2xs-xs`.
+  */
+  --ojp-row--row-gap: var(--space-2xs-xs);
+
+  /**
+  * @prop --ojp-row--margin-inline: Inline margin between rows. Defaults to `--space-xs-s`.
+   */
+  --ojp-row--margin-inline: var(--space-xs-s);
+
+  /**
+  * @prop --ojp-row--gutter: Minimum gutter width. Defaults to `--space-s-3xl`.
+  --ojp-row--gutter: var(--space-s-3xl);
+
+  /**
+  * @prop --ojp-row--align-items: Align Items. Defaults to `stretch`.
+  */
+  --ojp-row--align-items: stretch;
+
+  /**
+  * @prop --ojp-row--justify-items: Justify Items. Defaults to `stretch`.
+  */
+  --ojp-row--justify-items: stretch;
+
+
+  /**
+   * @prop ojp-row--max-wrapper-width: Max Wrapper Width (not including gutters). Defaults to `1440px`.
+  */
+  --ojp-row--max-wrapper-width: 1440px;
+
+  // PRIVATE VARIABLES
+  /**
+     * Private Variable - set by JS according to props
+     * --ojp-row--mcols: Number of columns in the row
      * for mobile screens. Defaults to 12.
     */
-    --ojp-row--mcols: 12;
+  --ojp-row--mcols: 12;
 
-    /**
-     * @prop --ojp-row--tcols: Number of columns in the row
-     * for tablet screens. Defaults to 12.
-    */
-    --ojp-row--tcols: 12;
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--tcols: Number of columns in the row
+   * for tablet screens. Defaults to 12.
+  */
+  --ojp-row--tcols: 12;
 
-    /**
-     * @prop --ojp-row--dcols: Number of columns in the row
-     * for desktop screens. Defaults to 12.
-    */
-    --ojp-row--dcols: 12;
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--dcols: Number of columns in the row
+   * for desktop screens. Defaults to 12.
+  */
+  --ojp-row--dcols: 12;
 
-    /**
-     * @prop --ojp-row--cols: Number of columns in the row
-     * for tablet screens. Defaults to `--ojp-row--mcols`. Only used internally.
-    */
-    --ojp-row--cols: var(--ojp-row--mcols);
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--cols: Number of columns in the row
+   * for tablet screens. Defaults to `--ojp-row--mcols`. Only used internally.
+  */
+  --ojp-row--cols: var(--ojp-row--mcols);
 
-    /**
-     * @prop --ojp-row--col-gap: Gap between columns. Defaults to `--space-2xs-xs`.
-    */
-    --ojp-row--col-gap: var(--space-2xs-xs);
+}
 
-    /**
-     * @prop --ojp-row--row-gap: Vertical gap between stacking columns in a row. Defaults to `--space-2xs-xs`.
-    */
-    --ojp-row--row-gap: var(--space-2xs-xs);
-
-    /**
-    * @prop --ojp-row--margin-inline: Inline margin between rows. Defaults to `--space-xs-s`.
-     */
-    --ojp-row--margin-inline: var(--space-xs-s);
-
-    /**
-    * @prop --ojp-row--gutter: Minimum gutter width. Defaults to `--space-s-3xl`.
-    --ojp-row--gutter: var(--space-s-3xl);
-
-    /**
-    * @prop --ojp-row--align-items: Align Items. Defaults to `stretch`.
-    */
-    --ojp-row--align-items: stretch;
-
-    /**
-    * @prop --ojp-row--justify-items: Justify Items. Defaults to `stretch`.
-    */
-    --ojp-row--justify-items: stretch;
-
-
-    /**
-     * @prop --ojp-row-- : Max Wrapper Width (not including gutters). Defaults to `1440px`.
-    */
-    --ojp-row--max-wrapper-width: 1440px;
-
+// Tablet
+@supports (--breakpoint("tablet")) {
+  ojp-row {
+    --ojp-row--cols: var(--ojp-row--tcols);
   }
+}
 
-  // Tablet
-  @supports (--breakpoint("tablet")) {
-    ojp-row {
-      --ojp-row--cols: var(--ojp-row--tcols);
-    }
+// Desktop
+@supports (--breakpoint("desktop")) {
+  ojp-row {
+    --ojp-row--cols: var(--ojp-row--dcols);
   }
-  // Desktop
-  @supports (--breakpoint("desktop")) {
-    ojp-row {
-      --ojp-row--cols: var(--ojp-row--dcols);
-    }
-  }
+}

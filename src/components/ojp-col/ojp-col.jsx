@@ -115,6 +115,12 @@ export class OjpCol {
     mutable: false
   }) dspan;
 
+  /**
+   * 9. Local methods
+   * Internal business logic. These methods cannot be
+   * called from the host element.
+   */
+
   // Custom function to set all necessary css vars
   setCssProperties(){
     // If mobile span is not set by user, default to same as 'span'
@@ -168,6 +174,13 @@ export class OjpCol {
     }
 
   }
+
+
+  /**
+   * 10. render() function
+   * Always the last public method in the class.
+   * If private methods present, they are below public methods.
+   */
 
   render() {
     this.setCssProperties();

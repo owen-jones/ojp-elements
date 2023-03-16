@@ -6,29 +6,16 @@
     * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
     * so that they can be used by other components and use globally set breakpoints.
     *
-    **** NOTE: The @prop comments are necessary here because they will be picked up
-    **** by Stencil's docs auto-generator and output to the component's docs at
-    **** docs/components/<component-name>/readme.md
+    **** NOTE: The @prop comments are necessary for public variables here because they
+    **** will be picked up by Stencil's docs auto-generator and output to the component's
+    **** docs at docs/components/<component-name>/readme.md
     ****
     **** Any comment changes here should be duplicated into the component's global scss file
     **** (e.g. src/global/components/_ojp-image.scss)
    */
 
-  /**
-   * @prop --ojp-row--mcols: Number of columns in the row
-   * for mobile screens. Defaults to 12.
-  */
 
-  /**
-   * @prop --ojp-row--tcols: Number of columns in the row
-   * for tablet screens. Defaults to 12.
-  */
-
-  /**
-   * @prop --ojp-row--dcols: Number of columns in the row
-   * for desktop screens. Defaults to 12.
-  */
-
+  // PUBLIC CSS VARIABLES
   /**
    * @prop --ojp-row--col-gap: Gap between columns. Defaults to `--space-2xs-xs`.
   */
@@ -38,28 +25,48 @@
   */
 
   /**
-   * @prop --ojp-row--margin-inline: Inline margin between rows. Defaults to `--space-xs-s`.
+  * @prop --ojp-row--margin-inline: Inline margin between rows. Defaults to `--space-xs-s`.
+   */
+
+  /**
+  * @prop --ojp-row--gutter: Minimum gutter width. Defaults to `--space-s-3xl`.
   */
 
   /**
-   * @prop --ojp-row--gutter: Minimum gutter width (aka page padding). Defaults to `--space-s-3xl`.
+  * @prop --ojp-row--align-items: Align Items. Defaults to `stretch`.
   */
 
   /**
-  * @prop --ojp-row--align-items: align-items property of the row. Defaults to `stretch`.
+  * @prop --ojp-row--justify-items: Justify Items. Defaults to `stretch`.
   */
 
   /**
-  * @prop --ojp-row--justify-items: justify-items property of the row. Defaults to `stretch`.
+   * @prop ojp-row--max-wrapper-width: Max Wrapper Width (not including gutters). Defaults to `1440px`.
+  */
+
+  // PRIVATE VARIABLES
+  /**
+     * Private Variable - set by JS according to props
+     * --ojp-row--mcols: Number of columns in the row
+     * for mobile screens. Defaults to 12.
+    */
+
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--tcols: Number of columns in the row
+   * for tablet screens. Defaults to 12.
   */
 
   /**
-   * @prop --ojp-row--max-wrapper-width: Max wrapper width (not including gutters). Defaults to `1440px`.
+   * Private Variable - set by JS according to props
+   * --ojp-row--dcols: Number of columns in the row
+   * for desktop screens. Defaults to 12.
   */
 
   /**
-   * Internal variables
-   * --ojp-row--cols: Number of columns in the row.
+   * Private Variable - set by JS according to props
+   * --ojp-row--cols: Number of columns in the row
+   * for tablet screens. Defaults to `--ojp-row--mcols`. Only used internally.
   */
 
 
