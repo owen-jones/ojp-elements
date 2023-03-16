@@ -1,5 +1,13 @@
 import { Component, Host, h, Element, State, Prop, Watch, Method, Event, EventEmitter, Listen } from '@stencil/core';
 
+
+/**
+ * @slot header - Slot for the header section of the accordion item. This will be the text next to the icon.
+ * @slot icon - Optional slot for the icon (defaults to caret) that is next to the header text. Defaults to caret.
+ * ** Note: If using the custom icon slot, the icon's "open" and "closed" states must be explicitly defined by end user.
+ * @slot content - Slot for the panel/content section of the accordion item. This will be the content under the header section that is collapsed or expanded.
+ */
+
 @Component({
   tag: 'ojp-accordion-item',
   styleUrl: 'ojp-accordion-item.scss',

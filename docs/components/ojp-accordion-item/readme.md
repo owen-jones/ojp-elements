@@ -1,9 +1,13 @@
-# ojp-accordion
+# ojp-accordion-item
 
 
 
 <!-- Auto Generated Below -->
 
+
+## Overview
+
+Slots are defined here so that they will be picked up by the Stencil docs generator.
 
 ## Properties
 
@@ -52,6 +56,15 @@ Toggle the accordion item
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot        | Description                                                                                                                                                                                                              |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `"content"` | Slot for the panel/content section of the accordion item. This will be the content under the header section that is collapsed or expanded.                                                                               |
+| `"header"`  | Slot for the header section of the accordion item. This will be the text next to the icon.                                                                                                                               |
+| `"icon"`    | Optional slot for the icon (defaults to caret) that is next to the header text. Defaults to caret. ** Note: If using the custom icon slot, the icon's "open" and "closed" states must be explicitly defined by end user. |
 
 
 ----------------------------------------------
