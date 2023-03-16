@@ -63,9 +63,13 @@ export class OjpAccordion {
    */
 
   /**
-   * Triggered when the accordion is visible/invisible in the viewport
+   * Triggered when the accordion has entered the viewport
    */
   @Event() elementIsVisibleEvent;
+
+  /**
+   * Triggered when the accordion has left the viewport
+   */
   @Event() elementIsInvisibleEvent;
 
 
