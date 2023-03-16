@@ -1,4 +1,4 @@
-import {Component, Element, Event, EventEmitter, h, Host, Prop, State} from '@stencil/core';
+import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
 
 
 @Component({
@@ -358,37 +358,34 @@ export class OjpImage {
 
           {breakpointDesktop && this.dSrc
             ? <source
-                media={`(min-width: ${breakpointDesktop}px) and (max-width: ${breakpointWidescreen - 1}px)`}
+                media={`(min-width: ${breakpointDesktop}px)`}
                 srcSet={this.dSrc}
               />
             : null
           }
           {breakpointTablet && this.tSrc
             ? <source
-                media={`(min-width: ${breakpointTablet}px) and (max-width: ${breakpointDesktop - 1}px)`}
+                media={`(min-width: ${breakpointTablet}px)`}
                 srcSet={this.tSrc}
               />
             : null
           }
           {breakpointMobile && this.mSrc
             ? <source
-                media={`(min-width: ${breakpointMobile}px) and (max-width: ${breakpointTablet - 1}px)`}
+                media={`(min-width: ${breakpointMobile}px)`}
                 srcSet={this.mSrc}
               />
             : null
           }
-
-
-
-
-
           <img
             src={this.src}
             alt={this.alt}
+
             style={{
               aspectRatio: this.ratio,
               objectPosition: this.imageFocus ? this.imageFocus : 'center',
             }}
+
             width={this.width}
             height={this.height}
             {...(this.lazy ? { loading: 'lazy' } : { loading: 'eager'})}
