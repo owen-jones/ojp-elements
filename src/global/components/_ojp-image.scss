@@ -18,45 +18,49 @@
    easier to set as css vars so they can use Utopia
    */
 
-  /**
-   * @prop --ojp-image--max-width: The max-width property of the img. Defaults to `max-content`;
+  ojp-image {
+
+    /**
+     * @prop --ojp-image--max-width: The max-width property of the img. Defaults to `max-content`;
+     */
+    --ojp-image--max-width: 100%;
+
+    /**
+     * @prop --ojp-image--object-fit: The object-fit property of the img. Defaults to `cover`;
+     */
+    --ojp-image--object-fit: cover;
+
+    /**
+     * @prop --ojp-image--width: The width property of the img. Defaults to `100%`;
+     */
+    --ojp-image--width: auto;
+
+    /**
+     * @prop --ojp-image--display: The display property of the img. Defaults to `block`;
+     */
+    --ojp-image--display: block;
+
+
+    /**
+   * @prop --ojp-image--breakpoint--mobile: Minimum breakpoint for mobile screens; Defaults to global breakpoints (see README at root)
    */
-  --ojp-image--max-width: 100%;
+    --ojp-image--breakpoint--mobile: var(--breakpoint--mobile);
 
-  /**
-   * @prop --ojp-image--object-fit: The object-fit property of the img. Defaults to `cover`;
-   */
-  --ojp-image--object-fit: cover;
+    /**
+     * @prop --ojp-image--breakpoint--tablet: Minimum breakpoint for tablet screens; Defaults to global breakpoints (see README at root)
+     */
+    --ojp-image--breakpoint--tablet: var(--breakpoint--tablet);
 
-  /**
-   * @prop --ojp-image--width: The width property of the img. Defaults to `100%`;
-   */
-  --ojp-image--width: auto;
+    /**
+     * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
+     */
+    --ojp-image--breakpoint--desktop: var(--breakpoint--desktop);
 
-  /**
-   * @prop --ojp-image--display: The display property of the img. Defaults to `block`;
-   */
-  --ojp-image--display: block;
+    /**
+     * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
+     */
+    --ojp-image--breakpoint--widescreen: var(--breakpoint--widescreen);
 
-
-  /**
- * @prop --ojp-image--breakpoint--mobile: Minimum breakpoint for mobile screens; Defaults to global breakpoints (see README at root)
- */
-  --ojp-image--breakpoint--mobile: var(--breakpoint--mobile);
-
-  /**
-   * @prop --ojp-image--breakpoint--tablet: Minimum breakpoint for tablet screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--tablet: var(--breakpoint--tablet);
-
-  /**
-   * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--desktop: var(--breakpoint--desktop);
-
-  /**
-   * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--widescreen: var(--breakpoint--widescreen);
+  }
 
 }
