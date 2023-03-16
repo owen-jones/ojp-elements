@@ -1,6 +1,7 @@
 @import "utopia";
 @import "components/ojp-image";
 @import "components/ojp-row";
+@import "components/ojp-accordion-item";
 
 :root {
   // Developers can override this to set globals
@@ -51,28 +52,6 @@ ojp-col {
 
 // end ojp-col vars
 
-
-// ojp-accordion-item vars
-ojp-accordion-item {
-  --ojp-accordion-item--icon-stroke-width: 3px;
-  --ojp-accordion-item--max-content-width: 100%;
-}
-// Tablet
-@supports (--mq-breakpoint("tablet")) {
-  ojp-accordion-item {
-    --ojp-accordion-item--icon-stroke-width: 2px;
-    --ojp-accordion-item--max-content-width: 100%;
-  }
-}
-// Desktop
-@supports (--mq-breakpoint("desktop")) {
-  ojp-accordion-item {
-    --ojp-accordion-item--icon-stroke-width: 2px;
-    --ojp-accordion-item--max-content-width: 75%;
-  }
-}
-
-// end ojp-accordion-item vars
 
 
 // ojp-modal variables
