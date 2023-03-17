@@ -20,14 +20,13 @@ export default function() {
 
 // Compute all breakpoints
   process(
-    property('--breakpoint', false, allSecure()),
+    // (SW): In a future release, we should update the breakpoint naming to be OJP specific. 
+    //  Having just '--breakpoint' was causing conflicts on a project which uses Bootstrap.
+    property('--breakpoint--', false, allSecure()),
     rule => {
       if (
         rule.selectorText
         && rule.selectorText.trim() === ':root'
-        && rule.style.getPropertyValue('--breakpoint--mobile')
-        && rule.style.getPropertyValue('--breakpoint--tablet')
-        && rule.style.getPropertyValue('--breakpoint--desktop')
       ) {
         let breakpoints = {
           'mobile': JSON.parse(rule.style.getPropertyValue('--breakpoint--mobile')),
