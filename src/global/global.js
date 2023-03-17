@@ -25,6 +25,9 @@ export default function() {
       if (
         rule.selectorText
         && rule.selectorText.trim() === ':root'
+        && rule.style.getPropertyValue('--breakpoint--mobile')
+        && rule.style.getPropertyValue('--breakpoint--tablet')
+        && rule.style.getPropertyValue('--breakpoint--desktop')
       ) {
         let breakpoints = {
           'mobile': JSON.parse(rule.style.getPropertyValue('--breakpoint--mobile')),
