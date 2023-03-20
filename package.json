@@ -16,8 +16,7 @@
     "url": "git@github.com:owen-jones/ojp-elements.git"
   },
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "publishConfig": {
     "access": "public",
