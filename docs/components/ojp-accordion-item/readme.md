@@ -16,16 +16,17 @@
 
 ## Events
 
-| Event              | Description                                           | Type               |
-| ------------------ | ----------------------------------------------------- | ------------------ |
-| `stateChangeEvent` | Triggered when the accordion item is opened or closed | `CustomEvent<any>` |
+| Event        | Description                                 | Type               |
+| ------------ | ------------------------------------------- | ------------------ |
+| `itemClosed` | Triggered when the accordion item is closed | `CustomEvent<any>` |
+| `itemOpened` | Triggered when the accordion item is opened | `CustomEvent<any>` |
 
 
 ## Methods
 
 ### `closeItem() => Promise<void>`
 
-Close the accordion item
+
 
 #### Returns
 
