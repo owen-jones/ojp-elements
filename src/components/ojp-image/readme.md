@@ -10,13 +10,16 @@
 | Property      | Attribute     | Description                                                                                                                              | Type      | Default |
 | ------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------- |
 | `alt`         | `alt`         | Image alt text Type: string Default: ""                                                                                                  | `string`  | `""`    |
+| `dSrc`        | `dsrc`        | Desktop image src Type: string                                                                                                           | `any`     | `null`  |
 | `height`      | `height`      | Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself   | `any`     | `null`  |
 | `imageFocus`  | `image-focus` | Image focus/object position Type: see CSS object-position https://developer.mozilla.org/en-US/docs/Web/CSS/object-position Default: null | `any`     | `null`  |
 | `lazy`        | `lazy`        | Loading type (true = lazy, false = eager) Type: boolean Default: false                                                                   | `boolean` | `false` |
-| `lazyOffset`  | `lazy-offset` | Optional lazy load offset Type: string (pixels) Default: "300"                                                                           | `string`  | `'300'` |
+| `mSrc`        | `msrc`        | Mobile image src                                                                                                                         | `any`     | `null`  |
 | `placeholder` | `placeholder` | Optional placeholder image path Type: string Default: null                                                                               | `any`     | `null`  |
 | `ratio`       | `ratio`       | Image aspect ratio Type: see CSS aspect-ratio https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio Default: null                | `any`     | `null`  |
 | `src`         | `src`         | Image src Type: string Required: true Default: null                                                                                      | `string`  | `""`    |
+| `tSrc`        | `tsrc`        | Tablet image src                                                                                                                         | `any`     | `null`  |
+| `wSrc`        | `dsrc`        | Widescreen image src                                                                                                                     | `any`     | `null`  |
 | `width`       | `width`       | Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself      | `any`     | `null`  |
 
 
@@ -29,6 +32,16 @@
 | `imageFailedToLoad`  | Triggered when the image failed to load                                                                                                                                  | `CustomEvent<any>` |
 | `imageLoaded`        | Triggered when the image loaded                                                                                                                                          | `CustomEvent<any>` |
 | `imageSourceChanged` | Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source | `CustomEvent<any>` |
+
+
+## CSS Custom Properties
+
+| Name                      | Description                                                   |
+| ------------------------- | ------------------------------------------------------------- |
+| `--ojp-image--display`    | The display property of the img. Defaults to `block`;         |
+| `--ojp-image--max-width`  | The max-width property of the img. Defaults to `max-content`; |
+| `--ojp-image--object-fit` | The object-fit property of the img. Defaults to `cover`;      |
+| `--ojp-image--width`      | The width property of the img. Defaults to `100%`;            |
 
 
 ----------------------------------------------
