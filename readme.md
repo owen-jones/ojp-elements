@@ -1,6 +1,8 @@
 # Owen Jones Pattern Library
 
-The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins that encapsulate the logic of our most frequently used UI patterns. The library is distributed as an NPM module that can be installed on any JavaScript project when necessary. As a living document, the Owen Pattern Library is extensible and version controlled. Updates to the APIs exposed by the Owen Pattern Library should be documented in the [internal library website](http://storybook.whoisowenjones.com) or Figma document.
+The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins that encapsulate the logic of our most frequently used UI patterns. The library is distributed as an NPM module that can be installed on any JavaScript project when necessary. As a living document, the Owen Pattern Library is extensible and version controlled. Updates to the APIs exposed by the Owen Pattern Library should be documented in each component's source code, which will auto-generate the associate readme.
+
+See the [component documentation](https://github.com/owen-jones/ojp-elements/tree/main/docs/components) for more information.
 
 ## Using this library in a project:
 
