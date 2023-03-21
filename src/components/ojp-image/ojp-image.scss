@@ -42,9 +42,9 @@
 
   img {
     display: var(--ojp-image--display, block);
-    height: var(--ojp-image--height, 100%);
+    height: var(--ojp-image--height, auto);
     max-width: var(--ojp-image--max-width, 100%);
     object-fit: var(--ojp-image--object-fit, cover);
-    width: var(--ojp-image--width, 100%);
+    width: var(--ojp-image--width, auto);
   }
 }

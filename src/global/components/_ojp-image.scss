@@ -30,9 +30,14 @@ ojp-image {
   --ojp-image--object-fit: cover;
 
   /**
-   * @prop --ojp-image--width: The width property of the img. Defaults to `100%`;
+   * @prop --ojp-image--width: The width property of the img. Defaults to `auto`;
    */
   --ojp-image--width: auto;
+
+  /**
+   * @prop --ojp-image--height: The height property of the img. Defaults to `auto`;
+   */
+  --ojp-image--height: auto;
 
   /**
    * @prop --ojp-image--display: The display property of the img. Defaults to `block`;
