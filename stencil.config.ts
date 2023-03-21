@@ -16,6 +16,9 @@ export const config: Config = {
       includeGlobalScripts: true,
     },
     {
+      type: 'dist'
+    },
+    {
       type: 'docs-readme',
       dir: 'docs',
     },
