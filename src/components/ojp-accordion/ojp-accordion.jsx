@@ -1,4 +1,4 @@
-import { Element, Component, Host, h, Method, Listen, Prop, Event, EventEmitter } from '@stencil/core';
+import { Element, Component, Host, h, Method, Listen, Prop, Event } from '@stencil/core';
 
 @Component({
   tag: 'ojp-accordion',
@@ -63,10 +63,14 @@ export class OjpAccordion {
    */
 
   /**
-   * Triggered when the accordion is visible/invisible in the viewport
+   * Triggered when the accordion has visually entered the viewport
    */
-  @Event() elementIsVisibleEvent;
-  @Event() elementIsInvisibleEvent;
+  @Event() elementIsVisible;
+
+  /**
+   * Triggered when the accordion has visually left the viewport
+   */
+  @Event() elementIsInvisible;
 
 
   /**
@@ -94,7 +98,7 @@ export class OjpAccordion {
    * starting a listener method with "on".
    * Always use two lines.
    */
-  @Listen('stateChangeEvent')
+  @Listen('stateChanged')
   onStateChange(event) {
     // If allowMultipleItemsOpen prop is false, opening one
     // item should auto close all other items
@@ -152,14 +156,13 @@ export class OjpAccordion {
     });
   }
 
-  // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        this.elementIsVisibleEvent.emit(entry);
+        this.elementIsVisible.emit(entry);
       }
       else {
-        this.elementIsInvisibleEvent.emit(entry);
+        this.elementIsInvisible.emit(entry);
       }
     }
   };

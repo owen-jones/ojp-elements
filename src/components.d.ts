@@ -21,9 +21,6 @@ export namespace Components {
           * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
          */
         "anchorId": any;
-        /**
-          * Close the accordion item
-         */
         "closeItem": () => Promise<void>;
         /**
           * Index of accordion item from top to bottom Type: number
@@ -41,6 +38,12 @@ export namespace Components {
           * Toggle the accordion item
          */
         "toggleItem": () => Promise<void>;
+    }
+    interface OjpCard {
+        /**
+          * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop Type: boolean
+         */
+        "ishorizontal": boolean;
     }
     interface OjpCol {
         "dspan": any;
@@ -145,6 +148,10 @@ export interface OjpAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpAccordionItemElement;
 }
+export interface OjpCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpCardElement;
+}
 export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
@@ -161,6 +168,12 @@ declare global {
     var HTMLOjpAccordionItemElement: {
         prototype: HTMLOjpAccordionItemElement;
         new (): HTMLOjpAccordionItemElement;
+    };
+    interface HTMLOjpCardElement extends Components.OjpCard, HTMLStencilElement {
+    }
+    var HTMLOjpCardElement: {
+        prototype: HTMLOjpCardElement;
+        new (): HTMLOjpCardElement;
     };
     interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
     }
@@ -195,6 +208,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
+        "ojp-card": HTMLOjpCardElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
@@ -208,11 +222,14 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
-        "onElementIsInvisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
         /**
-          * Triggered when the accordion is visible/invisible in the viewport
+          * Triggered when the accordion has visually left the viewport
          */
-        "onElementIsVisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
+        "onElementIsInvisible"?: (event: OjpAccordionCustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion has visually entered the viewport
+         */
+        "onElementIsVisible"?: (event: OjpAccordionCustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
@@ -224,13 +241,28 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * Triggered when the accordion item is opened or closed
+          * Triggered when the accordion item is closed
          */
-        "onStateChangeEvent"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        "onItemClosed"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion item is opened
+         */
+        "onItemOpened"?: (event: OjpAccordionItemCustomEvent<any>) => void;
         /**
           * Accordion item is open or opening (css transition) Type: boolean
          */
         "open"?: boolean;
+    }
+    interface OjpCard {
+        /**
+          * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop Type: boolean
+         */
+        "ishorizontal"?: boolean;
+        "onElementIsInvisibleEvent"?: (event: OjpCardCustomEvent<any>) => void;
+        /**
+          * Triggered when the card is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: OjpCardCustomEvent<any>) => void;
     }
     interface OjpCol {
         "dspan"?: any;
@@ -343,6 +375,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ojp-accordion": OjpAccordion;
         "ojp-accordion-item": OjpAccordionItem;
+        "ojp-card": OjpCard;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
@@ -356,6 +389,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ojp-accordion": LocalJSX.OjpAccordion & JSXBase.HTMLAttributes<HTMLOjpAccordionElement>;
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
+            "ojp-card": LocalJSX.OjpCard & JSXBase.HTMLAttributes<HTMLOjpCardElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;

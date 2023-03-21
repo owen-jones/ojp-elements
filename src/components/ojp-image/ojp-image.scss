@@ -1,5 +1,3 @@
-@import '../../global/breakpoints';
-
 // Encapsulate component style here as children of :host
 :host {
 
@@ -29,20 +27,6 @@
    */
   --ojp-image--display: block;
 
-  /**
-   * @prop --ojp-image--breakpoint--mobile: Minimum breakpoint for mobile screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--mobile: #{$breakpoint--mobile};
-
-  /**
-   * @prop --ojp-image--breakpoint--tablet: Minimum breakpoint for tablet screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--tablet: #{$breakpoint--tablet};
-
-  /**
-   * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
-   */
-  --ojp-image--breakpoint--desktop: #{$breakpoint--desktop};
 
   /*
   This may not always be the case, but in this component
@@ -57,8 +41,10 @@
 
   img {
     display: var(--ojp-image--display, block);
+    height: var(--ojp-image--height, 100%);
     max-width: var(--ojp-image--max-width, 100%);
     object-fit: var(--ojp-image--object-fit, cover);
     width: var(--ojp-image--width, 100%);
   }
+
 }
