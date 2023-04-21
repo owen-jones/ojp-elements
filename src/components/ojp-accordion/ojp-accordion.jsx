@@ -94,7 +94,7 @@ export class OjpAccordion {
    * starting a listener method with "on".
    * Always use two lines.
    */
-  @Listen('stateChangeEvent')
+  @Listen('itemOpened')
   onStateChange(event) {
     // If allowMultipleItemsOpen prop is false, opening one
     // item should auto close all other items
