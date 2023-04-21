@@ -18,18 +18,6 @@
 | `tcols`     | `tcols`     | The number of columns that the row should be divided into on tablet. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}                                                                                                                       | `any`     | `undefined` |
 
 
-## CSS Custom Properties
-
-| Name                       | Description                                                                   |
-| -------------------------- | ----------------------------------------------------------------------------- |
-| `--ojp-row--align-items`   | Align Items. Defaults to `stretch`.                                           |
-| `--ojp-row--col-gap`       | Gap between columns. Defaults to `--space-2xs-xs`.                            |
-| `--ojp-row--gutter`        | Minimum gutter width. Defaults to `--space-s-3xl`.                            |
-| `--ojp-row--justify-items` | Justify Items. Defaults to `stretch`.                                         |
-| `--ojp-row--margin-inline` | Inline margin between rows. Defaults to `--space-xs-s`.                       |
-| `--ojp-row--row-gap`       | Vertical gap between stacking columns in a row. Defaults to `--space-2xs-xs`. |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
