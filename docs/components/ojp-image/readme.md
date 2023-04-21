@@ -34,16 +34,6 @@
 | `imageSourceChanged` | Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source | `CustomEvent<any>` |
 
 
-## CSS Custom Properties
-
-| Name                      | Description                                                   |
-| ------------------------- | ------------------------------------------------------------- |
-| `--ojp-image--display`    | The display property of the img. Defaults to `block`;         |
-| `--ojp-image--max-width`  | The max-width property of the img. Defaults to `max-content`; |
-| `--ojp-image--object-fit` | The object-fit property of the img. Defaults to `cover`;      |
-| `--ojp-image--width`      | The width property of the img. Defaults to `100%`;            |
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
