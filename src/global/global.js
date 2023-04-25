@@ -20,7 +20,7 @@ export default function() {
 
 // Compute all breakpoints
   process(
-    // (SW): In a future release, we should update the breakpoint naming to be OJP specific. 
+    // (SW): In a future release, we should update the breakpoint naming to be OJP specific.
     //  Having just '--breakpoint' was causing conflicts on a project which uses Bootstrap.
     property('--breakpoint--', false, allSecure()),
     rule => {
@@ -46,20 +46,18 @@ export default function() {
         rule.constructor.name === 'CSSSupportsRule'
         && rule.conditionText.includes('(--breakpoint(')
       ) {
-        let breakpoint = JSON.parse(
-          rule.conditionText.trim().replace(
-            new RegExp([
-              `^`,                  // start of line
-              `\\({0,1}`,           // 0 or 1 `(`
-              `--breakpoint`,       // the string `--breakpoint`
-              `\\s*`,               // any whitespace
-              `\\(`,                // a `(`
-              `([^)]*)`,            // any non-) character
-              `\\){1,2}`,           // 1 or 2 `)`
-              `$`                   // end of line
-            ].join('')),
-            (_, match) => match
-          )
+        let breakpoint = rule.conditionText.trim().replace(
+          new RegExp([
+            `^`,                  // start of line
+            `\\({0,1}`,           // 0 or 1 `(`
+            `--breakpoint`,       // the string `--breakpoint`
+            `\\s*`,               // any whitespace
+            `\\(`,                // a `(`
+            `([^)]*)`,            // any non-) character
+            `\\){1,2}`,           // 1 or 2 `)`
+            `$`                   // end of line
+          ].join('')),
+          (_, match) => match
         )
         if (breakpoint) {
           rule.parentStyleSheet.insertRule(
