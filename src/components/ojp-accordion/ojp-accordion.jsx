@@ -82,7 +82,7 @@ export class OjpAccordion {
 
     // Create Intersection Observer
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
-      this.observer = new IntersectionObserver(this.handleIntersection);
+      this.observer = new IntersectionObserver(this.handleIntersection.bind(this));
       this.observer.observe(this.el);
     }
   }
