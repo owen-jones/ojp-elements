@@ -184,6 +184,10 @@ export class OjpModal {
 
     dialogPolyfill.registerDialog(this.dialogElement);
 
+    this.dialogElement.addEventListener('cancel', e => {
+      e.preventDefault();
+    });
+
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {
       this.closeModal();
