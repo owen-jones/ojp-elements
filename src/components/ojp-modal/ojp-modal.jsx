@@ -101,7 +101,6 @@ export class OjpModal {
     this.keystrokeListener = (e) => {
       switch (e.key) {
         case 'Escape':
-          e.preventDefault();
           this.closeModal();
           break;
         case 'Tab':
