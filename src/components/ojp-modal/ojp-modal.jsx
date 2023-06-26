@@ -124,9 +124,11 @@ export class OjpModal {
    */
   toggleLockBodyScrolling(isVisible) {
     if(isVisible) {
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      this.dialogElement.addEventListener('transitionend', () => {
+        document.body.style.top = `-${window.scrollY}px`;
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }, {once: true});
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
