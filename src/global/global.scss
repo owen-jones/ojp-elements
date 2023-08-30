@@ -1,10 +1,3 @@
-@import "utopia";
-@import "components/ojp-accordion-item";
-@import "components/ojp-col";
-@import "components/ojp-image";
-@import "components/ojp-modal";
-@import "components/ojp-row";
-
 :root {
   // Developers can override this to set globals
 
@@ -14,3 +7,10 @@
   --breakpoint--desktop: "(min-width: 1024px)";
   --breakpoint--widescreen: "(min-width: 1600px)";
 }
+
+@import "utopia";
+@import "components/ojp-accordion-item";
+@import "components/ojp-col";
+@import "components/ojp-image";
+@import "components/ojp-modal";
+@import "components/ojp-row";

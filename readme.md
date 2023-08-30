@@ -10,7 +10,7 @@ See the [component documentation](https://github.com/owen-jones/ojp-elements/tre
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.3.20
+npm install @ojp/ojp-elements@0.3.26
 ```
 
 Import the elements you want to use in your JavaScript file:
@@ -32,8 +32,8 @@ directly from the CDN through an HTML `<script>` tag.
 Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.20/dist/ojp-elements/ojp-elements.esm.min.js'></script>
-<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.20/dist/ojp-elements/ojp-elements.min.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.26/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.26/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 ## Development:
