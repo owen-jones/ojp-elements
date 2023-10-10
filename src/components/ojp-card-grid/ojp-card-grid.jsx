@@ -1,26 +1,34 @@
-import { Component, Host, h, Prop, Element, Method, } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Event, Method, } from '@stencil/core';
 
 @Component({
-  tag: 'ojp-card',
-  styleUrl: 'ojp-card.scss',
+  tag: 'ojp-card-grid',
+  styleUrl: 'ojp-card-grid.scss',
   shadow: true,
 })
 
-export class OjpCard {
+export class OjpCardGrid {
 
 
   @Element() el;
 
   /**
-   * Layout is vertical by default, set ishorizontal to true to change to horizontal layout for desktop
+   * isMasonry is false by default, set isMasonry to true to change to masonry layout
    * Type: boolean
    */
   @Prop({
     reflect: true,
     mutable: true,
-  }) ishorizontal = false;
+  }) ismasonry = false;
 
-  flexDirectionDesktop = null;
+  /**
+   * columns is 3 by default, set columns to change the number of columns
+   * Type: number
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) columns = 3;
+
 
   /**
    * Triggered when the card is visible/invisible in the viewport
@@ -49,24 +57,17 @@ export class OjpCard {
     }
   };
 
-
-  // Custom function to set all necessary css vars
   setCssProperties() {
-    if (typeof (this.ishorizontal) == 'undefined' || !this.ishorizontal) {
-      this.flexDirectionDesktop = 'column';
+    if (this.ismasonry) {
+      this.el.style.setProperty('--columns', 'grid--masonry');
     }
-    else {
-      this.flexDirectionDesktop = 'row';
-    }
-    this.el.style.setProperty('--ojp-card--flex-direction--desktop', this.flexDirectionDesktop);
   }
 
+
   render() {
-    this.setCssProperties();
     return (
       <Host>
-        <slot name="card-content-one"></slot>
-        <slot name="card-content-two"></slot>
+        <slot></slot>
       </Host>
     );
   }
