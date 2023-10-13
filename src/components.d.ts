@@ -184,6 +184,8 @@ export namespace Components {
          */
         "tcols": any;
     }
+    interface OjpTemplate {
+    }
 }
 export interface OjpAccordionCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -200,6 +202,10 @@ export interface OjpCardCustomEvent<T> extends CustomEvent<T> {
 export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
+}
+export interface OjpTemplateCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpTemplateElement;
 }
 declare global {
     interface HTMLOjpAccordionElement extends Components.OjpAccordion, HTMLStencilElement {
@@ -250,6 +256,12 @@ declare global {
         prototype: HTMLOjpRowElement;
         new (): HTMLOjpRowElement;
     };
+    interface HTMLOjpTemplateElement extends Components.OjpTemplate, HTMLStencilElement {
+    }
+    var HTMLOjpTemplateElement: {
+        prototype: HTMLOjpTemplateElement;
+        new (): HTMLOjpTemplateElement;
+    };
     interface HTMLElementTagNameMap {
         "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
@@ -259,6 +271,7 @@ declare global {
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
         "ojp-row": HTMLOjpRowElement;
+        "ojp-template": HTMLOjpTemplateElement;
     }
 }
 declare namespace LocalJSX {
@@ -459,6 +472,16 @@ declare namespace LocalJSX {
          */
         "tcols"?: any;
     }
+    interface OjpTemplate {
+        /**
+          * Triggered when the component has left the viewport
+         */
+        "onElementIsInvisible"?: (event: OjpTemplateCustomEvent<any>) => void;
+        /**
+          * Triggered when the component is visible in the viewport
+         */
+        "onElementIsVisible"?: (event: OjpTemplateCustomEvent<any>) => void;
+    }
     interface IntrinsicElements {
         "ojp-accordion": OjpAccordion;
         "ojp-accordion-item": OjpAccordionItem;
@@ -468,6 +491,7 @@ declare namespace LocalJSX {
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
         "ojp-row": OjpRow;
+        "ojp-template": OjpTemplate;
     }
 }
 export { LocalJSX as JSX };
@@ -482,6 +506,7 @@ declare module "@stencil/core" {
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
+            "ojp-template": LocalJSX.OjpTemplate & JSXBase.HTMLAttributes<HTMLOjpTemplateElement>;
         }
     }
 }
