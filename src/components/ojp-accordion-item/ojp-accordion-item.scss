@@ -1,45 +1,59 @@
 
 :host {
 
-  // PUBLIC CSS VALUES - can be overwritten by end user
-  // likely to be persistent across a project and/or
-  // easier to set as css vars so they can use Utopia
-  //
+  /**
+    * Component css variables are commented but NOT DEFINED here. They are defined in
+    * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+    * so that they can be used by other components and use globally set breakpoints.
+    *
+    **** NOTE: The @prop comments are necessary here because they will be picked up
+    **** by Stencil's docs auto-generator and output to the component's docs at
+    **** docs/components/<component-name>/readme.md
+    ****
+    **** Any comment changes here should be duplicated into the component's global scss file
+    **** (e.g. src/global/components/_ojp-image.scss)
+   */
 
-  // L/R padding on accordion item (header and panel)
-  --ojp-accordion-item--padding-inline: var(--space-s-m);
+  /**
+   * @prop --ojp-accordion-item--padding-inline: L/R padding on accordion item (header and panel). Defaults to `--space-s-m`
+  */
 
-  // Top/bottom padding on accordion item header
-  --ojp-accordion-item--header-padding-block: var(--space-xs-s);
+  /**
+    * @prop --ojp-accordion-item--header-padding-block: Top/bottom padding on accordion item header. Defaults to `--space-xs-s`
+   */
 
-  // Top/bottom padding on accordion item panel
-  --ojp-accordion-item--panel-padding-block: var(--space-2xs-xs);
+  /**
+    * @prop --ojp-accordion-item--panel-padding-block: Top/bottom padding on accordion item panel. Defaults to `--space-2xs-xs`
+   */
 
-  // Opacity of header on hover
-  --ojp-accordion-item--hover-opacity: .5;
+  /**
+    * @prop --ojp-accordion-item--hover-opacity: Opacity of header on hover. Defaults to `0.5`
+   */
 
-  // Animation speed of accordion item toggle
-  // (panel height, opacity AND icon rotate)
-  --ojp-accordion-item--animation-speed: .35s;
+  /**
+    * @prop --ojp-accordion-item--animation-speed: Animation speed of accordion item toggle (panel height, opacity AND icon rotate). Defaults to `0.35s`
+   */
 
-  // Width of caret icon
-  --ojp-accordion-item--icon-width: var(--space-s-m);
+  /**
+   * @prop --ojp-accordion-item--icon-width: Width of caret icon. Defaults to `--space-s-m`;
+  */
 
-  // Stroke width and color of line separating each accordion item
-  --ojp-accordion-item--separator-line-width: 1px;
-  --ojp-accordion-item--separator-line-color: #BABABA;
+  /**
+   * @prop --ojp-accordion-item--separator-line-width: Stroke width of line separating each accordion item. Defaults to `1px` (`2px` on tablet up)
+  */
 
+  /**
+   * @prop --ojp-accordion-item--separator-line-color: Stroke color of line separating each accordion item. Defaults to `#BABABA`
+  */
 
-  // Defined in global.scss:
+  /**
+   * @prop --ojp-accordion-item--icon-stroke-width: Stroke width of svg caret icon. Defaults to `3px`
+  */
 
-  // Stroke width of svg caret icon
-  // --ojp-accordion-item--icon-stroke-width
+  /**
+   * @prop --ojp-accordion-item--max-content-width: Max width of header content AND panel content. Defaults to `100%` (`75%` on desktop up)
+  */
 
-  // Max width of header content AND panel content
-  // --ojp-accordion-item--max-content-width
-
-
-  // PROPS vars - n/a
 
   border-bottom: var(--ojp-accordion-item--separator-line-width) solid var(--ojp-accordion-item--separator-line-color);
   display: block;
@@ -110,10 +124,9 @@
   overflow: hidden;
   padding-left: var(--ojp-accordion-item--padding-inline);
   padding-right: var(--ojp-accordion-item--padding-inline);
-  transition:
-    visibility 0s linear,
-    max-height var(--ojp-accordion-item--animation-speed) ease,
-    opacity var(--ojp-accordion-item--animation-speed) ease;
+  transition: visibility 0s linear,
+  max-height var(--ojp-accordion-item--animation-speed) ease,
+  opacity var(--ojp-accordion-item--animation-speed) ease;
   visibility: hidden;
 }
 

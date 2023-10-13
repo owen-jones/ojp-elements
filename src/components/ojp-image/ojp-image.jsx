@@ -1,5 +1,4 @@
-import {Component, Host, h, Element, Prop, Event, State} from '@stencil/core';
-import {OjpLazy} from '../ojp-lazy/ojp-lazy';
+import {Component, Element, Event, h, Host, Prop, State} from '@stencil/core';
 
 
 @Component({
@@ -8,6 +7,7 @@ import {OjpLazy} from '../ojp-lazy/ojp-lazy';
   shadow: true,
 })
 export class OjpImage {
+
   /**
    * 1. Own Properties
    * Note that because these properties
@@ -19,8 +19,10 @@ export class OjpImage {
     // Used for loading event
     _image = null;
     _prevCurrentSrc = null;
-    // Used for appending the sources to
-    _slottedSources = null;
+
+    _loadListener = null;
+    _loadFailedListener = null;
+
 
   /**
    * 2. Reference to host HTML element.
@@ -32,18 +34,53 @@ export class OjpImage {
    * 3. State() variables
    * Inlined decorator, alphabetical order.
    */
-
-  // Used for lazy loading
-  @State() _loadComponent = false;
-
+    // N/A
 
   /**
    * 4. Public Property API
    * Inlined decorator, alphabetical order. These are
-   * different than "own properties" in that public props
+   * different from "own properties" in that public props
    * are exposed as properties and attributes on the host element.
    * Requires JSDocs for public API documentation.
    */
+
+  /**
+   * Mobile image src
+   */
+  @Prop({
+    attribute: 'mSrc',
+    mutable: false,
+    reflect: true
+  }) mSrc = null;
+
+  /**
+   * Tablet image src
+   */
+  @Prop({
+    attribute: 'tSrc',
+    mutable: false,
+    reflect: true,
+  }) tSrc = null;
+
+  /**
+   * Desktop image src
+   * Type: string
+   */
+  @Prop({
+    attribute: 'dSrc',
+    mutable: false,
+    reflect: true
+  }) dSrc = null;
+
+  /**
+   * Widescreen image src
+   */
+  @Prop({
+    attribute: 'dSrc',
+    mutable: false,
+    reflect: true
+  }) wSrc = null;
+
 
   /**
    * Image src
@@ -132,42 +169,34 @@ export class OjpImage {
   }) placeholder = null;
 
   /**
-   * Optional lazy load offset
-   * Type: string (pixels)
-   * Default: "300"
-   */
-  @Prop({
-    reflect: true,
-    mutable: false
-  }) lazyOffset = '300';
-
-  _lazyLoadOptions = {
-    rootMargin: `${this.lazyOffset}px 0px`,
-  };
-
-  /**
    * 5. Events section
    * Inlined decorator, alphabetical order.
    * Requires JSDocs for public API documentation.
    */
   /**
-   * Triggered when the element is visible/invisible in the viewport
+   * Triggered when the element has entered in the viewport
    */
-  @Event() elementIsVisibleEvent;
-  @Event() elementIsInvisibleEvent;
+  @Event() elementIsVisible;
+  /**
+   * Triggered when the element has left the viewport
+   */
+  @Event() elementIsInvisible;
 
   /**
-   * Triggered when the image loaded/failed to load
+   * Triggered when the image loaded
    */
-  @Event() imageLoadedEvent;
-  @Event() imageFailedToLoadEvent;
+  @Event() imageLoaded;
+  /**
+   * Triggered when the image failed to load
+   */
+  @Event() imageFailedToLoad;
 
   /**
    * Triggered when the current image source changes
    * Note: this event is not emitted when the image is loaded for the first time
    * Emits the previous source and the new source
    */
-  @Event() imageSourceChangedEvent;
+  @Event() imageSourceChanged;
 
 
   /**
@@ -176,7 +205,6 @@ export class OjpImage {
    * WillLoad should go before DidLoad.
    */
   componentWillLoad() {
-    this._slottedSources = Array.from(this.el.children);
 
     if (this.width) {
       this.el.style.setProperty('--ojp-image--width',  `${this.width}px`);
@@ -188,11 +216,6 @@ export class OjpImage {
       if (this.placeholder) {
         this.src = this.placeholder;
       }
-    }
-
-    // If lazy loading is disabled, set the loadComponent to true
-    if (!this.lazy) {
-      this._loadComponent = true;
     }
   }
 
@@ -207,12 +230,9 @@ export class OjpImage {
     // Create Intersection Observer if browser supports it
     if (this.el && (typeof window.IntersectionObserver !== 'undefined')) {
       this._observer = new IntersectionObserver(
-        this.handleIntersection, this._lazyLoadOptions);
+        this.handleIntersection
+      );
       this._observer.observe(this.el);
-    }
-    // Otherwise, don't lazy load
-    else {
-      this._loadComponent = true;
     }
   }
 
@@ -225,8 +245,8 @@ export class OjpImage {
 
     // Remove event listeners
     if (this._image) {
-      this._image.removeEventListener('load', this.loadListener);
-      this._image.removeEventListener('error', this.loadFailedListener);
+      this._image.removeEventListener('load', this._loadListener);
+      this._image.removeEventListener('error', this._loadFailedListener);
     }
   }
 
@@ -257,19 +277,14 @@ export class OjpImage {
    * called from the host element.
    */
 
-  //Code borrowed from https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-
         // Emit event when element is visible
-        this.elementIsVisibleEvent.emit(entry);
-
-        // Load image
-        this._loadComponent = true;
+        this.elementIsVisible.emit(entry);
       }
       else {
-        this.elementIsInvisibleEvent.emit(entry);
+        this.elementIsInvisible.emit(entry);
       }
     }
   };
@@ -281,16 +296,16 @@ export class OjpImage {
     if (this._image) {
       // Add event listeners
 
-      this.loadListener = () => {
+      this._loadListener = () => {
 
         // Dispatch event when image is loaded for the first time
         if (this._prevCurrentSrc === null) {
-          this.imageLoadedEvent.emit(this._image.currentSrc);
+          this.imageLoaded.emit(this._image.currentSrc);
         }
 
         // Dispatch event when image source changes (for responsive images)
         else if (this._prevCurrentSrc !== this._image.currentSrc) {
-          this.imageSourceChangedEvent.emit({
+          this.imageSourceChanged.emit({
             previousSrc: this._prevCurrentSrc,
             currentSrc: this._image.currentSrc
           });
@@ -300,17 +315,17 @@ export class OjpImage {
 
       };
 
-      this._image.addEventListener('load', this.loadListener);
+      this._image.addEventListener('load', this._loadListener);
 
-      this.loadFailedListener = (e) => {
+      this._loadFailedListener = (e) => {
         // Dispatch event when image fails to load
         console.error('Image loading error', e.target);
         if (this.placeholder) {
           this.src = this.placeholder;
         }
-        this.imageFailedToLoadEvent.emit(this._image);
+        this.imageFailedToLoad.emit(this._image);
       };
-      this._image.addEventListener('error', this.loadFailedListener);
+      this._image.addEventListener('error', this._loadFailedListener);
     }
   }
 
@@ -321,29 +336,60 @@ export class OjpImage {
    */
 
   render() {
+
+    // Get breakpoints from CSS variables. Note: These use CSS variables to allow them to be overridden by the end user.
+    let breakpointMobile = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--mobile').slice(1,-1); // Use slice to remove quotes
+    let breakpointTablet = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--tablet').slice(1,-1);
+    let breakpointDesktop = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--desktop').slice(1,-1);
+    let breakpointWidescreen = getComputedStyle(this.el).getPropertyValue('--ojp-image--breakpoint--widescreen').slice(1,-1);
+
     return (
       <Host>
-        <OjpLazy if={this._loadComponent}>
-          <picture>
-            <slot></slot>
-            {this._slottedSources.map(child => {
-              return (
-                <source srcset={child.srcset} media={child.media} type={child.type} />
-              );
-            })}
+        <picture>
 
-            <img
-              src={this.src}
-              alt={this.alt}
-              style={{
-                aspectRatio: this.ratio,
-                objectPosition: this.imageFocus ? this.imageFocus : 'center',
-              }}
-              width={this.width}
-              height={this.height}
-            />
-          </picture>
-        </OjpLazy>
+          {breakpointWidescreen && this.wSrc
+            ? <source
+                media={breakpointWidescreen}
+                srcSet={this.wSrc}
+              />
+            : null
+          }
+
+          {breakpointDesktop && this.dSrc
+            ? <source
+                media={breakpointDesktop}
+                srcSet={this.dSrc}
+              />
+            : null
+          }
+          {breakpointTablet && this.tSrc
+            ? <source
+                media={breakpointTablet}
+                srcSet={this.tSrc}
+              />
+            : null
+          }
+          {breakpointMobile && this.mSrc
+            ? <source
+                media={breakpointMobile}
+                srcSet={this.mSrc}
+              />
+            : null
+          }
+          <img
+            src={this.src}
+            alt={this.alt}
+
+            style={{
+              aspectRatio: this.ratio,
+              objectPosition: this.imageFocus ? this.imageFocus : 'center',
+            }}
+
+            width={this.width}
+            height={this.height}
+            {...(this.lazy ? { loading: 'lazy' } : { loading: 'eager'})}
+          />
+        </picture>
       </Host>
     );
   }

@@ -1,0 +1,83 @@
+/**
+  * Component css variables are defined here and imported to the global.scss file
+  * so that they can be used by other components and use globally set breakpoints
+  *
+  **** NOTE!: The @prop comments must be duplicated into the the component's scss file
+  **** (e.g. src/components/ojp-image/ojp-image.scss) so that they will be picked up
+  **** by Stencil's docs auto-generator.
+  ****
+  **** Comments in this file will NOT be picked up by the docs generator and are here for
+  **** developer reference only. Any changes here should be duplicated into the component's
+  **** scss file.
+ */
+
+:root  {
+  ojp-accordion-item {
+
+    /**
+      * @prop --ojp-accordion-item--padding-inline: L/R padding on accordion item (header and panel). Defaults to `--space-s-m`
+    */
+    --ojp-accordion-item--padding-inline: #{var(--space-s-m)};
+
+    /**
+      * @prop --ojp-accordion-item--header-padding-block: Top/bottom padding on accordion item header. Defaults to `--space-xs-s`
+     */
+    --ojp-accordion-item--header-padding-block: #{var(--space-xs-s)};
+
+    /**
+      * @prop --ojp-accordion-item--panel-padding-block: Top/bottom padding on accordion item panel. Defaults to `--space-2xs-xs`
+     */
+    --ojp-accordion-item--panel-padding-block: #{var(--space-2xs-xs)};
+
+    /**
+      * @prop --ojp-accordion-item--hover-opacity: Opacity of header on hover. Defaults to `0.5`
+     */
+    --ojp-accordion-item--hover-opacity: 0.5;
+
+    /**
+      * @prop --ojp-accordion-item--animation-speed: Animation speed of accordion item toggle (panel height, opacity AND icon rotate). Defaults to `0.35s`
+     */
+    --ojp-accordion-item--animation-speed: 0.35s;
+
+    /**
+     * @prop --ojp-accordion-item--icon-width: Width of caret icon. Defaults to `--space-s-m`;
+    */
+    --ojp-accordion-item--icon-width: #{var(--space-s-m)};
+
+    /**
+     * @prop --ojp-accordion-item--separator-line-width: Stroke width of line separating each accordion item. Defaults to `1px` (`2px` on tablet up)
+    */
+    --ojp-accordion-item--separator-line-width: 1px;
+
+    /**
+     * @prop --ojp-accordion-item--separator-line-color: Stroke color of line separating each accordion item. Defaults to `#BABABA`
+    */
+    --ojp-accordion-item--separator-line-color: #BABABA;
+
+    /**
+     * @prop --ojp-accordion-item--icon-stroke-width: Stroke width of svg caret icon. Defaults to `3px`
+    */
+    --ojp-accordion-item--icon-stroke-width: 3px;
+
+    /**
+     * @prop --ojp-accordion-item--max-content-width: Max width of header content AND panel content. Defaults to `100%` (`75%` on desktop up)
+    */
+    --ojp-accordion-item--max-content-width: 100%;
+
+  }
+
+  // Tablet
+  @supports (--breakpoint("tablet")) {
+    ojp-accordion-item {
+      --ojp-accordion-item--icon-stroke-width: 2px;
+      --ojp-accordion-item--max-content-width: 100%;
+    }
+  }
+  // Desktop
+  @supports (--breakpoint("desktop")) {
+    ojp-accordion-item {
+      --ojp-accordion-item--icon-stroke-width: 2px;
+      --ojp-accordion-item--max-content-width: 75%;
+    }
+  }
+}

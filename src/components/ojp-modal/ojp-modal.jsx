@@ -101,7 +101,6 @@ export class OjpModal {
     this.keystrokeListener = (e) => {
       switch (e.key) {
         case 'Escape':
-          e.preventDefault();
           this.closeModal();
           break;
         case 'Tab':
@@ -125,9 +124,11 @@ export class OjpModal {
    */
   toggleLockBodyScrolling(isVisible) {
     if(isVisible) {
-      document.body.style.top = `-${window.scrollY}px`;
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      this.dialogElement.addEventListener('transitionend', () => {
+        document.body.style.top = `-${window.scrollY}px`;
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }, {once: true});
     } else {
       const scrollY = document.body.style.top;
       document.body.style.position = '';
@@ -138,7 +139,7 @@ export class OjpModal {
   }
 
   @Method()
-  closeModal() {
+  async closeModal() {
     this.open = false;
     this.el.dispatchEvent(new CustomEvent('close'));
     this.el.setAttribute('aria-hidden', true);
@@ -150,7 +151,7 @@ export class OjpModal {
   }
 
   @Method()
-  scrollModalTo(X, Y) {
+  async scrollModalTo(X, Y) {
     this.slotContainer.scrollTo(X, Y);
   }
 
@@ -184,6 +185,10 @@ export class OjpModal {
     this.focusTrap = this.el.shadowRoot.querySelector('#focus-trap');
 
     dialogPolyfill.registerDialog(this.dialogElement);
+
+    this.dialogElement.addEventListener('cancel', e => {
+      e.preventDefault();
+    });
 
     this.closeButton = this.el.shadowRoot.querySelector('.close-button');
     this.closeButton.addEventListener('click', () => {

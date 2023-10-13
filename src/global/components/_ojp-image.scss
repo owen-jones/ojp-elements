@@ -1,0 +1,69 @@
+/**
+  * Component css variables are defined here and imported to the global.scss file
+  * so that they can be used by other components and use globally set breakpoints
+  *
+  **** NOTE!: The @prop comments must be duplicated into the the component's scss file
+  **** (e.g. src/components/ojp-image/ojp-image.scss) so that they will be picked up
+  **** by Stencil's docs auto-generator.
+  ****
+  **** Comments in this file will NOT be picked up by the docs generator and are here for
+  **** developer reference only. Any changes here should be duplicated into the component's
+  **** scss file.
+ */
+
+    /**
+   PUBLIC CSS VALUES - can be overwritten by end user
+   likely to be persistent across a project and/or
+   easier to set as css vars so they can use Utopia
+   */
+
+ojp-image {
+
+  /**
+   * @prop --ojp-image--max-width: The max-width property of the img. Defaults to `max-content`;
+   */
+  --ojp-image--max-width: 100%;
+
+  /**
+   * @prop --ojp-image--object-fit: The object-fit property of the img. Defaults to `cover`;
+   */
+  --ojp-image--object-fit: cover;
+
+  /**
+   * @prop --ojp-image--width: The width property of the img. Defaults to `auto`;
+   */
+  --ojp-image--width: auto;
+
+  /**
+   * @prop --ojp-image--height: The height property of the img. Defaults to `auto`;
+   */
+  --ojp-image--height: auto;
+
+  /**
+   * @prop --ojp-image--display: The display property of the img. Defaults to `block`;
+   */
+  --ojp-image--display: block;
+
+
+  /**
+ * @prop --ojp-image--breakpoint--mobile: Minimum breakpoint for mobile screens; Defaults to global breakpoints (see README at root)
+ */
+  --ojp-image--breakpoint--mobile: var(--breakpoint--mobile);
+
+  /**
+   * @prop --ojp-image--breakpoint--tablet: Minimum breakpoint for tablet screens; Defaults to global breakpoints (see README at root)
+   */
+  --ojp-image--breakpoint--tablet: var(--breakpoint--tablet);
+
+  /**
+   * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
+   */
+  --ojp-image--breakpoint--desktop: var(--breakpoint--desktop);
+
+  /**
+   * @prop --ojp-image--breakpoint--desktop: Minimum breakpoint for desktop screens; Defaults to global breakpoints (see README at root)
+   */
+  --ojp-image--breakpoint--widescreen: var(--breakpoint--widescreen);
+
+}
+

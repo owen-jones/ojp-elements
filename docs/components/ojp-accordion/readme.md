@@ -14,10 +14,10 @@
 
 ## Events
 
-| Event                     | Description                                                       | Type               |
-| ------------------------- | ----------------------------------------------------------------- | ------------------ |
-| `elementIsInvisibleEvent` |                                                                   | `CustomEvent<any>` |
-| `elementIsVisibleEvent`   | Triggered when the accordion is visible/invisible in the viewport | `CustomEvent<any>` |
+| Event                | Description                                                       | Type               |
+| -------------------- | ----------------------------------------------------------------- | ------------------ |
+| `elementIsInvisible` |                                                                   | `CustomEvent<any>` |
+| `elementIsVisible`   | Triggered when the accordion is visible/invisible in the viewport | `CustomEvent<any>` |
 
 
 ## Methods

@@ -1,16 +1,33 @@
-// Encapsulate component style here as children of :host
 :host {
 
-  // PUBLIC CSS VALUES - can be overwritten by end user
-  // likely to be persistent across a project and/or
-  // easier to set as css vars so they can use Utopia
-  // These are set in global.scss
-  //--ojp-image--max-width: max-content;
-  //--ojp-image--object-fit: cover;
-  //--ojp-image--height: 100%;
-  //--ojp-image--width: 100%;
-  //--ojp-image--display: block;
+  /**
+    * Component css variables are commented but NOT DEFINED here. They are defined in
+    * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+    * so that they can be used by other components and use globally set breakpoints.
+    *
+    **** NOTE: The @prop comments are necessary here because they will be picked up
+    **** by Stencil's docs auto-generator and output to the component's docs at
+    **** docs/components/<component-name>/readme.md
+    ****
+    **** Any comment changes here should be duplicated into the component's global scss file
+    **** (e.g. src/global/components/_ojp-image.scss)
+   */
 
+  /**
+   * @prop --ojp-image--max-width: The max-width property of the img. Defaults to `max-content`;
+   */
+
+  /**
+   * @prop --ojp-image--object-fit: The object-fit property of the img. Defaults to `cover`;
+   */
+
+  /**
+   * @prop --ojp-image--width: The width property of the img. Defaults to `100%`;
+   */
+
+  /**
+   * @prop --ojp-image--display: The display property of the img. Defaults to `block`;
+   */
 
   /*
   This may not always be the case, but in this component
@@ -23,12 +40,11 @@
 
   }
 
-  img, source {
+  img {
     display: var(--ojp-image--display, block);
-    height: var(--ojp-image--height, 100%);
+    height: var(--ojp-image--height, auto);
     max-width: var(--ojp-image--max-width, 100%);
     object-fit: var(--ojp-image--object-fit, cover);
-    width: var(--ojp-image--width, 100%);
+    width: var(--ojp-image--width, auto);
   }
-
 }

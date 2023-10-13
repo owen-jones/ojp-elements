@@ -1,6 +1,6 @@
 {
   "name": "@ojp/ojp-elements",
-  "version": "0.3.12",
+  "version": "0.3.26",
   "author": "Owen Jones & Partners",
   "description": "Owen Jones Pattern Library",
   "main": "dist/index.cjs.js",
@@ -16,8 +16,7 @@
     "url": "git@github.com:owen-jones/ojp-elements.git"
   },
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "publishConfig": {
     "access": "public",
@@ -25,12 +24,10 @@
   },
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --debug --watch & npm run storybook",
+    "start": "stencil build --debug --watch",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "generate": "stencil generate"
   },
   "dependencies": {
     "@stencil/core": "^3.0.1",
@@ -41,19 +38,13 @@
     "@babel/core": "^7.18.2",
     "@mdx-js/react": "^2.3.0",
     "@stencil/sass": "^2.0.3",
-    "@storybook/addon-actions": "^6.5.8",
-    "@storybook/addon-essentials": "^6.5.8",
-    "@storybook/addon-interactions": "^6.5.8",
-    "@storybook/addon-links": "^6.5.8",
-    "@storybook/builder-webpack4": "^6.5.8",
-    "@storybook/html": "^6.5.8",
-    "@storybook/manager-webpack4": "^6.5.8",
-    "@storybook/testing-library": "^0.0.11",
     "@types/jest": "^27.0.3",
     "babel-loader": "^8.2.5",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0"
+    "puppeteer": "^10.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "license": "MIT"
 }

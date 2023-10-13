@@ -1,40 +1,74 @@
 
 :host {
 
-  // PUBLIC CSS VALUES - can be overwritten by end user
-  // likely to be persistent across a project and/or
-  // easier to set as css vars so they can use Utopia
-  // :)
-
-  // Gap between columns
-  --ojp-row--col-gap: var(--space-2xs-xs);
-  // Vertical gap between stacking columns in a row
-  --ojp-row--row-gap: var(--space-2xs-xs);
-  // Inline margin between rows
-  --ojp-row--margin-inline: var(--space-xs-s);
-
-  //// Minimum gutter width
-  --ojp-row--gutter: var(--space-s-3xl);
-
-  // PROPS - can be overwritten with props b/c
-  // likely to be different per component
-  // Defined in global.scss:
-  //// Number of columns
-  //// --ojp-row--mcols
-  //// --ojp-row--tcols
-  //// --ojp-row--dcols
-  //// --ojp-row--cols
-
-  // Align Items
-  --ojp-row--align-items: stretch;
-  // Justify Items
-  --ojp-row--justify-items: stretch;
+  /**
+    * Component css variables are commented but NOT DEFINED here. They are defined in
+    * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+    * so that they can be used by other components and use globally set breakpoints.
+    *
+    **** NOTE: The @prop comments are necessary for public variables here because they
+    **** will be picked up by Stencil's docs auto-generator and output to the component's
+    **** docs at docs/components/<component-name>/readme.md
+    ****
+    **** Any comment changes here should be duplicated into the component's global scss file
+    **** (e.g. src/global/components/_ojp-image.scss)
+   */
 
 
-  // CALC/HELPER VARS
+  // PUBLIC CSS VARIABLES
+  /**
+   * @prop --ojp-row--col-gap: Gap between columns. Defaults to `--space-2xs-xs`.
+  */
 
-  // Max Wrapper Width (not including gutters)
-  --ojp-row--max-wrapper-width: 1440px;
+  /**
+   * @prop --ojp-row--row-gap: Vertical gap between stacking columns in a row. Defaults to `--space-2xs-xs`.
+  */
+
+  /**
+  * @prop --ojp-row--margin-inline: Inline margin between rows. Defaults to `--space-xs-s`.
+   */
+
+  /**
+  * @prop --ojp-row--gutter: Minimum gutter width. Defaults to `--space-s-3xl`.
+  */
+
+  /**
+  * @prop --ojp-row--align-items: Align Items. Defaults to `stretch`.
+  */
+
+  /**
+  * @prop --ojp-row--justify-items: Justify Items. Defaults to `stretch`.
+  */
+
+  /**
+   * @prop ojp-row--max-wrapper-width: Max Wrapper Width (not including gutters). Defaults to `1440px`.
+  */
+
+  // PRIVATE VARIABLES
+  /**
+     * Private Variable - set by JS according to props
+     * --ojp-row--mcols: Number of columns in the row
+     * for mobile screens. Defaults to 12.
+    */
+
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--tcols: Number of columns in the row
+   * for tablet screens. Defaults to 12.
+  */
+
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--dcols: Number of columns in the row
+   * for desktop screens. Defaults to 12.
+  */
+
+  /**
+   * Private Variable - set by JS according to props
+   * --ojp-row--cols: Number of columns in the row
+   * for tablet screens. Defaults to `--ojp-row--mcols`. Only used internally.
+  */
+
 
   // STYLES
   display: block;
@@ -57,7 +91,7 @@
 
 // No top margin on first or only row
 :host(:first-child) .ojp-row__container,
-:host(:only-child) .ojp-row__container{
+:host(:only-child) .ojp-row__container {
   margin-top: 0;
 }
 
