@@ -32,15 +32,19 @@ Promise.all(sourcePaths.map((sourcePath, i) => {
   let targetDir = path.dirname(targetPath);
 
   return createDirectory(targetDir)
+    .then(() => {
+      // console.log('Created file: ' + targetPath);
+    })
+    .catch(err => {
+      console.error('Error occurred creating file ' + targetPath + ':', err);
+    })
     .then(() => copyFile(sourcePath, targetPath))
     .then(() => replaceInFile(targetPath, componentNameKebab))
-    .then(() => {
-      console.log('Component ' + componentNameKebab + ' generated successfully.');
-    })
     .catch(err => {
       console.error('Error occurred generating ' + componentNameKebab +':', err);
     });
 }))
+  .then(() => console.log('Component generated successfully'))
   .then((indexPage) => addComponentToIndexPage(indexPage))
   .then(() => {
     console.log('Component added to index page `' + indexPagePath + '`');
@@ -65,18 +69,31 @@ function addComponentToIndexPage(data){
 }
 
 function validateComponentName(componentNameKebab) {
+  // If the component name already exists, exit
+  if (fs.existsSync('src/components/' + componentNameKebab)) {
+    console.log('Component already exists: ' + componentNameKebab + '. Please choose a unique component name.');
+    process.exit();
+  }
+
   if (!componentNameKebab) {
-    console.log('No component name provided. Use: npm run create [component-name]');
+    console.log('No component name provided. Use: npm run generateFromTemplate [component-name]');
     process.exit();
   }
 
   if (!componentNameKebab.includes('-')) {
-    console.log('Component name must include at least one dash. Use: npm run create [component-name]');
+    console.log('Component name must include at least one dash. Use: npm run generateFromTemplate [component-name]');
     process.exit();
   }
 
+  // If the component name includes any special characters, exit
+  if (componentNameKebab.match(/[^a-zA-Z0-9-]/)) {
+    console.log('Component name must include only letters, numbers, and dashes. Use: npm run generateFromTemplate [component-name]');
+    process.exit();
+  }
+
+
   if (componentNameKebab !== componentNameKebab.toLowerCase()) {
-    console.log('Component name must be all lower case. Use: npm run create [component-name]');
+    console.log('Component name must be all lower case. Use: npm run generateFromTemplate [component-name]');
     process.exit();
   }
 }
@@ -84,8 +101,10 @@ function validateComponentName(componentNameKebab) {
 function createDirectory(targetDir) {
   return fsp.access(targetDir)
     .catch(() => {
-      console.log('Creating directory: ' + targetDir);
-      return fsp.mkdir(targetDir);
+      // console.log('Creating directory: ' + targetDir);
+      if (!fs.existsSync(targetDir)){
+        fs.mkdirSync(targetDir);
+      }
     });
 }
 
