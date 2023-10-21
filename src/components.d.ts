@@ -21,9 +21,6 @@ export namespace Components {
           * Optional User-defined anchor id Used so item can be auto-opened with url param Type: string
          */
         "anchorId": any;
-        /**
-          * Close the accordion item
-         */
         "closeItem": () => Promise<void>;
         /**
           * Index of accordion item from top to bottom Type: number
@@ -50,6 +47,10 @@ export namespace Components {
     }
     interface OjpCardGrid {
         /**
+          * gridGap is set to 20px by default, set gap to change the gap between cards Type: number
+         */
+        "colgap": number;
+        /**
           * columns is 3 by default, set columns to change the number of columns Type: number
          */
         "columns": number;
@@ -59,13 +60,37 @@ export namespace Components {
         "ismasonry": boolean;
     }
     interface OjpCol {
+        /**
+          * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "dspan": any;
+        /**
+          * The column's start position on desktop devices. (Internally uses `grid-column-start: <dstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "dstart": any;
+        /**
+          * How many grid columns this element will span on mobile devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "mspan": any;
+        /**
+          * The column's start position on mobile devices. (Internally uses `grid-column-start: <mstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "mstart": any;
+        /**
+          * How many grid columns this element will span. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col span="12">` is equivalent to <br>`<ojp-col mspan="12" tspan="12" dspan="12">`
+         */
         "span": string;
+        /**
+          * The column's start position on all devices. Shorthand for desktop, tablet, and mobile start. (Internally uses `grid-column-start: <start>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col start="2">` is equivalent to <br>`<ojp-col mstart="2" tstart="2" dstart="2">`
+         */
         "start": string;
+        /**
+          * How many grid columns this element will span on tablet devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "tspan": any;
+        /**
+          * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "tstart": any;
     }
     interface OjpImage {
@@ -73,6 +98,10 @@ export namespace Components {
           * Image alt text Type: string Default: ""
          */
         "alt": string;
+        /**
+          * Desktop image src Type: string
+         */
+        "dSrc": any;
         /**
           * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
          */
@@ -86,9 +115,9 @@ export namespace Components {
          */
         "lazy": boolean;
         /**
-          * Optional lazy load offset Type: string (pixels) Default: "300"
+          * Mobile image src
          */
-        "lazyOffset": string;
+        "mSrc": any;
         /**
           * Optional placeholder image path Type: string Default: null
          */
@@ -101,6 +130,14 @@ export namespace Components {
           * Image src Type: string Required: true Default: null
          */
         "src": string;
+        /**
+          * Tablet image src
+         */
+        "tSrc": any;
+        /**
+          * Widescreen image src
+         */
+        "wSrc": any;
         /**
           * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */
@@ -132,12 +169,33 @@ export namespace Components {
         "scrollbarvisible": boolean;
     }
     interface OjpRow {
+        /**
+          * align-items property of the grid. <br><br>Default: `stretch`
+         */
         "align": string;
+        /**
+          * The number of columns that the row should be divided into. Internally, this is used to set the `grid-template-columns` property. Shorthand for desktop, tablet, and mobile cols. <br><br>Default: `12` <br><br>`<ojp-col cols="12">` is equivalent to <br>`<ojp-col mcols="12" tcols="12" dcols="12">`
+         */
         "cols": string;
+        /**
+          * The number of columns that the row should be divided into on desktop. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "dcols": any;
+        /**
+          * Should the gutters (aka page padding) be removed? Internally, setting this to true sets the `--ojp-row--gutter` css variable to `0`. <br><br>Default: `false`
+         */
         "fullbleed": boolean;
+        /**
+          * justify-items property of the grid. <br><br>Default: `stretch`
+         */
         "justify": string;
+        /**
+          * The number of columns that the row should be divided into on mobile. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "mcols": any;
+        /**
+          * The number of columns that the row should be divided into on tablet. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "tcols": any;
     }
 }
@@ -234,11 +292,11 @@ declare namespace LocalJSX {
           * Allow multiple items to be open at once If set to false, opening one item will auto-close all other items in the accordion Type: boolean
          */
         "allowMultipleItemsOpen"?: boolean;
-        "onElementIsInvisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
+        "onElementIsInvisible"?: (event: OjpAccordionCustomEvent<any>) => void;
         /**
           * Triggered when the accordion is visible/invisible in the viewport
          */
-        "onElementIsVisibleEvent"?: (event: OjpAccordionCustomEvent<any>) => void;
+        "onElementIsVisible"?: (event: OjpAccordionCustomEvent<any>) => void;
     }
     interface OjpAccordionItem {
         /**
@@ -250,9 +308,13 @@ declare namespace LocalJSX {
          */
         "index"?: number;
         /**
-          * Triggered when the accordion item is opened or closed
+          * Triggered when the accordion item is closed
          */
-        "onStateChangeEvent"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        "onItemClosed"?: (event: OjpAccordionItemCustomEvent<any>) => void;
+        /**
+          * Triggered when the accordion item is opened
+         */
+        "onItemOpened"?: (event: OjpAccordionItemCustomEvent<any>) => void;
         /**
           * Accordion item is open or opening (css transition) Type: boolean
          */
@@ -271,6 +333,10 @@ declare namespace LocalJSX {
     }
     interface OjpCardGrid {
         /**
+          * gridGap is set to 20px by default, set gap to change the gap between cards Type: number
+         */
+        "colgap"?: number;
+        /**
           * columns is 3 by default, set columns to change the number of columns Type: number
          */
         "columns"?: number;
@@ -285,13 +351,37 @@ declare namespace LocalJSX {
         "onElementIsVisibleEvent"?: (event: OjpCardGridCustomEvent<any>) => void;
     }
     interface OjpCol {
+        /**
+          * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "dspan"?: any;
+        /**
+          * The column's start position on desktop devices. (Internally uses `grid-column-start: <dstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "dstart"?: any;
+        /**
+          * How many grid columns this element will span on mobile devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "mspan"?: any;
+        /**
+          * The column's start position on mobile devices. (Internally uses `grid-column-start: <mstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "mstart"?: any;
+        /**
+          * How many grid columns this element will span. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col span="12">` is equivalent to <br>`<ojp-col mspan="12" tspan="12" dspan="12">`
+         */
         "span"?: string;
+        /**
+          * The column's start position on all devices. Shorthand for desktop, tablet, and mobile start. (Internally uses `grid-column-start: <start>;`). <br><br>Defaults to `auto`. <br><br>`<ojp-col start="2">` is equivalent to <br>`<ojp-col mstart="2" tstart="2" dstart="2">`
+         */
         "start"?: string;
+        /**
+          * How many grid columns this element will span on tablet devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
+         */
         "tspan"?: any;
+        /**
+          * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
+         */
         "tstart"?: any;
     }
     interface OjpImage {
@@ -299,6 +389,10 @@ declare namespace LocalJSX {
           * Image alt text Type: string Default: ""
          */
         "alt"?: string;
+        /**
+          * Desktop image src Type: string
+         */
+        "dSrc"?: any;
         /**
           * Height of the image Type: string Default: null Note: this is not the height of the image container, but the height of the image itself
          */
@@ -312,23 +406,29 @@ declare namespace LocalJSX {
          */
         "lazy"?: boolean;
         /**
-          * Optional lazy load offset Type: string (pixels) Default: "300"
+          * Mobile image src
          */
-        "lazyOffset"?: string;
-        "onElementIsInvisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "mSrc"?: any;
         /**
-          * Triggered when the element is visible/invisible in the viewport
+          * Triggered when the element has left the viewport
          */
-        "onElementIsVisibleEvent"?: (event: OjpImageCustomEvent<any>) => void;
-        "onImageFailedToLoadEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onElementIsInvisible"?: (event: OjpImageCustomEvent<any>) => void;
         /**
-          * Triggered when the image loaded/failed to load
+          * Triggered when the element has entered in the viewport
          */
-        "onImageLoadedEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onElementIsVisible"?: (event: OjpImageCustomEvent<any>) => void;
+        /**
+          * Triggered when the image failed to load
+         */
+        "onImageFailedToLoad"?: (event: OjpImageCustomEvent<any>) => void;
+        /**
+          * Triggered when the image loaded
+         */
+        "onImageLoaded"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Triggered when the current image source changes Note: this event is not emitted when the image is loaded for the first time Emits the previous source and the new source
          */
-        "onImageSourceChangedEvent"?: (event: OjpImageCustomEvent<any>) => void;
+        "onImageSourceChanged"?: (event: OjpImageCustomEvent<any>) => void;
         /**
           * Optional placeholder image path Type: string Default: null
          */
@@ -341,6 +441,14 @@ declare namespace LocalJSX {
           * Image src Type: string Required: true Default: null
          */
         "src"?: string;
+        /**
+          * Tablet image src
+         */
+        "tSrc"?: any;
+        /**
+          * Widescreen image src
+         */
+        "wSrc"?: any;
         /**
           * Width of the image Type: string Default: null Note: this is not the width of the image container, but the width of the image itself
          */
@@ -366,12 +474,33 @@ declare namespace LocalJSX {
         "scrollbarvisible"?: boolean;
     }
     interface OjpRow {
+        /**
+          * align-items property of the grid. <br><br>Default: `stretch`
+         */
         "align"?: string;
+        /**
+          * The number of columns that the row should be divided into. Internally, this is used to set the `grid-template-columns` property. Shorthand for desktop, tablet, and mobile cols. <br><br>Default: `12` <br><br>`<ojp-col cols="12">` is equivalent to <br>`<ojp-col mcols="12" tcols="12" dcols="12">`
+         */
         "cols"?: string;
+        /**
+          * The number of columns that the row should be divided into on desktop. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "dcols"?: any;
+        /**
+          * Should the gutters (aka page padding) be removed? Internally, setting this to true sets the `--ojp-row--gutter` css variable to `0`. <br><br>Default: `false`
+         */
         "fullbleed"?: boolean;
+        /**
+          * justify-items property of the grid. <br><br>Default: `stretch`
+         */
         "justify"?: string;
+        /**
+          * The number of columns that the row should be divided into on mobile. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "mcols"?: any;
+        /**
+          * The number of columns that the row should be divided into on tablet. Internally, this is used to set the `grid-template-columns` property. <br><br>Default: value of {this.cols}
+         */
         "tcols"?: any;
     }
     interface IntrinsicElements {

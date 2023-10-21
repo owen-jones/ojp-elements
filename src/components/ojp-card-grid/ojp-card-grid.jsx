@@ -29,6 +29,15 @@ export class OjpCardGrid {
     mutable: true,
   }) columns = 3;
 
+/**
+   * gridGap is set to 20px by default, set gap to change the gap between cards
+   * Type: number
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) colgap = 10;
+
 
   /**
    * Triggered when the card is visible/invisible in the viewport
@@ -42,6 +51,14 @@ export class OjpCardGrid {
       this.observer = new IntersectionObserver(this.handleIntersection);
       this.observer.observe(this.el);
     }
+    this.setCssProperties();
+
+    const container = document.querySelector('.grid');
+    const items = Array.from(container.children);
+    const containerGap = parseInt(window.getComputedStyle(container).columnGap);
+    console.log(containerGap);
+    this.createMasonryLayout(container, items, this.columns, containerGap);
+
   }
 
 
@@ -58,15 +75,41 @@ export class OjpCardGrid {
   };
 
   setCssProperties() {
-    if (this.ismasonry) {
-      this.el.style.setProperty('--columns', 'grid--masonry');
-    }
+    console.log(this.colgap);
+    this.el.style.setProperty('--columns', this.columns);
+    this.el.style.setProperty('--col-gap', this.colgap + 'px');
   }
 
 
+  // TODO: 'gap' assumes the same for column and row gap. need to update for different column and row gap
+  createMasonryLayout = (container, items, columns, gap) => {
+    const totalGapWidth = gap * (columns - 1);
+    const itemWidth = (container.offsetWidth - totalGapWidth) / columns;
+    const columnHeights = new Array(columns).fill(0);
+
+    items.forEach((item, i) => {
+      item.style.width = `${itemWidth}px`;
+
+      const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+
+      item.style.position = 'absolute';
+      item.style.left = `${(itemWidth + gap) * shortestColumnIndex}px`;
+      item.style.top = `${columnHeights[shortestColumnIndex]}px`;
+
+      columnHeights[shortestColumnIndex] += item.offsetHeight + gap;
+    });
+
+    // Set the height of the container to the height of the tallest column
+    container.style.height = `${Math.max(...columnHeights)}px`;
+  }
+
   render() {
     return (
-      <Host>
+      <Host
+        class={{
+          'grid': true,
+          'grid--masonry': this.ismasonry
+        }}>
         <slot></slot>
       </Host>
     );
