@@ -24,9 +24,6 @@
       padding: 40px 0;
       height: 100%;
     }
-    ojp-card-grid {
-     row-gap: 25px;
-    }
     .card {
       background-color: lightblue;
       border: 1px solid blue;
@@ -46,6 +43,9 @@
     .card--4 {
       height: 225px;
     }
+    .card--5 {
+      height: 450px;
+    }
 
   </style>
 </head>
@@ -53,7 +53,7 @@
 <div class="container">
   <ojp-row justify="">
     <ojp-col class="column" span='12'>
-      <ojp-card-grid isMasonry="true" columns="4" colgap="60">
+      <ojp-card-grid isMasonry="true" columns="4" colgap="20" rowgap="35">
         <div class="card card--1"></div>
         <div class="card card--2"></div>
         <div class="card card--3"></div>

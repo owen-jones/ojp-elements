@@ -47,7 +47,7 @@ export namespace Components {
     }
     interface OjpCardGrid {
         /**
-          * gridGap is set to 20px by default, set gap to change the gap between cards Type: number
+          * colGap is set to 20px by default, set gap to change the gap between cards Type: number
          */
         "colgap": number;
         /**
@@ -58,6 +58,10 @@ export namespace Components {
           * isMasonry is false by default, set isMasonry to true to change to masonry layout Type: boolean
          */
         "ismasonry": boolean;
+        /**
+          * rowGap is set to 20px by default, set gap to change the gap between cards Type: number
+         */
+        "rowgap": number;
     }
     interface OjpCol {
         /**
@@ -333,7 +337,7 @@ declare namespace LocalJSX {
     }
     interface OjpCardGrid {
         /**
-          * gridGap is set to 20px by default, set gap to change the gap between cards Type: number
+          * colGap is set to 20px by default, set gap to change the gap between cards Type: number
          */
         "colgap"?: number;
         /**
@@ -349,6 +353,10 @@ declare namespace LocalJSX {
           * Triggered when the card is visible/invisible in the viewport
          */
         "onElementIsVisibleEvent"?: (event: OjpCardGridCustomEvent<any>) => void;
+        /**
+          * rowGap is set to 20px by default, set gap to change the gap between cards Type: number
+         */
+        "rowgap"?: number;
     }
     interface OjpCol {
         /**

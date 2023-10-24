@@ -3,4 +3,5 @@
   display: grid;
   grid-template-columns: repeat(var(--columns, 3), 1fr);
   position:relative;
+  row-gap: var(--row-gap, 10px);
 }

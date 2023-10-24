@@ -29,14 +29,23 @@ export class OjpCardGrid {
     mutable: true,
   }) columns = 3;
 
-/**
-   * gridGap is set to 20px by default, set gap to change the gap between cards
+  /**
+   * colGap is set to 20px by default, set gap to change the gap between cards
    * Type: number
    */
   @Prop({
     reflect: true,
     mutable: true,
   }) colgap = 10;
+
+  /**
+   * rowGap is set to 20px by default, set gap to change the gap between cards
+   * Type: number
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) rowgap = 10;
 
 
   /**
@@ -55,9 +64,9 @@ export class OjpCardGrid {
 
     const container = document.querySelector('.grid');
     const items = Array.from(container.children);
-    const containerGap = parseInt(window.getComputedStyle(container).columnGap);
-    console.log(containerGap);
-    this.createMasonryLayout(container, items, this.columns, containerGap);
+    const colGap = parseInt(window.getComputedStyle(container).columnGap);
+    const rowGap = parseInt(window.getComputedStyle(container).rowGap);
+    this.createMasonryLayout(container, items, this.columns, colGap, rowGap);
 
   }
 
@@ -78,13 +87,13 @@ export class OjpCardGrid {
     console.log(this.colgap);
     this.el.style.setProperty('--columns', this.columns);
     this.el.style.setProperty('--col-gap', this.colgap + 'px');
+    this.el.style.setProperty('--row-gap', this.rowgap + 'px');
   }
 
 
-  // TODO: 'gap' assumes the same for column and row gap. need to update for different column and row gap
-  createMasonryLayout = (container, items, columns, gap) => {
-    const totalGapWidth = gap * (columns - 1);
-    const itemWidth = (container.offsetWidth - totalGapWidth) / columns;
+  createMasonryLayout = (container, items, columns, colGap, rowGap) => {
+    const totalColGapWidth = colGap * (columns - 1);
+    const itemWidth = (container.offsetWidth - totalColGapWidth) / columns;
     const columnHeights = new Array(columns).fill(0);
 
     items.forEach((item, i) => {
@@ -93,15 +102,16 @@ export class OjpCardGrid {
       const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
 
       item.style.position = 'absolute';
-      item.style.left = `${(itemWidth + gap) * shortestColumnIndex}px`;
+      item.style.left = `${(itemWidth + colGap) * shortestColumnIndex}px`;
       item.style.top = `${columnHeights[shortestColumnIndex]}px`;
 
-      columnHeights[shortestColumnIndex] += item.offsetHeight + gap;
+      columnHeights[shortestColumnIndex] += item.offsetHeight + rowGap;
     });
 
     // Set the height of the container to the height of the tallest column
     container.style.height = `${Math.max(...columnHeights)}px`;
   }
+  
 
   render() {
     return (
