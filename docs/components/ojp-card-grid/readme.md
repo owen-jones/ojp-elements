@@ -9,10 +9,7 @@
 
 | Property    | Attribute   | Description                                                                                    | Type      | Default |
 | ----------- | ----------- | ---------------------------------------------------------------------------------------------- | --------- | ------- |
-| `colgap`    | `colgap`    | colGap is set to 20px by default, set gap to change the gap between cards Type: number         | `number`  | `10`    |
-| `columns`   | `columns`   | columns is 3 by default, set columns to change the number of columns Type: number              | `number`  | `3`     |
 | `ismasonry` | `ismasonry` | isMasonry is false by default, set isMasonry to true to change to masonry layout Type: boolean | `boolean` | `false` |
-| `rowgap`    | `rowgap`    | rowGap is set to 20px by default, set gap to change the gap between cards Type: number         | `number`  | `10`    |
 
 
 ## Events
@@ -21,6 +18,15 @@
 | ------------------------- | ------------------------------------------------------------ | ------------------ |
 | `elementIsInvisibleEvent` |                                                              | `CustomEvent<any>` |
 | `elementIsVisibleEvent`   | Triggered when the card is visible/invisible in the viewport | `CustomEvent<any>` |
+
+
+## CSS Custom Properties
+
+| Name                       | Description                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--ojp-card-grid--col-gap` |                                                                                                                                                   |
+| `--ojp-card-grid--columns` | Number of columns in card grid. Use media queries to change this value at different breakpoints. Defaults to mobile - 1, tablet - 2, desktop - 3. |
+| `--ojp-card-grid--row-gap` |                                                                                                                                                   |
 
 
 ----------------------------------------------

@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Prop, Event, Method, } from '@stencil/core';
+import { Component, Host, h, Element, Prop, Event, Method, Listen} from '@stencil/core';
 
 @Component({
   tag: 'ojp-card-grid',
@@ -19,33 +19,33 @@ export class OjpCardGrid {
     reflect: true,
     mutable: true,
   }) ismasonry = false;
-
-  /**
-   * columns is 3 by default, set columns to change the number of columns
-   * Type: number
-   */
-  @Prop({
-    reflect: true,
-    mutable: true,
-  }) columns = 3;
-
-  /**
-   * colGap is set to 20px by default, set gap to change the gap between cards
-   * Type: number
-   */
-  @Prop({
-    reflect: true,
-    mutable: true,
-  }) colgap = 10;
-
-  /**
-   * rowGap is set to 20px by default, set gap to change the gap between cards
-   * Type: number
-   */
-  @Prop({
-    reflect: true,
-    mutable: true,
-  }) rowgap = 10;
+  //
+  // /**
+  //  * columns is 3 by default, set columns to change the number of columns
+  //  * Type: number
+  //  */
+  // @Prop({
+  //   reflect: true,
+  //   mutable: true,
+  // }) columns = 3;
+  //
+  // /**
+  //  * colGap is set to 20px by default, set gap to change the gap between cards
+  //  * Type: number
+  //  */
+  // @Prop({
+  //   reflect: true,
+  //   mutable: true,
+  // }) colgap = 10;
+  //
+  // /**
+  //  * rowGap is set to 20px by default, set gap to change the gap between cards
+  //  * Type: number
+  //  */
+  // @Prop({
+  //   reflect: true,
+  //   mutable: true,
+  // }) rowgap = 10;
 
 
   /**
@@ -60,16 +60,26 @@ export class OjpCardGrid {
       this.observer = new IntersectionObserver(this.handleIntersection);
       this.observer.observe(this.el);
     }
-    this.setCssProperties();
+    // this.setCssProperties();
 
-    const container = document.querySelector('.grid');
-    const items = Array.from(container.children);
-    const colGap = parseInt(window.getComputedStyle(container).columnGap);
-    const rowGap = parseInt(window.getComputedStyle(container).rowGap);
-    this.createMasonryLayout(container, items, this.columns, colGap, rowGap);
-
+    const items = Array.from(this.el.children);
+    const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
+    const colGap = parseInt(window.getComputedStyle(this.el).columnGap);
+    const rowGap = parseInt(window.getComputedStyle(this.el).rowGap);
+    columns > 1 &&
+      this.createMasonryLayout(this.el, items, columns, colGap, rowGap);
   }
 
+  @Listen('resize', { target: 'window' })
+  handleResize() {
+    if (this.ismasonry) {
+      const columns = parseInt(window.getComputedStyle(this.el).gridTemplateColumns);
+      const colGap = parseInt(window.getComputedStyle(this.el).columnGap);
+      const rowGap = parseInt(window.getComputedStyle(this.el).rowGap);
+      columns > 1 &&
+        this.createMasonryLayout(this.el, Array.from(this.el.children), columns, colGap, rowGap);
+    }
+  }
 
   // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
   handleIntersection = async (entries) => {
@@ -83,16 +93,9 @@ export class OjpCardGrid {
     }
   };
 
-  setCssProperties() {
-    console.log(this.colgap);
-    this.el.style.setProperty('--columns', this.columns);
-    this.el.style.setProperty('--col-gap', this.colgap + 'px');
-    this.el.style.setProperty('--row-gap', this.rowgap + 'px');
-  }
-
-
   createMasonryLayout = (container, items, columns, colGap, rowGap) => {
-    const totalColGapWidth = colGap * (columns - 1);
+    const totalColGapWidth = columns - 1 ? colGap * (columns - 1) : 1;
+    console.log((totalColGapWidth));
     const itemWidth = (container.offsetWidth - totalColGapWidth) / columns;
     const columnHeights = new Array(columns).fill(0);
 
@@ -100,18 +103,16 @@ export class OjpCardGrid {
       item.style.width = `${itemWidth}px`;
 
       const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
-
       item.style.position = 'absolute';
       item.style.left = `${(itemWidth + colGap) * shortestColumnIndex}px`;
       item.style.top = `${columnHeights[shortestColumnIndex]}px`;
-
       columnHeights[shortestColumnIndex] += item.offsetHeight + rowGap;
     });
 
     // Set the height of the container to the height of the tallest column
     container.style.height = `${Math.max(...columnHeights)}px`;
   }
-  
+
 
   render() {
     return (
