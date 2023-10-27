@@ -23,9 +23,11 @@
    * @prop --ojp-card-grid--row-gap:
   */
 
-  column-gap: var(--ojp-card-grid--col-gap, 10px);
-  display: grid;
-  grid-template-columns: repeat(var(--ojp-card-grid--columns, 1), 1fr);
-  position:relative;
-  row-gap: var(--ojp-card-grid--row-gap, 10px);
+  .grid {
+    column-gap: var(--ojp-card-grid--col-gap, 10px);
+    display: grid;
+    grid-template-columns: repeat(var(--ojp-card-grid--columns, 1), 1fr);
+    position:relative;
+    row-gap: var(--ojp-card-grid--row-gap, 10px);
+  }
 }

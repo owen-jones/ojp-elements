@@ -73,7 +73,7 @@ export class OjpCardGrid {
   @Listen('resize', { target: 'window' })
   handleResize() {
     if (this.ismasonry) {
-      const columns = parseInt(window.getComputedStyle(this.el).gridTemplateColumns);
+      const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
       const colGap = parseInt(window.getComputedStyle(this.el).columnGap);
       const rowGap = parseInt(window.getComputedStyle(this.el).rowGap);
       columns > 1 &&
@@ -116,13 +116,13 @@ export class OjpCardGrid {
 
   render() {
     return (
-      <Host
+      <div
         class={{
           'grid': true,
           'grid--masonry': this.ismasonry
         }}>
         <slot></slot>
-      </Host>
+      </div>
     );
   }
 
