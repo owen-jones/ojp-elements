@@ -77,11 +77,6 @@ Increment the version number in the following files. The version number should f
 - 3 places in this `readme.md` file
 - `package.json`
 
-Run a build to generate the new docs and files for the new version by running the following command:
-```bash
-npm run build
-```
-
 #### Tagging a release:
 After you have incremented the version number, tag the release in git by running the following commands:
 
@@ -96,7 +91,6 @@ git push origin main --tags
 Publish the library to NPM by running the following command:
 
 ```bash
-npm login
 npm publish
 ```
 
