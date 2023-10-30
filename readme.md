@@ -10,7 +10,7 @@ See the [component documentation](https://github.com/owen-jones/ojp-elements/tre
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.3.26
+npm install @ojp/ojp-elements@0.3.27
 ```
 
 Import the elements you want to use in your JavaScript file:
@@ -32,8 +32,8 @@ directly from the CDN through an HTML `<script>` tag.
 Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.26/dist/ojp-elements/ojp-elements.esm.min.js'></script>
-<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.26/dist/ojp-elements/ojp-elements.min.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.27/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.27/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 ## Development:
@@ -62,8 +62,42 @@ This will compile the library and generate readme.md files for all the component
 
 Need help? Check the Stencil.js docs [here](https://stenciljs.com/docs/my-first-component).
 
-## Test Pages:
+### Demo Pages:
 
 When you run `npm run generateFromTemplate`, an HTML page will be made in the `pages` directory to view and test it. The script will also add the component to the `src/index.html` file to link to the new page.
 
-When a build is made, the `web` directory will be generated and all HTML pages will be copied over. This directory can be served remotely to test on a QA server.
+When a build is made, the `web` directory will be generated and all HTML pages will be copied over. This directory can be served remotely to test on a QA server.'
+
+### Publishing and Versioning:
+When you are ready to publish a new version of the library, do the following:
+
+#### Incrementing the version number:
+Increment the version number in the following files. The version number should follow [semantic versioning](https://semver.org/).
+
+- 3 places in this `readme.md` file
+- `package.json`
+
+#### Tagging a release:
+After you have incremented the version number, tag the release in git by running the following commands:
+
+```bash
+git add .
+git commit -m "Increment version number"
+git tag -a v0.3.27 -m "Tag message" // Replace the version number with the new version number
+git push origin main --tags
+```
+
+#### Publishing the library:
+Publish the library to NPM by running the following command:
+
+```bash
+npm publish
+```
+
+#### Verifying the release:
+Verify that the tag has been created and pushed by checking Github. You should see the newly created tag listed [here.](https://github.com/owen-jones/ojp-elements/tags)
+
+Verify that the library has been published to NPM by running the following command:
+```bash
+npm view @ojp/ojp-elements versions
+```
