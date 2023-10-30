@@ -88,9 +88,10 @@ git push origin main --tags
 ```
 
 #### Publishing the library:
-Publish the library to NPM by running the following command:
+Publish the library to NPM by running the following commands. When prompted for a one-time password, you can find it in the 1Password vault under "NPM".
 
 ```bash
+npm login
 npm publish
 ```
 
