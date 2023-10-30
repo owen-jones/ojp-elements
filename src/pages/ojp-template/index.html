@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+  <title>Ojp Template</title>
+
+  <!--  Import pattern libary globals-->
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <!--  Import demo page styles and scripts-->
+  <link rel='stylesheet' href='../styles/demo.css'>
+
+  <style>
+    /*ojp-template {*/
+    /*  --ojp-template--example-var: 100%;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<div class="container">
+  <ojp-row cols="4" mcols="1">
+    <ojp-col span="4" mspan="1">
+      <h1>Ojp Template</h1>
+      <hr>
+      <!-- Overview -->
+      <h2>Overview</h2>
+      <p>See auto-generated <a href="https://github.com/owen-jones/ojp-elements/tree/main/docs/components/ojp-template" target="_blank">component docs here</a></p>
+      <br>
+      <p>Project dev can override any ojp-template css vars in their style sheet like this. See docs for full list of css vars:</p>
+
+      <div class="code-block">
+        <pre>
+          <code>
+        ojp-template {
+          --ojp-template--example-var: 400px; // Default is 100%
+        }
+          </code>
+        </pre>
+      </div>
+      <hr>
+    </ojp-col>
+  </ojp-row>
+
+  <ojp-row>
+    <ojp-col class="column" span="8" start="3" tspan="12" tstart="0" mspan="12" mstart="0">
+      <h2>Usage</h2>
+      <h3>Example 1</h3>
+      <p>Describe this example</p>
+      <div class="code-block">
+        <pre>
+          <code>
+          &lt;ojp-template
+            id="my-template"
+            class="my-class"
+            //...
+          &gt;&lt;/ojp-template&gt;
+          </code>
+        </pre>
+      </div>
+      <ojp-template
+        id="my-template"
+        class="my-class"
+      ></ojp-template>
+      <hr>
+      <h3>Example 2</h3>
+      <p>Describe this example</p>
+      <div class="code-block">
+        <pre>
+          <code>
+            &lt;script&gt;
+              const myAccordion = document.querySelector('#my-accordion');
+              myAccordion.addEventListener('elementIsVisible', event => {
+                console.log('My accordion is now visible');
+                console.log('IntersectionObserverEntry', event.detail);
+              });
+            &lt;/script&gt;
+          </code>
+        </pre>
+      </div>
+      <ojp-template
+        id="my-template"
+        class="my-class"
+      ></ojp-template>
+
+    </ojp-col>
+  </ojp-row>
+</div>
+</body>
+
+<script>
+  // Project dev can write a function to expose ojp-template's "exampleFunction" function
+  // function exampleFunction() {
+  //   let component = document.querySelector('ojp-template');
+  //   component.exampleFunction();
+  // }
+  //
+  // // use the function on page load
+  // window.addEventListener('load', (event) => {
+  //   exampleFunction();
+  // });
+
+</script>
+</html>

@@ -27,12 +27,16 @@
     "start": "stencil build --debug --watch",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "generateFromTemplate": "node generateFromOjpTemplate.js"
   },
   "dependencies": {
     "@stencil/core": "^3.0.1",
     "cssomtools": "^0.0.2",
-    "dialog-polyfill": "^0.5.6"
+    "dialog-polyfill": "^0.5.6",
+    "replace-in-file": "^7.0.1",
+    "shelljs": "^0.8.5",
+    "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
     "@babel/core": "^7.18.2",

@@ -7,21 +7,33 @@
   font-weight: 300;
 }
 
-h1, h2, h3 {
+body {
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  padding-top: 40px;
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
   font-weight: 500;
   line-height: 110%;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
 }
 
 h1 {
-  font-size: var(--step-5);
-}
-
-h2 {
   font-size: var(--step-4);
 }
 
+h2 {
+  font-size: var(--step-2);
+}
+
 h3 {
-  font-size: var(--step-3);
+  font-size: var(--step-0);
 }
 
 p {
@@ -30,22 +42,53 @@ p {
 }
 
 p.intro {
-  font-size: var(--step-2);
+  font-size: var(--step-1);
   font-weight: 300;
   margin-block: 0;
 }
 
 p, .p1 {
-  font-size: var(--step-1);
+  font-size: var(--step--1);
 }
 
-p.p2 {
-  font-size: var(--step-0);
+p.p2, span.p2 {
+  font-size: var(--step--2);
 }
 
-button, a {
+button {
   font-size: var(--step-1);
   line-height: 150%;
   font-weight: 400;
-  text-transform: uppercase;
 }
+
+hr {
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-l);
+}
+
+textarea {
+  background-color: #111;
+  border: 0;
+  color: #fafaff;
+  font-family: monospace;
+  font-size: 14px;
+  margin: 20px;
+  padding: 20px 20px 0px 20px;
+  resize: none;
+  width: calc(100% - 100px);
+}
+
+.code-block {
+  background-color: #111;
+  color: #fafaff;
+  font-size: var(--step--2);
+}
+
+code {
+  font-family: monospace;
+}
+
+ojp-row {
+  --ojp-row--gutter: var(--space-s-3xl);
+}
+
