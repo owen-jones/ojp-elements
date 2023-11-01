@@ -19,34 +19,6 @@ export class OjpCardGrid {
     reflect: true,
     mutable: true,
   }) ismasonry = false;
-  //
-  // /**
-  //  * columns is 3 by default, set columns to change the number of columns
-  //  * Type: number
-  //  */
-  // @Prop({
-  //   reflect: true,
-  //   mutable: true,
-  // }) columns = 3;
-  //
-  // /**
-  //  * colGap is set to 20px by default, set gap to change the gap between cards
-  //  * Type: number
-  //  */
-  // @Prop({
-  //   reflect: true,
-  //   mutable: true,
-  // }) colgap = 10;
-  //
-  // /**
-  //  * rowGap is set to 20px by default, set gap to change the gap between cards
-  //  * Type: number
-  //  */
-  // @Prop({
-  //   reflect: true,
-  //   mutable: true,
-  // }) rowgap = 10;
-
 
   /**
    * Triggered when the card is visible/invisible in the viewport
@@ -60,24 +32,25 @@ export class OjpCardGrid {
       this.observer = new IntersectionObserver(this.handleIntersection);
       this.observer.observe(this.el);
     }
-    // this.setCssProperties();
 
-    const items = Array.from(this.el.children);
-    const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
-    const colGap = parseInt(window.getComputedStyle(this.el).columnGap);
-    const rowGap = parseInt(window.getComputedStyle(this.el).rowGap);
-    columns > 1 &&
+
+    if (this.ismasonry) {
+      const items = Array.from(this.el.children);
+      const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
+      const colGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--col-gap').trim());
+      const rowGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--row-gap').trim());
+      columns > 1 &&
       this.createMasonryLayout(this.el, items, columns, colGap, rowGap);
+    }
   }
 
   @Listen('resize', { target: 'window' })
   handleResize() {
     if (this.ismasonry) {
       const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
-      const colGap = parseInt(window.getComputedStyle(this.el).columnGap);
-      const rowGap = parseInt(window.getComputedStyle(this.el).rowGap);
-      columns > 1 &&
-        this.createMasonryLayout(this.el, Array.from(this.el.children), columns, colGap, rowGap);
+      const colGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--col-gap').trim());
+      const rowGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--row-gap').trim());
+      this.createMasonryLayout(this.el, Array.from(this.el.children), columns, colGap, rowGap);
     }
   }
 
@@ -95,7 +68,6 @@ export class OjpCardGrid {
 
   createMasonryLayout = (container, items, columns, colGap, rowGap) => {
     const totalColGapWidth = columns - 1 ? colGap * (columns - 1) : 1;
-    console.log((totalColGapWidth));
     const itemWidth = (container.offsetWidth - totalColGapWidth) / columns;
     const columnHeights = new Array(columns).fill(0);
 
@@ -110,7 +82,7 @@ export class OjpCardGrid {
     });
 
     // Set the height of the container to the height of the tallest column
-    container.style.height = `${Math.max(...columnHeights)}px`;
+    container.shadowRoot.querySelector('.ojp--card-grid--grid').style.height = `${Math.max(...columnHeights)}px`;
   }
 
 
@@ -118,8 +90,8 @@ export class OjpCardGrid {
     return (
       <div
         class={{
-          'grid': true,
-          'grid--masonry': this.ismasonry
+          'ojp--card-grid--grid': true,
+          'ojp--card-grid--grid--masonry': this.ismasonry
         }}>
         <slot></slot>
       </div>

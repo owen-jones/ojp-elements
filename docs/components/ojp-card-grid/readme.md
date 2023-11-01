@@ -24,9 +24,9 @@
 
 | Name                       | Description                                                                                                                                       |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--ojp-card-grid--col-gap` |                                                                                                                                                   |
+| `--ojp-card-grid--col-gap` | The space between columns in the card grid. Defaults to `10px`                                                                                    |
 | `--ojp-card-grid--columns` | Number of columns in card grid. Use media queries to change this value at different breakpoints. Defaults to mobile - 1, tablet - 2, desktop - 3. |
-| `--ojp-card-grid--row-gap` |                                                                                                                                                   |
+| `--ojp-card-grid--row-gap` | The space between rows in the card grid. Defaults to `10px`                                                                                       |
 
 
 ----------------------------------------------

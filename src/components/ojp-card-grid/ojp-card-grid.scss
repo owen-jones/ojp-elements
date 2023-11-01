@@ -11,19 +11,21 @@
     ****
     **** Any comment changes here should be duplicated into the component's global scss file
     **** (e.g. src/global/components/_ojp-image.scss)
-   */
+ */
 
   /**
    * @prop --ojp-card-grid--columns: Number of columns in card grid. Use media queries to change this value at different breakpoints. Defaults to mobile - 1, tablet - 2, desktop - 3.
   */
+
   /**
-   * @prop --ojp-card-grid--col-gap:
-  */
-  /**
-   * @prop --ojp-card-grid--row-gap:
+   * @prop --ojp-card-grid--col-gap: The space between columns in the card grid. Defaults to `10px`
   */
 
-  .grid {
+  /**
+   * @prop --ojp-card-grid--row-gap: The space between rows in the card grid. Defaults to `10px`
+  */
+
+  .ojp--card-grid--grid {
     column-gap: var(--ojp-card-grid--col-gap, 10px);
     display: grid;
     grid-template-columns: repeat(var(--ojp-card-grid--columns, 1), 1fr);

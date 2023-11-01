@@ -25,10 +25,12 @@
       height: 100%;
     }
     ojp-card-grid {
-      /*--ojp-card-grid--columns: 4;*/
-      /*--ojp-card-grid--col-gap: 20px;*/
-      /*--ojp-card-grid--row-gap: 35px;*/
-
+      --ojp-card-grid--columns: 2;
+      --ojp-card-grid--col-gap: 50px;
+      --ojp-card-grid--row-gap: 3px;
+      @media (min-width: 1028px) {
+        --ojp-card-grid--columns: 4;
+      }
     }
     .card {
       background-color: lightblue;
@@ -58,7 +60,33 @@
 <div class="container">
   <ojp-row justify="">
     <ojp-col class="column" span='12'>
-      <ojp-card-grid isMasonry="true" colgap="20" rowgap="35">
+      <ojp-card-grid ismasonry="true">
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+      </ojp-card-grid>
+    </ojp-col>
+  </ojp-row>
+</div>
+<div class="container">
+  <ojp-row justify="">
+    <ojp-col class="column" span='12'>
+      <ojp-card-grid>
         <div class="card card--1"></div>
         <div class="card card--2"></div>
         <div class="card card--3"></div>
