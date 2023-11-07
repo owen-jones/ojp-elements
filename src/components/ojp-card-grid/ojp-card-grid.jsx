@@ -33,25 +33,12 @@ export class OjpCardGrid {
       this.observer.observe(this.el);
     }
 
-
-    if (this.ismasonry) {
-      const items = Array.from(this.el.children);
-      const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
-      const colGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--col-gap').trim());
-      const rowGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--row-gap').trim());
-      columns > 1 &&
-      this.createMasonryLayout(this.el, items, columns, colGap, rowGap);
-    }
+    this.createMasonryLayout();
   }
 
   @Listen('resize', { target: 'window' })
   handleResize() {
-    if (this.ismasonry) {
-      const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
-      const colGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--col-gap').trim());
-      const rowGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--row-gap').trim());
-      this.createMasonryLayout(this.el, Array.from(this.el.children), columns, colGap, rowGap);
-    }
+    this.createMasonryLayout();
   }
 
   // https://medium.com/stencil-tricks/create-a-web-component-to-lazy-load-images-using-intersection-observer-9ced1282c6df
@@ -66,11 +53,17 @@ export class OjpCardGrid {
     }
   };
 
-  createMasonryLayout = (container, items, columns, colGap, rowGap) => {
-    const totalColGapWidth = columns - 1 ? colGap * (columns - 1) : 1;
-    const itemWidth = (container.offsetWidth - totalColGapWidth) / columns;
+  createMasonryLayout = () => {
+    if (!this.ismasonry) return;
+
+    const columns = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--columns').trim());
+    const colGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--col-gap').trim());
+    const rowGap = parseInt(window.getComputedStyle(this.el).getPropertyValue('--ojp-card-grid--row-gap').trim());
+    const totalColGapWidth = columns - 1 ? colGap * (columns - 1) : 0;
+    const itemWidth = (this.el.offsetWidth - totalColGapWidth) / columns;
     const columnHeights = new Array(columns).fill(0);
 
+    const items = Array.from(this.el.children);
     items.forEach((item, i) => {
       item.style.width = `${itemWidth}px`;
 
@@ -82,7 +75,7 @@ export class OjpCardGrid {
     });
 
     // Set the height of the container to the height of the tallest column
-    container.shadowRoot.querySelector('.ojp--card-grid--grid').style.height = `${Math.max(...columnHeights)}px`;
+    this.el.shadowRoot.querySelector('.ojp--card-grid--grid').style.height = `${Math.max(...columnHeights)}px`;
   }
 
 
