@@ -45,6 +45,12 @@ export namespace Components {
          */
         "ishorizontal": boolean;
     }
+    interface OjpCardGrid {
+        /**
+          * isMasonry is false by default, set isMasonry to true to change to masonry layout Type: boolean
+         */
+        "ismasonry": boolean;
+    }
     interface OjpCol {
         /**
           * How many grid columns this element will span on desktop devices. (Internally uses `grid-column-span: span <span>;`). <br><br>Defaults to `auto`.
@@ -199,6 +205,10 @@ export interface OjpCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpCardElement;
 }
+export interface OjpCardGridCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpCardGridElement;
+}
 export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
@@ -225,6 +235,12 @@ declare global {
     var HTMLOjpCardElement: {
         prototype: HTMLOjpCardElement;
         new (): HTMLOjpCardElement;
+    };
+    interface HTMLOjpCardGridElement extends Components.OjpCardGrid, HTMLStencilElement {
+    }
+    var HTMLOjpCardGridElement: {
+        prototype: HTMLOjpCardGridElement;
+        new (): HTMLOjpCardGridElement;
     };
     interface HTMLOjpColElement extends Components.OjpCol, HTMLStencilElement {
     }
@@ -266,6 +282,7 @@ declare global {
         "ojp-accordion": HTMLOjpAccordionElement;
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
         "ojp-card": HTMLOjpCardElement;
+        "ojp-card-grid": HTMLOjpCardGridElement;
         "ojp-col": HTMLOjpColElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
@@ -318,6 +335,17 @@ declare namespace LocalJSX {
           * Triggered when the card is visible/invisible in the viewport
          */
         "onElementIsVisibleEvent"?: (event: OjpCardCustomEvent<any>) => void;
+    }
+    interface OjpCardGrid {
+        /**
+          * isMasonry is false by default, set isMasonry to true to change to masonry layout Type: boolean
+         */
+        "ismasonry"?: boolean;
+        "onElementIsInvisibleEvent"?: (event: OjpCardGridCustomEvent<any>) => void;
+        /**
+          * Triggered when the card is visible/invisible in the viewport
+         */
+        "onElementIsVisibleEvent"?: (event: OjpCardGridCustomEvent<any>) => void;
     }
     interface OjpCol {
         /**
@@ -486,6 +514,7 @@ declare namespace LocalJSX {
         "ojp-accordion": OjpAccordion;
         "ojp-accordion-item": OjpAccordionItem;
         "ojp-card": OjpCard;
+        "ojp-card-grid": OjpCardGrid;
         "ojp-col": OjpCol;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
@@ -501,6 +530,7 @@ declare module "@stencil/core" {
             "ojp-accordion": LocalJSX.OjpAccordion & JSXBase.HTMLAttributes<HTMLOjpAccordionElement>;
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
             "ojp-card": LocalJSX.OjpCard & JSXBase.HTMLAttributes<HTMLOjpCardElement>;
+            "ojp-card-grid": LocalJSX.OjpCardGrid & JSXBase.HTMLAttributes<HTMLOjpCardGridElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;

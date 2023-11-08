@@ -1,0 +1,46 @@
+/**
+  * Component css variables are defined here and imported to the global.scss file
+  * so that they can be used by other components and use globally set breakpoints
+  *
+  **** NOTE!: The @prop comments must be duplicated into the the component's scss file
+  **** (e.g. src/components/ojp-image/ojp-image.scss) so that they will be picked up
+  **** by Stencil's docs auto-generator.
+  ****
+  **** Comments in this file will NOT be picked up by the docs generator and are here for
+  **** developer reference only. Any changes here should be duplicated into the component's
+  **** scss file.
+ */
+
+
+
+ojp-card-grid {
+  /**
+    * @prop --ojp-card-grid--columns: Number of columns in card grid. Use media queries to change this value at different breakpoints. Defaults to mobile - 1, tablet - 2, desktop - 3.
+  */
+  --ojp-card-grid--columns: 1;
+
+  /**
+    * @prop --ojp-card-grid--col-gap:
+   */
+  --ojp-card-grid--col-gap: 10px;
+
+  /**
+    * @prop --ojp-card-grid--row-gap:
+   */
+  --ojp-card-grid--row-gap: 10px;
+}
+
+
+// Tablet
+@supports (--breakpoint("tablet")) {
+  ojp-card-grid {
+    --ojp-card-grid--columns: 2;
+  }
+}
+// Desktop
+@supports (--breakpoint("desktop")) {
+  ojp-card-grid {
+    --ojp-card-grid--columns: 3;
+  }
+}
+

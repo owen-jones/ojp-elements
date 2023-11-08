@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Ojp Card Grid</title>
+
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <!--    Needs to import the global stylesheet-->
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <style>
+    body {
+      background-color: #f1f1f1;
+      box-sizing: border-box;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      color: black;
+      position: relative;
+      padding: 40px 0;
+      height: 100%;
+    }
+    ojp-row {
+      padding: 0 20px;
+    }
+    ojp-card-grid {
+      --ojp-card-grid--col-gap: 20px;
+      --ojp-card-grid--row-gap: 3px;
+      @media (min-width: 1028px) {
+        --ojp-card-grid--col-gap: 50px;
+        --ojp-card-grid--columns: 4;
+        --ojp-card-grid--row-gap: 13px;
+      }
+    }
+    .card {
+      background-color: lightblue;
+      border: 1px solid blue;
+      border-radius: 2px;
+      height: 50px;
+    }
+    .card--1 {
+      height: 100px;
+    }
+    .card--2 {
+      height: 125px;
+    }
+    .card--3 {
+      height: 25px;
+    }
+    .card--4 {
+      height: 225px;
+    }
+    .card--5 {
+      height: 450px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <ojp-row cols="4" mcols="1">
+    <ojp-col span="4" mspan="1">
+      <h1>Ojp Card Grid</h1>
+      <hr>
+      <!-- Overview -->
+      <h2>Overview</h2>
+      <p>See auto-generated <a href="https://github.com/owen-jones/ojp-elements/tree/main/docs/components/ojp-card-grid" target="_blank">component docs here</a></p>
+      <br>
+      <p>Project dev can override any ojp-card-grid css vars in their style sheet like this. See docs for full list of css vars:</p>
+
+      <div class="code-block">
+        <pre>
+          <code>
+        ojp-card-grid {
+          --ojp-card-grid--columns: 6;
+        }
+          </code>
+        </pre>
+      </div>
+      <hr>
+    </ojp-col>
+  </ojp-row>
+  <ojp-row justify="">
+    <ojp-col class="column" span='12'>
+      <ojp-card-grid ismasonry="true">
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+      </ojp-card-grid>
+    </ojp-col>
+  </ojp-row>
+</div>
+<div class="container">
+  <ojp-row justify="">
+    <ojp-col class="column" span='12'>
+      <ojp-card-grid>
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+        <div class="card card--1"></div>
+        <div class="card card--2"></div>
+        <div class="card card--3"></div>
+        <div class="card card--4"></div>
+        <div class="card card--5"></div>
+        <div class="card card--6"></div>
+        <div class="card card--7"></div>
+        <div class="card card--8"></div>
+        <div class="card card--9"></div>
+      </ojp-card-grid>
+    </ojp-col>
+  </ojp-row>
+</div>
+</body>
+</html>
