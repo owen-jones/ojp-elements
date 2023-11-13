@@ -1,0 +1,39 @@
+
+:host {
+
+  footer {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: var(--ojp-footer--background-color);
+  }
+
+  /**
+    * Component css variables are commented but NOT DEFINED here. They are defined in
+    * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+    * so that they can be used by other components and use globally set breakpoints.
+    *
+    **** NOTE: The @prop comments are necessary for public variables here because they
+    **** will be picked up by Stencil's docs auto-generator and output to the component's
+    **** docs at docs/components/<component-name>/readme.md
+    ****
+    **** Any comment changes here should be duplicated into the component's global scss file
+    **** (e.g. src/global/components/_ojp-footer.scss)
+   */
+
+
+  // PUBLIC CSS VARIABLES
+  /**
+   * @prop --ojp-footer--example-public-var: Description of this variable. Defaults to X.
+  */
+
+  // PRIVATE VARIABLES
+  /**
+     * Private Variable - set by JS according to props
+     * --ojp-footer--example-private-var: Description of this variable. Defaults to X.
+    */
+
+  // STYLES
+
+}

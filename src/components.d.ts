@@ -79,6 +79,38 @@ export namespace Components {
          */
         "tstart": any;
     }
+    interface OjpFooter {
+        /**
+          * Set current copyright year
+          * @type {number}
+         */
+        "currentyear": number;
+        /**
+          * Default footer text
+          * @type {string}
+         */
+        "defaultfootertext": string;
+        /**
+          * Footer background color
+          * @type {string}
+         */
+        "footerbackgroundcolor": string;
+        /**
+          * Footer text
+          * @type {string}
+         */
+        "footertext": string;
+        /**
+          * Footer is centered or not
+          * @type {boolean}
+         */
+        "iscentered": boolean;
+        /**
+          * Array of link sections in the footer
+          * @type {Array<{ title: string, links: Array<{ text: string, url: string }> }>}
+         */
+        "linkSections": { title: string; links: { text: string; url: string; }[]; }[];
+    }
     interface OjpImage {
         /**
           * Image alt text Type: string Default: ""
@@ -199,6 +231,10 @@ export interface OjpCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpCardElement;
 }
+export interface OjpFooterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpFooterElement;
+}
 export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
@@ -231,6 +267,12 @@ declare global {
     var HTMLOjpColElement: {
         prototype: HTMLOjpColElement;
         new (): HTMLOjpColElement;
+    };
+    interface HTMLOjpFooterElement extends Components.OjpFooter, HTMLStencilElement {
+    }
+    var HTMLOjpFooterElement: {
+        prototype: HTMLOjpFooterElement;
+        new (): HTMLOjpFooterElement;
     };
     interface HTMLOjpImageElement extends Components.OjpImage, HTMLStencilElement {
     }
@@ -267,6 +309,7 @@ declare global {
         "ojp-accordion-item": HTMLOjpAccordionItemElement;
         "ojp-card": HTMLOjpCardElement;
         "ojp-col": HTMLOjpColElement;
+        "ojp-footer": HTMLOjpFooterElement;
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
@@ -352,6 +395,46 @@ declare namespace LocalJSX {
           * The column's start position on tablet devices. (Internally uses `grid-column-start: <tstart>;`). <br><br>Defaults to `auto` or `start` property if one is defined.
          */
         "tstart"?: any;
+    }
+    interface OjpFooter {
+        /**
+          * Set current copyright year
+          * @type {number}
+         */
+        "currentyear"?: number;
+        /**
+          * Default footer text
+          * @type {string}
+         */
+        "defaultfootertext"?: string;
+        /**
+          * Footer background color
+          * @type {string}
+         */
+        "footerbackgroundcolor"?: string;
+        /**
+          * Footer text
+          * @type {string}
+         */
+        "footertext"?: string;
+        /**
+          * Footer is centered or not
+          * @type {boolean}
+         */
+        "iscentered"?: boolean;
+        /**
+          * Array of link sections in the footer
+          * @type {Array<{ title: string, links: Array<{ text: string, url: string }> }>}
+         */
+        "linkSections"?: { title: string; links: { text: string; url: string; }[]; }[];
+        /**
+          * Triggered when the component has left the viewport
+         */
+        "onElementIsInvisible"?: (event: OjpFooterCustomEvent<any>) => void;
+        /**
+          * Triggered when the component is visible in the viewport
+         */
+        "onElementIsVisible"?: (event: OjpFooterCustomEvent<any>) => void;
     }
     interface OjpImage {
         /**
@@ -487,6 +570,7 @@ declare namespace LocalJSX {
         "ojp-accordion-item": OjpAccordionItem;
         "ojp-card": OjpCard;
         "ojp-col": OjpCol;
+        "ojp-footer": OjpFooter;
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
@@ -502,6 +586,7 @@ declare module "@stencil/core" {
             "ojp-accordion-item": LocalJSX.OjpAccordionItem & JSXBase.HTMLAttributes<HTMLOjpAccordionItemElement>;
             "ojp-card": LocalJSX.OjpCard & JSXBase.HTMLAttributes<HTMLOjpCardElement>;
             "ojp-col": LocalJSX.OjpCol & JSXBase.HTMLAttributes<HTMLOjpColElement>;
+            "ojp-footer": LocalJSX.OjpFooter & JSXBase.HTMLAttributes<HTMLOjpFooterElement>;
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;

@@ -1,0 +1,30 @@
+/**
+  * Component css variables are defined here and imported to the global.scss file
+  * so that they can be used by other components and use globally set breakpoints
+  *
+  **** NOTE!: The @prop comments must be duplicated into the the component's scss file
+  **** (e.g. src/components/ojp-image/ojp-image.scss) so that they will be picked up
+  **** by Stencil's docs auto-generator.
+  ****
+  **** Comments in this file will NOT be picked up by the docs generator and are here for
+  **** developer reference only. Any changes here should be duplicated into the component's
+  **** scss file.
+ */
+
+ojp-footer {
+
+  // PUBLIC CSS VARIABLES
+  /**
+   * @prop --ojp-footer--example-public-var: Description of this variable. Defaults to X.
+  */
+  --ojp-footer--example-public-var: var(--space-2xs-xs);
+
+  // PRIVATE VARIABLES
+  /**
+     * Private Variable - set by JS according to props
+     * --ojp-footer--example-private-var: Description of this variable. Defaults to X.
+    */
+  --ojp-footer--example-private-var: 12;
+
+}
+
