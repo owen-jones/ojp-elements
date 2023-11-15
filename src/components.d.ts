@@ -91,6 +91,16 @@ export namespace Components {
          */
         "footerbackgroundcolor": string;
         /**
+          * Footer logo
+          * @type {string}
+         */
+        "footerlogo": string;
+        /**
+          * Footer logo display or not
+          * @type {boolean}
+         */
+        "footerlogodisplay": boolean;
+        /**
           * Footer padding
           * @type {string}
          */
@@ -412,6 +422,16 @@ declare namespace LocalJSX {
           * @type {string}
          */
         "footerbackgroundcolor"?: string;
+        /**
+          * Footer logo
+          * @type {string}
+         */
+        "footerlogo"?: string;
+        /**
+          * Footer logo display or not
+          * @type {boolean}
+         */
+        "footerlogodisplay"?: boolean;
         /**
           * Footer padding
           * @type {string}

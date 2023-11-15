@@ -49,6 +49,8 @@ export class OjpFooter {
   //   mutable: false,
   // }) myExamplePubProp = "";
 
+  // Props for footer
+
   /**
    * Footer is centered or not
    * @type {boolean}
@@ -102,6 +104,24 @@ export class OjpFooter {
     reflect: true,
     mutable: true,
   }) footerpadding = '0.25em';
+
+  /**
+   * Footer logo
+   * @type {string}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) footerlogo = 'https://via.placeholder.com/150';
+
+  /**
+   * Footer logo display or not
+   * @type {boolean}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) footerlogodisplay = false;
 
   /**
    * Array of link sections in the footer
@@ -210,6 +230,7 @@ export class OjpFooter {
 
     return (
       <footer style={footerStyle} class="ojp-footer">
+        {this.footerlogodisplay && <img src={this.footerlogo} alt="Logo" />}
         <div class={this.iscentered ? 'centered' : ''}>
           <p class='footer-text'>{this.footertext}</p>
           {this.linkSections.map(section => (
