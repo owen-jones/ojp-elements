@@ -231,3 +231,6 @@ export class OjpFooter {
 
 
 }
+
+
+// TODO: Links should be a list of objects with a title and an array of links, customisable?
