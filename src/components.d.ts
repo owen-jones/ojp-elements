@@ -81,11 +81,6 @@ export namespace Components {
     }
     interface OjpFooter {
         /**
-          * Set current copyright year
-          * @type {number}
-         */
-        "currentyear": number;
-        /**
           * Default footer text
           * @type {string}
          */
@@ -96,10 +91,20 @@ export namespace Components {
          */
         "footerbackgroundcolor": string;
         /**
+          * Footer padding
+          * @type {string}
+         */
+        "footerpadding": string;
+        /**
           * Footer text
           * @type {string}
          */
         "footertext": string;
+        /**
+          * Footer text color
+          * @type {string}
+         */
+        "footertextcolor": string;
         /**
           * Footer is centered or not
           * @type {boolean}
@@ -398,11 +403,6 @@ declare namespace LocalJSX {
     }
     interface OjpFooter {
         /**
-          * Set current copyright year
-          * @type {number}
-         */
-        "currentyear"?: number;
-        /**
           * Default footer text
           * @type {string}
          */
@@ -413,10 +413,20 @@ declare namespace LocalJSX {
          */
         "footerbackgroundcolor"?: string;
         /**
+          * Footer padding
+          * @type {string}
+         */
+        "footerpadding"?: string;
+        /**
           * Footer text
           * @type {string}
          */
         "footertext"?: string;
+        /**
+          * Footer text color
+          * @type {string}
+         */
+        "footertextcolor"?: string;
         /**
           * Footer is centered or not
           * @type {boolean}

@@ -1,12 +1,17 @@
 
 :host {
+  background-color: var(--footer-background-color, #fff);
+  padding: var(--footer-padding, 0);
+  color: var(--footer-text-color, #000);
 
-  footer {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-color: var(--ojp-footer--background-color);
+  .centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ojp-footer {
+    --footer-background-color: #fff;
   }
 
   /**

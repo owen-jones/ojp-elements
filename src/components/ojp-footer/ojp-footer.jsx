@@ -1,4 +1,4 @@
-import {Component, Host, h, Element, Prop, Event, Listen, Method, State} from '@stencil/core';
+import { Component, Host, h, Element, Prop, Event, Listen, Method, State } from '@stencil/core';
 
 @Component({
   tag: 'ojp-footer',
@@ -15,7 +15,7 @@ export class OjpFooter {
    * publicly on the host element, but only used internally.
    */
 
-  // Used for Intersection Observer
+    // Used for Intersection Observer
   observer;
 
   /**
@@ -68,15 +68,6 @@ export class OjpFooter {
   }) defaultfootertext = '© 2023 OJP';
 
   /**
-   * Set current copyright year
-   * @type {number}
-   */
-  @Prop({
-    reflect: true,
-    mutable: true,
-  }) currentyear = new Date().getFullYear();
-
-  /**
    * Footer text
    * @type {string}
    */
@@ -92,7 +83,25 @@ export class OjpFooter {
   @Prop({
     reflect: true,
     mutable: true,
-  }) footerbackgroundcolor = 'red';
+  }) footerbackgroundcolor = '#fff';
+
+  /**
+   * Footer text color
+   * @type {string}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) footertextcolor = '#000';
+
+  /**
+   * Footer padding
+   * @type {string}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true,
+  }) footerpadding = '0.25em';
 
   /**
    * Array of link sections in the footer
@@ -102,9 +111,6 @@ export class OjpFooter {
     reflect: true,
     mutable: true,
   }) linkSections = [];
-
-
-
 
 
   /**
@@ -175,17 +181,16 @@ export class OjpFooter {
    * called from the host element.
    */
 
-  // /** MyExampleLocalMethod Description */
-  // myExampleLocalMethod = (id) => {
-  //   console.log('myExampleLocalMethod', id);
-  // }
+    // /** MyExampleLocalMethod Description */
+    // myExampleLocalMethod = (id) => {
+    //   console.log('myExampleLocalMethod', id);
+    // }
 
   handleIntersection = async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         this.elementIsVisible.emit(entry);
-      }
-      else {
+      } else {
         this.elementIsInvisible.emit(entry);
       }
     }
@@ -197,23 +202,28 @@ export class OjpFooter {
    * If private methods present, they are below public methods.
    */
   render() {
+    const footerStyle = {
+      backgroundColor: this.footerbackgroundcolor,
+      color: this.footertextcolor,
+      padding: this.footerpadding,
+    };
+
     return (
-      <footer>
-        <div className={this.iscentered ? 'centered' : ''}>
-          <span className="footer-text">{this.footertext}</span>
-          <span className="year">{this.currentyear}</span>
-        {this.linkSections.map(section => (
-          <div role="navigation">
-            <h2>{section.title}</h2>
-            <ul>
-              {section.links.map(link => (
-                <li key={link.text}>
-                  <a href={link.url} aria-label={link.text}>{link.text}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <footer style={footerStyle} class="ojp-footer">
+        <div class={this.iscentered ? 'centered' : ''}>
+          <p class='footer-text'>{this.footertext}</p>
+          {this.linkSections.map(section => (
+            <div role='navigation'>
+              <h2>{section.title}</h2>
+              <ul>
+                {section.links.map(link => (
+                  <li key={link.text}>
+                    <a href={link.url} aria-label={link.text}>{link.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </footer>
     );

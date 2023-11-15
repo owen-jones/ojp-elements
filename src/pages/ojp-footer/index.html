@@ -14,9 +14,9 @@
   <link rel='stylesheet' href='../styles/demo.css'>
 
   <style>
-    /*ojp-footer {*/
-    /*  --ojp-footer--example-var: 100%;*/
-    /*}*/
+    ojp-footer {
+      --ojp-footer--background-color: red;
+    }
   </style>
 </head>
 <body>
@@ -34,8 +34,11 @@
       <div class="code-block">
         <pre>
           <code>
+        // Default values
         ojp-footer {
-          --ojp-footer--example-var: 400px; // Default is 100%
+          --ojp-footer--background-color: #000;
+          --ojp-footer--color: #fff;
+          --ojp-footer--padding: 0.25em;
         }
           </code>
         </pre>
@@ -48,36 +51,105 @@
     <ojp-col class="column" span="8" start="3" tspan="12" tstart="0" mspan="12" mstart="0">
       <h2>Usage</h2>
       <h3>Example 1</h3>
-      <p>Describe this example</p>
+      <p>This is a simple footer with custom text</p>
       <div class="code-block">
         <pre>
           <code>
-          &lt;ojp-footer
-            id="my-template"
-            class="my-class"
-            //...
-          &gt;&lt;/ojp-footer&gt;
+            &lt;ojp-footer
+              id="footer-1"
+              class="ojp-footer"
+              footertext="&copy; 2024 Owen Jones Partners"
+            &gt;&lt;/ojp-footer&gt;
           </code>
         </pre>
       </div>
 
-    </ojp-col>
-  </ojp-row>
-
-  <ojp-row>
-    <ojp-col class="column" span="8" start="3" tspan="12" tstart="0" mspan="12" mstart="0">
-      <h2>Usage</h2>
-      <h3>Example 1</h3>
-      <p>Describe this example</p>
       <ojp-footer
-        id="my-template"
-        class="my-class"
-        centered
+        id="footer-1"
+        class="ojp-footer"
+        footertext="&copy; 2024 Owen Jones Partners"
     ></ojp-footer>
 
+      <hr>
+      <h3>Example 2</h3>
+      <p>This is a centered footer with default text</p>
+      <div class="code-block">
+      <pre>
+        <code>
+          &lt;ojp-footer
+            id="footer-1"
+            class="ojp-footer"
+            iscentered
+          &gt;&lt;/ojp-footer&gt;
+        </code>
+      </pre>
+      </div>
 
+      <!-- Example using iscentered property -->
+      <ojp-footer
+        id="footer-1"
+        class="ojp-footer"
+        iscentered
+      ></ojp-footer>
+
+      <hr>
+      <h3>Example 3</h3>
+      <p>This is a centered footer with a custom background color and custom text and custom text color</p>
+      <div class="code-block">
+      <pre>
+        <code>
+          &lt;ojp-footer
+            id="footer-2"
+            class="ojp-footer"
+            footertext="&copy; 2024 Owen Jones Partners"
+            footerbackgroundcolor="hotpink"
+            footertextcolor="white"
+            iscentered
+          &gt;&lt;/ojp-footer&gt;
+        </code>
+      </pre>
+      </div>
+
+      <!-- Example using footerbackgroundcolor property -->
+      <ojp-footer
+        id="footer-2"
+        class="ojp-footer"
+        footertext="&copy; 2024 Owen Jones Partners"
+        footerbackgroundcolor="hotpink"
+        footertextcolor="white"
+        iscentered
+      ></ojp-footer>
+
+      <hr>
+      <h3>Example 4</h3>
+      <p>This is a centered footer with a custom background color and custom text and custom padding</p>
+      <div class="code-block">
+      <pre>
+        <code>
+          &lt;ojp-footer
+            id="footer-2"
+            class="ojp-footer"
+            footertext="&copy; 2024 Owen Jones AND Partners"
+            footerbackgroundcolor="violet"
+            iscentered
+            footerpadding="20px"
+          &gt;&lt;/ojp-footer&gt;
+        </code>
+      </pre>
+      </div>
+
+      <!-- Example using footerbackgroundcolor property -->
+      <ojp-footer
+        id="footer-2"
+        class="ojp-footer"
+        footertext="&copy; 2024 Owen Jones AND Partners"
+        footerbackgroundcolor="violet"
+        iscentered
+        footerpadding="20px"
+      ></ojp-footer>
     </ojp-col>
   </ojp-row>
+
 </div>
 </body>
 
