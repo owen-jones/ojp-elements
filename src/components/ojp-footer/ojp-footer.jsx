@@ -132,6 +132,24 @@ export class OjpFooter {
     mutable: true,
   }) linkSections = [];
 
+  /**
+   * Show social media icons in the footer or not
+   * @type {boolean}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true
+  }) showSocialIcons = false;
+
+  /**
+   * Social media icons list
+   * @type {Array<{ icon: string, link: string }>}
+   */
+  @Prop({
+    reflect: true,
+    mutable: true
+  }) socialIconsList = [];
+
 
   /**
    * 5. Events section
@@ -245,6 +263,15 @@ export class OjpFooter {
               </ul>
             </div>
           ))}
+          {this.showSocialIcons && this.socialIconsList.length > 0 && (
+            <div class="social-icons">
+              {this.socialIconsList.map((socialIcon) => (
+                <a href={socialIcon.link} target="_blank" rel="noopener noreferrer">
+                  <img src={socialIcon.icon} alt="Social Icon" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </footer>
     );

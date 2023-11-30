@@ -24,6 +24,7 @@
   <ojp-row cols="4" mcols="1">
     <ojp-col span="4" mspan="1">
       <h1>Ojp Footer</h1>
+      <p><a href='/' >home</a></p>
       <hr>
       <!-- Overview -->
       <h2>Overview</h2>
@@ -78,7 +79,7 @@
       <pre>
         <code>
           &lt;ojp-footer
-            id="footer-1"
+            id="footer-2"
             class="ojp-footer"
             iscentered
           &gt;&lt;/ojp-footer&gt;
@@ -88,7 +89,7 @@
 
       <!-- Example using iscentered property -->
       <ojp-footer
-        id="footer-1"
+        id="footer-2"
         class="ojp-footer"
         iscentered
       ></ojp-footer>
@@ -100,7 +101,7 @@
       <pre>
         <code>
           &lt;ojp-footer
-            id="footer-2"
+            id="footer-3"
             class="ojp-footer"
             footertext="&copy; 2024 Owen Jones Partners"
             footerbackgroundcolor="hotpink"
@@ -113,7 +114,7 @@
 
       <!-- Example using footerbackgroundcolor property -->
       <ojp-footer
-        id="footer-2"
+        id="footer-3"
         class="ojp-footer"
         footertext="&copy; 2024 Owen Jones Partners"
         footerbackgroundcolor="hotpink"
@@ -128,7 +129,7 @@
       <pre>
         <code>
           &lt;ojp-footer
-            id="footer-2"
+            id="footer-4"
             class="ojp-footer"
             footertext="&copy; 2024 Owen Jones AND Partners"
             footerbackgroundcolor="violet"
@@ -141,7 +142,7 @@
 
       <!-- Example using custom padding property -->
       <ojp-footer
-        id="footer-2"
+        id="footer-4"
         class="ojp-footer"
         footertext="&copy; 2024 Owen Jones AND Partners"
         footerbackgroundcolor="violet"
@@ -156,7 +157,7 @@
       <pre>
         <code>
           &lt;ojp-footer
-            id="footer-2"
+            id="footer-5"
             class="ojp-footer"
             footertext="&copy; 2024 Owen Jones AND Partners"
             footerbackgroundcolor="violet"
@@ -170,13 +171,52 @@
 
       <!-- Example using custom padding property -->
       <ojp-footer
-        id="footer-2"
+        id="footer-5"
         class="ojp-footer"
         footertext="&copy; 2024 Owen Jones AND Partners"
         footerbackgroundcolor="cyan"
         footerpadding="10px"
         footerlogodisplay="true"
         footerlogo="https://whoisowenjones.com/assets/show-dont-tell__text--mobile.svg"
+      ></ojp-footer>
+
+
+      <hr>
+      <h3>Example 6</h3>
+      <p>This is a centered footer with a custom background color + text color, and custom text and custom padding, with default LOGO</p>
+      <div class="code-block">
+      <pre>
+        <code>
+          &lt;ojp-footer
+            id="footer-6"
+            class="ojp-footer"
+            footertext="&copy; 2024 Owen Jones AND Partners"
+            footerbackgroundcolor="darkviolet"
+            footerpadding="10px"
+            footerlogodisplay="true"
+            footertextcolor="white"
+            iscentered
+          showSocialIcons=true
+    socialIconsList='[{"icon": "https://example.com/icon1.png", "link": "https://example.com/profile1"}, {"icon": "https://example.com/icon2.png", "link": "https://example.com/profile2"}]'
+
+          &gt;&lt;/ojp-footer&gt;
+        </code>
+      </pre>
+      </div>
+
+      <!-- Example using custom padding property -->
+      <ojp-footer
+        id="footer-6"
+        class="ojp-footer"
+        footertext="&copy; 2024 Owen Jones AND Partners"
+        footerbackgroundcolor="darkviolet"
+        footerpadding="10px"
+        footerlogodisplay="true"
+        footertextcolor="white"
+        iscentered
+        showSocialIcons=true
+        socialIconsList='[{"icon": "https://example.com/icon1.png", "link": "https://example.com/profile1"}, {"icon": "https://example.com/icon2.png", "link": "https://example.com/profile2"}]'
+
       ></ojp-footer>
     </ojp-col>
   </ojp-row>

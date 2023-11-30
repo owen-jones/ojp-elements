@@ -125,6 +125,16 @@ export namespace Components {
           * @type {Array<{ title: string, links: Array<{ text: string, url: string }> }>}
          */
         "linkSections": { title: string; links: { text: string; url: string; }[]; }[];
+        /**
+          * Show social media icons in the footer or not
+          * @type {boolean}
+         */
+        "showSocialIcons": boolean;
+        /**
+          * Social media icons list
+          * @type {Array<{ icon: string, link: string }>}
+         */
+        "socialIconsList": { icon: string; link: string; }[];
     }
     interface OjpImage {
         /**
@@ -465,6 +475,16 @@ declare namespace LocalJSX {
           * Triggered when the component is visible in the viewport
          */
         "onElementIsVisible"?: (event: OjpFooterCustomEvent<any>) => void;
+        /**
+          * Show social media icons in the footer or not
+          * @type {boolean}
+         */
+        "showSocialIcons"?: boolean;
+        /**
+          * Social media icons list
+          * @type {Array<{ icon: string, link: string }>}
+         */
+        "socialIconsList"?: { icon: string; link: string; }[];
     }
     interface OjpImage {
         /**
