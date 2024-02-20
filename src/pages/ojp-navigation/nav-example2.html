@@ -58,7 +58,10 @@
         <h3>Example 2</h3>
         <p>
           This example shows how to change the icon used on the mobile navigation button using the available slot for
-          the hamburger icon. Make sure to view it at a small enough screen size (<1024px).
+          the hamburger icon. Make sure to view it at a small enough screen size (<1024px). When users add a custom icon,
+          it becomes a static image without affecting any open/close states of the menu itself. A user could also change
+          states using the ojpNavigationMobileDrawerOpen event, which is triggered when the mobile menu drawer opens &
+          closes. The specific implementation of this should take place on a project-by-project basis.
         </p>
 
         <div class="code-block">
