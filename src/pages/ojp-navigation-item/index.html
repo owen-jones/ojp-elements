@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+  <title>Ojp Navigation Item</title>
+
+  <!--  Import pattern libary globals-->
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <!--  Import demo page styles and scripts-->
+  <link rel='stylesheet' href='../styles/demo.css'>
+
+  <style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    pre {
+        overflow: scroll;
+    }
+
+    .container {
+        padding-top: 0;
+    }
+
+    ojp-navigation {
+        --ojp-navigation--position: relative;
+        --ojp-navigation--background-color: #eee;
+    }
+
+    ojp-navigation-item {
+      --ojp-navigation-item--vertical-link-padding: var(--space-m);
+      --ojp-navigation-item--horizontal-link-padding: var(--space-m) ;
+      --ojp-navigation-item--link-hover-color: red;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <ojp-row>
+    <ojp-col class="column" span="12" start="0" tspan="12" tstart="0" mspan="12" mstart="0">
+      <h1>Ojp Navigation Item</h1>
+      <hr>
+      <!-- Overview -->
+      <h2>Overview</h2>
+      <p>See auto-generated <a href="https://github.com/owen-jones/ojp-elements/tree/main/docs/components/ojp-navigation-item" target="_blank">component docs here</a></p>
+      <br>
+      <p>Project dev can override any ojp-navigation-item css vars in their style sheet like this. See docs for full list of css vars.</p>
+      <br>
+      <p>There are only a handful of available variables to be overridden for the navigation item component. See examples
+        of these styling differences in the example components listed below.
+      </p>
+      <div class="code-block">
+          <pre>
+            <code>
+  ojp-navigation-item {
+    --ojp-navigation-item--vertical-link-padding: var(--space-xs); // Defaults to `var(--space-s)`
+    --ojp-navigation-item--horizontal-link-padding: var(--space-xs) // Defaults to `var(--space-s)`
+    --ojp-navigation-item--link-hover-color: $brand-blue; Defaults to `black`
+  }
+            </code>
+          </pre>
+      </div>
+      <hr>
+    </ojp-col>
+  </ojp-row>
+  <ojp-navigation>
+    <span slot="logo">
+      <a href="https://www.whoisowenjones.com" class=logo-link aria-label="Link to home page">
+        <img src="/assets/logo-placeholder_272x49.svg" alt="Company Name" class="ojp-navigation__logo" />
+      </a>
+    </span>
+    <span slot="nav-items">
+      <ojp-navigation-item>
+        <a href="https://google1.com" target="_blank">One</a>
+      </ojp-navigation-item>
+      <ojp-navigation-item>
+        <a href="https://google2.com">Two</a>
+      </ojp-navigation-item>
+      <ojp-navigation-item>
+        <a href="https://google3.com">Three</a>
+      </ojp-navigation-item>
+      <ojp-navigation-item>
+        <button>Contact Us</button>
+      </ojp-navigation-item>
+    </span>
+  </ojp-navigation>
+  <ojp-row>
+    <ojp-col class="column" span="12" start="0" tspan="12" tstart="0" mspan="12" mstart="0">
+      <h2>Usage</h2>
+      <h3>Example 1</h3>
+      <p>
+        This example shows how to change the padding around the nav items using spacer variables. It also shows how to
+        change the hover-color of the links.
+      </p>
+
+      <div class="code-block">
+            <pre>
+              <code>
+  ojp-navigation-item {
+    --ojp-navigation-item--vertical-link-padding: var(--space-m); // Defaults to `var(--space-s)`
+    --ojp-navigation-item--horizontal-link-padding: var(--space-m) // Defaults to `var(--space-s)`
+    --ojp-navigation-item--link-hover-color: red; Defaults to `black`
+  }
+              </code>
+            </pre>
+      </div>
+    </ojp-col>
+  </ojp-row>
+</div>
+
+<script>
+  // Project dev can write a function to expose ojp-navigation-item's "exampleFunction" function
+  // function exampleFunction() {
+  //   let component = document.querySelector('ojp-navigation-item');
+  //   component.exampleFunction();
+  // }
+  //
+  // // use the function on page load
+  // window.addEventListener('load', (event) => {
+  //   exampleFunction();
+  // });
+
+</script>
+</html>

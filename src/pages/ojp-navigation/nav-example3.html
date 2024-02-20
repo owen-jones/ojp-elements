@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+    <title>Navigation Example 1</title>
+
+    <!--  Import pattern libary globals-->
+    <script type="module" src="../../build/ojp-elements.esm.js"></script>
+    <script nomodule src="../../build/ojp-elements.js"></script>
+    <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+    <!--  Import demo page styles and scripts-->
+    <link rel='stylesheet' href='../styles/demo.css'>
+
+    <style>
+      body {
+        margin: 0;
+        min-height: 150vh;
+      }
+
+      pre {
+          overflow: scroll;
+      }
+
+
+      ojp-navigation {
+          --ojp-navigation--wrapper-background-color: transparent;
+          --ojp-navigation--main-navbar-margin: 10px 20px;
+          --ojp-navigation--background-color: #eee;
+      }
+
+    </style>
+  </head>
+  <body>
+    <ojp-navigation>
+      <span slot="logo">
+        <a href="https://www.whoisowenjones.com" class=logo-link aria-label="Link to home page">
+          <img src="/assets/logo-placeholder_272x49.svg" alt="Company Name" class="ojp-navigation__logo" />
+        </a>
+      </span>
+      <span slot="nav-items">
+        <ojp-navigation-item>
+          <a href="https://google1.com" target="_blank">One</a>
+        </ojp-navigation-item>
+        <ojp-navigation-item>
+          <a href="https://google2.com">Two</a>
+        </ojp-navigation-item>
+        <ojp-navigation-item>
+          <a href="https://google3.com">Three</a>
+        </ojp-navigation-item>
+        <ojp-navigation-item>
+          <a href="https://google4.com">Four</a>
+        </ojp-navigation-item>
+        </span>
+    </ojp-navigation>
+    <ojp-row>
+      <ojp-col class="column" span="12" start="0" tspan="12" tstart="0" mspan="12" mstart="0">
+        <h1>Ojp Navigation Example 3</h1>
+        <hr>
+        <h2>Usage</h2>
+        <h3>Example 3</h3>
+        <p>
+          This example shows how changing a couple of key variables can create a "floating" effect for the navigation.
+          The nav wrapper background color has been changed to transparent while the main-navigation here has a background
+          color added to make it stand out. As you scroll down the page you will see the page content move behind the
+          navigation and even peek over the top. The margin on the ojp-navigation__main-navbar has also been changed.
+          This makes the additional space around the nav bar so that it is away from the edges of the screen.
+        </p>
+        <div class="code-block">
+          <pre>
+            <code>
+  ojp-navigation {
+    --ojp-navigation--wrapper-background-color: transparent; // Default is the --ojp-navigation--background-color variable
+    --ojp-navigation--main-navbar-margin: 10px 20px;  // Default is 0 0
+  }
+            </code>
+          </pre>
+        </div>
+      </ojp-col>
+    </ojp-row>
+  </body>
+</html>

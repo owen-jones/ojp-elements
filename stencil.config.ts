@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'ojp-elements',
+  enableCache: false,
   globalStyle: 'src/global/global.scss',
   globalScript: 'src/global/global.js',
   plugins: [
@@ -31,4 +32,7 @@ export const config: Config = {
       ],
     },
   ],
+  devServer: {
+    port: 4444
+  }
 };

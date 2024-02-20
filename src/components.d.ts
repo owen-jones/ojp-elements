@@ -154,6 +154,10 @@ export namespace Components {
          */
         "scrollbarvisible": boolean;
     }
+    interface OjpNavigation {
+    }
+    interface OjpNavigationItem {
+    }
     interface OjpRow {
         /**
           * align-items property of the grid. <br><br>Default: `stretch`
@@ -203,6 +207,14 @@ export interface OjpImageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpImageElement;
 }
+export interface OjpNavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpNavigationElement;
+}
+export interface OjpNavigationItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOjpNavigationItemElement;
+}
 export interface OjpTemplateCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLOjpTemplateElement;
@@ -250,6 +262,18 @@ declare global {
         prototype: HTMLOjpModalElement;
         new (): HTMLOjpModalElement;
     };
+    interface HTMLOjpNavigationElement extends Components.OjpNavigation, HTMLStencilElement {
+    }
+    var HTMLOjpNavigationElement: {
+        prototype: HTMLOjpNavigationElement;
+        new (): HTMLOjpNavigationElement;
+    };
+    interface HTMLOjpNavigationItemElement extends Components.OjpNavigationItem, HTMLStencilElement {
+    }
+    var HTMLOjpNavigationItemElement: {
+        prototype: HTMLOjpNavigationItemElement;
+        new (): HTMLOjpNavigationItemElement;
+    };
     interface HTMLOjpRowElement extends Components.OjpRow, HTMLStencilElement {
     }
     var HTMLOjpRowElement: {
@@ -270,6 +294,8 @@ declare global {
         "ojp-image": HTMLOjpImageElement;
         "ojp-listbox": HTMLOjpListboxElement;
         "ojp-modal": HTMLOjpModalElement;
+        "ojp-navigation": HTMLOjpNavigationElement;
+        "ojp-navigation-item": HTMLOjpNavigationItemElement;
         "ojp-row": HTMLOjpRowElement;
         "ojp-template": HTMLOjpTemplateElement;
     }
@@ -442,6 +468,30 @@ declare namespace LocalJSX {
          */
         "scrollbarvisible"?: boolean;
     }
+    interface OjpNavigation {
+        /**
+          * Triggered when the component has left the viewport
+         */
+        "onElementIsInvisible"?: (event: OjpNavigationCustomEvent<any>) => void;
+        /**
+          * Triggered when the component is visible in the viewport
+         */
+        "onElementIsVisible"?: (event: OjpNavigationCustomEvent<any>) => void;
+        /**
+          * Triggered when the mobile menu drawer opens & closes (boolean)
+         */
+        "onOjpNavigationMobileDrawerOpen"?: (event: OjpNavigationCustomEvent<any>) => void;
+    }
+    interface OjpNavigationItem {
+        /**
+          * Triggered when the component has left the viewport
+         */
+        "onElementIsInvisible"?: (event: OjpNavigationItemCustomEvent<any>) => void;
+        /**
+          * Triggered when the component is visible in the viewport
+         */
+        "onElementIsVisible"?: (event: OjpNavigationItemCustomEvent<any>) => void;
+    }
     interface OjpRow {
         /**
           * align-items property of the grid. <br><br>Default: `stretch`
@@ -490,6 +540,8 @@ declare namespace LocalJSX {
         "ojp-image": OjpImage;
         "ojp-listbox": OjpListbox;
         "ojp-modal": OjpModal;
+        "ojp-navigation": OjpNavigation;
+        "ojp-navigation-item": OjpNavigationItem;
         "ojp-row": OjpRow;
         "ojp-template": OjpTemplate;
     }
@@ -505,6 +557,8 @@ declare module "@stencil/core" {
             "ojp-image": LocalJSX.OjpImage & JSXBase.HTMLAttributes<HTMLOjpImageElement>;
             "ojp-listbox": LocalJSX.OjpListbox & JSXBase.HTMLAttributes<HTMLOjpListboxElement>;
             "ojp-modal": LocalJSX.OjpModal & JSXBase.HTMLAttributes<HTMLOjpModalElement>;
+            "ojp-navigation": LocalJSX.OjpNavigation & JSXBase.HTMLAttributes<HTMLOjpNavigationElement>;
+            "ojp-navigation-item": LocalJSX.OjpNavigationItem & JSXBase.HTMLAttributes<HTMLOjpNavigationItemElement>;
             "ojp-row": LocalJSX.OjpRow & JSXBase.HTMLAttributes<HTMLOjpRowElement>;
             "ojp-template": LocalJSX.OjpTemplate & JSXBase.HTMLAttributes<HTMLOjpTemplateElement>;
         }

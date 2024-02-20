@@ -1,0 +1,158 @@
+/**
+  * Component css variables are commented but NOT DEFINED here. They are defined in
+  * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+  * so that they can be used by other components and use globally set breakpoints.
+  *
+  **** NOTE: The @prop comments are necessary for public variables here because they
+  **** will be picked up by Stencil's docs auto-generator and output to the component's
+  **** docs at docs/components/<component-name>/readme.md
+  ****
+  **** Any comment changes here should be duplicated into the component's global scss file
+  **** (e.g. src/global/components/_ojp-navigation.scss)
+ */
+
+// PUBLIC CSS VARIABLES
+
+/**
+  * @prop --ojp-navigation--wrapper-background-color: Background color on the navigation wrapper . Defaults to #{var(--ojp-navigation--background-color)};
+  * @prop --ojp-navigation--position: The main navigation position. Defaults to `sticky`
+  * @prop --ojp-navigation--background-color: Background color on the navigation. Defaults to `#ffffff`
+  * @prop --ojp-navigation--color: Navigation color. Defaults to `#000000`
+  * @prop --ojp-navigation--grid-template-columns: Grid template columns. Defaults to `1fr auto` at mobile and `auto 1fr` at desktop
+  * @prop --ojp-navigation--main-navbar-margin: The margin (all sides) for the main navigation. Defaults to `0 0`
+  * @prop --ojp-navigation--font-size: Navigation font size. Defaults to `--step-3`
+  * @prop --ojp-navigation--mobile-button-display: Mobile menu button display property. Defaults to `block` at mobile and `none` at desktop
+  * @prop --ojp-navigation--mobile-hamburger-line-color: Mobile menu hamburger button line stroke color. Defaults to `#000000`
+  * @prop --ojp-navigation--menu-align-items: Menu item alignment. Defaults to `flex-start`at mobile and `center` at desktop
+  * @prop --ojp-navigation--menu-height: Menu height. Defaults to `100vh` at mobile and `100px` at desktop
+  * @prop --ojp-navigation--menu-left-position: Left position of the menu. Defaults to `0` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-padding-top: Menu margin top. Defaults to `50px` at mobile to offset by the same amount as the logo/nav height and `0` at desktop
+  * @prop --ojp-navigation--menu-position: Position property of the menu. Defaults to `fixed` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-top-position: Top property of the menu. Defaults to `0` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-transform: Transform property of the menu. Defaults to `translateX(-100%)` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-transition: Transition property of the menu. Defaults to `transform 0.3s ease-in-out, background 0.3s ease-in-out, visibility 0s linear 0.3s` at mobile and `color 0.3s ease-in-out` at desktop
+  * @prop --ojp-navigation--menu-visibility: Visibility of the menu. Defaults to `hidden` at mobile and `visible` at desktop
+  * @prop --ojp-navigation--menu-width: Width of the menu. Defaults to `100vw` at mobile and `100%` at desktop
+  * @prop --ojp-navigation--menu-zindex: Z-index of the menu. Defaults to `-1` at mobile and `inherit` at desktop
+  * @prop --ojp-navigation--menu-items-wrapper-flex-direction: Navigation items wrapper flex direction. Defaults to `column` at mobile and `row` at desktop
+  * @prop --ojp-navigation--menu-items-wrapper-height: Navigation items wrapper height. Defaults to `100%` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-items-wrapper-justify-content: Navigation items wrapper content justification. Defaults to `flex-start` at mobile and `flex-end` at desktop
+  * @prop --ojp-navigation--menu-items-wrapper-width: Navigation items wrapper content justification. Defaults to `100%` at mobile and `initial` at desktop
+  * @prop --ojp-navigation--menu-items-restricted-height-margin-bottom: Mobile menu ul element margin bottom, used when the viewport height is below 425px. Defaults to `--space-2xl`
+ */
+
+// PRIVATE VARIABLES
+/**
+   * Private Variable - set by JS according to props
+   * --ojp-navigation--example-private-var: Description of this variable. Defaults to X.
+  */
+
+
+// STYLES
+ojp-navigation {
+  .ojp-navigation__main-navbar-wrapper {
+    background-color: var(--ojp-navigation--wrapper-background-color);
+    display: flex;
+    overflow: hidden;
+    max-width: 100%;
+    position: var(--ojp-navigation--position);
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+  }
+
+  .ojp-navigation__main-navbar {
+    background-color: var(--ojp-navigation--background-color);
+    color: var(--ojp-navigation--color);
+    display: grid;
+    grid-template-columns: var(--ojp-navigation--grid-template-columns);
+    grid-template-rows: max-content;
+    width: 100vw;
+    margin: var(--ojp-navigation--main-navbar-margin);
+
+    a {
+      font-size: var(--ojp-navigation--font-size);
+    }
+
+    .ojp-navigation__mobile-menu-toggle {
+      align-self: center;
+      display: var(--ojp-navigation--mobile-button-display);
+      grid-area: 1 / 2 / 2 / 3;
+      justify-self: end;
+
+      .ojp-navigation__mobile-menu-hamburger path {
+        stroke: var(--ojp-navigation--mobile-hamburger-line-color);
+        transform-box: fill-box;
+        transform-origin: 6px;
+        transition: transform 0.3s ease-in-out, stroke 0.3s ease-in-out;
+      }
+
+      &[aria-expanded="true"] .ojp-navigation__mobile-menu-hamburger {
+        path:first-child {
+          transform: rotate(45deg);
+        }
+
+        path:last-child {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    .ojp-navigation__menu-wrapper {
+      align-items: var(--ojp-navigation--menu-align-items);
+      background-color: var(--ojp-navigation--background-color);
+      height: var(--ojp-navigation--menu-height);
+      left: var(--ojp-navigation--menu-left-position);
+      padding-top: var(--ojp-navigation--menu-padding-top);
+      position: var(--ojp-navigation--menu-position);
+      top: var(--ojp-navigation--menu-top-position);
+      transform: var(--ojp-navigation--menu-transform);
+      transition: var(--ojp-navigation--menu-transition);
+      visibility: var(--ojp-navigation--menu-visibility);
+      width: var(--ojp-navigation--menu-width);
+      z-index: var(--ojp-navigation--menu-zindex);
+
+
+      @media screen and (max-height: 425px) {
+        overflow-y: scroll;
+      }
+
+      &--open {
+        transform: translateX(0);
+        transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, visibility 0s linear;
+        visibility: visible;
+      }
+    }
+  }
+
+  [slot="logo"] {
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      display: contents;
+    }
+  }
+  [slot="nav-items"] {
+    display: flex;
+    flex-direction: var(--ojp-navigation--menu-items-wrapper-flex-direction);
+    height: var(--ojp-navigation--menu-items-wrapper-height);
+    justify-content: var(--ojp-navigation--menu-items-wrapper-justify-content);
+    //margin-top: var(--ojp-navigation--mobile-drawer-nav-list-margin-top); @TODO  replace? Get rid of?
+    width: var(--ojp-navigation--menu-items-wrapper-width);
+
+    @media screen and (max-height: 425px) {
+      margin-bottom: var(--ojp-navigation--menu-items-restricted-height-margin-bottom);
+    }
+
+    //@media screen and (min-width: 1024px) { @TODO  replace? Get rid of?
+    //  margin: 0;
+    //  padding: 0;
+    //}
+  }
+}
+
+
+
+

@@ -1,0 +1,52 @@
+
+
+
+/**
+  * Component css variables are commented but NOT DEFINED here. They are defined in
+  * the component's global scss file (e.g. src/global/components/_ojp-image.scss)
+  * so that they can be used by other components and use globally set breakpoints.
+  *
+  **** NOTE: The @prop comments are necessary for public variables here because they
+  **** will be picked up by Stencil's docs auto-generator and output to the component's
+  **** docs at docs/components/<component-name>/readme.md
+  ****
+  **** Any comment changes here should be duplicated into the component's global scss file
+  **** (e.g. src/global/components/_ojp-navigation-item.scss)
+ */
+
+
+// PUBLIC CSS VARIABLES
+/**
+  * @prop --ojp-navigation-item--vertical-link-padding: Desktop menu link top/bottom padding. Defaults to `--space-s`
+  * @prop --ojp-navigation-item--horizontal-link-padding: Desktop menu link left/right padding. Defaults to `--space-s`
+  * @prop --ojp-navigation-item--link-hover-color: Link hover color. Defaults to `red`
+*/
+
+// PRIVATE VARIABLES
+/**
+ * Private Variable - set by JS according to props
+ * --ojp-navigation-item--example-private-var: Description of this variable. Defaults to X.
+*/
+
+
+// STYLES
+ojp-navigation-item {
+  display: inline-block;
+  padding: var(--ojp-navigation-item--vertical-link-padding) var(--ojp-navigation-item--horizontal-link-padding);
+
+  a {
+    transition: color 0.1s ease-in-out;
+
+    &:hover {
+      color: var(--ojp-navigation-item--link-hover-color);
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+
+
+
+

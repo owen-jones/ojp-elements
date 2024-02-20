@@ -1,0 +1,186 @@
+/**
+  * Component css variables are defined here and imported to the global.scss file
+  * so that they can be used by other components and use globally set breakpoints
+  *
+  **** NOTE!: The @prop comments must be duplicated into the the component's scss file
+  **** (e.g. src/components/ojp-image/ojp-image.scss) so that they will be picked up
+  **** by Stencil's docs auto-generator.
+  ****
+  **** Comments in this file will NOT be picked up by the docs generator and are here for
+  **** developer reference only. Any changes here should be duplicated into the component's
+  **** scss file.
+ */
+
+
+ojp-navigation {
+
+  // PUBLIC CSS VARIABLES
+
+  /**
+    * @prop --ojp-navigation--wrapper-background-color: Background color on the navigation wrapper . Defaults to #{var(--ojp-navigation--background-color)};
+  */
+  --ojp-navigation--wrapper-background-color: #{var(--ojp-navigation--background-color)};
+
+  /**
+    * @prop --ojp-navigation--position: The main navigation position. Defaults to `sticky`
+  */
+  --ojp-navigation--position: sticky;
+  /**
+    * @prop --ojp-navigation--background-color: Background color on the navigation. Defaults to `#ffffff`
+  */
+  --ojp-navigation--background-color: #ffffff;
+
+  /**
+    * @prop --ojp-navigation--color: Navigation color. Defaults to `#000000`
+  */
+  --ojp-navigation--color: #000000;
+
+  /**
+    * @prop --ojp-navigation--grid-template-columns: Grid template columns. Defaults to `1fr auto` at mobile and `` at desktop
+  */
+  --ojp-navigation--grid-template-columns: 1fr auto;
+
+  /**
+    * @prop --ojp-navigation--main-navbar-margin: The margin (all sides) for the main navigation. Defaults to `0 0`
+  */
+  --ojp-navigation--main-navbar-margin: 0 0;
+
+  /**
+    * @prop --ojp-navigation--font-size: Navigation font size. Defaults to `--step-3` at mobile and `--step-2` at desktop
+  */
+  --ojp-navigation--font-size: #{var(--step-3)};
+
+  /**
+    * @prop --ojp-navigation--mobile-button-display: Mobile menu button display property. Defaults to `block` at mobile and `none` at desktop
+  */
+  --ojp-navigation--mobile-button-display: block;
+
+  /**
+    * @prop --ojp-navigation--mobile-hamburger-line-color: Mobile menu hamburger button line stroke color. Defaults to `#000000`
+  */
+  --ojp-navigation--mobile-hamburger-line-color: #000000;
+
+  /**
+    * @prop --ojp-navigation--menu-align-items: Menu item alignment. Defaults to `flex-start`at mobile and `center` at desktop
+  */
+  --ojp-navigation--menu-align-items: flex-start;
+
+  /**
+    * @prop --ojp-navigation--menu-height: Menu height. Defaults to `100vh` at mobile and `auto` at desktop
+   */
+  --ojp-navigation--menu-height: 100vh;
+
+  /**
+    * @prop --ojp-navigation--menu-left-position: Left position of the menu. Defaults to `0` at mobile and `unset` at desktop
+   */
+  --ojp-navigation--menu-left-position: 0;
+
+  /**
+    * @prop --ojp-navigation--menu-padding-top: Menu padding top. Defaults to `50px` at mobile to offset by the same amount as the logo/nav height and `0` at desktop
+  */
+  --ojp-navigation--menu-padding-top: 50px;
+
+  /**
+  * @prop --ojp-navigation--menu-position: Position property of the menu. Defaults to `fixed` at mobile and `initial` at desktop
+ */
+  --ojp-navigation--menu-position: fixed;
+
+  /**
+    * @prop --ojp-navigation--menu-top-position: Top position of the menu. Defaults to `0` at mobile and `unset` at desktop
+   */
+  --ojp-navigation--menu-top-position: 0;
+
+  /**
+    * @prop --ojp-navigation--menu-transform: Transform property of the menu. Defaults to `translateX(-100%)` at mobile and `initial` at desktop
+   */
+  --ojp-navigation--menu-transform: translateX(-100%);
+
+  /**
+    * @prop --ojp-navigation--menu-transition: Transition property of the menu. Defaults to `transform 0.3s ease-in-out, background 0.3s ease-in-out, visibility 0s linear 0.3s` at mobile and `color 0.3s ease-in-out` at desktop
+   */
+  --ojp-navigation--menu-transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, visibility 0s linear 0.3s;
+
+  /**
+    * @prop --ojp-navigation--menu-visibility: Visibility of the menu. Defaults to `hidden` at mobile and `visible` at desktop
+   */
+  --ojp-navigation--menu-visibility: hidden;
+
+  /**
+    * @prop --ojp-navigation--menu-width: Width of the menu. Defaults to `100vw` at mobile and `auto` at desktop
+   */
+  --ojp-navigation--menu-width: 100vw;
+
+  /**
+    * @prop --ojp-navigation--menu-zindex: Z-index of the menu. Defaults to `-1` at mobile and `inherit` at desktop
+   */
+  --ojp-navigation--menu-zindex: -1;
+
+  /**
+    * @prop --ojp-navigation--menu-items-wrapper-flex-direction: Navigation items wrapper flex direction. Defaults to `column` at mobile and `row` at desktop
+  */
+  --ojp-navigation--menu-items-wrapper-flex-direction: column;
+
+  /**
+    * @prop --ojp-navigation--menu-items-wrapper-height: Navigation items wrapper height. Defaults to `100%` at mobile and `initial` at desktop
+  */
+  --ojp-navigation--menu-items-wrapper-height: 100%;
+
+  /**
+    * @prop --ojp-navigation--menu-items-wrapper-justify-content: Navigation items wrapper content justification. Defaults to `flex-start` at mobile and `flex-end` at desktop
+  */
+  --ojp-navigation--menu-items-wrapper-justify-content: flex-start;
+
+  /**
+    * @prop --ojp-navigation--menu-items-wrapper-width: Navigation items wrapper content justification. Defaults to `100%` at mobile and `initial` at desktop
+  */
+  --ojp-navigation--menu-items-wrapper-width: 100%;
+
+  /**
+    * @prop --ojp-navigation--menu-items-restricted-height-margin-bottom: Element margin bottom, used when the viewport height is below 425px. Defaults to `--space-2xl`
+  */
+  --ojp-navigation--menu-items-restricted-height-margin-bottom: #{var(--space-2xl)};
+
+
+
+  //// PRIVATE VARIABLES
+  ///**
+  //   * Private Variable - set by JS according to props
+  //   * --ojp-navigation--example-private-var: Description of this variable. Defaults to X.
+  //  */
+  //--ojp-navigation--example-private-var: 12;
+}
+
+
+// Desktop
+@supports (--breakpoint("desktop")) {
+  ojp-navigation {
+    --ojp-navigation--grid-template-columns: auto 1fr;
+    --ojp-navigation--font-size: #{var(--step-2)};
+    --ojp-navigation--mobile-button-display: none;
+
+    --ojp-navigation--menu-align-items: center;
+    --ojp-navigation--menu-height: auto;
+    --ojp-navigation--menu-left-position: unset;
+    --ojp-navigation--menu-padding-top: 0;
+    --ojp-navigation--menu-position: initial;
+    --ojp-navigation--menu-top-position: unset;
+    --ojp-navigation--menu-transform: initial;
+    --ojp-navigation--menu-transition: color 0.3s ease-in-out;
+    --ojp-navigation--menu-visibility: visible;
+    --ojp-navigation--menu-width: 100%;
+    --ojp-navigation--menu-zindex: inherit;
+
+    --ojp-navigation--menu-items-wrapper-flex-direction: row;
+    --ojp-navigation--menu-items-wrapper-height: initial;
+    --ojp-navigation--menu-items-wrapper-justify-content: flex-end;
+    --ojp-navigation--menu-items-wrapper-width: initial;
+
+  }
+}
+
+
+
+
+
+
+

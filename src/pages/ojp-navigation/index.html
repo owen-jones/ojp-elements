@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+  <title>Ojp Navigation</title>
+
+  <!--  Import pattern libary globals-->
+  <script type="module" src="../../build/ojp-elements.esm.js"></script>
+  <script nomodule src="../../build/ojp-elements.js"></script>
+  <link rel='stylesheet' href='../../build/ojp-elements.css'>
+
+  <!--  Import demo page styles and scripts-->
+  <link rel='stylesheet' href='../styles/demo.css'>
+
+  <style>
+      body {
+          margin: 0;
+          min-height: 100vh;
+      }
+
+      pre {
+          overflow: scroll;
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <ojp-row>
+      <ojp-col class="column" span="12" start="0" tspan="12" tstart="0" mspan="12" mstart="0">
+        <h1>Ojp Navigation Page</h1>
+        <hr>
+        <!-- Overview -->
+        <h2>Overview</h2>
+        <p>See auto-generated <a href="https://github.com/owen-jones/ojp-elements/tree/main/docs/components/ojp-navigation" target="_blank">component docs here</a></p>
+        <br>
+        <p>Project dev can override any ojp-navigation css vars in their style sheet like this. See docs for full list of css vars</p>
+        <br>
+        <p>These are some of the variables that will be most frequently changed. Some may need to be overridden at a
+          particular screen size (i.e. mobile or desktop) but not at another. See examples of these styling differences
+          in the example components listed below.
+        </p>
+        <div class="code-block">
+          <pre>
+            <code>
+    ojp-navigation {
+      --ojp-navigation--background-color: #eee; // Defaults to `#ffffff`
+      --ojp-navigation--mobile-hamburger-line-color: red // Defaults to `#000000`
+      --ojp-navigation--menu-height: 80vh; Defaults to `100vh` at mobile and `auto` at desktop
+      --ojp-navigation--menu-width: 100%; Defaults to `100vw` at mobile and `auto` at desktop
+    }
+            </code>
+          </pre>
+        </div>
+        <hr>
+      </ojp-col>
+    </ojp-row>
+
+    <ojp-row>
+      <ojp-col class="column" span="12" start="0" tspan="12" tstart="0" mspan="12" mstart="0">
+        <h2>Usage</h2>
+        <h3>Example 1</h3>
+        <p>Navigation example 1 with position: relative applied and a background color:
+          <a href="/pages/ojp-navigation/nav-example1.html">View</a>
+        </p>
+        <br>
+        <br>
+
+        <h3>Example 2</h3>
+        <p>Navigation example 2 with a typical layout that has overridden button icon for the mobile nav:
+          <a href="/pages/ojp-navigation/nav-example2.html">View</a>
+        </p>
+        <br>
+        <br>
+
+        <h3>Example 3</h3>
+        <p>Navigation example 3 with a floating effect:
+          <a href="/pages/ojp-navigation/nav-example3.html">View</a>
+        </p>
+        <br>
+        <br>
+      </ojp-col>
+    </ojp-row>
+  </div>
+
+</body>
+
+<script>
+  // Project dev can write a function to expose ojp-navigation's "exampleFunction" function
+  // function exampleFunction() {
+  //   let component = document.querySelector('ojp-navigation');
+  //   component.exampleFunction();
+  // }
+  //
+  // // use the function on page load
+  // window.addEventListener('load', (event) => {
+  //   exampleFunction();
+  // });
+
+</script>
+</html>

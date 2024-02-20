@@ -23,6 +23,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
+    "develop": "stencil build --dev --watch --serve --debug",
     "build": "stencil build --docs",
     "start": "stencil build --debug --watch",
     "test": "stencil test --spec --e2e",
