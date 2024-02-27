@@ -25,13 +25,13 @@ Import the library global styles in your main SCSS file:
 ```
 
 ## Components
-- [<ojp-accordion>](components/ojp-accordion/readme.md)
-- [<ojp-accordion-item>](components/ojp-accordion-item/readme.md)
-- [<ojp-card>](components/ojp-card/readme.md)
-- [<ojp-col>](components/ojp-col/readme.md)
-- [<ojp-image>](components/ojp-image/readme.md)
-- [<ojp-modal>](components/ojp-modal/readme.md)
-- [<ojp-row>](components/ojp-row/readme.md)
+- [ojp-accordion](components/ojp-accordion/readme.md)
+- [ojp-accordion-item](components/ojp-accordion-item/readme.md)
+- [ojp-card](components/ojp-card/readme.md)
+- [ojp-col](components/ojp-col/readme.md)
+- [ojp-image](components/ojp-image/readme.md)
+- [ojp-modal](components/ojp-modal/readme.md)
+- [ojp-row](components/ojp-row/readme.md)
 
 ## Examples
 - [OJP Elements Examples](https://ojp-elements.whoisowenjones.com)
