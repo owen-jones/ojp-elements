@@ -2,7 +2,8 @@
 
 The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins that encapsulate the logic of our most frequently used UI patterns. The library is distributed as an NPM module that can be installed on any JavaScript project when necessary. As a living document, the Owen Pattern Library is extensible and version controlled. Updates to the APIs exposed by the Owen Pattern Library should be documented in each component's source code, which will auto-generate the associate readme.
 
-See the [component documentation](https://github.com/owen-jones/ojp-elements/tree/main/docs/components) for more information.
+## Documentation:
+[OJP Elements Docs](docs/readme.md)
 
 ## Using this library in a project:
 
@@ -10,10 +11,15 @@ See the [component documentation](https://github.com/owen-jones/ojp-elements/tre
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.3.27
+npm install @ojp/ojp-elements
 ```
 
-Import the elements you want to use in your JavaScript file:
+Import the OJP Elements entrypoint into your main JavaScript file:
+```javascript
+import '@ojp/ojp-elements';
+```
+
+Import the components you want to use individually:
 ```javascript
 import {OjpAccordion} from '@ojp/ojp-elements/dist/components/ojp-accordion';
 import {OjpModal} from '@ojp/ojp-elements/dist/components/ojp-modal';
