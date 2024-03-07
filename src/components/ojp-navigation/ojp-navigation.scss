@@ -20,7 +20,6 @@
   * @prop --ojp-navigation--color: Navigation color. Defaults to `#000000`
   * @prop --ojp-navigation--grid-template-columns: Grid template columns. Defaults to `1fr auto` at mobile and `auto 1fr` at desktop
   * @prop --ojp-navigation--main-navbar-margin: The margin (all sides) for the main navigation. Defaults to `0 0`
-  * @prop --ojp-navigation--font-size: Navigation font size. Defaults to `--step-3`
   * @prop --ojp-navigation--mobile-button-display: Mobile menu button display property. Defaults to `block` at mobile and `none` at desktop
   * @prop --ojp-navigation--mobile-hamburger-line-color: Mobile menu hamburger button line stroke color. Defaults to `#000000`
   * @prop --ojp-navigation--menu-align-items: Menu item alignment. Defaults to `flex-start`at mobile and `center` at desktop
@@ -69,10 +68,6 @@
     grid-template-rows: max-content;
     width: 100vw;
     margin: var(--ojp-navigation--main-navbar-margin);
-
-    a {
-      font-size: var(--ojp-navigation--font-size);
-    }
 
     .ojp-navigation__mobile-menu-toggle {
       align-self: center;
@@ -125,7 +120,7 @@
     }
   }
 
-  [slot="logo"] {
+  ::slotted([slot="logo"]) {
     align-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -134,22 +129,17 @@
       display: contents;
     }
   }
-  [slot="nav-items"] {
+
+  ::slotted([slot="nav-items"]) {
     display: flex;
     flex-direction: var(--ojp-navigation--menu-items-wrapper-flex-direction);
     height: var(--ojp-navigation--menu-items-wrapper-height);
     justify-content: var(--ojp-navigation--menu-items-wrapper-justify-content);
-    //margin-top: var(--ojp-navigation--mobile-drawer-nav-list-margin-top); @TODO  replace? Get rid of?
     width: var(--ojp-navigation--menu-items-wrapper-width);
 
     @media screen and (max-height: 425px) {
       margin-bottom: var(--ojp-navigation--menu-items-restricted-height-margin-bottom);
     }
-
-    //@media screen and (min-width: 1024px) { @TODO  replace? Get rid of?
-    //  margin: 0;
-    //  padding: 0;
-    //}
   }
 }
 

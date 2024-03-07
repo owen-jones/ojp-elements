@@ -142,7 +142,7 @@ export class OjpNavigationItem {
   render() {
     return (
       <Host>
-
+        <slot></slot>
       </Host>
     );
   }
