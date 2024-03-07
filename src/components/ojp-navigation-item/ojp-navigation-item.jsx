@@ -3,7 +3,7 @@ import {Component, Host, h, Element, Prop, Event, Listen, Method, State} from '@
 @Component({
   tag: 'ojp-navigation-item',
   styleUrl: 'ojp-navigation-item.scss',
-  shadow: false,
+  shadow: true,
 })
 export class OjpNavigationItem {
 

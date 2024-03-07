@@ -49,7 +49,7 @@
 
 
 // STYLES
-ojp-navigation {
+:host {
   .ojp-navigation__main-navbar-wrapper {
     background-color: var(--ojp-navigation--wrapper-background-color);
     display: flex;

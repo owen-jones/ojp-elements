@@ -30,7 +30,7 @@
 
 
 // STYLES
-ojp-navigation-item {
+:host {
   display: inline-block;
   padding: var(--ojp-navigation-item--vertical-link-padding) var(--ojp-navigation-item--horizontal-link-padding);
 
