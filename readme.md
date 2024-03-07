@@ -10,7 +10,7 @@ See the [component documentation](https://github.com/owen-jones/ojp-elements/tre
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.3.28
+npm install @ojp/ojp-elements@0.3.29
 ```
 
 Import the elements you want to use in your JavaScript file:
@@ -32,8 +32,8 @@ directly from the CDN through an HTML `<script>` tag.
 Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.28/dist/ojp-elements/ojp-elements.esm.min.js'></script>
-<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.28/dist/ojp-elements/ojp-elements.min.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.29/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.29/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 ## Development:
@@ -83,7 +83,7 @@ After you have incremented the version number, tag the release in git by running
 ```bash
 git add .
 git commit -m "Increment version number"
-git tag -a v0.3.28 -m "v0.3.28" // Replace the version number with the new version number
+git tag -a v0.3.29 -m "v0.3.29" // Replace the version number with the new version number
 git push origin main --tags
 ```
 
