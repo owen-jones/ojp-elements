@@ -25,6 +25,11 @@ ojp-navigation-item {
   --ojp-navigation-item--horizontal-link-padding: #{var(--space-s)};
 
   /**
+    * @prop --ojp-navigation-item--font-size: Nav item font size. Defaults to `--step-3` at mobile and `--step-2` at desktop
+  */
+  --ojp-navigation-item--font-size: #{var(--step-3)};
+
+  /**
     * @prop --ojp-navigation-item--link-hover-color: Link hover color. Defaults to `black`
   */
   --ojp-navigation-item--link-hover-color: black;
@@ -34,7 +39,13 @@ ojp-navigation-item {
      * Private Variable - set by JS according to props
      * --ojp-navigation-item--example-private-var: Description of this variable. Defaults to X.
     */
+}
 
+// Desktop
+@supports (--breakpoint("desktop")) {
+  ojp-navigation-item {
+    --ojp-navigation-item--font-size: #{var(--step-2)};
+  }
 }
 
 

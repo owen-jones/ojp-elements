@@ -19,6 +19,7 @@
 /**
   * @prop --ojp-navigation-item--vertical-link-padding: Desktop menu link top/bottom padding. Defaults to `--space-s`
   * @prop --ojp-navigation-item--horizontal-link-padding: Desktop menu link left/right padding. Defaults to `--space-s`
+  * @prop --ojp-navigation-item--font-size: Nav item font size. Defaults to `--step-3` at mobile and `--step-2` at desktop
   * @prop --ojp-navigation-item--link-hover-color: Link hover color. Defaults to `red`
 */
 
@@ -30,12 +31,13 @@
 
 
 // STYLES
-ojp-navigation-item {
+:host {
   display: inline-block;
   padding: var(--ojp-navigation-item--vertical-link-padding) var(--ojp-navigation-item--horizontal-link-padding);
 
-  a {
+  ::slotted(a) {
     transition: color 0.1s ease-in-out;
+    font-size: var(--ojp-navigation-item--font-size);
 
     &:hover {
       color: var(--ojp-navigation-item--link-hover-color);

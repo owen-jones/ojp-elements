@@ -9,7 +9,7 @@ import {Component, Host, h, Element, Prop, Event, Listen, Method, State} from '@
 @Component({
   tag: 'ojp-navigation',
   styleUrl: 'ojp-navigation.scss',
-  shadow: false,
+  shadow: true,
 })
 export class OjpNavigation {
 
@@ -170,24 +170,26 @@ export class OjpNavigation {
    */
   render() {
     return (
-      <div className='ojp-navigation__main-navbar-wrapper'>
-        <nav className="ojp-navigation__main-navbar" role="navigation" aria-label="Main Navigation">
-          <slot name="logo"></slot>
+      <Host>
+        <div className='ojp-navigation__main-navbar-wrapper'>
+          <nav className="ojp-navigation__main-navbar" role="navigation" aria-label="Main Navigation">
+            <slot name="logo"></slot>
 
-          <div className={`ojp-navigation__menu-wrapper ${this.open ? 'ojp-navigation__menu-wrapper--open' : ''}`} id="ojp-navigation__menu-wrapper">
-            <slot name="nav-items"></slot>
-          </div>
+            <div className={`ojp-navigation__menu-wrapper ${this.open ? 'ojp-navigation__menu-wrapper--open' : ''}`} id="ojp-navigation__menu-wrapper">
+              <slot name="nav-items"></slot>
+            </div>
 
-          <button className="ojp-navigation__mobile-menu-toggle" aria-label="Mobile Navigation Toggle" aria-expanded={`${this.open}`} aria-controls="ojp-navigation__menu-wrapper" onClick={this.handleClick}>
-            <slot name="hamburger">
-              <svg className="ojp-navigation__mobile-menu-hamburger" width="23" height="30" viewBox="0 0 23 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 11H23" stroke="#262626" stroke-width="2"></path>
-                <path d="M0 19H23" stroke="#262626" stroke-width="2"></path>
-              </svg>
-            </slot>
-          </button>
-        </nav>
-      </div>
+            <button className="ojp-navigation__mobile-menu-toggle" aria-label="Mobile Navigation Toggle" aria-expanded={`${this.open}`} aria-controls="ojp-navigation__menu-wrapper" onClick={this.handleClick}>
+              <slot name="hamburger">
+                <svg className="ojp-navigation__mobile-menu-hamburger" width="23" height="30" viewBox="0 0 23 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 11H23" stroke="#262626" stroke-width="2"></path>
+                  <path d="M0 19H23" stroke="#262626" stroke-width="2"></path>
+                </svg>
+              </slot>
+            </button>
+          </nav>
+        </div>
+      </Host>
     );
   }
 
