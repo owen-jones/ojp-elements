@@ -11,7 +11,7 @@ The Owen Pattern Library is a collection of HTML custom elements and SCSS mixins
 
 Install the library in your project by running
 ```bash
-npm install @ojp/ojp-elements@0.3.31
+npm install @ojp/ojp-elements@0.3.32
 ```
 
 Import the components you want to use individually:
@@ -33,8 +33,8 @@ directly from the CDN through an HTML `<script>` tag.
 Include the following imports in the `<head>` of your HTML file:
 
 ```html
-<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.31/dist/ojp-elements/ojp-elements.esm.min.js'></script>
-<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.31/dist/ojp-elements/ojp-elements.min.css'/>
+<script type='module' src='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.32/dist/ojp-elements/ojp-elements.esm.min.js'></script>
+<link rel='stylesheet' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/@ojp/ojp-elements@0.3.32/dist/ojp-elements/ojp-elements.min.css'/>
 ```
 
 ## Development:
@@ -84,7 +84,7 @@ After you have incremented the version number, tag the release in git by running
 ```bash
 git add .
 git commit -m "Increment version number"
-git tag -a v0.3.31 -m "v0.3.31" // Replace the version number with the new version number
+git tag -a v0.3.32 -m "v0.3.32" // Replace the version number with the new version number
 git push origin main --tags
 ```
 
