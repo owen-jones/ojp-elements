@@ -257,10 +257,8 @@ export class OjpAccordionItem {
           }}
           onTransitionEnd={() => this.handleTransitionEnd()}
           style={this.open ? {
-            maxHeight: this.calculatedMaxHeight,
             visibility: 'visible'
           } : {
-            maxHeight: 0,
             visibility: 'hidden'
           }}
         >

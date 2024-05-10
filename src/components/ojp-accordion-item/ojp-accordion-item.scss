@@ -120,12 +120,14 @@
 
 // Panel
 .ojp-accordion-item__panel {
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
   overflow: hidden;
   padding-left: var(--ojp-accordion-item--padding-inline);
   padding-right: var(--ojp-accordion-item--padding-inline);
   transition: visibility 0s linear,
-  max-height var(--ojp-accordion-item--animation-speed) ease,
+  grid-template-rows var(--ojp-accordion-item--animation-speed) ease,
   opacity var(--ojp-accordion-item--animation-speed) ease;
   visibility: hidden;
 }
@@ -148,6 +150,7 @@
 
   // Panel opacity
   .ojp-accordion-item__panel {
+    grid-template-rows: 1fr;
     opacity: 1;
   }
 }
