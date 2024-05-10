@@ -256,11 +256,6 @@ export class OjpAccordionItem {
             this.contentEl = el
           }}
           onTransitionEnd={() => this.handleTransitionEnd()}
-          style={this.open ? {
-            visibility: 'visible'
-          } : {
-            visibility: 'hidden'
-          }}
         >
 
           {/* Panel Slot */}

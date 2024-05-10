@@ -129,15 +129,14 @@
   transition: visibility 0s linear,
   grid-template-rows var(--ojp-accordion-item--animation-speed) ease,
   opacity var(--ojp-accordion-item--animation-speed) ease;
-  visibility: hidden;
 }
 
 
 ::slotted( [slot="panel"] ) {
   max-width: var(--ojp-accordion-item--max-content-width);
+  overflow: hidden;
   padding-top: var(--ojp-accordion-item--panel-padding-block);
   padding-bottom: var(--ojp-accordion-item--panel-padding-block);
-
 }
 
 // Open state
