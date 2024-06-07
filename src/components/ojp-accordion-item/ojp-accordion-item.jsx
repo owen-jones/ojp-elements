@@ -233,6 +233,11 @@ export class OjpAccordionItem {
           aria-controls="section"
           id="section-control"
           onClick={this.handleClick}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              this.handleClick(e);
+            }
+          }}
           ref={(button) => {
             this.buttonEl = button
           }}
