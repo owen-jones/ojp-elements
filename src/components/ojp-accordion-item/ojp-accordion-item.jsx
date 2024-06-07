@@ -151,11 +151,33 @@ export class OjpAccordionItem {
     }
   }
 
+  toggleChildrenFocusOrder(isFocusable) {
+    const panel = this.el.querySelector('[slot="panel"]');
 
+    if(!panel) {
+      return;
+    }
+
+    if(!isFocusable) {
+      this.focusableChildren = panel.querySelectorAll('a[href]:not([tabindex=\'-1\']),area[href]:not([tabindex=\'-1\']),input:not([disabled]):not([tabindex=\'-1\']),select:not([disabled]):not([tabindex=\'-1\']),textarea:not([disabled]):not([tabindex=\'-1\']),button:not([disabled]):not([tabindex=\'-1\']),iframe:not([tabindex=\'-1\']),[tabindex]:not([tabindex=\'-1\']),[contentEditable=true]:not([tabindex=\'-1\'])');
+      this.focusableChildren.forEach((el) => {
+        el.setAttribute('tabindex', '-1');
+      });
+    } else{
+      if(!this.focusableChildren) {
+        return;
+      }
+
+      this.focusableChildren.forEach((el) => {
+        el.setAttribute('tabindex', '0');
+      });
+    }
+  }
 
   @Method()
   async closeItem() {
     if (this.open) {
+      this.toggleChildrenFocusOrder(false);
       this.open = false;
       this.itemClosed.emit({
         index: this.index,
@@ -169,6 +191,7 @@ export class OjpAccordionItem {
   @Method()
   async openItem() {
     if (!this.open) {
+      this.toggleChildrenFocusOrder(true);
       this.open = true;
       this.itemOpened.emit({
         index: this.index,
