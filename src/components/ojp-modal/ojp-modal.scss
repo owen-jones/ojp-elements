@@ -106,9 +106,12 @@
     align-self: flex-start;
     grid-area: var(--ojp-modal--close-grid-area);
     justify-self: flex-end;
-    margin-right: var(--ojp-modal--close-icon-margin);
-    margin-top: var(--ojp-modal--close-icon-margin);
     z-index: 12;
+
+    .close-button {
+      margin-right: var(--ojp-modal--close-icon-margin);
+      margin-top: var(--ojp-modal--close-icon-margin);
+    }
   }
 
   // Reset close button styling
