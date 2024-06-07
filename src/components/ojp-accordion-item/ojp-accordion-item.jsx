@@ -115,7 +115,10 @@ export class OjpAccordionItem {
     }
 
     this.calculateMaxHeight();
+  }
 
+  componentDidRender() {
+    this.toggleChildrenFocusOrder(this.open);
   }
 
 
@@ -158,26 +161,15 @@ export class OjpAccordionItem {
       return;
     }
 
-    if(!isFocusable) {
-      this.focusableChildren = panel.querySelectorAll('a[href]:not([tabindex=\'-1\']),area[href]:not([tabindex=\'-1\']),input:not([disabled]):not([tabindex=\'-1\']),select:not([disabled]):not([tabindex=\'-1\']),textarea:not([disabled]):not([tabindex=\'-1\']),button:not([disabled]):not([tabindex=\'-1\']),iframe:not([tabindex=\'-1\']),[tabindex]:not([tabindex=\'-1\']),[contentEditable=true]:not([tabindex=\'-1\'])');
-      this.focusableChildren.forEach((el) => {
-        el.setAttribute('tabindex', '-1');
-      });
-    } else{
-      if(!this.focusableChildren) {
-        return;
-      }
-
-      this.focusableChildren.forEach((el) => {
-        el.setAttribute('tabindex', '0');
-      });
-    }
+    this.focusableChildren = panel.querySelectorAll('a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),iframe,[tabindex],[contentEditable=true]');
+    this.focusableChildren.forEach((el) => {
+      el.setAttribute('tabindex', isFocusable ? '0' : '-1');
+    });
   }
 
   @Method()
   async closeItem() {
     if (this.open) {
-      this.toggleChildrenFocusOrder(false);
       this.open = false;
       this.itemClosed.emit({
         index: this.index,
@@ -191,7 +183,6 @@ export class OjpAccordionItem {
   @Method()
   async openItem() {
     if (!this.open) {
-      this.toggleChildrenFocusOrder(true);
       this.open = true;
       this.itemOpened.emit({
         index: this.index,
@@ -228,7 +219,6 @@ export class OjpAccordionItem {
    * If private methods present, they are below public methods.
    */
   render() {
-
     return (
       <Host class={`
           ${this.open ? 'is-open' : 'is-closed'}
