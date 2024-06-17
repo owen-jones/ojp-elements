@@ -26,7 +26,7 @@ Type: `Promise<void>`
 
 
 
-### `openModal() => Promise<void>`
+### `openModal(nonModal?: boolean) => Promise<void>`
 
 Methods to open, close modal
 

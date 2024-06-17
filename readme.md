@@ -84,7 +84,7 @@ After you have incremented the version number, tag the release in git by running
 ```bash
 git add .
 git commit -m "Increment version number"
-git tag -a v0.3.39 -m "v0.3.39" // Replace the version number with the new version number
+git tag -a v0.3.40 -m "v0.3.40" // Replace the version number with the new version number
 git push origin main --tags
 ```
 

@@ -147,7 +147,7 @@ export namespace Components {
         /**
           * Methods to open, close modal
          */
-        "openModal": () => Promise<void>;
+        "openModal": (nonModal?: boolean) => Promise<void>;
         "scrollModalTo": (X: any, Y: any) => Promise<void>;
         /**
           * Modal content has a visible scrollbar Type: boolean

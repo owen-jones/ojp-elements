@@ -85,6 +85,7 @@ export class OjpModal {
 
 
     if(nonModal) {
+      this.dialogElement.style.zIndex = 999999;
       this.dialogElement.show();
     } else {
       this.dialogElement.showModal();
