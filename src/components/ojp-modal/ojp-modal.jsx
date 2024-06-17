@@ -68,7 +68,7 @@ export class OjpModal {
    * Methods to open, close modal
    */
   @Method()
-  async openModal() {
+  async openModal(nonModal = false) {
     this.toggleLockBodyScrolling(true);
 
     // Focus on the first focusable element
@@ -84,7 +84,11 @@ export class OjpModal {
     this.dialogElement.addEventListener('focusin', this.dialogElementFocusListener);
 
 
-    this.dialogElement.showModal();
+    if(nonModal) {
+      this.dialogElement.show();
+    } else {
+      this.dialogElement.showModal();
+    }
 
     // When this invisible button gains focus, you know
     // you reached the end of the content area. Return
